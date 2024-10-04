@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Advent Of Code 2020 Days 16-20 | Dave Bartram Blog</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Advent Of Code 2020 Days 16-20" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Advent of Code 2020 Days 16-20" />
+<meta property="og:description" content="Advent of Code 2020 Days 16-20" />
+<link rel="canonical" href="http://localhost:4000/2021/03/08/advent-of-code-2020-days-16-20.html" />
+<meta property="og:url" content="http://localhost:4000/2021/03/08/advent-of-code-2020-days-16-20.html" />
+<meta property="og:site_name" content="Dave Bartram Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-08T13:45:39+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Advent Of Code 2020 Days 16-20" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-03-08T13:45:39+00:00","datePublished":"2021-03-08T13:45:39+00:00","description":"Advent of Code 2020 Days 16-20","headline":"Advent Of Code 2020 Days 16-20","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/03/08/advent-of-code-2020-days-16-20.html"},"url":"http://localhost:4000/2021/03/08/advent-of-code-2020-days-16-20.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/blog/2021/08-20-Vancian-Spellcasting-in-Tabletop-RPGs/post.txt">Vancian Spellcasting In Tabletop Rpgs</a><a class="page-link" href="/blog/2021/01-04-ReInvent-2020-1--AWS-Systems-Manager/post.txt">Reinvent 2020 Part 1 Aws Systems Manager</a><a class="page-link" href="/blog/2021/06-03-Reflections-on-the-AWS-Solutions-Architect-Associate-certification-(2021)/post.txt">Reflections On The Aws Solutions Architect Associate Certification 2021</a><a class="page-link" href="/blog/2021/03-22-RPG-Review-Worlds-Without-Number/post.txt">Rpg Review Worlds Without Number</a><a class="page-link" href="/blog/2021/08-12-AWS-Cloudformation-Example-Part-2--Deploy-and-Test-a-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-08-Advent-of-Code-2020-Days-1-5/post.txt">Advent Of Code 2020 Days 1-5</a><a class="page-link" href="/blog/2021/07-08-Doubting-Tau--a-question-of-%CF%80/post.txt">Doubting Tau A Question Of %Cf%80</a><a class="page-link" href="/blog/2021/04-29-Configuring-the-nginx-proxy-in-an-Elastic-Beanstalk-Linux-environment/post.txt">Configuring The Nginx Proxy In An Elastic Beanstalk Linux Environment</a><a class="page-link" href="/blog/2021/01-12-ReInvent-2020-2-%E2%80%93-Amazon-CodeGuru/post.txt">Reinvent 2020 2 Amazon Codeguru</a><a class="page-link" href="/blog/2021/08-02-AWS-Cloudformation-Example-Part-1--SAM-Template-for-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-22-ReInvent-2020-3-%E2%80%93-Container-Insights/post.txt">Reinvent 2020 3 Container Insights</a><a class="page-link" href="/blog/2021/09-02-Understanding-a-Python-38-Quine/post.txt">Understanding A Python 3 8 Quine</a><a class="page-link" href="/blog/2021/02-02-Advent-of-Code-2020-Days-11-15/post.txt">Advent Of Code 2020 Days 11-15</a><a class="page-link" href="/blog/2021/10-05-SQL-Server-Queries--Task-Duration-and-Inserting-Defaults/post.txt">Sql Server Queries Task Duration Inserting Defaults</a><a class="page-link" href="/blog/2021/10-26-RPG-Review-Stars-Without-Number-Revised-Edition/post.txt">Rpg Review Stars Without Number Revised Edition</a><a class="page-link" href="/blog/2021/02-22-Adding-Date-Related-Features-to-a-Pandas-Dataframe/post.txt">Adding Date Related Features To A Pandas Dataframe</a><a class="page-link" href="/blog/2021/03-08-Advent-of-Code-2020-Days-16-20/post.txt">Advent Of Code 2020 Days 16-20</a><a class="page-link" href="/blog/2021/12-17-Advent-of-Code-2021-Days-1-5/post.txt">Advent Of Code 2021 Days 1-5</a><a class="page-link" href="/blog/2021/07-15-Python-API-Request-with-Error-Handling-England-and-Wales-Bank-Holidays/post.txt">Python Api Request With Error Handling England Wales Bank Holidays</a><a class="page-link" href="/blog/2021/04-13-How-to-solve-SSL-Error-unable-to-get-local-issuer-certificate-for-Python-on-Windows/post.txt">How To Solve Ssl Error Unable To Get Local Issuer Certificate For Python On Windows</a><a class="page-link" href="/blog/2021/04-06-Advent-of-Code-2020-Days-21-25/post.txt">Advent Of Code 2020 Days 21-25</a><a class="page-link" href="/blog/2021/01-14-Advent-of-Code-2020-Days-6-10/post.txt">Advent Of Code 2020 Days 6-10</a><a class="page-link" href="/blog/2022/01-05-Advent-of-Code-2021-Days-6-10/post.txt">Advent Of Code 2021 Days 6-10</a><a class="page-link" href="/blog/2022/03-01-Advent-of-Code-2021-Days-11-15/post.txt">Advent Of Code 2021 Days 11-15</a><a class="page-link" href="/blog/2022/03-21-Advent-of-Code-2021-Days-16-20/post.txt">Advent Of Code 2021 Days 16-20</a><a class="page-link" href="/blog/2022/04-17-Advent-of-Code-2021--Days-21-25/post.txt">Advent Of Code 2021 Days 21-25</a><a class="page-link" href="/blog/2020/12-23-Bash-Scripting-2--Command-Substitution/post.txt">Bash Scripting 2 Command Substitution</a><a class="page-link" href="/blog/2020/12-18-The-Wizard-is-on-Mute-Roleplaying-During-the-Pandemic/post.txt">Roleplaying During The Pandemic</a><a class="page-link" href="/blog/2020/11-13-Bash-Scripting-1--the-whole-shebang/post.txt">Bash Scripting 1 The Whole Shebang</a><a class="page-link" href="/blog/2020/11-17-Great-content-from-Stand-up-Maths-Benfords-Law-Dodgy-Scatter-Graphs-and-the-2020-US-Election/post.txt">Great Content From Stand Up Maths Benfords Law Dodgy Scatter Graphs And The 2020 Us Election</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Advent Of Code 2020 Days 16-20</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-03-08T13:45:39+00:00" itemprop="datePublished">Mar 8, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="advent-of-code-2020-days-16-20">Advent of Code 2020 Days 16-20</h1>
+
+<p><img src="/images/pexels-photo-195030.jpeg" alt="advent architecture blur business" /></p>
+
+<p>Continuing my series of posts as I work through <a href="http://adventofcode.com/2020/">Advent of Code 2020</a> at my own pace. Here are some of my thoughts and solutions.</p>
+
+<p>These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github <a href="https://git.io/JmAvJ">here</a>. The code below is for Part 2 of each day, which often incorporates Part 1 in some way.</p>
+
+<h2 id="day-16---ticket-translation">Day 16 - <a href="https://adventofcode.com/2020/day/16">Ticket Translation</a></h2>
+
+<h3 id="thoughts">Thoughts</h3>
+
+<p>In this puzzle, train tickets have a set of fields (such as seat class, departure station, etc.) and each field has a set of possible integer values. Unfortunately you can’t read the field names on the tickets, so you have to establish from the values which tickets are valid. And then, you have to figure out which fields are in which position on the ticket so you can finally interpret your own ticket!</p>
+
+<p>The latter part - matching fields to positions - is a standard problem, <a href="https://www.geeksforgeeks.org/maximum-bipartite-matching/">Maximum Bipartite Matching</a>, and my solution below follows the same method as the examples on the linked page.</p>
+
+<h3 id="python-code">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+
+<span class="c1"># (A) PROCESS THE INPUT
+</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">notes</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c1">#identify the list of field names
+</span>
+<span class="n">field_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s">'([a-zA-Z ]+): ([0-9]+)-([0-9]+) or ([0-9]+)-([0-9]+)'</span>
+
+<span class="n">fields</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="n">field_pattern</span><span class="p">,</span> <span class="n">notes</span><span class="p">)</span>
+
+<span class="c1">#translate the information about each field into a set of allowed values for each field
+</span><span class="n">field_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">field</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">field</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)))</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">field</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">field</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span>
+
+    <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)))</span>
+
+    <span class="n">field_dict</span><span class="p">[</span><span class="n">field</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">values</span>
+
+<span class="c1">#create a set holding all the valid values for any field
+</span><span class="n">all_valid_values</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">field_dict</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">all_valid_values</span> <span class="o">=</span> <span class="n">all_valid_values</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1">#process my ticket into a list of integers
+</span><span class="n">my_ticket_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s">'your ticket:\n(.+)'</span>
+
+<span class="n">my_ticket</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="n">my_ticket_pattern</span><span class="p">,</span> <span class="n">notes</span><span class="p">)</span>
+
+<span class="n">my_ticket</span> <span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">my_ticket</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span> <span class="p">]</span>
+
+<span class="c1">#process the nearby tickets into lists of integers
+</span><span class="n">tickets_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s">'(?:nearby tickets:)(\n(?:.+\n)+)'</span>
+
+<span class="n">tickets</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="n">tickets_pattern</span><span class="p">,</span> <span class="n">notes</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">tickets</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">tickets</span><span class="p">)</span>
+
+<span class="n">tickets</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tickets</span> <span class="k">if</span> <span class="n">x</span><span class="p">]</span>
+
+<span class="n">tickets</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tickets</span><span class="p">]</span>
+
+<span class="c1"># (B) IDENTIFY VALID TICKETS
+</span>
+<span class="c1">#determine which tickets are valid in the sense of containing only values
+# which are valid for SOME field
+</span><span class="n">validtickets</span> <span class="o">=</span> <span class="n">tickets</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">ticket</span> <span class="ow">in</span> <span class="n">tickets</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">ticket</span><span class="p">:</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_valid_values</span><span class="p">:</span>
+            <span class="n">validtickets</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">ticket</span><span class="p">)</span>
+
+<span class="c1"># (C) FIND MAXIMUM BIPARTITE MATCHING OF FIELD NAMES TO POSITIONS ON TICKET
+</span>
+<span class="c1">#create a dictionary called 'possibility' to represent the bipartite graph
+# of possible positions to fields
+#keys = field names
+# values = list of 0s and 1s representing which positions the field could match to
+#e.g. if possibility['foo'] = [0,1,0,1,0,0,1]
+# then the 'foo' field could match to position 1, 3 or 6
+#initialise such that any field could match to any position, so all values are lists of 1s
+#later the matchings which aren't possible will be set to zero
+</span><span class="n">w</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">validtickets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">possibility</span> <span class="o">=</span> <span class="p">{</span><span class="n">y</span><span class="p">:[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="p">)]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">field_dict</span><span class="p">}</span>
+
+<span class="c1">#set impossible matchings to have value zero in the possibility dictionary
+</span><span class="k">for</span> <span class="n">ticket</span> <span class="ow">in</span> <span class="n">validtickets</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">field_dict</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ticket</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">field_dict</span><span class="p">[</span><span class="n">field</span><span class="p">]:</span>
+                <span class="n">possibility</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="c1">#if the value in this position on any valid ticket is not valid
+</span>                <span class="c1">#for this field
+</span>                <span class="c1">#then the match is not possible
+</span>
+
+<span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">possibility</span><span class="p">,</span><span class="n">field</span><span class="p">,</span> <span class="n">matchR</span><span class="p">,</span> <span class="n">seen</span><span class="p">):</span>
+    <span class="c1">#takes the possibility dictionary,
+</span>    <span class="c1">#a particular field,
+</span>    <span class="c1">#the current assignment of fields to positions,
+</span>    <span class="c1">#and a list to keep track of which positions have been visited
+</span>    <span class="c1">#if the conditions are met, assigns the field to a particular position in matchR
+</span>    <span class="c1">#and returns True
+</span>    <span class="c1">#otherwise returns False
+</span>
+
+    <span class="c1">#iterate over the possible positions the field could be assigned to
+</span>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">possibility</span><span class="p">)):</span> 
+  
+        <span class="c1"># If the matching of the field to this position is possible 
+</span>        <span class="c1"># and position j has not yet been visited
+</span>        <span class="k">if</span> <span class="n">possibility</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="ow">and</span> <span class="n">seen</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span> 
+                  
+            <span class="c1"># Mark position j as visited
+</span>            <span class="n">seen</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span> 
+  
+            <span class="c1">#If position j is not currently assigned to a field (matchR[j] == -1)
+</span>            <span class="c1"># OR the previously assigned field for position j (matchR[j])
+</span>            <span class="c1">#has an alternate position available
+</span>            <span class="c1"># since position j is marked as visited in the above line,
+</span>            <span class="c1">#the recursive call will not visit position j again
+</span>            <span class="k">if</span> <span class="n">matchR</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">match</span><span class="p">(</span><span class="n">possibility</span><span class="p">,</span><span class="n">matchR</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">matchR</span><span class="p">,</span> <span class="n">seen</span><span class="p">):</span> 
+                <span class="n">matchR</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span> <span class="c1">#assign position j to the field we are considering
+</span>                <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">maxmatch</span><span class="p">(</span><span class="n">possibility</span><span class="p">,</span> <span class="n">field_dict</span><span class="p">):</span> 
+    <span class="c1"># matchR is a list of fields assigned to each position
+</span>    <span class="c1"># here we use a convention where if matchR[k] == -1,
+</span>    <span class="c1">#then position k has not yet been assigned to a field
+</span>    <span class="n">matchR</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">possibility</span><span class="p">)</span> <span class="c1">#initialise with no positions assigned to fields
+</span>    
+    <span class="c1">#iterate over fields
+</span>    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">field_dict</span><span class="p">:</span> 
+        <span class="c1">#before considering a new field, reset the visited positions
+</span>        <span class="n">seen</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">possibility</span><span class="p">)</span>
+        <span class="n">match</span><span class="p">(</span><span class="n">possibility</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">matchR</span><span class="p">,</span> <span class="n">seen</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">matchR</span>
+
+<span class="n">matchR</span> <span class="o">=</span> <span class="n">maxmatch</span><span class="p">(</span><span class="n">possibility</span><span class="p">,</span> <span class="n">field_dict</span><span class="p">)</span>
+
+<span class="c1">#(D) CALCULATE PUZZLE SOLUTION
+</span>
+<span class="c1">#build up the product of values in my ticket for fields beginning with 'departure',
+# as required to get the puzzle solution
+</span><span class="n">product</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">field</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">matchR</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">field</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'departure'</span><span class="p">):</span>
+        <span class="n">product</span> <span class="o">=</span> <span class="n">product</span><span class="o">*</span><span class="n">my_ticket</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">product</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="day-17---conway-cubes">Day 17 - <a href="https://adventofcode.com/2020/day/17">Conway Cubes</a></h2>
+
+<h3 id="thoughts-1">Thoughts</h3>
+
+<p>Conway’s Game of Life in 4 dimensions. My solution below is rather inefficient, but for 4 dimensions it runs in a reasonable time. Justin Le’s <a href="https://blog.jle.im/entry/degenerate-hyper-dimensional-game-of-life.html">magnificent interactive blog article</a> on this puzzle explains how the degenerate starting conditions of this puzzle (only one 2D “slice” of hypercubes can possibly be occupied at the start) can be used to optimise the solution such that the 10-dimensional case becomes achievable on a laptop. Go read the article, it’s really excellent stuff.</p>
+
+<h3 id="python-code-1">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">initial</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">replace</span><span class="p">(</span><span class="s">'#'</span><span class="p">,</span><span class="s">'1'</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">'.'</span><span class="p">,</span><span class="s">'0'</span><span class="p">).</span><span class="n">splitlines</span><span class="p">()</span>
+    <span class="n">initial</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">initial</span><span class="p">]</span>
+    <span class="n">initial</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">initial</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">neighbours</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">):</span>
+    <span class="c1">#find the coordinates of the neighbouring hypercubes to the given coordinates
+</span>
+    <span class="c1">#use a Cartesian product to generate all the possible "steps"
+</span>    <span class="c1">#to a neighbouring hypercube
+</span>    <span class="n">steps</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+    
+    <span class="c1">#a hypercube is not its own neighbour
+</span>    <span class="n">steps</span><span class="p">.</span><span class="n">remove</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+        
+    <span class="n">neighbours</span> <span class="o">=</span> <span class="p">[]</span>
+        
+    <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
+        <span class="n">w</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="n">a</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="n">c</span><span class="p">,</span> <span class="n">l</span><span class="o">+</span><span class="n">d</span>
+        <span class="n">neighbours</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">w</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">neighbours</span>
+
+<span class="k">def</span> <span class="nf">neighdict</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+    <span class="c1">#build a dictionary holding the coords of the neighbours of each hypercube
+</span>    <span class="n">dict_</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">coords</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
+        <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span> <span class="o">=</span> <span class="n">coords</span>
+        <span class="n">dict_</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">neighbours</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dict_</span>
+
+<span class="k">def</span> <span class="nf">advance</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">nbdict</span><span class="p">):</span>
+    <span class="c1">#apply the game of life rules to advance the 4D grid one generation
+</span>    <span class="n">newgrid</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">)</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
+            <span class="n">nbs</span> <span class="o">=</span> <span class="n">nbdict</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">)]</span>
+            <span class="n">occ</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="ow">in</span> <span class="n">nbs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">grid</span><span class="p">.</span><span class="n">get</span><span class="p">((</span><span class="n">w</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">occ</span> <span class="o">+=</span> <span class="mi">1</span>
+            
+            <span class="k">if</span> <span class="n">grid</span><span class="p">.</span><span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">occ</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">newgrid</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">)]</span><span class="o">=</span> <span class="mi">1</span>
+            
+            <span class="k">if</span> <span class="n">grid</span><span class="p">.</span><span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">occ</span> <span class="o">!=</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">occ</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">newgrid</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">return</span> <span class="n">newgrid</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">6</span> <span class="c1">#6 steps required by puzzle
+</span>
+<span class="n">w</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">initial</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">h</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span><span class="o">+</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">d</span><span class="o">=</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="p">{(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">):</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">w</span><span class="p">,</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="p">)}</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">initial</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+        <span class="n">grid</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span> <span class="o">=</span> <span class="n">num</span>
+
+
+<span class="n">nbdict</span> <span class="o">=</span> <span class="n">neighdict</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">newgrid</span> <span class="o">=</span> <span class="n">advance</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">nbdict</span><span class="p">)</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">newgrid</span>
+
+<span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">coords</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="day-18---operation-order">Day 18 - <a href="https://adventofcode.com/2020/day/18">Operation Order</a></h2>
+
+<h3 id="thoughts-2">Thoughts</h3>
+
+<p>The puzzle here is to parse and evaluate expressions in an unfamiliar version of arithmetic where addition takes precedence over multiplication. Expressions in parentheses still have to be evaluated first, as in familiar arithmetic.</p>
+
+<p>I will admit to having been rather lazy in the solution below. I haven’t written my own parser, I’ve let the pyparsing library do the job for me. I also use Python’s inbuilt arithmetic (via <code class="language-plaintext highlighter-rouge">eval</code>) to do the actual addition and multiplication.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">parse</code> function is, shall we say, a little quirky. I preferred the string representation of the output from the pyparsing parseString method to the output object itself. The string representation looks like a list of lists, but of course is a string. Rather than wrangle the output object to do what I want - which I’m certain is possible - I just used <code class="language-plaintext highlighter-rouge">eval</code> to turn the string into the list that it resembles.</p>
+
+<h3 id="python-code-2">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pyparsing</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">integer</span> <span class="o">=</span> <span class="n">pyparsing_common</span><span class="p">.</span><span class="n">integer</span>
+
+<span class="n">arith_expr</span> <span class="o">=</span> <span class="n">infixNotation</span><span class="p">(</span>
+    <span class="n">integer</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s">'+'</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">opAssoc</span><span class="p">.</span><span class="n">LEFT</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">'*'</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">opAssoc</span><span class="p">.</span><span class="n">LEFT</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">arith_expr</span><span class="p">.</span><span class="n">parseString</span><span class="p">(</span><span class="n">string</span><span class="p">)))</span>
+
+<span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="n">op</span><span class="p">,</span><span class="n">val1</span><span class="p">,</span><span class="n">val2</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">val1</span><span class="p">)</span> <span class="o">+</span> <span class="n">op</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">val2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">exp</span><span class="p">):</span>
+    <span class="n">val_stack</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">op_stack</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">exp</span><span class="p">:</span>
+        
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">{</span><span class="s">'+'</span><span class="p">,</span><span class="s">'*'</span><span class="p">}:</span>
+                <span class="n">op_stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">val_stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">val_stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">op_stack</span><span class="p">:</span>
+        <span class="n">new_vals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">new_vals</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">apply</span><span class="p">(</span><span class="n">op</span><span class="p">,</span><span class="n">val_stack</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">val_stack</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">new_vals</span> <span class="o">+=</span> <span class="n">val_stack</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="n">val_stack</span> <span class="o">=</span> <span class="n">new_vals</span>
+
+    <span class="k">return</span> <span class="n">val_stack</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">summ</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+    <span class="n">exp</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">evaluate</span><span class="p">(</span><span class="n">exp</span><span class="p">))</span>
+    <span class="c1">#print(y)
+</span>    <span class="n">summ</span> <span class="o">=</span> <span class="n">summ</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">summ</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="day-19---monster-messages">Day 19 - <a href="https://adventofcode.com/2020/day/19">Monster Messages</a></h2>
+
+<h3 id="thoughts-3">Thoughts</h3>
+
+<p>Here we have to test strings such as bbabbbbaabaabba against rule 0 from a set of rules like the below:</p>
+
+<p>The <em>rules for valid messages</em> (the top part of your puzzle input) are numbered and build upon each other. For example:</p>
+
+<p>0: 1 2
+1: “a”
+2: 1 3 | 3 1
+3: “b”</p>
+
+<p>Some rules, like <code class="language-plaintext highlighter-rouge">3: "b"</code>, simply match a single character (in this case, <code class="language-plaintext highlighter-rouge">b</code>).</p>
+
+<p>The remaining rules list the sub-rules that must be followed; for example, the rule <code class="language-plaintext highlighter-rouge">0: 1 2</code> means that to match rule <code class="language-plaintext highlighter-rouge">0</code>, the text being checked must match rule <code class="language-plaintext highlighter-rouge">1</code>, and the text after the part that matched rule <code class="language-plaintext highlighter-rouge">1</code> must then match rule <code class="language-plaintext highlighter-rouge">2</code>.</p>
+
+<p>Some of the rules have multiple lists of sub-rules separated by a pipe (<code class="language-plaintext highlighter-rouge">|</code>). This means that <em>at least one</em> list of sub-rules must match. (The ones that match might be different each time the rule is encountered.) For example, the rule <code class="language-plaintext highlighter-rouge">2: 1 3 | 3 1</code> means that to match rule <code class="language-plaintext highlighter-rouge">2</code>, the text being checked must match rule <code class="language-plaintext highlighter-rouge">1</code> followed by rule <code class="language-plaintext highlighter-rouge">3</code> <em>or</em> it must match rule <code class="language-plaintext highlighter-rouge">3</code> followed by rule <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+<p>I knew it would be possible to recursively build a regex to then match to each string, but my feeling was that if I have to make the regex recursively, I might as well actually apply the rules recursively. This was not as easy as I expected. But, taking some inspiration from the approach of <a href="https://github.com/mebeim/aoc/tree/master/2020">Marco Bonelli</a>, I was eventually able to put something together.</p>
+
+<p>The advantage of this approach over regex is that in part 2, when the rules are altered to include loops, this solution can be run unaltered on the new input, and works fine. With regex a bit of fancy footwork would be required, as the required expression to match is no longer regular.</p>
+
+<p>The workhorse in this solution is the recursive function <code class="language-plaintext highlighter-rouge">check(word, rules, rule_number=0)</code> which takes a word (e.g. the string bbabbbbaabaabba) and checks it against rule 0 by default. When called, check returns a list containing the remaining part(s) of the string to check. This list can have multiple entries due to the OR statements inside some of the rules - you might be able to validate 5 characters of a string by following one branch, but only 3 characters if you go along a different branch. If there’s any way through the tree of rules to validating the entire word, you’ll find the empty string <code class="language-plaintext highlighter-rouge">''</code> in the final output of <code class="language-plaintext highlighter-rouge">check</code>. If the empty string isn’t in the output, then the word is not valid according to rule zero.</p>
+
+<h3 id="python-code-3">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1">#Process the input into rules and words
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s">'([0-9]+):(.+)'</span>
+    <span class="n">rules</span> <span class="o">=</span> <span class="p">{</span><span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="p">:</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>  <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span> <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s">'[a-z]+'</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="s">''</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span> <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span><span class="n">x</span><span class="p">)]</span>
+
+<span class="c1">#tidy up the rules into a more usable format, so that each rule is:
+#a list containing a single character e.g. ['a']  OR
+#a list of rule numbers e.g. [3,5,2]
+#a list of lists of rule numbers, if the original rule contained a "|" meaning OR
+#e.g. [[7,2,33], [6,7,10]]
+</span><span class="n">newrules</span> <span class="o">=</span> <span class="n">rules</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s">' "[a-z]"'</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="n">newrules</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"</span><span class="se">\"</span><span class="s">"</span><span class="p">,</span> <span class="s">""</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">" "</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s">"|"</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+            <span class="n">newval</span> <span class="o">=</span> <span class="n">val</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"|"</span><span class="p">)</span>
+            <span class="n">newval</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">.</span><span class="n">split</span><span class="p">()]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">newval</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">newval</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">val</span><span class="p">.</span><span class="n">split</span><span class="p">()]]</span>
+        
+        <span class="n">newrules</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">newval</span>
+
+<span class="n">rules</span> <span class="o">=</span> <span class="n">newrules</span>
+
+<span class="c1">#recursive function to check a word against rule 0
+</span><span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">rule_number</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+
+    <span class="c1">#if you're past the end of the word, return the empty list
+</span>    <span class="k">if</span> <span class="n">word</span> <span class="o">==</span> <span class="s">''</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span> 
+
+    <span class="c1">#look up the rule in the rules dict
+</span>    <span class="n">rule</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">rule_number</span><span class="p">]</span>
+
+    <span class="c1">#if the rule is a string, it will be one character
+</span>    <span class="c1">#this character should be matched to the first character of the word
+</span>    <span class="c1">#then output a list containing the rest of the word if successful
+</span>    <span class="c1">#or the empty list if unsuccessful
+</span>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span><span class="nb">str</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">rule</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="n">matches</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1">#rules containing a single rule list or two options are both handled here
+</span>    <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">rule</span><span class="p">:</span>
+        <span class="c1">#begin with the entire word
+</span>        <span class="n">opt_matches</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span><span class="p">]</span> 
+
+        <span class="k">for</span> <span class="n">subrule_number</span> <span class="ow">in</span> <span class="n">option</span><span class="p">:</span> 
+            <span class="n">new_matches</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">wd</span> <span class="ow">in</span> <span class="n">opt_matches</span><span class="p">:</span>
+                <span class="c1">#recursive function call
+</span>                <span class="n">new_matches</span> <span class="o">+=</span> <span class="n">check</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">subrule_number</span><span class="p">)</span>
+            
+            <span class="n">opt_matches</span> <span class="o">=</span> <span class="n">new_matches</span>
+        
+        <span class="n">matches</span> <span class="o">+=</span> <span class="n">opt_matches</span>
+    
+    <span class="k">return</span> <span class="n">matches</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s">''</span> <span class="ow">in</span> <span class="n">check</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">rules</span><span class="p">):</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="day-20---jurassic-jigsaw">Day 20 - <a href="https://adventofcode.com/2020/day/20">Jurassic Jigsaw</a></h2>
+
+<h3 id="thoughts-4">Thoughts</h3>
+
+<p>The goal here can be stated simply enough - piece together a square ASCII image by matching the edges of a set of tiles. Each tile can be used only once, but it may need to be rotated or flipped before it will slot into place. The puzzle input does provide one major gift: if two edges match, then those two edges are matched in the final puzzle.</p>
+
+<p>Once the tiles are placed together, strip the edges from each tile and search the resulting ASCII image for a particular pattern of hashes called a sea monster. The final result is the number of hashes in the image which are NOT part of any sea monster.</p>
+
+<p>This was a long process with multiple stages and a plethora of helper functions. The error that caused the most confusion was the fact that I forgot to forbid a tile to be matched to a flipped version of itself, and so I was filling up the image without using all the tiles, using some tiles multiple times.</p>
+
+<p>The solution below is a brute force solution and makes no bones about it!</p>
+
+<h3 id="python-code-4">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="c1">#process the input
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">tiles</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\n\n</span><span class="s">'</span><span class="p">)</span>
+
+<span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">tile</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'Tile '</span><span class="p">,</span> <span class="s">''</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">':'</span><span class="p">,</span><span class="s">''</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span> <span class="k">for</span> <span class="n">tile</span> <span class="ow">in</span> <span class="n">tiles</span><span class="p">]</span>
+
+<span class="n">tiles</span> <span class="o">=</span> <span class="p">{</span><span class="nb">int</span><span class="p">(</span><span class="n">tile</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span><span class="n">tile</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">for</span> <span class="n">tile</span> <span class="ow">in</span> <span class="n">tiles</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">tile</span> <span class="ow">in</span> <span class="n">tiles</span><span class="p">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">tile</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s">''</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+
+<span class="c1">#helper functions for flipping and rotating tiles
+</span><span class="k">def</span> <span class="nf">flipV</span><span class="p">(</span><span class="n">tile</span><span class="p">):</span>
+    <span class="c1">#flip tile vertically
+</span>    <span class="n">newtile</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">tile</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">newtile</span>
+
+<span class="k">def</span> <span class="nf">flipH</span><span class="p">(</span><span class="n">tile</span><span class="p">):</span>
+    <span class="c1">#flip tile horizontally
+</span>    <span class="n">newtile</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tile</span><span class="p">:</span>
+        <span class="n">newtile</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">newtile</span>
+
+<span class="k">def</span> <span class="nf">rot90</span><span class="p">(</span><span class="n">tile</span><span class="p">):</span>
+    <span class="c1">#rotate tile 90 degrees anticlockwise
+</span>    <span class="n">newtile</span> <span class="o">=</span> <span class="n">tile</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tile</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+        <span class="n">newrow</span> <span class="o">=</span> <span class="s">''</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tile</span><span class="p">:</span>
+            <span class="n">newrow</span> <span class="o">=</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">([</span><span class="n">newrow</span><span class="p">,</span><span class="n">row</span><span class="p">[</span><span class="o">-</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)]])</span>
+        <span class="n">newtile</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">newrow</span>
+    
+    <span class="k">return</span> <span class="n">newtile</span>
+
+
+<span class="k">def</span> <span class="nf">edge</span><span class="p">(</span><span class="n">tile</span><span class="p">,</span><span class="n">side</span><span class="p">):</span>
+    <span class="c1">#helper function to find one edge of a tile 
+</span>    <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s">'t'</span><span class="p">:</span>  <span class="c1">#top
+</span>        <span class="k">return</span> <span class="n">tile</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s">'b'</span><span class="p">:</span> <span class="c1">#base
+</span>        <span class="k">return</span> <span class="n">tile</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s">'l'</span><span class="p">:</span> <span class="c1">#left
+</span>        <span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">([</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tile</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s">'r'</span><span class="p">:</span> <span class="c1">#right
+</span>        <span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">([</span><span class="n">row</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tile</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">tiles</span><span class="p">):</span>
+    <span class="c1">#determine how many edges of each tile match to another tile
+</span>    <span class="n">match_count</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> 
+
+    <span class="n">corners</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">num1</span><span class="p">,</span> <span class="n">num2</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">tiles</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">tile1</span><span class="p">,</span> <span class="n">tile2</span> <span class="o">=</span> <span class="n">tiles</span><span class="p">[</span><span class="n">num1</span><span class="p">],</span> <span class="n">tiles</span><span class="p">[</span><span class="n">num2</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">side1</span> <span class="ow">in</span> <span class="p">{</span><span class="s">'t'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'l'</span><span class="p">,</span><span class="s">'r'</span><span class="p">}:</span>
+            <span class="k">for</span> <span class="n">side2</span> <span class="ow">in</span> <span class="p">{</span><span class="s">'t'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'l'</span><span class="p">,</span><span class="s">'r'</span><span class="p">}:</span>
+                <span class="n">edge1</span><span class="p">,</span> <span class="n">edge2</span> <span class="o">=</span> <span class="n">edge</span><span class="p">(</span><span class="n">tile1</span><span class="p">,</span><span class="n">side1</span><span class="p">),</span> <span class="n">edge</span><span class="p">(</span><span class="n">tile2</span><span class="p">,</span><span class="n">side2</span><span class="p">)</span>
+
+                <span class="c1">#at this point we're not concerned if the tiles need to be flipped or not,
+</span>                <span class="c1">#so if edge1 is the reverse of edge2, that counts as a match
+</span>                <span class="k">if</span> <span class="n">edge1</span><span class="o">==</span><span class="n">edge2</span> <span class="ow">or</span> <span class="n">edge1</span> <span class="o">==</span> <span class="n">edge2</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                    <span class="n">match_count</span><span class="p">[</span><span class="n">num1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">match_count</span><span class="p">[</span><span class="n">num2</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">matches</span><span class="p">[</span><span class="n">num1</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">side1</span><span class="p">)</span>
+                    <span class="n">matches</span><span class="p">[</span><span class="n">num2</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">side2</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">num_sides</span> <span class="ow">in</span> <span class="n">match_count</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="c1">#the all-important corner tiles are those with two matches
+</span>        <span class="k">if</span> <span class="n">num_sides</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">corners</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">corners</span><span class="p">,</span> <span class="n">match_count</span><span class="p">,</span> <span class="n">matches</span>
+
+<span class="n">corners</span><span class="p">,</span> <span class="n">match_count</span><span class="p">,</span> <span class="n">matches</span> <span class="o">=</span> <span class="n">match</span><span class="p">(</span><span class="n">tiles</span><span class="p">)</span>
+
+<span class="c1">#arbitrarily, select a corner tile which matches other tiles on the 'right' and 'base'
+# to begin building up the image from
+</span><span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">matches</span><span class="p">[</span><span class="n">corner</span><span class="p">])</span> <span class="o">==</span> <span class="p">{</span><span class="s">'r'</span><span class="p">,</span><span class="s">'b'</span><span class="p">}:</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">corner</span>
+
+<span class="n">start_tile</span> <span class="o">=</span> <span class="n">tiles</span><span class="p">[</span><span class="n">start</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">orientations</span><span class="p">(</span><span class="n">tile</span><span class="p">):</span>
+    <span class="c1">#helper function to output all the 8 flipped and rotated versions of the input tile
+</span>    <span class="n">trot90</span> <span class="o">=</span> <span class="n">rot90</span><span class="p">(</span><span class="n">tile</span><span class="p">)</span>
+    <span class="n">trot180</span> <span class="o">=</span> <span class="n">rot90</span><span class="p">(</span><span class="n">trot90</span><span class="p">)</span>
+    <span class="n">trot270</span> <span class="o">=</span> <span class="n">rot90</span><span class="p">(</span><span class="n">trot180</span><span class="p">)</span>
+    <span class="n">tflipH</span> <span class="o">=</span> <span class="n">flipH</span><span class="p">(</span><span class="n">tile</span><span class="p">)</span>
+    <span class="n">tflipV</span> <span class="o">=</span> <span class="n">flipV</span><span class="p">(</span><span class="n">tile</span><span class="p">)</span>
+    <span class="n">tflipD1</span> <span class="o">=</span> <span class="n">rot90</span><span class="p">(</span><span class="n">tflipH</span><span class="p">)</span> <span class="c1">#diagonal flip -&gt; combine flip and rotation
+</span>    <span class="n">tflipD2</span> <span class="o">=</span> <span class="n">rot90</span><span class="p">(</span><span class="n">tflipV</span><span class="p">)</span> <span class="c1">#diagonal flip -&gt; combine flip and rotation
+</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">tile</span><span class="p">,</span> <span class="n">trot90</span><span class="p">,</span> <span class="n">trot180</span><span class="p">,</span> <span class="n">trot270</span><span class="p">,</span> <span class="n">tflipH</span><span class="p">,</span> <span class="n">tflipV</span><span class="p">,</span> <span class="n">tflipD1</span><span class="p">,</span> <span class="n">tflipD2</span><span class="p">]</span>
+    
+
+<span class="k">def</span> <span class="nf">match_tile</span><span class="p">(</span><span class="n">tile1</span><span class="p">,</span><span class="n">tiles</span><span class="p">,</span><span class="n">side1</span><span class="p">):</span>
+    <span class="c1">#find the properly oriented tile which matches tile1 on the specified side1
+</span>    <span class="c1">#this will be unique for the puzzle input
+</span>    <span class="k">for</span> <span class="n">tile2</span> <span class="ow">in</span> <span class="n">tiles</span><span class="p">.</span><span class="n">values</span><span class="p">():</span>
+
+        <span class="k">if</span> <span class="n">tile2</span> <span class="ow">in</span> <span class="n">orientations</span><span class="p">(</span><span class="n">tile1</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">side1</span> <span class="o">==</span> <span class="s">'t'</span><span class="p">:</span>
+            <span class="n">side2</span> <span class="o">=</span> <span class="s">'b'</span>
+        <span class="k">if</span> <span class="n">side1</span> <span class="o">==</span> <span class="s">'b'</span><span class="p">:</span>
+            <span class="n">side2</span> <span class="o">=</span> <span class="s">'t'</span>
+        <span class="k">if</span> <span class="n">side1</span> <span class="o">==</span> <span class="s">'l'</span><span class="p">:</span>
+            <span class="n">side2</span> <span class="o">=</span> <span class="s">'r'</span>
+        <span class="k">if</span> <span class="n">side1</span> <span class="o">==</span> <span class="s">'r'</span><span class="p">:</span>
+            <span class="n">side2</span> <span class="o">=</span> <span class="s">'l'</span>
+        
+        <span class="k">for</span> <span class="n">t2_orient</span> <span class="ow">in</span> <span class="n">orientations</span><span class="p">(</span><span class="n">tile2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">edge</span><span class="p">(</span><span class="n">tile1</span><span class="p">,</span><span class="n">side1</span><span class="p">)</span> <span class="o">==</span> <span class="n">edge</span><span class="p">(</span><span class="n">t2_orient</span><span class="p">,</span> <span class="n">side2</span><span class="p">):</span>      
+                <span class="k">return</span> <span class="n">t2_orient</span>
+
+<span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">start_tile</span><span class="p">,</span> <span class="n">tiles</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">,</span> <span class="n">num_rows</span><span class="p">):</span>
+    <span class="c1">#build up the image by matching tiles
+</span>    <span class="n">rows</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_rows</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_cols</span><span class="p">):</span>
+            <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">append</span><span class="p">([])</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_rows</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_tile</span> <span class="c1">#place the start tile in the top left
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">#match the first tile in the row above to begin a new row
+</span>            <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_tile</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">tiles</span><span class="p">,</span> <span class="s">'b'</span><span class="p">)</span> 
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">num_cols</span><span class="p">):</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+            <span class="c1">#match repeatedly to the right to fill out a row
+</span>            <span class="n">next_tile</span> <span class="o">=</span> <span class="n">match_tile</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">tiles</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
+            <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_tile</span>
+    
+    <span class="k">return</span> <span class="n">rows</span>
+
+<span class="k">def</span> <span class="nf">strip</span><span class="p">(</span><span class="n">tile</span><span class="p">):</span>
+    <span class="c1">#strip the edges from a tile, as required by the puzzle
+</span>    <span class="k">return</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tile</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="c1">#Build up the image into one large tile
+</span>
+<span class="c1">#dimension of the image is the square root of the number of tiles,
+# e.g. 9 tiles --&gt; 3 tile x 3 tile image, 144 tiles --&gt; 12 tile x 12 tile image
+</span><span class="n">dimension</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tiles</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="n">build</span><span class="p">(</span><span class="n">start_tile</span><span class="p">,</span> <span class="n">tiles</span><span class="p">,</span> <span class="n">dimension</span><span class="p">,</span> <span class="n">dimension</span><span class="p">)</span>
+
+<span class="n">stripped_rows</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="c1">#strip the edges from all the tiles in the image
+</span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">tile</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">[</span><span class="n">row</span><span class="p">]:</span>
+        <span class="n">stripped_rows</span><span class="p">[</span><span class="n">row</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">strip</span><span class="p">(</span><span class="n">tile</span><span class="p">))</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">#combine the tiles in the image into one large tile
+</span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">stripped_rows</span><span class="p">:</span>
+    <span class="n">image</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">stripped_rows</span><span class="p">[</span><span class="n">row</span><span class="p">])])</span>
+
+<span class="n">full_image</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">image</span><span class="p">:</span>
+    <span class="n">full_image</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+
+<span class="c1">#count the sea monsters in the image
+</span><span class="k">def</span> <span class="nf">monster_count</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="c1">#count the sea monsters in the image and return the monster count and water roughness score
+</span>
+    <span class="c1">#hard-code the shape of a sea monster in terms of displacement from the corner character
+</span>    <span class="n">deltas</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">18</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">12</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">17</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">18</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">19</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">13</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">16</span><span class="p">)]</span>
+    <span class="n">image_dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">mon_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">hash_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1">#hard-coding the fact that a sea monster takes up a 20x3 grid of characters
+</span>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">image_dim</span> <span class="o">-</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">image_dim</span> <span class="o">-</span> <span class="mi">20</span><span class="p">):</span> 
+
+            <span class="c1">#all of the characters must be hashes for a sea monster to be present
+</span>            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="p">][</span><span class="n">y</span><span class="o">+</span><span class="n">dy</span><span class="p">]</span> <span class="o">==</span> <span class="s">'#'</span> <span class="k">for</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="ow">in</span> <span class="n">deltas</span><span class="p">):</span>
+                <span class="n">mon_count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="c1">#count all the hashes in the image
+</span>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">image_dim</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">image_dim</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">image</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="s">'#'</span><span class="p">:</span>
+                <span class="n">hash_count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="c1">#calculate water roughness, quantity of hashes not part of a monster
+</span>    <span class="c1"># (a monster contains 15 hashes, monsters do not overlap)
+</span>    <span class="n">water_roughness</span> <span class="o">=</span> <span class="n">hash_count</span> <span class="o">-</span> <span class="n">mon_count</span><span class="o">*</span><span class="mi">15</span>
+
+    <span class="k">return</span> <span class="n">mon_count</span><span class="p">,</span> <span class="n">water_roughness</span>
+
+<span class="c1">#take all 8 orientations of the full image and calculate the water roughness score
+</span><span class="k">for</span> <span class="n">orien</span> <span class="ow">in</span> <span class="n">orientations</span><span class="p">(</span><span class="n">full_image</span><span class="p">):</span>
+    <span class="n">mon_count</span><span class="p">,</span> <span class="n">water_roughness</span> <span class="o">=</span> <span class="n">monster_count</span><span class="p">(</span><span class="n">orien</span><span class="p">)</span>
+
+    <span class="c1">#only one orientation will contain any monsters,
+</span>    <span class="c1"># this is the orientation whose water roughness score we want
+</span>    <span class="k">if</span> <span class="n">mon_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">water_roughness</span><span class="p">)</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/2021/03/08/advent-of-code-2020-days-16-20.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Dave Bartram Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Dave Bartram Blog</li><li><a class="u-email" href="mailto:david.bartram@gmail.com">david.bartram@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/davidbartram"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">davidbartram</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Lessons I&#39;m learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths &amp; science</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

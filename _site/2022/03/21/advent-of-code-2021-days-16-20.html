@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Advent Of Code 2021 Days 16-20 | Dave Bartram Blog</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Advent Of Code 2021 Days 16-20" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="o Advent of Code 2021 Days 16-20" />
+<meta property="og:description" content="o Advent of Code 2021 Days 16-20" />
+<link rel="canonical" href="http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20.html" />
+<meta property="og:url" content="http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20.html" />
+<meta property="og:site_name" content="Dave Bartram Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-21T13:45:39+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Advent Of Code 2021 Days 16-20" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-03-21T13:45:39+00:00","datePublished":"2022-03-21T13:45:39+00:00","description":"o Advent of Code 2021 Days 16-20","headline":"Advent Of Code 2021 Days 16-20","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20.html"},"url":"http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/blog/2021/08-20-Vancian-Spellcasting-in-Tabletop-RPGs/post.txt">Vancian Spellcasting In Tabletop Rpgs</a><a class="page-link" href="/blog/2021/01-04-ReInvent-2020-1--AWS-Systems-Manager/post.txt">Reinvent 2020 Part 1 Aws Systems Manager</a><a class="page-link" href="/blog/2021/06-03-Reflections-on-the-AWS-Solutions-Architect-Associate-certification-(2021)/post.txt">Reflections On The Aws Solutions Architect Associate Certification 2021</a><a class="page-link" href="/blog/2021/03-22-RPG-Review-Worlds-Without-Number/post.txt">Rpg Review Worlds Without Number</a><a class="page-link" href="/blog/2021/08-12-AWS-Cloudformation-Example-Part-2--Deploy-and-Test-a-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-08-Advent-of-Code-2020-Days-1-5/post.txt">Advent Of Code 2020 Days 1-5</a><a class="page-link" href="/blog/2021/07-08-Doubting-Tau--a-question-of-%CF%80/post.txt">Doubting Tau A Question Of %Cf%80</a><a class="page-link" href="/blog/2021/04-29-Configuring-the-nginx-proxy-in-an-Elastic-Beanstalk-Linux-environment/post.txt">Configuring The Nginx Proxy In An Elastic Beanstalk Linux Environment</a><a class="page-link" href="/blog/2021/01-12-ReInvent-2020-2-%E2%80%93-Amazon-CodeGuru/post.txt">Reinvent 2020 2 Amazon Codeguru</a><a class="page-link" href="/blog/2021/08-02-AWS-Cloudformation-Example-Part-1--SAM-Template-for-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-22-ReInvent-2020-3-%E2%80%93-Container-Insights/post.txt">Reinvent 2020 3 Container Insights</a><a class="page-link" href="/blog/2021/09-02-Understanding-a-Python-38-Quine/post.txt">Understanding A Python 3 8 Quine</a><a class="page-link" href="/blog/2021/02-02-Advent-of-Code-2020-Days-11-15/post.txt">Advent Of Code 2020 Days 11-15</a><a class="page-link" href="/blog/2021/10-05-SQL-Server-Queries--Task-Duration-and-Inserting-Defaults/post.txt">Sql Server Queries Task Duration Inserting Defaults</a><a class="page-link" href="/blog/2021/10-26-RPG-Review-Stars-Without-Number-Revised-Edition/post.txt">Rpg Review Stars Without Number Revised Edition</a><a class="page-link" href="/blog/2021/02-22-Adding-Date-Related-Features-to-a-Pandas-Dataframe/post.txt">Adding Date Related Features To A Pandas Dataframe</a><a class="page-link" href="/blog/2021/03-08-Advent-of-Code-2020-Days-16-20/post.txt">Advent Of Code 2020 Days 16-20</a><a class="page-link" href="/blog/2021/12-17-Advent-of-Code-2021-Days-1-5/post.txt">Advent Of Code 2021 Days 1-5</a><a class="page-link" href="/blog/2021/07-15-Python-API-Request-with-Error-Handling-England-and-Wales-Bank-Holidays/post.txt">Python Api Request With Error Handling England Wales Bank Holidays</a><a class="page-link" href="/blog/2021/04-13-How-to-solve-SSL-Error-unable-to-get-local-issuer-certificate-for-Python-on-Windows/post.txt">How To Solve Ssl Error Unable To Get Local Issuer Certificate For Python On Windows</a><a class="page-link" href="/blog/2021/04-06-Advent-of-Code-2020-Days-21-25/post.txt">Advent Of Code 2020 Days 21-25</a><a class="page-link" href="/blog/2021/01-14-Advent-of-Code-2020-Days-6-10/post.txt">Advent Of Code 2020 Days 6-10</a><a class="page-link" href="/blog/2022/01-05-Advent-of-Code-2021-Days-6-10/post.txt">Advent Of Code 2021 Days 6-10</a><a class="page-link" href="/blog/2022/03-01-Advent-of-Code-2021-Days-11-15/post.txt">Advent Of Code 2021 Days 11-15</a><a class="page-link" href="/blog/2022/03-21-Advent-of-Code-2021-Days-16-20/post.txt">Advent Of Code 2021 Days 16-20</a><a class="page-link" href="/blog/2022/04-17-Advent-of-Code-2021--Days-21-25/post.txt">Advent Of Code 2021 Days 21-25</a><a class="page-link" href="/blog/2020/12-23-Bash-Scripting-2--Command-Substitution/post.txt">Bash Scripting 2 Command Substitution</a><a class="page-link" href="/blog/2020/12-18-The-Wizard-is-on-Mute-Roleplaying-During-the-Pandemic/post.txt">Roleplaying During The Pandemic</a><a class="page-link" href="/blog/2020/11-13-Bash-Scripting-1--the-whole-shebang/post.txt">Bash Scripting 1 The Whole Shebang</a><a class="page-link" href="/blog/2020/11-17-Great-content-from-Stand-up-Maths-Benfords-Law-Dodgy-Scatter-Graphs-and-the-2020-US-Election/post.txt">Great Content From Stand Up Maths Benfords Law Dodgy Scatter Graphs And The 2020 Us Election</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Advent Of Code 2021 Days 16-20</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-03-21T13:45:39+00:00" itemprop="datePublished">Mar 21, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>o</p>
+<h1 id="advent-of-code-2021-days-16-20">Advent of Code 2021 Days 16-20</h1>
+
+<p><img src="/images/pexels-photo-6211095.jpeg" alt="christmas tree decorated with baubles and garland" /></p>
+
+<p>Welcome back to some more <a href="http://adventofcode.com/2021/">Advent of Code 2021</a>!</p>
+
+<p>These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github <a href="https://git.io/JmAvJ">here</a>. The code below is for Part 2 of each day, which often incorporates Part 1 in some way.</p>
+
+<h2 id="day-16---packet-decoder">Day 16 - <a href="https://adventofcode.com/2021/day/16">Packet Decoder</a></h2>
+
+<h3 id="thoughts">Thoughts</h3>
+
+<p>A parsing puzzle - formerly my least favourite type of AoC puzzle, though they are growing on me. A little. Here our puzzle input is a transmission in hexadecimal. The transmission consists of a single <strong>packet</strong>, which itself contains multiple packets.</p>
+
+<h4 id="packet-structure">Packet Structure</h4>
+
+<p>When converted into binary, a packet is structured as follows:</p>
+
+<ul>
+  <li>The first 3 bits encode an integer which is the packet <strong>version</strong></li>
+  <li>The next 3 bits encode another integer, which is the <strong>type ID</strong>.
+    <ul>
+      <li>If ID == 4, the packet is a <strong>literal value</strong>, representing a single binary integer</li>
+      <li>Otherwise, the packet is an <strong>operator packet</strong>, and the ID determines which operation it performs on all the subpackets it contains (see below)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>All packets will have this standard 6-digit header.</p>
+
+<h4 id="literal-value-packets">Literal Value Packets</h4>
+
+<p>Literal values have their header followed by groups of five bits. The first bit in each 5-bit group is 1, unless it is the last group contained in the packet, in which case it is 0. The last 4 digits in each group are the digits the binary number the packet represents, padded with leading zeros and split into groups of exactly four digits.</p>
+
+<p>For example, a literal value packet, converted from hexadecimal to binary, might look like this: 111100100101011010001. The interpretation of this packet is explained by the diagram below:</p>
+
+<p><img src="/images/bits_literal_value_package.jpg" alt="" /></p>
+
+<h4 id="operator-packets">Operator Packets</h4>
+
+<p>If the type ID of an operator packet isn’t equal to 4, the packet is an operator packet. The type ID defines the operation that the packet performs on the subpackets it contains.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type ID</th>
+      <th>Packet value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Sum of the values of the subpackets</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Product of the values of the subpackets</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Minimum value of the subpackets</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Maximum value of the subpackets</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1 if the first subpacket’s value is greater than the second.<br />0 otherwise.<br />Will contain exactly two subpackets.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>1 if the first subpacket’s value is less than the second.<br />0 otherwise.<br />Will contain exactly two subpackets.</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>1 if the first subpacket’s value is equal to the second.<br />0 otherwise.<br />Will contain exactly two subpackets.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>After the 6-digit header containing version number and type ID, the next digit in an operator packet is the <strong>length type</strong>. This determines how to work out which subpackets are included.</p>
+
+<p>If length type is 0, then the next 15 bits of the packet represent an integer which is the total length in bits of the of the subpackets contained by the operator packet.</p>
+
+<p>If length type is 1, then the next 11 bits of the packet represent an integer which is the number of subpackets contained by the operator packet. This only counts the “immediate” subpackets, i.e. nested subpackets to do not count towards this total.</p>
+
+<p>Below is an example of an operator subpacket using length type 1, with value 4 + 3 = 7.</p>
+
+<p><img src="/images/bits_operator_packet_sum.jpg" alt="" /></p>
+
+<p>And another example using length type 0, with value 4 x 3 = 12.</p>
+
+<p><img src="/images/bits_operator_packet_product.jpg" alt="" /></p>
+
+<h4 id="approach">Approach</h4>
+
+<p>I used a little bit of object-oriented programming here, which I normally don’t see as beneficial for Advent of Code puzzles. Here we need to keep track of where we are in a binary string as we parse it, and the easiest thing seemed to be to have a Message object where the string and the current position are attributes.</p>
+
+<p>The Message class has a helper method <code class="language-plaintext highlighter-rouge">integer_value</code> to pull out a decimal integer value for the next few digits in the binary string, the number of digits specified as an argument.</p>
+
+<p>It also has two methods <code class="language-plaintext highlighter-rouge">parse_one_packet</code> and <code class="language-plaintext highlighter-rouge">read_packet_content</code>, which together constitute a parser. Given a packet (which may or may not contain subpackets), <code class="language-plaintext highlighter-rouge">parse_one_packet</code> will convert the packet into a tuple containing the version number, the type ID, and the content of the packet. The content is either an integer (for literal value packets) or a list of tuples representing each of the subpackets (for an operator packet).</p>
+
+<p>Evaluating a packet’s value is left to an external function <code class="language-plaintext highlighter-rouge">apply_operators</code>, outside the Message class, which takes in the parsed (tuple) version of a packet and applies the operations required by the puzzle rules.</p>
+
+<h3 id="python-code">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">binascii</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+
+<span class="k">class</span> <span class="nc">Message</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="p">):</span>
+        <span class="n">hex_data</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="c1">#convert transmission from hexadecimal to binary
+</span>        <span class="n">bin_data</span> <span class="o">=</span> <span class="n">binascii</span><span class="p">.</span><span class="n">a2b_hex</span><span class="p">(</span><span class="n">hex_data</span><span class="p">)</span>
+        
+        <span class="c1">#pos is an integer attribute representing the current position of the parser in parsing the message
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1">#bits is a string attribute containing the bits in the message
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">bits</span> <span class="o">=</span> <span class="s">''</span>
+
+        <span class="c1">#add the bits from the input file into the bits attribute of the Message object
+</span>        <span class="k">for</span> <span class="n">byte</span> <span class="ow">in</span> <span class="n">bin_data</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">bits</span> <span class="o">+=</span> <span class="s">'{:08b}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">byte</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">integer_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_bits</span><span class="p">):</span>
+        <span class="c1">#returns the integer value, in decimal, of the next n_bits bits of the message
+</span>
+        <span class="c1">#convert to decimal and store as int
+</span>        <span class="n">result</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">bits</span><span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">pos</span><span class="p">:</span><span class="bp">self</span><span class="p">.</span><span class="n">pos</span><span class="o">+</span><span class="n">n_bits</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="c1">#advance the position
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">n_bits</span>
+        <span class="k">return</span> <span class="n">result</span>
+    
+    <span class="k">def</span> <span class="nf">parse_one_packet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#parse the next packet of the message
+</span>        <span class="c1">#return the packet as a tuple of (packet version, type id, packet content)
+</span>        <span class="c1">#content is either a decimal integer (for literal value packets), or a list of subpackets (for operator packets)
+</span>        <span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">integer_value</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">integer_value</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">read_packet_content</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">read_packet_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="nb">id</span><span class="p">):</span>
+        <span class="c1">#interpret the contents of a packet
+</span>        <span class="k">if</span> <span class="nb">id</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span> <span class="c1">#the packet is a literal value, return the decimal integer value
+</span>            <span class="n">val</span> <span class="o">=</span> <span class="s">''</span>
+            <span class="n">go</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">go</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">go</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">integer_value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">val</span> <span class="o">+=</span> <span class="s">"{:04b}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">integer_value</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+
+            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span> <span class="c1">#the packet is an operator packet, return a list of subpackets
+</span>            <span class="n">length_type</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">integer_value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">length_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">#the next 11 binary digits give the number of subpackets
+</span>                <span class="n">n_packets</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">integer_value</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">parse_one_packet</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_packets</span><span class="p">)]</span>
+            
+            <span class="k">if</span> <span class="n">length_type</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#the next 15 binary digits give the total number of bits in the subpackets
+</span>                <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">integer_value</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="c1">#need to do this on a separate line as it changes self.pos
+</span>                <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">pos</span> <span class="o">+</span> <span class="n">x</span> <span class="c1">#end = self.pos + self.integer_value(15) one one line would be bad as it would depend on the order that pos and integer_value are evaluated
+</span>                <span class="n">output</span><span class="o">=</span><span class="p">[]</span>
+                <span class="k">while</span> <span class="bp">self</span><span class="p">.</span><span class="n">pos</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span> <span class="c1">#parse packets until the end position is reached
+</span>                    <span class="n">output</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">parse_one_packet</span><span class="p">())</span>
+
+                <span class="k">return</span> <span class="n">output</span>
+
+<span class="k">def</span> <span class="nf">apply_operators</span><span class="p">(</span><span class="n">packet</span><span class="p">):</span>
+    <span class="c1">#recursive function to calculate the value of a packet (which may contain more packets, which may contain more packets etc.)
+</span>    <span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span> <span class="o">=</span> <span class="n">packet</span>
+
+    <span class="k">if</span> <span class="nb">id</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="c1">#sum packet, calculates the sum of all subpackets
+</span>        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">subpacket</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">subpacket</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">total</span>
+
+    <span class="k">if</span> <span class="nb">id</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="c1">#product packet, calculates the product of all subpackets
+</span>        <span class="n">total</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">subpacket</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">*</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">subpacket</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">total</span>
+
+    <span class="k">if</span> <span class="nb">id</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="c1">#minimum packet, calculates the minimum value of all subpackets
+</span>        <span class="n">total</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">inf</span>
+        <span class="k">for</span> <span class="n">subpacket</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">subpacket</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">val</span><span class="o">&lt;</span><span class="n">total</span><span class="p">:</span>
+                <span class="n">total</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="k">return</span> <span class="n">total</span>
+
+    <span class="k">if</span> <span class="nb">id</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span> <span class="c1">#maximum packet, calculates the maximum value of all subpackets
+</span>        <span class="n">total</span> <span class="o">=</span> <span class="o">-</span><span class="n">math</span><span class="p">.</span><span class="n">inf</span>
+        <span class="k">for</span> <span class="n">subpacket</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">subpacket</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">val</span><span class="o">&gt;</span><span class="n">total</span><span class="p">:</span>
+                <span class="n">total</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="k">return</span> <span class="n">total</span>
+
+    <span class="k">if</span> <span class="nb">id</span><span class="o">==</span><span class="mi">4</span><span class="p">:</span> <span class="c1">#literal value packet, the value in content is the integer the packet represents
+</span>        <span class="n">total</span> <span class="o">=</span> <span class="n">content</span>
+        <span class="k">return</span> <span class="n">total</span>
+
+    <span class="k">if</span> <span class="nb">id</span><span class="o">==</span><span class="mi">5</span><span class="p">:</span> <span class="c1"># &gt; packet. contains exactly two subpackets, if the first has a value greater than the second, return 1. Otherwise return 0.
+</span>        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">total</span>
+    
+    <span class="k">if</span> <span class="nb">id</span><span class="o">==</span><span class="mi">6</span><span class="p">:</span> <span class="c1"># &lt; packet. contains exactly two subpackets, if the first has a value less than the second, return 1. Otherwise return 0.
+</span>        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">total</span>
+
+    <span class="k">if</span> <span class="nb">id</span><span class="o">==</span><span class="mi">7</span><span class="p">:</span> <span class="c1"># == packet. contains exactly two subpackets, if the first has a value equal to the second, return 1. Otherwise return 0.
+</span>        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">total</span>
+    
+
+<span class="c1">#initialise a Message object from the input file
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">Message</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+<span class="c1">#parse the outer packet of the message into a tuple of (version number, type ID, content)
+</span><span class="n">packet</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="n">parse_one_packet</span><span class="p">()</span>
+
+<span class="c1">#calculate the value of the outer packet of the message
+</span><span class="k">print</span><span class="p">(</span><span class="n">apply_operators</span><span class="p">(</span><span class="n">packet</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="day-17---trick-shot">Day 17 - <a href="https://adventofcode.com/2021/day/17">Trick Shot</a></h2>
+
+<h3 id="thoughts-1">Thoughts</h3>
+
+<p>What we have here is a simplified version of projectile motion with gravity and water resistance on a 2-dimensional grid. We are launching an underwater probe from the origin and then computing its position after each step. The probe starts at position <code class="language-plaintext highlighter-rouge">(0,0)</code> with initial velocity <code class="language-plaintext highlighter-rouge">(ux,uy)</code>, where <code class="language-plaintext highlighter-rouge">ux</code> and <code class="language-plaintext highlighter-rouge">uy</code> are integers.</p>
+
+<p>On each step:</p>
+
+<ul>
+  <li>The probe’s x-position increases by its current x-velocity.</li>
+  <li>Then the probe’s y-position increases by its current y-velocity.</li>
+  <li>Then the probe’s x-velocity decreases by 1 if it is positive, increases by 1 if it is negative, or stays unchanged if it is zero. This simulates the water resistance or drag on the probe.</li>
+  <li>Then the probe’s y-velocity decreases by 1, simulating gravity.</li>
+</ul>
+
+<p>The goal is to find all the distinct values of the initial velocity vector which result in the probe being in a specified <strong>target area</strong> after any step. The target area is a rectangle specified by integer minimum and maximum coordinates <code class="language-plaintext highlighter-rouge">x_min, x_max, y_min</code> and <code class="language-plaintext highlighter-rouge">y_max</code>.</p>
+
+<p>For the example and my input, <code class="language-plaintext highlighter-rouge">x_max&gt;0</code>, <code class="language-plaintext highlighter-rouge">y_min&lt;0</code> and <code class="language-plaintext highlighter-rouge">y_max&lt;0</code>, which I have assumed in my solution below.</p>
+
+<p>This problem can be solved analytically, but it can also be brute forced pretty quickly. Unsurprisingly, I chose the latter. The solution below simulates a range of initial velocities and computes whether the probe hits the target area for each case, incrementing a count if the probe does reach the target area after any step.</p>
+
+<h4 id="bounds-on-the-initial-x-velocity">Bounds on the initial x-velocity</h4>
+
+<p>The code tries integer values for <code class="language-plaintext highlighter-rouge">ux</code> between 1 and <code class="language-plaintext highlighter-rouge">x_max</code> inclusive.</p>
+
+<ul>
+  <li>If <code class="language-plaintext highlighter-rouge">ux &lt;= 0</code>, the x-velocity will be always be negative or zero. This means the probe will never move right of the origin, and since <code class="language-plaintext highlighter-rouge">x_min&gt;0</code>, the target area is always right of the origin.</li>
+  <li>If <code class="language-plaintext highlighter-rouge">ux &gt; x_max</code>, then the probe overshoots to the right of the target area on the first step. Since x-velocity was initially positive and tends towards zero, this overshoot can never be corrected.</li>
+</ul>
+
+<h4 id="bounds-on-the-initial-y-velocity">Bounds on the initial y-velocity</h4>
+
+<p>The code tries integer values for <code class="language-plaintext highlighter-rouge">uy</code> between <code class="language-plaintext highlighter-rouge">y_</code>min and <code class="language-plaintext highlighter-rouge">-y_min-1</code> inclusive. (Recall that I have assumed y_min&lt;0).</p>
+
+<ul>
+  <li>If <code class="language-plaintext highlighter-rouge">uy &lt; y_min</code> then the probe falls below the target area after the first step. Since y-velocity can only decrease, this means the probe will always be below the target area after every step.</li>
+  <li>I’ve assumed that <code class="language-plaintext highlighter-rouge">y_max&lt;0</code>. For any positive <code class="language-plaintext highlighter-rouge">uy</code>, the probe starts at <code class="language-plaintext highlighter-rouge">(0,0)</code> and passes through <code class="language-plaintext highlighter-rouge">y=0</code> again with velocity <code class="language-plaintext highlighter-rouge">-uy-1</code>.
+    <ul>
+      <li>If <code class="language-plaintext highlighter-rouge">-uy-1 &lt; y_min</code>, or equivalently <code class="language-plaintext highlighter-rouge">uy &gt; -y_min-1</code> , then the probe will fall below the target area after the following step.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="python-code-1">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1">#read the input data to find the boundaries of the target area
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'target area: x='</span><span class="p">,</span><span class="s">''</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">'y='</span><span class="p">,</span><span class="s">''</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">'..'</span><span class="p">,</span><span class="s">', '</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">', '</span><span class="p">)</span>
+
+<span class="n">x_min</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">x_max</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">y_min</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">y_max</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">on_target</span><span class="p">(</span><span class="n">vx</span><span class="p">,</span> <span class="n">vy</span><span class="p">):</span>
+    <span class="c1">#determine whether an initial velocity (vx,vy) results in the probe
+</span>    <span class="c1">#being inside the target area after any step
+</span>    <span class="n">x</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">while</span> <span class="n">y</span><span class="o">&gt;=</span><span class="n">y_min</span><span class="p">:</span> <span class="c1">#while the probe is above the bottom of the target area
+</span>                    <span class="c1">#once it goes below the target area it will never be on target
+</span>                    <span class="c1">#as y-velocity is always decreasing
+</span>        <span class="n">x</span> <span class="o">+=</span> <span class="n">vx</span>
+        <span class="n">y</span> <span class="o">+=</span> <span class="n">vy</span>
+
+        <span class="k">if</span> <span class="n">x_min</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">x_max</span>  <span class="ow">and</span> <span class="n">y_min</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">y_max</span><span class="p">:</span> <span class="c1">#if the position is in the target area
+</span>            <span class="k">return</span> <span class="bp">True</span>
+        
+        <span class="k">if</span> <span class="n">vx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">vx</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">vx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">x_min</span> <span class="ow">or</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">x_max</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>    <span class="c1">#if the probe is left or right of the target area and has x-velocity zero
+</span>                                <span class="c1">#it will never reach the target area
+</span>        
+        <span class="k">if</span> <span class="n">vx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">vx</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="n">vy</span> <span class="o">-=</span> <span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="bp">False</span>
+
+<span class="n">on_target_probes</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">ux</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">x_max</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">uy</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span><span class="o">-</span><span class="n">y_min</span><span class="p">):</span>
+        <span class="n">is_on_target</span> <span class="o">=</span> <span class="n">on_target</span><span class="p">(</span><span class="n">ux</span><span class="p">,</span><span class="n">uy</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">is_on_target</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">on_target_probes</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">on_target_probes</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="day-18---snailfish">Day 18 - <a href="https://adventofcode.com/2021/day/18">Snailfish</a></h2>
+
+<h3 id="thoughts-2">Thoughts</h3>
+
+<p>Snailfish, as is to be expected, have their own version of arithmetic.</p>
+
+<ul>
+  <li>A <strong>snailfish number</strong> is a pair, such as <code class="language-plaintext highlighter-rouge">[3,4]</code>.
+    <ul>
+      <li>The elements of the pair might be an integer or another pair.</li>
+      <li><code class="language-plaintext highlighter-rouge">[6,[3,[12,4]]</code> is also a valid snailfish number.</li>
+      <li>Order matters. <code class="language-plaintext highlighter-rouge">[4,3]</code> is a different number to <code class="language-plaintext highlighter-rouge">[3,4]</code>.</li>
+    </ul>
+  </li>
+  <li>Snailfish <strong>addition</strong> is performed by forming a new pair, so that <code class="language-plaintext highlighter-rouge">[3,4] + [7,2] = [[3,4],[7,2]]</code>
+    <ul>
+      <li>Snailfish addition is not commutative: <code class="language-plaintext highlighter-rouge">A + B</code> is not necessarily equal to <code class="language-plaintext highlighter-rouge">B + A</code>.</li>
+    </ul>
+  </li>
+  <li>Snailfish numbers must be <strong>reduced</strong> whenever possible. To reduce a snailfish number, apply the first action in the list below that is possible. Once that has been applied, return to the top of the list and apply the first possible action from this list again. Repeat until neither action is possible.
+    <ol>
+      <li>The leftmost pair that is nested inside 4 pairs <strong>explodes</strong></li>
+      <li>The leftmost integer that is 10 or greater <strong>splits</strong></li>
+    </ol>
+  </li>
+  <li>To add a list of snailfish numbers, add the first and second, reduce the result, and add the reduced result to the third snailfish number in the list. Then reduce the answer, add the fourth snailfish number, reduce the answer, and so on until the list has been exhausted.</li>
+</ul>
+
+<h4 id="exploding-a-pair">Exploding a pair</h4>
+
+<p>To explode a pair, follow the steps below. “Add” here refers to normal addition of integers, not snailfish addition of pairs.</p>
+
+<ol>
+  <li>Add the left element of the pair to the first integer to the left of the pair, if any.</li>
+  <li>Add the right element of the pair to the first integer to the right of the pair, if any.</li>
+  <li>Replace the exploded pair with the integer <code class="language-plaintext highlighter-rouge">0</code>.</li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">[[[[5,**[2,3]**],6],1]]</code> becomes <code class="language-plaintext highlighter-rouge">[[[[**5+2**,**0**],**6+3**],1]] = [[[[7,0],9],1]]</code></p>
+
+<p>Thanks to a well-formed puzzle input, we can reliably assume that no integer will be nested more than 5 brackets deep at any stage, so we do not need a procedure for exploding a pair where one or more of the elements is another pair. All pairs that explode will be pairs of two integers.</p>
+
+<h4 id="splitting-an-integer">Splitting an integer</h4>
+
+<p>To split an integer greater than 9, replace it with a pair as follows:</p>
+
+<ul>
+  <li>The left element of the new pair is the original integer divided by 2 and rounded down</li>
+  <li>The right element of the new pair is the original integer divided by 2 and rounded up</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">10</code> splits to <code class="language-plaintext highlighter-rouge">[5,5]</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">13</code> splits to <code class="language-plaintext highlighter-rouge">[6,7]</code></p>
+
+<p>etc.</p>
+
+<h4 id="magnitude">Magnitude</h4>
+
+<p>The magnitude operation maps any reduced snailfish number to an integer. It follows the following rules:</p>
+
+<ul>
+  <li>The magnitude of an integer is equal to the integer itself</li>
+  <li>The magnitude of a pair is equal to 3 times the magnitude of its left element, plus 2 times the magnitude of its right element</li>
+</ul>
+
+<h4 id="the-puzzle">The Puzzle</h4>
+
+<p>We are given a list of snailfish numbers. In part 1, we need to add up the entire list, and calculate the magnitude of the final result. In part 2, we need to find the largest magnitude we can make by adding two distinct snailfish numbers from the list.</p>
+
+<h4 id="my-approach">My Approach</h4>
+
+<p>Here I really wanted to deal with snailfish numbers in a flattened form, without all this nesting.</p>
+
+<p>To that end I convert every snailfish number into a list of tuples <code class="language-plaintext highlighter-rouge">(x, depth)</code>, one for each integer <code class="language-plaintext highlighter-rouge">x</code> inside the snailfish number. <code class="language-plaintext highlighter-rouge">depth</code> is calculated as follows: the number of <code class="language-plaintext highlighter-rouge">[</code> symbols to the left of <code class="language-plaintext highlighter-rouge">x</code>, minus the number of <code class="language-plaintext highlighter-rouge">]</code> symbols to the left of <code class="language-plaintext highlighter-rouge">x</code>.</p>
+
+<p>The snailfish number <code class="language-plaintext highlighter-rouge">[6,[3,[12,4]]</code> becomes the list <code class="language-plaintext highlighter-rouge">[(6,1), (3,2), (12,3), (4,3)]</code></p>
+
+<p>The snailfish number <code class="language-plaintext highlighter-rouge">[[[[5,[2,3]],6],1]]</code> becomes the list <code class="language-plaintext highlighter-rouge">[(5,4), (2,5), (3,5), (6,3),(1,2)]</code></p>
+
+<p>Each of the operations we require can be performed on the flattened representation of the snailfish number.</p>
+
+<h4 id="snailfish-addition-in-flattened-form">Snailfish Addition in Flattened Form</h4>
+
+<p><strong>Snailfish addition</strong> means appending the second list to the first, then increasing all depths in the new list by 1.</p>
+
+<p><code class="language-plaintext highlighter-rouge">[(1,3), (2,3), (3,2), (4,1)] + [(5,1), (6,1)] -&gt; [(1,4), (2,4), (3,3), (4,2),(5,2), (6,2)]</code></p>
+
+<p>is equivalent to this sum in the original representation:</p>
+
+<p><code class="language-plaintext highlighter-rouge">[[[1,2],3],4] + [5,6] = [[[[1,2],3],4]</code>,<code class="language-plaintext highlighter-rouge">[5,6]</code>]</p>
+
+<h4 id="explosion-in-flattened-form">Explosion in Flattened Form</h4>
+
+<p><strong>Exploding</strong> a pair means:</p>
+
+<ol>
+  <li>Identify the leftmost pair two consecutive integers which have a depth of 5. Call the integer values <code class="language-plaintext highlighter-rouge">a</code> and b.
+    <ul>
+      <li>So the list is of the form <code class="language-plaintext highlighter-rouge">[…, (a,5), (b,5), …]</code></li>
+    </ul>
+  </li>
+  <li>Add <code class="language-plaintext highlighter-rouge">a</code> to the nearest integer to the left of the pair (if any)</li>
+  <li>Add <code class="language-plaintext highlighter-rouge">b</code> to the nearest integer to the right of the pair (if any)</li>
+  <li>Remove the <code class="language-plaintext highlighter-rouge">(b,5)</code> tuple from the list</li>
+  <li>Replace the <code class="language-plaintext highlighter-rouge">(a,5)</code> tuple with <code class="language-plaintext highlighter-rouge">(0,4)</code>.</li>
+</ol>
+
+<p>This explosion example from above:</p>
+
+<p><code class="language-plaintext highlighter-rouge">[[[[5,**[2,3]**],6],1]]</code> -&gt; <code class="language-plaintext highlighter-rouge">[[[[7,0],9],1]</code>]</p>
+
+<p>Becomes the following in the flattened representation:</p>
+
+<p><code class="language-plaintext highlighter-rouge">[(5,4), **(2,5)**, **(3,5)**, (6,3), (1,2)]</code> -&gt; <code class="language-plaintext highlighter-rouge">[(7,4), (0,4), (9,3), (1,2)]</code></p>
+
+<h4 id="splitting-in-flattened-form">Splitting in Flattened Form</h4>
+
+<p><strong>Splitting</strong> an integer means:</p>
+
+<ol>
+  <li>Identify the leftmost integer value in the list that is greater than 9
+    <ul>
+      <li>So the list is of the form [<code class="language-plaintext highlighter-rouge">…, (x,d), …]</code> where <code class="language-plaintext highlighter-rouge">x&gt;9</code> and <code class="language-plaintext highlighter-rouge">d</code> is the depth of <code class="language-plaintext highlighter-rouge">x</code>.</li>
+    </ul>
+  </li>
+  <li>Insert the tuple <code class="language-plaintext highlighter-rouge">(ceil(x/2),d+1)</code> in the list directly after <code class="language-plaintext highlighter-rouge">(x,d)</code></li>
+  <li>Replace the tuple <code class="language-plaintext highlighter-rouge">(x,d)</code> with <code class="language-plaintext highlighter-rouge">(floor(x/2), d+1)</code></li>
+</ol>
+
+<p>So <code class="language-plaintext highlighter-rouge">(10,d)</code> splits to <code class="language-plaintext highlighter-rouge">(5,d+1)</code> and <code class="language-plaintext highlighter-rouge">(5,d+1)</code></p>
+
+<p>and <code class="language-plaintext highlighter-rouge">(13,d)</code> splits to <code class="language-plaintext highlighter-rouge">(6,d+1)</code> and <code class="language-plaintext highlighter-rouge">(7,d+1)</code></p>
+
+<h4 id="magnitude-in-flattened-form">Magnitude in Flattened Form</h4>
+
+<p>Finding the <strong>magnitude</strong> of a snailfish number ends up being the most complicated task in this flattened representation. My solution is as follows:</p>
+
+<ol>
+  <li>Find the pair (or pairs) of integers with the greatest depth.
+    <ul>
+      <li>The list would be of the form <code class="language-plaintext highlighter-rouge">[…, (L1,d_max), (R1,d_max), …, `(L2,d_max), (R2,d_max)`, `…`]</code></li>
+    </ul>
+  </li>
+  <li>Replace each pair at maximum depth as follows:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">(L1,d_max), (R1,d_max) -&gt; (3*L1 + 2*R1, d_max - 1)</code></li>
+      <li><code class="language-plaintext highlighter-rouge">(L2, d_max), (R2, d_max) -&gt; (3*L1 + 2*R2, d_max - 1)</code></li>
+      <li>etc.</li>
+    </ul>
+  </li>
+  <li>Repeat steps 1 and 2 until the list contains only two tuples <code class="language-plaintext highlighter-rouge">(x, d)</code> and <code class="language-plaintext highlighter-rouge">(y,d)</code>.</li>
+  <li>Return <code class="language-plaintext highlighter-rouge">3*x + 2*y</code>.</li>
+</ol>
+
+<h3 id="python-code-2">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span><span class="p">,</span> <span class="n">floor</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
+
+<span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">snail_string</span><span class="p">):</span> <span class="c1">#assume no values above 9 in input
+</span>    <span class="n">snail</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">snail_string</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s">'['</span><span class="p">:</span>
+            <span class="n">depth</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">char</span> <span class="o">==</span> <span class="s">']'</span><span class="p">:</span>
+            <span class="n">depth</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">char</span> <span class="o">!=</span> <span class="s">','</span><span class="p">:</span>
+            <span class="n">snail</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">char</span><span class="p">),</span><span class="n">depth</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">snail</span>
+
+<span class="k">def</span> <span class="nf">explode</span><span class="p">(</span><span class="n">snail</span><span class="p">):</span>
+
+    <span class="n">newsnail</span> <span class="o">=</span> <span class="n">snail</span><span class="p">[:]</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">depth</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">snail</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">depth</span><span class="o">==</span><span class="mi">5</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+                <span class="n">newsnail</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">val</span><span class="p">,</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="o">&lt;=</span><span class="nb">len</span><span class="p">(</span><span class="n">snail</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">newsnail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+            
+            <span class="n">newsnail</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">newsnail</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">depth</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+            <span class="k">return</span> <span class="n">newsnail</span>
+    
+    <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="n">snail</span><span class="p">):</span>
+    <span class="n">newsnail</span> <span class="o">=</span> <span class="n">snail</span><span class="p">[:]</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">depth</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">snail</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="p">:</span>
+            <span class="n">leftval</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="n">val</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+            <span class="n">rightval</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">val</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+            <span class="n">newsnail</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">leftval</span><span class="p">,</span><span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">newsnail</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">rightval</span><span class="p">,</span><span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+            <span class="k">return</span> <span class="n">newsnail</span>
+    
+    <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">snail1</span><span class="p">,</span> <span class="n">snail2</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">snail1</span> <span class="o">+</span> <span class="n">snail2</span>
+
+    <span class="n">res</span><span class="o">=</span> <span class="p">[(</span><span class="n">val</span><span class="p">,</span><span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">depth</span><span class="p">)</span> <span class="ow">in</span> <span class="n">res</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">res</span>
+
+<span class="k">def</span> <span class="nf">snail_reduce</span><span class="p">(</span><span class="n">snail</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">explode</span><span class="p">(</span><span class="n">snail</span><span class="p">)</span> <span class="ow">or</span> <span class="n">split</span><span class="p">(</span><span class="n">snail</span><span class="p">):</span>
+        <span class="n">ex</span> <span class="o">=</span> <span class="n">explode</span><span class="p">(</span><span class="n">snail</span><span class="p">)</span>
+        <span class="n">spl</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">snail</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">ex</span><span class="p">:</span>
+            <span class="n">snail</span> <span class="o">=</span> <span class="n">ex</span>
+
+        <span class="k">elif</span> <span class="n">spl</span><span class="p">:</span>
+            <span class="n">snail</span> <span class="o">=</span> <span class="n">spl</span>
+        
+    <span class="k">return</span> <span class="n">snail</span>
+
+<span class="k">def</span> <span class="nf">add_and_snail_reduce</span><span class="p">(</span><span class="n">snail1</span><span class="p">,</span><span class="n">snail2</span><span class="p">):</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="n">snail1</span><span class="p">,</span><span class="n">snail2</span><span class="p">)</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">snail_reduce</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">res</span>
+
+<span class="k">def</span> <span class="nf">magnitude</span><span class="p">(</span><span class="n">snail</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">snail</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">snail</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">snail</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">max_depth</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">d</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">d</span> <span class="ow">in</span> <span class="n">snail</span><span class="p">])</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">snail</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="n">max_depth</span><span class="p">:</span>
+            <span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">max_depth</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">snail</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span> 
+
+    <span class="k">return</span> <span class="n">magnitude</span><span class="p">(</span><span class="n">snail</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">part_one</span><span class="p">(</span><span class="n">snails</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">magnitude</span><span class="p">(</span><span class="nb">reduce</span><span class="p">(</span><span class="n">add_and_snail_reduce</span><span class="p">,</span><span class="n">snails</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">part_two</span><span class="p">(</span><span class="n">snails</span><span class="p">):</span>
+    <span class="n">mags</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">snails</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">snails</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">mag1</span> <span class="o">=</span> <span class="n">magnitude</span><span class="p">(</span><span class="n">add_and_snail_reduce</span><span class="p">(</span><span class="n">snails</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">snails</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+            <span class="n">mag2</span> <span class="o">=</span> <span class="n">magnitude</span><span class="p">(</span><span class="n">add_and_snail_reduce</span><span class="p">(</span><span class="n">snails</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">snails</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="n">mags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">mag1</span><span class="p">,</span><span class="n">mag2</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">mags</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">snails</span> <span class="o">=</span> <span class="p">[</span><span class="n">read</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">]</span>   
+
+<span class="k">print</span><span class="p">(</span><span class="n">part_one</span><span class="p">(</span><span class="n">snails</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">part_two</span><span class="p">(</span><span class="n">snails</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="day-19---beacon-scanner">Day 19 - <a href="https://adventofcode.com/2021/day/19">Beacon Scanner</a></h2>
+
+<h3 id="thoughts-3">Thoughts</h3>
+
+<p>This was without a doubt the trickiest puzzle so far, for me.</p>
+
+<p>The key objects in the puzzle are <strong>scanners</strong> and <strong>beacons</strong>, floating at particular integer coordinates in a 3D underwater space. Each scanner reports the relative position (coordinates) of all the beacons within its range. A scanner does not know its own position or orientation relative to other scanners. The scanner could be rotated any multiple of 90 degrees around any of the three axes, leading to <a href="https://www.euclideanspace.com/maths/algebra/matrix/transforms/examples/index.htm">24 possible orientations</a>.</p>
+
+<h4 id="the-rule-of-12">The Rule of 12</h4>
+
+<p>The puzzle asserts that if scanner X can be transformed (reoriented and translated) such that it shares <strong>at least 12</strong> sets of beacon coordinates with scanner Y, then we have found the true relative position and orientation of scanner X relative to scanner Y and vice-versa.</p>
+
+<p>This assumption rules out the possibility that we might match, say, 13 beacons from two scanners by pure luck, without having actually found the true relative position and orientation. The rule says that if 12 or more beacons coincide, we have definitely found the true position with no possibility of error.</p>
+
+<h4 id="puzzle-goal">Puzzle Goal</h4>
+
+<p>Our goal is to find the position and orientation of all the scanners, and then calculate the largest <a href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan distance</a> between any two scanners.</p>
+
+<h4 id="my-approach-1">My Approach</h4>
+
+<p>The approach below is my old friend brute force<strong>.</strong> Taking scanner 0 as the reference set of coordinates, the code creates a “<strong>base scanner</strong>” containing all the beacon coordinates from scanner 0.</p>
+
+<p>Then the code iterates through the other scanners in the input. For each scanner, let’s call it scanner B, we iterate over all <a href="https://www.euclideanspace.com/maths/algebra/matrix/transforms/examples/index.htm">24 possible orientations</a> of scanner B, and then over all the possible translations (offsets) which cause at least one beacon from scanner B to align with a beacon from the base scanner.</p>
+
+<p>During that iteration, if we find an orientation and offset that causes at least 12 beacons to align, we know we have found the true orientation and position of scanner B in the coordinate system of the base scanner. We add the (properly oriented and offset) beacon coordinates from scanner B into the base scanner, add scanner B to our list of “visited” scanners, and repeat the whole set of iterations. This continues until all the scanners have been “visited”.</p>
+
+<p>The code keeps a list of the positions (offsets) of each new scanner once it has been translated and aligned. At the end all the Manhattan distances between pairs of scanners are calculated, and the maximum selected.</p>
+
+<h4 id="sigs-and-perms---how-i-constructed-the-orientations">“sigs” and “perms” - How I constructed the orientations</h4>
+
+<p>We can only rotate a scanner by multiples of 90 degrees around each of the coordinate axes. We can’t perform any reflections, or rotate it by any angle that isn’t a multiple of 90 degrees. There’s a <a href="https://www.euclideanspace.com/maths/algebra/matrix/transforms/examples/index.htm">set of rotation matrices</a> that expresses the 24 possible rotations, but my code doesn’t use rotation matrices.</p>
+
+<p>Instead, I considered what happens to the coordinates of a beacon when the scanner is rotated.</p>
+
+<p>The first thing that might happen, is some of the coordinates might swap sign. For example a scanner pointing “north” might measure a beacon’s x-coordinate as 52. Rotate the same scanner to point “south” and that x-coordinate would now be measured as -52.</p>
+
+<p>These sign swaps are represented by what I call “signatures” or <strong>sigs</strong>. A sig is a tuple like (-1,1,-1) which describes which coordinates (x,y,z) will have their signs swapped. The sig (-1,1,-1) would map the beacon coordinates (-3, 5, 6) onto (3, 5, -6) and so on.</p>
+
+<p>In addition to sign swaps, some of the coordinates might change position in the coordinate tuple. For example the coordinates (-3,5,6) might appear as (5,6,-3) to a rotated scanner. This is just a <strong>permutation</strong> of the coordinates. These are expressed as tuples (“<strong>perms</strong>”) of the indices (0,1,2) with 0 representing the original x-axis, 1 the original y-axis, and 2 the original z-axis. Turning (-3,5,6) to (5,6,-3) is achieved using the perm (1,2,0).</p>
+
+<h4 id="an-overabundance-of-orientations">An overabundance of orientations</h4>
+
+<p>There are 2^3^ = 8 possible sigs:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{(1,1,1), (-1,1,1), (-1,-1,1), (-1,1,-1), (-1,-1,-1), (1,-1,1), (1,-1,-1), (1,1,-1)}
+</code></pre></div></div>
+
+<p>There are 6 possible permutations of 3 axes, leading to 6 perms:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{(0,1,2), (0,2,1), (1,2,0), (1,0,2), (2,0,1), (2,1,0)}
+</code></pre></div></div>
+
+<p>Every orientation consists of applying a sig and a perm, so there are 8 x 6 = 48 possible orientations…wait a second, something has gone wrong! The problem here is that those 48 orientations include reflections! The scanners are underwater, they might have got turned around somewhat, but they have not been replaced by invaders from the Mirror Universe! Reflections are not valid for this puzzle.</p>
+
+<h4 id="evenodd-parity">Even/Odd Parity</h4>
+
+<p>How do we get rid of the reflections? We need to make sure that the overall parity of the reorientation is <strong>even</strong>, so that it keeps the coordinate system <a href="https://en.wikipedia.org/wiki/Right-hand_rule#:~:text=Coordinates%20are%20usually%20right%2Dhanded,the%20system%20is%20counter%2Dclockwise.">right-handed</a>. This means we are avoiding any net reflection in our reorientation.</p>
+
+<p>An <strong>even sig</strong> contains an even number of negative elements.</p>
+
+<p>An <strong>even perm</strong> has an even number of pairs of indices which are out of ascending order.</p>
+
+<p>e.g. (2,0,1). Consider all 3 pairs of indices:</p>
+
+<ul>
+  <li>(2,0) out of order</li>
+  <li>(0,1) in order</li>
+  <li>(2,1) out of order.</li>
+</ul>
+
+<p>Two pairs are mis-ordered, so the perm is even.</p>
+
+<p>e.g. (0,2,1).</p>
+
+<ul>
+  <li>(0,2) in order</li>
+  <li>(0,1) in order,</li>
+  <li>(2,1) out of order.</li>
+</ul>
+
+<p>One pair is mis-ordered, so the perm is odd.</p>
+
+<p>A reorientation is <strong>even</strong> if it consists of an even perm and an even sig, or an odd perm and an odd sig. Otherwise the reorientation is <strong>odd</strong> and is not a physically possible reorientation of the scanner.</p>
+
+<p>As a result we half the space of reorientation from the incorrect 48 which includes reflections, down to 24 which consist of pure rotations.</p>
+
+<p><strong>Yes, it would probably have been easier just to use rotation matrices.</strong></p>
+
+<h3 id="python-code-3">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">initialise</span><span class="p">():</span>
+    <span class="c1">#read the input file and set up
+</span>    <span class="c1">#scanners is a set of sets of beacon coordinates
+</span>    <span class="c1">#perms is the set of permutations of the indices (0,1,2)
+</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span>
+
+    <span class="n">scanners</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">scanner</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s">','</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">beacon</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)])</span>
+            <span class="n">scanner</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">beacon</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="n">line</span> <span class="o">==</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">:</span>
+            <span class="n">scanners</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">scanner</span><span class="p">)</span>
+            <span class="n">scanner</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">scanners</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">scanner</span><span class="p">)</span>
+
+    <span class="n">scanners</span> <span class="o">=</span> <span class="p">[</span><span class="nb">set</span><span class="p">(</span><span class="n">scanner</span><span class="p">)</span> <span class="k">for</span> <span class="n">scanner</span> <span class="ow">in</span> <span class="n">scanners</span><span class="p">]</span>
+
+    <span class="n">perms</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">permutations</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">scanners</span><span class="p">,</span> <span class="n">perms</span>
+
+<span class="k">def</span> <span class="nf">parity</span><span class="p">(</span><span class="n">perms</span><span class="p">):</span>
+    <span class="c1">#returns a dictionary from permutations of (0,1,2) to the set of signatures (axis inversion) such that the total operation is parity preserving
+</span>    <span class="c1">#for example, since the permutation (1,0,2) is odd, we must choose the odd signatures (-1,1,1), (1,-1,1),(1,1,-1) and (-1,-1,-1)}
+</span>    <span class="c1"># so correct_sigs[(1,0,2)] == {(-1,1,1), (1,-1,1),(1,1,-1),(-1,-1,-1)}
+</span>
+    <span class="n">correct_sigs</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">perms</span><span class="p">:</span>
+        <span class="n">parity</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">px</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">py</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">y</span> <span class="ow">and</span> <span class="n">px</span><span class="o">&gt;</span><span class="n">py</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span>  <span class="c1">#calculate parity of the permutation
+</span>
+
+        <span class="k">if</span> <span class="n">parity</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">correct_sigs</span><span class="p">[</span><span class="n">perm</span><span class="p">]</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+
+        <span class="k">if</span> <span class="n">parity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">correct_sigs</span><span class="p">[</span><span class="n">perm</span><span class="p">]</span> <span class="o">=</span> <span class="p">{(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+    
+    <span class="k">return</span> <span class="n">correct_sigs</span>
+
+<span class="n">scanners</span><span class="p">,</span> <span class="n">perms</span> <span class="o">=</span> <span class="n">initialise</span><span class="p">()</span>
+
+<span class="n">correct_sigs</span> <span class="o">=</span> <span class="n">parity</span><span class="p">(</span><span class="n">perms</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">reorient</span><span class="p">(</span><span class="n">scanner</span><span class="p">,</span><span class="n">perm</span><span class="p">,</span><span class="n">sig</span><span class="p">):</span>
+    <span class="c1">#reorients a scanner using a particular permutation and signature
+</span>    <span class="c1">#returns the reoriented scanner (a new set of beacon coordinates)
+</span>    <span class="n">newscanner</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">beacon</span> <span class="ow">in</span> <span class="n">scanner</span><span class="p">:</span>
+        <span class="n">newbeacon</span> <span class="o">=</span> <span class="p">(</span><span class="n">beacon</span><span class="p">[</span><span class="n">perm</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">*</span><span class="n">sig</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">beacon</span><span class="p">[</span><span class="n">perm</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">*</span><span class="n">sig</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">beacon</span><span class="p">[</span><span class="n">perm</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span><span class="o">*</span><span class="n">sig</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">newscanner</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">newbeacon</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">newscanner</span>
+
+<span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">scanner</span><span class="p">,</span><span class="n">offset</span><span class="p">):</span>
+    <span class="c1">#translates a scanner by a particular offset, where the offset is a tuple (dx,dy,dz) representing the translation vector
+</span>    <span class="c1">#returns the reoriented scanner (a new set of beacon coordinates)
+</span>    <span class="n">newscanner</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">,</span><span class="n">dz</span> <span class="o">=</span> <span class="n">offset</span>
+
+    <span class="k">for</span> <span class="n">beacon</span> <span class="ow">in</span> <span class="n">scanner</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">beacon</span>
+        <span class="n">newbeacon</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span><span class="n">z</span><span class="o">+</span><span class="n">dz</span><span class="p">)</span>
+        <span class="n">newscanner</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">newbeacon</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">newscanner</span>
+
+<span class="k">def</span> <span class="nf">match12</span><span class="p">(</span><span class="n">scannerA</span><span class="p">,</span> <span class="n">scannerB</span><span class="p">):</span>
+    <span class="c1">#Returns True if scannerA and scannerB have 12 or more beacon coordinates in common
+</span>    <span class="c1">#otherwise returns False
+</span>    <span class="n">common_points</span> <span class="o">=</span> <span class="n">scannerA</span><span class="p">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">scannerB</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">common_points</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    
+    <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">compare</span><span class="p">(</span><span class="n">scannerA</span><span class="p">,</span><span class="n">scannerB</span><span class="p">):</span>
+    <span class="c1">#brute force to determine if two scanners match
+</span>    <span class="c1">#check every parity preserving orientation of scanner B (permutation + signature)
+</span>    <span class="c1">#and every translation (offset) of scanner B that brings a beacon from scanner B into alignment with a beacon from scanner A
+</span>    <span class="c1">#if a match is found, return the offset, permutation and signature that matches the two scanners
+</span>    <span class="c1">#return None if no match is found
+</span>    <span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">perms</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="n">correct_sigs</span><span class="p">[</span><span class="n">perm</span><span class="p">]:</span>
+            <span class="n">rotB</span> <span class="o">=</span> <span class="n">reorient</span><span class="p">(</span><span class="n">scannerB</span><span class="p">,</span><span class="n">perm</span><span class="p">,</span><span class="n">sig</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">beaconA</span> <span class="ow">in</span> <span class="n">scannerA</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">beaconB</span> <span class="ow">in</span> <span class="n">rotB</span><span class="p">:</span>
+                    <span class="n">xa</span><span class="p">,</span><span class="n">ya</span><span class="p">,</span><span class="n">za</span> <span class="o">=</span> <span class="n">beaconA</span>
+                    <span class="n">xb</span><span class="p">,</span><span class="n">yb</span><span class="p">,</span><span class="n">zb</span> <span class="o">=</span> <span class="n">beaconB</span>
+                    <span class="n">offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">xa</span><span class="o">-</span><span class="n">xb</span><span class="p">,</span><span class="n">ya</span><span class="o">-</span><span class="n">yb</span><span class="p">,</span><span class="n">za</span><span class="o">-</span><span class="n">zb</span><span class="p">)</span>
+                    <span class="n">transB</span> <span class="o">=</span> <span class="n">translate</span><span class="p">(</span><span class="n">rotB</span><span class="p">,</span><span class="n">offset</span><span class="p">)</span>
+                    
+                    <span class="k">if</span> <span class="n">match12</span><span class="p">(</span><span class="n">scannerA</span><span class="p">,</span><span class="n">transB</span><span class="p">):</span>
+                        <span class="k">return</span> <span class="n">offset</span><span class="p">,</span> <span class="n">perm</span><span class="p">,</span> <span class="n">sig</span>
+
+                    <span class="n">offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">xb</span><span class="o">-</span><span class="n">xa</span><span class="p">,</span><span class="n">yb</span><span class="o">-</span><span class="n">ya</span><span class="p">,</span><span class="n">zb</span><span class="o">-</span><span class="n">za</span><span class="p">)</span>
+                    <span class="n">transB</span> <span class="o">=</span> <span class="n">translate</span><span class="p">(</span><span class="n">rotB</span><span class="p">,</span><span class="n">offset</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">match12</span><span class="p">(</span><span class="n">scannerA</span><span class="p">,</span><span class="n">transB</span><span class="p">):</span>
+                        <span class="k">return</span> <span class="n">offset</span><span class="p">,</span> <span class="n">perm</span><span class="p">,</span> <span class="n">sig</span>
+
+
+
+<span class="k">def</span> <span class="nf">part_two</span><span class="p">(</span><span class="n">scanners</span><span class="p">):</span>
+
+    <span class="c1">#the "base scanner" is a set of coordinates of beacons from the point of view of scanner 0
+</span>    <span class="c1">#when a new scanner is correctly aligned and translated, its beacons are added to the "base scanner" set
+</span>    <span class="n">base_scanner</span> <span class="o">=</span> <span class="n">scanners</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1">#a list of scanners which have been incorporated into the "base scanner"
+</span>    <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1">#list of the offsets (translation vectors) of the other scanners from scanner 0's position
+</span>    <span class="n">offsets</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">visited</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">scanners</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">scanner</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scanners</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="n">result</span> <span class="o">=</span> <span class="n">compare</span><span class="p">(</span><span class="n">base_scanner</span><span class="p">,</span> <span class="n">scanner</span><span class="p">)</span>
+            
+                <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+                    <span class="n">offset</span><span class="p">,</span> <span class="n">perm</span><span class="p">,</span> <span class="n">sig</span> <span class="o">=</span> <span class="n">result</span>
+                    <span class="n">offsets</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+                    <span class="c1">#reorient and translate the scanner into scanner 0's coordinate system
+</span>                    <span class="n">new_scanner</span> <span class="o">=</span> <span class="n">reorient</span><span class="p">(</span><span class="n">scanner</span><span class="p">,</span><span class="n">perm</span><span class="p">,</span><span class="n">sig</span><span class="p">)</span>
+                    <span class="n">new_scanner</span> <span class="o">=</span> <span class="n">translate</span><span class="p">(</span><span class="n">new_scanner</span><span class="p">,</span><span class="n">offset</span><span class="p">)</span>
+                    <span class="n">visited</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                    <span class="n">base_scanner</span> <span class="o">=</span> <span class="n">base_scanner</span> <span class="o">|</span> <span class="n">new_scanner</span> <span class="c1">#incorporate the scanner's beacons into the base scanner
+</span>    
+    <span class="c1">#calculate the manhattan distance between every pair of scanners
+</span>    <span class="c1">#return the maximum manhattan distance (the puzzle solution)
+</span>    <span class="n">manhattans</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">off1</span> <span class="ow">in</span> <span class="n">offsets</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">off2</span> <span class="ow">in</span> <span class="n">offsets</span><span class="p">:</span>
+            <span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">z1</span> <span class="o">=</span> <span class="n">off1</span>
+            <span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">z2</span> <span class="o">=</span> <span class="n">off2</span>
+            <span class="n">manhattans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y2</span><span class="o">-</span><span class="n">y1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z2</span><span class="o">-</span><span class="n">z1</span><span class="p">))</span>
+                
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">manhattans</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">part_two</span><span class="p">(</span><span class="n">scanners</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="day-20---trench-map">Day 20 - <a href="https://adventofcode.com/2021/day/20">Trench Map</a></h2>
+
+<h3 id="thoughts-4">Thoughts</h3>
+
+<p>A breath of fresh air after a challenging Day 19, this puzzle asks us to apply an “image enhancement” algorithm to a infinite grid of pixels. Each pixel is either light ( # ) or dark ( . ). Initially, there’s an input image made up of light and dark pixels, and all the other pixels on the infinite grid are dark.</p>
+
+<p>The algorithm is a kind of cellular automaton process, not a million miles away from Conway’s Game of Life which was such a popular theme in Advent of Code 2020.</p>
+
+<p>For each pixel in the image, consider the 3x3 grid of pixels with the target pixel at the centre. Starting from the top-left and reading right across each row, convert the 3x3 grid into a 9-digit binary number by treating light pixels as 1s and dark pixels as 0s. The resulting number gives an index in a 512-bit “algorithm string”, the character at that index will either be # or . , indicating the new state of the original target pixel.</p>
+
+<p>This is repeated for every pixel in the original image to produce a new image.</p>
+
+<p>The fact that the image lives on an infinite grid turns out to be relevant, which is the real trick on an otherwise simple procedural puzzle. Consider a dark pixel far away from any light pixels. This pixel and all its neighbours are dark, so the 3x3 grid with this pixel at the centre converts to the binary number 000000000, i.e. zero. But the algorithm string starts with #, so the new state of that dark pixel will be light.</p>
+
+<p>So the whole infinite grid, apart from a small portion around the original image, will be lit up after the first iteration. Dealing with this is the cause of most of the puzzling around this puzzle, until you notice that not only is the first character of the algorithm string #, but the final character is . This turns out to be true for all inputs to this puzzle, which is a great advantage!</p>
+
+<p>What this means is that any light pixel surrounded by light pixels will turn dark on the next iteration. It turns out, then, that most of the infinite grid will just oscillate between being dark and light. The only interesting part is an ever-growing region of the grid, starting with just the original input image. Each iteration, the interesting region grows by one pixel in each dimension. Outside the bounds of the interesting region, the pixels flip from dark to light and back each iteration.</p>
+
+<p>In my solution this is handled by a variable <code class="language-plaintext highlighter-rouge">oob</code> (out of bounds). Initially, <code class="language-plaintext highlighter-rouge">oob == '0'</code> (dark), then it flips to <code class="language-plaintext highlighter-rouge">'1'</code> (light) and so on. Whenever the <code class="language-plaintext highlighter-rouge">update</code> function tries to get the value of a pixel outside the bounds of the current image, it will get the current value of <code class="language-plaintext highlighter-rouge">oob</code>.</p>
+
+<p>The puzzle answer is the number of light pixels in the infinite grid after 50 iterations. Since 50 is even, most of the infinite grid will be dark at this point, so there is a finite answer!</p>
+
+<h3 id="python-code-4">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span>
+
+<span class="n">algo</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">strip</span><span class="p">().</span><span class="n">replace</span><span class="p">(</span><span class="s">'.'</span><span class="p">,</span><span class="s">'0'</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">'#'</span><span class="p">,</span><span class="s">'1'</span><span class="p">)</span> <span class="c1">#algorithm string
+</span><span class="n">image</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="n">replace</span><span class="p">(</span><span class="s">'.'</span><span class="p">,</span><span class="s">'0'</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">'#'</span><span class="p">,</span><span class="s">'1'</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">:]]</span> <span class="c1">#image grid as list of strings
+</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">oob</span><span class="p">):</span>
+    <span class="c1">#calculate the new value of a pixel based on its neighbours
+</span>    <span class="c1">#and the algorithm
+</span>
+    <span class="n">xmax</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">ymax</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+
+    <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">point</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+
+    <span class="n">idx</span> <span class="o">=</span> <span class="s">''</span>
+
+    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span> <span class="o">=</span> <span class="n">step</span>
+        
+        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="o">+</span><span class="n">dx</span> <span class="o">&lt;=</span> <span class="n">xmax</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="o">+</span><span class="n">dy</span> <span class="o">&lt;=</span> <span class="n">ymax</span><span class="p">:</span>
+            <span class="c1">#if in the bounds of the grid, return the value
+</span>            <span class="n">idx</span> <span class="o">+=</span> <span class="n">image</span><span class="p">[</span><span class="n">y</span><span class="o">+</span><span class="n">dy</span><span class="p">][</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">#if out of bounds, return current value of oob
+</span>            <span class="n">idx</span> <span class="o">+=</span> <span class="n">oob</span>
+    
+    <span class="n">idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">algo</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">apply_algo</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="n">algo</span><span class="p">,</span> <span class="n">oob</span><span class="p">):</span>
+    <span class="c1">#apply the enhancement algorithm once to the image grid
+</span>    <span class="c1">#return the new image grid
+</span>    
+    <span class="n">image2</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">xmax</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">ymax</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ymax</span><span class="o">+</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">new_row</span> <span class="o">=</span> <span class="s">''</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">xmax</span><span class="o">+</span><span class="mi">2</span><span class="p">):</span>
+                <span class="n">new_row</span> <span class="o">+=</span> <span class="n">update</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="n">image</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">oob</span><span class="p">)</span>
+
+            <span class="n">image2</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_row</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">image2</span>
+
+<span class="k">def</span> <span class="nf">print_image</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="c1">#helper function to print image
+</span>    <span class="c1">#only used for debugging
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">image</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">part_one</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="n">algo</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1">#apply the enhancement algorithm n times to the initial image grid
+</span>
+    <span class="n">oob</span> <span class="o">=</span> <span class="s">'0'</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="c1">#apply the enhancement algorithm
+</span>        <span class="n">image</span> <span class="o">=</span> <span class="n">apply_algo</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="n">algo</span><span class="p">,</span><span class="n">oob</span><span class="p">)</span>
+
+        <span class="c1">#update the value of oob
+</span>        <span class="k">if</span> <span class="n">algo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s">'1'</span> <span class="ow">and</span> <span class="n">algo</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s">'0'</span> <span class="ow">and</span> <span class="n">oob</span> <span class="o">==</span> <span class="s">'0'</span><span class="p">:</span>
+            <span class="n">oob</span> <span class="o">=</span> <span class="s">'1'</span>
+        <span class="k">elif</span> <span class="n">algo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s">'1'</span> <span class="ow">and</span> <span class="n">algo</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s">'0'</span> <span class="ow">and</span> <span class="n">oob</span> <span class="o">==</span> <span class="s">'1'</span><span class="p">:</span>
+            <span class="n">oob</span> <span class="o">=</span> <span class="s">'0'</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">image</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">count</span><span class="p">,</span> <span class="n">image</span>
+
+<span class="n">pix_sum</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">part_one</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="n">algo</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pix_sum</span><span class="p">)</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/2022/03/21/advent-of-code-2021-days-16-20.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Dave Bartram Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Dave Bartram Blog</li><li><a class="u-email" href="mailto:david.bartram@gmail.com">david.bartram@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/davidbartram"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">davidbartram</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Lessons I&#39;m learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths &amp; science</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

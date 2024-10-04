@@ -1,0 +1,345 @@
+---
+layout: post
+title: "Advent Of Code 2020 Days 11-15"
+date: 2021-02-02 14:45:39 +0100
+tags: Advent of Code, AoC, Coding, Python
+---
+
+# Advent of Code 2020 Days 11-15
+
+![advent architecture blur business]({{ "images/pexels-photo-195030.jpeg" | relative_url }})
+
+Continuing my series of posts as I work through [Advent of Code 2020](http://adventofcode.com/2020/) at my own pace. Here are some of my thoughts and solutions.
+
+These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github [here](https://git.io/JmAvJ). The code below is for Part 2 of each day, which often incorporates Part 1 in some way.
+
+Day 11 - [Seating System](https://adventofcode.com/2020/day/11)
+---------------------------------------------------------------
+
+### Thoughts
+
+The puzzle asks you to implement a [cellular automaton](https://en.wikipedia.org/wiki/Cellular_automaton) , not at all dissimilar to [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). Some of the cells are fixed and don't affect how other cells update - in Part 2, you need to look _past_ these cells when determining what counts as a neighbouring cell.
+
+I tried this a couple of ways, with my preferred method shown below. It involves a number of functions:
+
+`ray` is a recursive function follows a particular direction from the specified cell, ignoring the fixed cells, to find the next non-fixed cell in that direction.
+
+`nbs` uses ray to produce a list of all the cells which are neighbours of the given cell, by the appropriate definition of "neighbour"
+
+`nbdict` populates a dictionary where the keys are the coordinates of every cell in the grid and the corresponding value is a list of the coordinates of all the neighbouring cells, by the appropriate definition of "neighbouring".
+
+The function `advance` moves the cellular automaton ahead one generation.
+
+The function `findstability` repeatedly advances the cellular automaton, until it finds a fixed point where the layout does not change.
+
+### Python Code
+```python
+import sys
+from copy import deepcopy
+
+with open(sys.argv[1]) as file:
+    initial = file.read().splitlines()
+    initial = [list(line) for line in initial]
+
+
+def ray(i,j,k,l, grid):
+    cols = len(grid[0])
+    rows = len(grid)
+
+    y,x = i+k, j+l
+
+    if 0<=y<rows and 0<=x<cols:
+        if grid[y][x] != '.':
+            return (y,x)
+        elif 0<=y+k<rows and 0<=x+l<cols:
+            return ray(y,x,k,l,grid)
+        else:
+            return False
+    else:
+        return False
+
+def nbs(i,j, grid):
+
+    steps = [(-1,-1), (-1,0), (-1,+1), (0,-1), (0,+1), (+1,-1), (+1,0), (+1,+1)]
+        
+    nbs = []
+        
+    for (k,l) in steps:
+        if ray(i,j,k,l,grid):
+            nbs.append(ray(i,j,k,l,grid))
+    
+    return nbs
+
+def nbdict(grid):
+    dict_ = {}
+    cols = len(grid[0])
+    rows = len(grid)
+    for i in range(rows):
+        for j in range(cols):
+            dict_[i,j] = nbs(i,j,grid)
+    return dict_
+
+def advance(grid,nbdict):
+    cols = len(grid[0])
+    rows = len(grid)
+    newgrid = deepcopy(grid)
+
+    for i in range(rows):
+        for j in range(cols):
+
+            nbs = nbdict[i,j]
+            occ = 0
+
+            for y,x in nbs:
+                if grid[y][x] == '#':
+                    occ += 1
+            
+            if grid[i][j] == 'L' and occ == 0:
+                newgrid[i][j] = '#'
+            
+            if grid[i][j] == '#' and occ >= 4:
+                newgrid[i][j] = 'L'
+    
+    return newgrid
+
+def findstability(grid, nbdict):
+    oldgrid = grid
+    while True:
+        newgrid = advance(oldgrid, nbdict)
+        if newgrid == oldgrid:
+            count = 0
+            for row in newgrid:
+                count += row.count('#')
+            return count
+        else:
+            oldgrid = newgrid
+
+nbdict = nbdict(initial)
+
+output = findstability(initial, nbdict)
+
+print(output)
+```
+
+Day 12 - [Rain Risk](https://adventofcode.com/2020/day/12)
+----------------------------------------------------------
+
+### Thoughts
+
+This is some good old fashioned discrete modelling of motion on a coordinate grid, the kind of thing that was bread and butter for me studying computational physics....a long time ago. The goal is to interpret a list of instructions for the movement of a ship and a waypoint that determines the ship's forward heading, and determine the final location of the ship. The answer is the [Manhattan](https://en.wikipedia.org/wiki/Taxicab_geometry) [distance](https://en.wikipedia.org/wiki/Taxicab_geometry) of the ship from its original location after all the instructions have been followed.
+
+My use of trigonometric functions (sine and cosine) is a bit lazy here, as the only rotations are by multiples of 90 degrees, which can be calculated without resorting to trig. But I've always loved a good rotation matrix, so it was the natural approach for me.
+
+### Python Code
+```python
+import sys
+import re
+from math import radians, sin, cos
+
+with open(sys.argv[1]) as file:
+    cmds = [line.rstrip('\n') for line in file]
+
+heading = 'E'
+
+bearings = {'N':{'dx':0,'dy':1}, 'S':{'dx':0,'dy':-1}, 'E':{'dx':1,'dy':0}, 'W':{'dx':-1,'dy':0}}
+
+def rotation(wp, arg):
+    c = int(cos(radians(arg))) #safe to cast to int as arg is always an element of {-270,-180,-90,90,180,270}
+    s = int(sin(radians(arg))) #safe to cast to int as arg is always an element of {-270,-180,-90,90,180,270}
+    wp['x'], wp['y'] = c*wp['x'] - s*wp['y'] , s*wp['x'] + c*wp['y']
+
+newbearings = ['N','E','S','W']
+
+ship = {'x':0, 'y':0}
+
+wp = {'x':10,'y':1}
+
+for cmd in cmds:
+    m = re.match(r'(\w)(\d+)',cmd)
+    op = m.group(1)
+    arg = int(m.group(2))
+
+    if op == 'F':
+            ship['x'] += arg*wp['x']
+            ship['y'] += arg*wp['y']
+
+    if op in bearings:
+        dx, dy = bearings[op]['dx'] , bearings[op]['dy']
+        wp['x'] += arg*dx
+        wp['y'] += arg*dy
+    
+    if op == 'L':
+        rotation(wp,arg)
+    
+    if op == 'R':
+        rotation(wp,-1*arg)
+
+print((ship['x'],ship['y'],heading))
+
+print(abs(ship['x'])+abs(ship['y']))
+```
+
+Day 13 - [Shuttle Search](https://adventofcode.com/2020/day/13)
+---------------------------------------------------------------
+
+### Thoughts
+
+We have a problem based on the [Chinese Remainder Theorem](https://en.wikipedia.org/wiki/Chinese_remainder_theorem) of modular arithmetic.
+
+The puzzle here revolves around a set of buses that each appear every `k` minutes (the period `k`). The goal is to find a time `t` such that bus 0 with period `k0` arrives at time `t` , bus 1 with period `k1` arrives at time `t+1`, bus 2 with period `` k`2` `` arrives at time `t+2` and so on.
+
+My first attempt was a brute force solution that stood no hope of finding an answer for t higher than a hundred trillion in a reasonable timescale. Since I didn't initially know of the Chinese Remainder Theorem, I didn't apply it in my code, but I did find a way to speed up the search.
+
+Let's say you've found a time `t1` where only the first two buses (periods `k0`, `k1`) have the desired offsets. You can ensure that those offsets remain as they are by incrementing `t` by the lowest common multiple (LCM) of `k0` and `k1`. Once you find `t2`, you can start incrementing t by the LCM of `k0`, `k1` and `k2`.
+
+And so on, you can keep increasing the increment you advance t by as you get more and more of the buses to slot into the offsets you want. This speeds the search up to the point where you can find `t` (which for me was 939490236001473) in a sensible timescale.
+
+### Python Code
+```python
+import sys
+from math import gcd
+
+def lcm(x, y):
+    return x * y // gcd(x, y)
+
+with open(sys.argv[1]) as file:
+    notes = [line.rstrip('\n').split(",") for line in file]
+
+buses = notes[1]
+
+offsets = {}
+buslist = []
+
+for bus in buses:
+    if bus != 'x':
+        offsets[int(bus)] = buses.index(bus) % int(bus) #the modulus is really helpful if int(bus) < buses.index(bus)
+        buslist.append(int(bus))
+
+def find(k,i,increment):
+    if k >= len(buslist):
+        return i
+
+    while True:
+            target = buslist[k] - offsets[buslist[k]]
+
+            if i % buslist[k] == target:
+                new_inc = lcm(increment,buslist[k])
+                return find(k+1,i,new_inc)
+                
+            else:
+                i = i + increment
+    
+print(find(1,buslist[0],buslist[0])) 
+```   
+
+Day 14 - [Docking Data](https://adventofcode.com/2020/day/14)
+-------------------------------------------------------------
+
+### Thoughts
+
+Part 2 is a fun problem involving a bitmask and a memory address decoder. The memory address to be written to is represented by a 36-bit binary address. This address can contain floating bits represented by the character X, which can each be either 0 or 1. The solution needs to write the value to all of the various memory addresses produced by setting each X to either 0 or 1. In my solution these permutations are all found by the recursive function `keyversions`.
+
+### Python Code
+```python
+import sys
+
+with open(sys.argv[1]) as file:
+    lines = [line.rstrip('\n').split() for line in file]
+
+mask = ''
+
+mem = {}  
+
+def keyversions(keylist,value):
+    if 'X' not in keylist:
+        key = ''.join(keylist)
+        mem[key] = value
+    else:
+        keycopy = keylist.copy()
+        for i,char in enumerate(keylist):
+            if char == 'X':
+                keycopy[i] = '0'
+                keyversions(keycopy,value)
+                keycopy[i] = '1'
+                keyversions(keycopy,value)
+
+for line in lines:
+    if line[0].startswith('mask'):
+        mask = line[2]
+    else:
+        key = line[0].replace('mem[','').replace(']','')
+        key = format(int(key),'036b')
+        keylist = []
+
+        for i, x in enumerate(key):
+            if mask[i] == '0':
+                keylist.append(x)
+            elif mask[i] == '1':
+                keylist.append('1')
+            elif mask[i] == 'X':
+                keylist.append('X')
+
+        value = int(line[2])
+
+        keyversions(keylist,value)
+
+
+sum = 0
+
+for key,val in mem.items():
+    sum += val
+
+print(sum)
+```
+
+Day 15 - [Rambunctious Recitation](https://adventofcode.com/2020/day/15)
+------------------------------------------------------------------------
+
+### Thoughts
+
+The goal here is to model a seemingly simple game:
+
+In this game, the players take turns saying _numbers_. They begin by taking turns reading from a list of _starting numbers_ (your puzzle input). Then, each turn consists of considering the _most recently spoken number_:
+
+*   If that was the _first_ time the number has been spoken, the current player says _`0`_.
+*   Otherwise, the number had been spoken before; the current player announces _how many turns apart_ the number is from when it was previously spoken.
+
+In Part 1, the goal was to predict the 2020th number spoken. In Part 2, the rules didn't change, but the goal was to predict the 30 millionth number spoken - i.e. to optimise your code from Part 1. My dictionary-based solution to Part 1 was far too slow to reach a solution in sensible times.
+
+It turns out it's much more efficient to initialise a huge list of zeroes. Rather than store the turns sequentially, the list index is the number spoken, and the list value is the last turn that this number was spoken.
+
+So the statement `past[57] == 13` would mean that the number 57 was last spoken in turn 13.
+
+`past[57] == 0` would mean that 57 has never been spoken before, because `past` was initialised with every value as zero.
+
+### Python Code
+```python
+def play(game,turns):
+    past = [0]*turns
+    x = game[-1] #when the game begins, this is the most recent number to consider
+    i = 1 #this is the turn counter
+
+    #enter the initial numbers (the list "game") into the "past" list
+    while i < len(game):
+        past[game[i-1]] = i
+        i += 1
+    
+    #take the last number spoken, x, and update it to the next number spoken.
+    #while ensuring that past[x] equals the last turn that the number x was spoken.
+    while i < turns:
+        j = past[x]
+        past[x] = i
+        
+        if j == 0:
+            x = 0
+        else:
+            x = i - j
+        
+        i += 1
+        
+    return x
+
+print(play([17,1,3,16,19,0],2020))
+
+print(play([17,1,3,16,19,0],30000000))
+```

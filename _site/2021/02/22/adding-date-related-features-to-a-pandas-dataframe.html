@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Adding Date Related Features To A Pandas Dataframe | Dave Bartram Blog</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Adding Date Related Features To A Pandas Dataframe" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Adding Date-Related Features to a Pandas Dataframe" />
+<meta property="og:description" content="Adding Date-Related Features to a Pandas Dataframe" />
+<link rel="canonical" href="http://localhost:4000/2021/02/22/adding-date-related-features-to-a-pandas-dataframe.html" />
+<meta property="og:url" content="http://localhost:4000/2021/02/22/adding-date-related-features-to-a-pandas-dataframe.html" />
+<meta property="og:site_name" content="Dave Bartram Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-22T13:45:39+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Adding Date Related Features To A Pandas Dataframe" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-02-22T13:45:39+00:00","datePublished":"2021-02-22T13:45:39+00:00","description":"Adding Date-Related Features to a Pandas Dataframe","headline":"Adding Date Related Features To A Pandas Dataframe","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/22/adding-date-related-features-to-a-pandas-dataframe.html"},"url":"http://localhost:4000/2021/02/22/adding-date-related-features-to-a-pandas-dataframe.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/blog/2021/08-20-Vancian-Spellcasting-in-Tabletop-RPGs/post.txt">Vancian Spellcasting In Tabletop Rpgs</a><a class="page-link" href="/blog/2021/01-04-ReInvent-2020-1--AWS-Systems-Manager/post.txt">Reinvent 2020 Part 1 Aws Systems Manager</a><a class="page-link" href="/blog/2021/06-03-Reflections-on-the-AWS-Solutions-Architect-Associate-certification-(2021)/post.txt">Reflections On The Aws Solutions Architect Associate Certification 2021</a><a class="page-link" href="/blog/2021/03-22-RPG-Review-Worlds-Without-Number/post.txt">Rpg Review Worlds Without Number</a><a class="page-link" href="/blog/2021/08-12-AWS-Cloudformation-Example-Part-2--Deploy-and-Test-a-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-08-Advent-of-Code-2020-Days-1-5/post.txt">Advent Of Code 2020 Days 1-5</a><a class="page-link" href="/blog/2021/07-08-Doubting-Tau--a-question-of-%CF%80/post.txt">Doubting Tau A Question Of %Cf%80</a><a class="page-link" href="/blog/2021/04-29-Configuring-the-nginx-proxy-in-an-Elastic-Beanstalk-Linux-environment/post.txt">Configuring The Nginx Proxy In An Elastic Beanstalk Linux Environment</a><a class="page-link" href="/blog/2021/01-12-ReInvent-2020-2-%E2%80%93-Amazon-CodeGuru/post.txt">Reinvent 2020 2 Amazon Codeguru</a><a class="page-link" href="/blog/2021/08-02-AWS-Cloudformation-Example-Part-1--SAM-Template-for-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-22-ReInvent-2020-3-%E2%80%93-Container-Insights/post.txt">Reinvent 2020 3 Container Insights</a><a class="page-link" href="/blog/2021/09-02-Understanding-a-Python-38-Quine/post.txt">Understanding A Python 3 8 Quine</a><a class="page-link" href="/blog/2021/02-02-Advent-of-Code-2020-Days-11-15/post.txt">Advent Of Code 2020 Days 11-15</a><a class="page-link" href="/blog/2021/10-05-SQL-Server-Queries--Task-Duration-and-Inserting-Defaults/post.txt">Sql Server Queries Task Duration Inserting Defaults</a><a class="page-link" href="/blog/2021/10-26-RPG-Review-Stars-Without-Number-Revised-Edition/post.txt">Rpg Review Stars Without Number Revised Edition</a><a class="page-link" href="/blog/2021/02-22-Adding-Date-Related-Features-to-a-Pandas-Dataframe/post.txt">Adding Date Related Features To A Pandas Dataframe</a><a class="page-link" href="/blog/2021/03-08-Advent-of-Code-2020-Days-16-20/post.txt">Advent Of Code 2020 Days 16-20</a><a class="page-link" href="/blog/2021/12-17-Advent-of-Code-2021-Days-1-5/post.txt">Advent Of Code 2021 Days 1-5</a><a class="page-link" href="/blog/2021/07-15-Python-API-Request-with-Error-Handling-England-and-Wales-Bank-Holidays/post.txt">Python Api Request With Error Handling England Wales Bank Holidays</a><a class="page-link" href="/blog/2021/04-13-How-to-solve-SSL-Error-unable-to-get-local-issuer-certificate-for-Python-on-Windows/post.txt">How To Solve Ssl Error Unable To Get Local Issuer Certificate For Python On Windows</a><a class="page-link" href="/blog/2021/04-06-Advent-of-Code-2020-Days-21-25/post.txt">Advent Of Code 2020 Days 21-25</a><a class="page-link" href="/blog/2021/01-14-Advent-of-Code-2020-Days-6-10/post.txt">Advent Of Code 2020 Days 6-10</a><a class="page-link" href="/blog/2022/01-05-Advent-of-Code-2021-Days-6-10/post.txt">Advent Of Code 2021 Days 6-10</a><a class="page-link" href="/blog/2022/03-01-Advent-of-Code-2021-Days-11-15/post.txt">Advent Of Code 2021 Days 11-15</a><a class="page-link" href="/blog/2022/03-21-Advent-of-Code-2021-Days-16-20/post.txt">Advent Of Code 2021 Days 16-20</a><a class="page-link" href="/blog/2022/04-17-Advent-of-Code-2021--Days-21-25/post.txt">Advent Of Code 2021 Days 21-25</a><a class="page-link" href="/blog/2020/12-23-Bash-Scripting-2--Command-Substitution/post.txt">Bash Scripting 2 Command Substitution</a><a class="page-link" href="/blog/2020/12-18-The-Wizard-is-on-Mute-Roleplaying-During-the-Pandemic/post.txt">Roleplaying During The Pandemic</a><a class="page-link" href="/blog/2020/11-13-Bash-Scripting-1--the-whole-shebang/post.txt">Bash Scripting 1 The Whole Shebang</a><a class="page-link" href="/blog/2020/11-17-Great-content-from-Stand-up-Maths-Benfords-Law-Dodgy-Scatter-Graphs-and-the-2020-US-Election/post.txt">Great Content From Stand Up Maths Benfords Law Dodgy Scatter Graphs And The 2020 Us Election</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Adding Date Related Features To A Pandas Dataframe</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-02-22T13:45:39+00:00" itemprop="datePublished">Feb 22, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="adding-date-related-features-to-a-pandas-dataframe">Adding Date-Related Features to a Pandas Dataframe</h1>
+
+<p><img src="/images/pexels-photo-273153.jpeg" alt="calendar dates paper schedule" /></p>
+
+<p>This post captures a few examples of feature enrichment in Pandas. In particular, these examples focus on adding a few simple features related to the date.</p>
+
+<h3 id="simple-date-related-features">Simple Date-Related Features</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">add_date_features</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">date_column</span><span class="p">):</span>
+    <span class="s">"""
+    Add date related features to the input dataframe
+    df = dataframe
+    date_column = name of the column containing the date. date should be in Pandas datetime format.
+    """</span>
+
+    <span class="c1">#the year, e.g. 2017
+</span>    <span class="n">df</span><span class="p">[</span><span class="s">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">date_column</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">isocalendar</span><span class="p">().</span><span class="n">year</span>
+
+    <span class="c1">#the month number, e.g. January = 1
+</span>    <span class="n">df</span><span class="p">[</span><span class="s">'month'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">date_column</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">month</span>
+
+    <span class="c1">#the calendar day, e.g. 13th May = 13
+</span>    <span class="n">df</span><span class="p">[</span><span class="s">'day'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">date_column</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">day</span>
+
+    <span class="c1">#the calendar week, from 1 to 52
+</span>    <span class="n">df</span><span class="p">[</span><span class="s">'week'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">date_column</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">isocalendar</span><span class="p">().</span><span class="n">week</span>
+
+    <span class="c1">#the day of the week as a number, Monday = 0, Tuesday = 1 ... Sunday = 6
+</span>    <span class="n">df</span><span class="p">[</span><span class="s">'dayofweek_num'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">date_column</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">dayofweek</span>
+
+    <span class="c1">#the name of the day of the week as a string
+</span>    <span class="n">df</span><span class="p">[</span><span class="s">'dayofweek_name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">date_column</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">day_name</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="identifying-bank-holidays-england--wales">Identifying Bank Holidays (England &amp; Wales)</h3>
+
+<p>The UK government has a simple API for information about past and upcoming bank holidays, the function below returns a list of dates of England &amp; Wales bank holidays.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">get_bank_holidays</span><span class="p">():</span>
+    <span class="s">"""
+    Uses the gov.uk API bank holiday API. Returns a list of dates of bank holidays in yyyy-mm-dd format.
+    """</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"division"</span><span class="p">:</span><span class="s">"england-and-wales"</span>
+    <span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"https://www.gov.uk/bank-holidays.json"</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="n">response_dict</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="n">events</span> <span class="o">=</span> <span class="n">response_dict</span><span class="p">[</span><span class="s">"england-and-wales"</span><span class="p">][</span><span class="s">"events"</span><span class="p">]</span>
+
+    <span class="n">dates</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+        <span class="n">dates</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s">"date"</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">dates</span>
+</code></pre></div></div>
+
+<h3 id="adding-bank-holiday-related-features">Adding Bank Holiday-related Features</h3>
+
+<p>Depending upon your use case, it might be valuable not only to identify bank holidays, but also the next working day after a bank holiday.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">add_bh_features</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">date_column</span><span class="p">):</span>
+
+   <span class="c1">#get bank holiday dates and convert to Pandas dataframe containing Pandas datetimes
+</span>    <span class="n">bh_list</span> <span class="o">=</span> <span class="n">get_bank_holidays</span><span class="p">()</span>
+    <span class="n">bh</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bh_list</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">'date'</span><span class="p">])</span>
+    <span class="n">bh</span><span class="p">[</span><span class="s">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">bh</span><span class="p">[</span><span class="s">'date'</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s">'%Y-%m-%d'</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s">'is_BH'</span><span class="p">]</span><span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">df</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">date_column</span><span class="p">].</span><span class="n">isin</span><span class="p">(</span><span class="n">bh</span><span class="p">.</span><span class="n">date</span><span class="p">)),</span><span class="s">'is_BH'</span><span class="p">]</span><span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1">#add feature for next working day after bank holiday
+</span>    <span class="n">bh</span><span class="p">[</span><span class="s">'next_wd'</span><span class="p">]</span> <span class="o">=</span> <span class="n">bh</span><span class="p">[</span><span class="s">'date'</span><span class="p">]</span> <span class="o">+</span> <span class="n">pd</span><span class="p">.</span><span class="n">tseries</span><span class="p">.</span><span class="n">offsets</span><span class="p">.</span><span class="n">BDay</span><span class="p">()</span>
+    
+    <span class="c1">#when the next business day is another bank holiday (e.g. Easter Monday is the next 
+</span>    <span class="c1">#"business day" after Good Friday), that date should not be treated as a working day
+</span>    <span class="n">bh</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bh</span><span class="p">[</span><span class="s">'next_wd'</span><span class="p">].</span><span class="n">isin</span><span class="p">(</span><span class="n">bh</span><span class="p">.</span><span class="n">date</span><span class="p">),</span> <span class="s">'next_wd'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">NaT</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s">'after_BH'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">df</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">date_column</span><span class="p">].</span><span class="n">isin</span><span class="p">(</span><span class="n">bh</span><span class="p">.</span><span class="n">next_wd</span><span class="p">)),</span><span class="s">'after_BH'</span><span class="p">]</span><span class="o">=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/2021/02/22/adding-date-related-features-to-a-pandas-dataframe.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Dave Bartram Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Dave Bartram Blog</li><li><a class="u-email" href="mailto:david.bartram@gmail.com">david.bartram@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/davidbartram"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">davidbartram</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Lessons I&#39;m learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths &amp; science</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

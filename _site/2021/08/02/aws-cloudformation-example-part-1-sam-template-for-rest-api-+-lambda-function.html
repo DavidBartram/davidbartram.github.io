@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function | Dave Bartram Blog</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="AWS Cloudformation Example Part 1 - SAM Template for REST API + Lambda Function" />
+<meta property="og:description" content="AWS Cloudformation Example Part 1 - SAM Template for REST API + Lambda Function" />
+<link rel="canonical" href="http://localhost:4000/2021/08/02/aws-cloudformation-example-part-1-sam-template-for-rest-api-+-lambda-function.html" />
+<meta property="og:url" content="http://localhost:4000/2021/08/02/aws-cloudformation-example-part-1-sam-template-for-rest-api-+-lambda-function.html" />
+<meta property="og:site_name" content="Dave Bartram Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-02T14:45:39+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-08-02T14:45:39+01:00","datePublished":"2021-08-02T14:45:39+01:00","description":"AWS Cloudformation Example Part 1 - SAM Template for REST API + Lambda Function","headline":"Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/08/02/aws-cloudformation-example-part-1-sam-template-for-rest-api-+-lambda-function.html"},"url":"http://localhost:4000/2021/08/02/aws-cloudformation-example-part-1-sam-template-for-rest-api-+-lambda-function.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/blog/2021/08-20-Vancian-Spellcasting-in-Tabletop-RPGs/post.txt">Vancian Spellcasting In Tabletop Rpgs</a><a class="page-link" href="/blog/2021/01-04-ReInvent-2020-1--AWS-Systems-Manager/post.txt">Reinvent 2020 Part 1 Aws Systems Manager</a><a class="page-link" href="/blog/2021/06-03-Reflections-on-the-AWS-Solutions-Architect-Associate-certification-(2021)/post.txt">Reflections On The Aws Solutions Architect Associate Certification 2021</a><a class="page-link" href="/blog/2021/03-22-RPG-Review-Worlds-Without-Number/post.txt">Rpg Review Worlds Without Number</a><a class="page-link" href="/blog/2021/08-12-AWS-Cloudformation-Example-Part-2--Deploy-and-Test-a-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-08-Advent-of-Code-2020-Days-1-5/post.txt">Advent Of Code 2020 Days 1-5</a><a class="page-link" href="/blog/2021/07-08-Doubting-Tau--a-question-of-%CF%80/post.txt">Doubting Tau A Question Of %Cf%80</a><a class="page-link" href="/blog/2021/04-29-Configuring-the-nginx-proxy-in-an-Elastic-Beanstalk-Linux-environment/post.txt">Configuring The Nginx Proxy In An Elastic Beanstalk Linux Environment</a><a class="page-link" href="/blog/2021/01-12-ReInvent-2020-2-%E2%80%93-Amazon-CodeGuru/post.txt">Reinvent 2020 2 Amazon Codeguru</a><a class="page-link" href="/blog/2021/08-02-AWS-Cloudformation-Example-Part-1--SAM-Template-for-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-22-ReInvent-2020-3-%E2%80%93-Container-Insights/post.txt">Reinvent 2020 3 Container Insights</a><a class="page-link" href="/blog/2021/09-02-Understanding-a-Python-38-Quine/post.txt">Understanding A Python 3 8 Quine</a><a class="page-link" href="/blog/2021/02-02-Advent-of-Code-2020-Days-11-15/post.txt">Advent Of Code 2020 Days 11-15</a><a class="page-link" href="/blog/2021/10-05-SQL-Server-Queries--Task-Duration-and-Inserting-Defaults/post.txt">Sql Server Queries Task Duration Inserting Defaults</a><a class="page-link" href="/blog/2021/10-26-RPG-Review-Stars-Without-Number-Revised-Edition/post.txt">Rpg Review Stars Without Number Revised Edition</a><a class="page-link" href="/blog/2021/02-22-Adding-Date-Related-Features-to-a-Pandas-Dataframe/post.txt">Adding Date Related Features To A Pandas Dataframe</a><a class="page-link" href="/blog/2021/03-08-Advent-of-Code-2020-Days-16-20/post.txt">Advent Of Code 2020 Days 16-20</a><a class="page-link" href="/blog/2021/12-17-Advent-of-Code-2021-Days-1-5/post.txt">Advent Of Code 2021 Days 1-5</a><a class="page-link" href="/blog/2021/07-15-Python-API-Request-with-Error-Handling-England-and-Wales-Bank-Holidays/post.txt">Python Api Request With Error Handling England Wales Bank Holidays</a><a class="page-link" href="/blog/2021/04-13-How-to-solve-SSL-Error-unable-to-get-local-issuer-certificate-for-Python-on-Windows/post.txt">How To Solve Ssl Error Unable To Get Local Issuer Certificate For Python On Windows</a><a class="page-link" href="/blog/2021/04-06-Advent-of-Code-2020-Days-21-25/post.txt">Advent Of Code 2020 Days 21-25</a><a class="page-link" href="/blog/2021/01-14-Advent-of-Code-2020-Days-6-10/post.txt">Advent Of Code 2020 Days 6-10</a><a class="page-link" href="/blog/2022/01-05-Advent-of-Code-2021-Days-6-10/post.txt">Advent Of Code 2021 Days 6-10</a><a class="page-link" href="/blog/2022/03-01-Advent-of-Code-2021-Days-11-15/post.txt">Advent Of Code 2021 Days 11-15</a><a class="page-link" href="/blog/2022/03-21-Advent-of-Code-2021-Days-16-20/post.txt">Advent Of Code 2021 Days 16-20</a><a class="page-link" href="/blog/2022/04-17-Advent-of-Code-2021--Days-21-25/post.txt">Advent Of Code 2021 Days 21-25</a><a class="page-link" href="/blog/2020/12-23-Bash-Scripting-2--Command-Substitution/post.txt">Bash Scripting 2 Command Substitution</a><a class="page-link" href="/blog/2020/12-18-The-Wizard-is-on-Mute-Roleplaying-During-the-Pandemic/post.txt">Roleplaying During The Pandemic</a><a class="page-link" href="/blog/2020/11-13-Bash-Scripting-1--the-whole-shebang/post.txt">Bash Scripting 1 The Whole Shebang</a><a class="page-link" href="/blog/2020/11-17-Great-content-from-Stand-up-Maths-Benfords-Law-Dodgy-Scatter-Graphs-and-the-2020-US-Election/post.txt">Great Content From Stand Up Maths Benfords Law Dodgy Scatter Graphs And The 2020 Us Election</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-08-02T14:45:39+01:00" itemprop="datePublished">Aug 2, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="aws-cloudformation-example-part-1---sam-template-for-rest-api--lambda-function">AWS Cloudformation Example Part 1 - SAM Template for REST API + Lambda Function</h1>
+
+<p><img src="/images/pexels-photo-2909083.jpeg" alt="scenic photo of clouds during daytime" /></p>
+
+<p>The goal of this example is to show how to use a Cloudformation SAM (serverless application management) template and the SAM CLI to deploy a simple REST API backed by a lambda function. All the code below is available in <a href="https://github.com/DavidBartram/cloudformation-api-lambda">this repo</a>.</p>
+
+<p>In this post, I’m going to explain the use case and various parts of the SAM template. In <a href="https://david-bartram.com/2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-lambda-function/">Part 2</a>, I will talk through how to deploy this template and test the API using Postman.</p>
+
+<h2 id="use-case---coloured-widget-sales">Use Case - Coloured Widget Sales</h2>
+
+<p>The Davros Company sells red, blue and green widgets at multiple locations. They want to be able to post daily sales stats (date, location, red widgets sold, blue widgets sold, green widgets sold) to a database through an API.</p>
+
+<p>This post focuses on setting up the API and connecting it with a lambda function. Database integration has been left out - instead the lambda function is a glorified “hello world” script that sends back a response confirming the stats that have been received.</p>
+
+<p>It would be relatively easy to take this lambda and add integration to DynamoDB, RDS etc. but that would go beyond the scope of this post.</p>
+
+<ol>
+  <li>
+    <h2 id="request-body-schema">Request Body Schema</h2>
+  </li>
+</ol>
+
+<p>Firstly it would be useful to establish how the stats will be sent to the API. I’ve chosen to do this by sending the stats in JSON form in the body of a POST request. A correct request body should look like the below.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-28"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Manchester"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"red_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2051"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"blue_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"green_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"588"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>In the marvellous hypothetical world of this example, we will assume that whoever provides this data can be relied upon to provide a valid date in YYYY-MM-DD format and a valid location of a Davros Company widget shop.</p>
+
+<p>Request bodies that don’t match the above should be rejected. For this, we will need a <a href="https://json-schema.org/">JSON schema</a> against which to validate the request body. For a simple case like this, the schema isn’t hard to write:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+      </span><span class="nl">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://json-schema.org/draft-04/schema#"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stats"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"blue_sold"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"red_sold"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"green_sold"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"required"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"blue_sold"</span><span class="p">,</span><span class="w"> </span><span class="s2">"red_sold"</span><span class="p">,</span><span class="w"> </span><span class="s2">"green_sold"</span><span class="p">,</span><span class="w"> </span><span class="s2">"date"</span><span class="p">,</span><span class="w"> </span><span class="s2">"location"</span><span class="p">]</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<ol>
+  <li>
+    <h2 id="lambda-function-code">Lambda Function Code</h2>
+  </li>
+</ol>
+
+<p>The Python 3.7 code below just takes in the request (the “event” variable) and sends a response recapitulating what the lambda received. This is not of any practical use, but it shows how to access data from the request body and construct a simple response.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"Thank you for submitting data. You submitted the following. Date </span><span class="si">{</span><span class="n">event</span><span class="p">[</span><span class="s">'date'</span><span class="p">]</span><span class="si">}</span><span class="s"> at location </span><span class="si">{</span><span class="n">event</span><span class="p">[</span><span class="s">'location'</span><span class="p">]</span><span class="si">}</span><span class="s">, number of red widgets sold was </span><span class="si">{</span><span class="n">event</span><span class="p">[</span><span class="s">'red_sold'</span><span class="p">]</span><span class="si">}</span><span class="s">, number of blue widgets sold was </span><span class="si">{</span><span class="n">event</span><span class="p">[</span><span class="s">'blue_sold'</span><span class="p">]</span><span class="si">}</span><span class="s">, number of green widgets sold was </span><span class="si">{</span><span class="n">event</span><span class="p">[</span><span class="s">'green_sold'</span><span class="p">]</span><span class="si">}</span><span class="s">."</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"Notes"</span><span class="p">:</span> <span class="n">message</span><span class="p">}</span>
+</code></pre></div></div>
+<ol>
+  <li>
+    <h2 id="anatomy-of-an-aws-rest-api">Anatomy of an AWS REST API</h2>
+  </li>
+</ol>
+
+<p>Now let’s start building our SAM template. Rather than start at the top of the file with the preamble and parameters, lets jump in and start making the components of a REST API. This will be done using standard Cloudformation code (objects of the form <code class="language-plaintext highlighter-rouge">AWS::ApiGateway::*</code>) rather than the SAM extension(objects of the form AWS<code class="language-plaintext highlighter-rouge">::Serverless::*</code>). Defining an API using the SAM extension of the Cloudformation language requires a Swagger template for the API, and for this example I wanted to build up the components of the API in a way similar to how you might create it in the console.</p>
+
+<p>Remember that SAM is a superset of Cloudformation - any Cloudformation code will work in SAM, but SAM allows more options.</p>
+
+<h3 id="rest-api">REST API</h3>
+
+<p>The API itself, with a <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html">regional endpoint</a>, will be created according to the following Cloudformation snippet.</p>
+
+<p>ApiName is a parameter which will be specified near the beginning of the template, and is referenced here with the !Ref operator. The actual name will be passed into the template when it is deployed.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">RestApi</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::RestApi</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">ApiKeySourceType</span><span class="pi">:</span> <span class="s">HEADER</span>
+      <span class="na">EndpointConfiguration</span><span class="pi">:</span>
+        <span class="na">Types</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">REGIONAL</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ApiName</span>
+</code></pre></div></div>
+
+<h3 id="stage-resource--deployment">Stage, Resource &amp; Deployment</h3>
+
+<p>To execute this API, the user will need to send their POST request to:</p>
+
+<p><code class="language-plaintext highlighter-rouge">https://&lt;API ID&gt;.execute-api.&lt;AWS Region&gt;.amazonaws.com/&lt;Stage&gt;/&lt;Resource&gt;</code></p>
+
+<p>Stages and resources help you organise the methods in your API. For example you might have separate stages for Dev, Test and Prod, or you might use stages to separate out versions of the API. The resource should probably be named after what the API request does - such as “submitstats” for our use case of submitting widget sales data.</p>
+
+<p>We also want to deploy the API so it can be immediately, used, so we include a Deployment as well. The deployment depends on the POST method (see below), meaning the method must be created first. This is just because we want to deploy the API with the method already in place!</p>
+
+<p>In the snippet below, the stage name (e.g. “v0”) and resource path (e.g. “submitstats”) are passed into the template as parameters.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">ApiStage</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::Stage</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">DeploymentId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ApiDeployment</span>
+      <span class="na">RestApiId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">RestApi</span>
+      <span class="na">StageName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">StageName</span>
+  <span class="na">ApiResource</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::Resource</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">ParentId</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">RestApi.RootResourceId</span>
+      <span class="na">PathPart</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ResourcePath</span>
+      <span class="na">RestApiId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">RestApi</span>
+  <span class="na">ApiDeployment</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::Deployment</span>
+    <span class="na">DependsOn</span><span class="pi">:</span> <span class="s">PostMethod</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">RestApiId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">RestApi</span>
+</code></pre></div></div>
+
+<p>Now we’re at the stage where the template references resources defined elsewhere. <code class="language-plaintext highlighter-rouge">!GetAtt RestApi.RootResourceId</code> gets the root resource ID from the object named RestApi. The names you use (RestApi, ApiStage, ApiResource) for resources are arbitrary and do not affect the name that the resource will have in AWS once deployed. Normally that is set via one of the object’s properties.</p>
+
+<h3 id="request-model--request-validator">Request Model &amp; Request Validator</h3>
+
+<p>We want the JSON body of the API request to be validated, as discussed above. Two resources are needed to make that happen - a request validator and a model. The model contains the scheme we discussed earlier on, requiring that every request contains a location, date, and figures for red, green and blue widgets sold.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">ApiRequestValidator</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::RequestValidator</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ValidatorName</span>
+      <span class="na">RestApiId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">RestApi</span>
+      <span class="na">ValidateRequestBody</span><span class="pi">:</span> <span class="s">True</span>
+      <span class="na">ValidateRequestParameters</span><span class="pi">:</span> <span class="s">False</span>
+  <span class="na">RequestModel</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::Model</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">ContentType</span><span class="pi">:</span> <span class="s1">'</span><span class="s">application/json'</span>
+      <span class="na">RestApiId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">RestApi</span>
+      <span class="na">Schema</span><span class="pi">:</span> <span class="pi">{</span><span class="s2">"</span><span class="s">$schema"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://json-schema.org/draft-04/schema#"</span><span class="pi">,</span>
+      <span class="s2">"</span><span class="s">title"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Stats"</span><span class="pi">,</span>
+      <span class="s2">"</span><span class="s">type"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">object"</span><span class="pi">,</span>
+      <span class="s2">"</span><span class="s">properties"</span><span class="pi">:</span> <span class="pi">{</span>
+          <span class="s2">"</span><span class="s">blue_sold"</span><span class="pi">:</span> <span class="pi">{</span>
+              <span class="s2">"</span><span class="s">type"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">string"</span>
+          <span class="pi">},</span>
+          <span class="s2">"</span><span class="s">red_sold"</span><span class="pi">:</span> <span class="pi">{</span>
+              <span class="s2">"</span><span class="s">type"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">string"</span>
+          <span class="pi">},</span>
+          <span class="s2">"</span><span class="s">green_sold"</span><span class="pi">:</span> <span class="pi">{</span>
+              <span class="s2">"</span><span class="s">type"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">string"</span>
+          <span class="pi">},</span>
+          <span class="s2">"</span><span class="s">location"</span><span class="pi">:</span> <span class="pi">{</span>
+              <span class="s2">"</span><span class="s">type"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">string"</span>
+          <span class="pi">},</span>
+          <span class="s2">"</span><span class="s">date"</span><span class="pi">:</span> <span class="pi">{</span>
+              <span class="s2">"</span><span class="s">type"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">string"</span>
+          <span class="pi">}</span>
+      <span class="pi">},</span>
+      <span class="s2">"</span><span class="s">required"</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">blue_sold"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">red_sold"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">green_sold"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">date"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">location"</span><span class="pi">]</span> <span class="pi">}</span>
+</code></pre></div></div>
+
+<h3 id="post-method">POST Method</h3>
+
+<p>We’d like to be able to make a POST request, so we need a method to handle this.</p>
+
+<p>I won’t discuss all the properties in detail, but to summarise this is a POST method integrated with a lambda function specified elsewhere in the template under the imaginative title “LambdaFunction”.</p>
+
+<p>Note the authorization type: AWS_IAM. This means that requests to this API will be rejected unless they are <a href="https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html">properly signed</a> using the Access Key and Secret Key of an IAM user with permission to execute the API.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">PostMethod</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::Method</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">ApiKeyRequired</span><span class="pi">:</span> <span class="no">false</span>
+      <span class="na">AuthorizationType</span><span class="pi">:</span> <span class="s">AWS_IAM</span>
+      <span class="na">HttpMethod</span><span class="pi">:</span> <span class="s">POST</span>
+      <span class="na">Integration</span><span class="pi">:</span>
+        <span class="na">ConnectionType</span><span class="pi">:</span> <span class="s">INTERNET</span>
+        <span class="na">Credentials</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">ApiRole.Arn</span>
+        <span class="na">IntegrationHttpMethod</span><span class="pi">:</span> <span class="s">POST</span>
+        <span class="na">IntegrationResponses</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">StatusCode</span><span class="pi">:</span> <span class="m">200</span>
+        <span class="na">PassthroughBehavior</span><span class="pi">:</span> <span class="s">WHEN_NO_MATCH</span>
+        <span class="na">TimeoutInMillis</span><span class="pi">:</span> <span class="m">29000</span>
+        <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS</span>
+        <span class="na">Uri</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s1">'</span><span class="s">arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaFunction.Arn}/invocations'</span>
+      <span class="na">RequestValidatorId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ApiRequestValidator</span>
+      <span class="na">RequestModels</span><span class="pi">:</span>
+        <span class="na">application/json</span><span class="pi">:</span>
+          <span class="kt">!Ref</span> <span class="s">RequestModel</span>
+      <span class="na">MethodResponses</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">StatusCode</span><span class="pi">:</span> <span class="m">200</span>
+      <span class="na">OperationName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">lambda'</span>
+      <span class="na">ResourceId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ApiResource</span>
+      <span class="na">RestApiId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">RestApi</span>
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <h2 id="lambda-function">Lambda Function</h2>
+  </li>
+</ol>
+
+<p>Our SAM template needs to create a Lambda function based on the code in the lambda_code folder in the repo.</p>
+
+<p>The Handler property determines what the “main” function for the lambda will be. In this case we’re saying that the function <code class="language-plaintext highlighter-rouge">lambda_handler</code> in the file <code class="language-plaintext highlighter-rouge">lambda_function.py</code> is the function that we want to run when the lambda is triggered.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Fn::Join</code> operator at the bottom performs a string join which will construct the ARN of the IAM execution role for the lambda.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">LambdaFunction</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::Serverless::Function</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">FunctionName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">LambdaName</span>
+      <span class="na">Handler</span><span class="pi">:</span> <span class="s">lambda_function.lambda_handler</span>
+      <span class="na">Runtime</span><span class="pi">:</span> <span class="s">python3.7</span>
+      <span class="na">CodeUri</span><span class="pi">:</span> <span class="s">./lambda_code/</span>
+      <span class="na">MemorySize</span><span class="pi">:</span> <span class="m">128</span>
+      <span class="na">Timeout</span><span class="pi">:</span> <span class="m">300</span>
+      <span class="na">Role</span><span class="pi">:</span>
+        <span class="s">Fn::Join:</span>
+          <span class="s">- ''</span>
+          <span class="s">- - "arn:aws:iam::"</span>
+            <span class="s">- Ref</span><span class="err">:</span> <span class="s">AWS::AccountId</span>
+            <span class="s">- ":role/"</span>
+            <span class="s">- Ref</span><span class="err">:</span> <span class="s">LambdaFunctionRole</span>
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <h2 id="iam-roles--policies">IAM Roles &amp; Policies</h2>
+  </li>
+</ol>
+
+<h3 id="api-execution-role">API Execution Role</h3>
+
+<p>Firstly we want to create an execution role for the REST API, which will allow the API to trigger the specific lambda function that gets created. Here the policy is specified in the role template, with a single Allow statement restricted to the lambda function created by this template.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">ApiRole</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::IAM::Role</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">AssumeRolePolicyDocument</span><span class="pi">:</span>
+        <span class="na">Version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2012-10-17'</span>
+        <span class="na">Statement</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Sid</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>
+            <span class="na">Effect</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Allow'</span>
+            <span class="na">Principal</span><span class="pi">:</span>
+              <span class="na">Service</span><span class="pi">:</span>
+                <span class="pi">-</span> <span class="s1">'</span><span class="s">apigateway.amazonaws.com'</span>
+            <span class="na">Action</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s1">'</span><span class="s">sts:AssumeRole'</span>
+      <span class="na">Path</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/'</span>
+      <span class="na">Policies</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">PolicyName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ApiPolicyName</span>
+          <span class="na">PolicyDocument</span><span class="pi">:</span>
+            <span class="na">Version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2012-10-17'</span>
+            <span class="na">Statement</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="na">Effect</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Allow'</span>
+                <span class="na">Action</span><span class="pi">:</span> <span class="s1">'</span><span class="s">lambda:*'</span>
+                <span class="na">Resource</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">LambdaFunction.Arn</span>
+</code></pre></div></div>
+<h3 id="lambda-function-execution-role">Lambda Function execution role</h3>
+
+<p>We also want to create an execution role for the lambda function, and a matching policy with the permissions it needs. Since the lambda for this example is barely more than hello-world, the only permissions it needs are for logging. For a serious use case, make sure this policy contains the permissions your lambda will need to access AWS services such as Dynamo tables, RDS instances, etc.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">LambdaFunctionRole</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::IAM::Role</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">AssumeRolePolicyDocument</span><span class="pi">:</span>
+        <span class="na">Version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2012-10-17'</span>
+        <span class="na">Statement</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Effect</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Allow'</span>
+            <span class="na">Principal</span><span class="pi">:</span>
+              <span class="na">Service</span><span class="pi">:</span>
+                <span class="pi">-</span> <span class="s1">'</span><span class="s">lambda.amazonaws.com'</span>
+            <span class="na">Action</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s1">'</span><span class="s">sts:AssumeRole'</span>
+      <span class="na">Path</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/'</span>
+  <span class="na">LambdaExecutionPolicy</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::IAM::Policy</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">PolicyName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">LambdaPolicyName</span>
+      <span class="na">Roles</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">LambdaFunctionRole</span>
+      <span class="na">PolicyDocument</span><span class="pi">:</span>
+        <span class="na">Version</span><span class="pi">:</span> <span class="s">2012-10-17</span>
+        <span class="na">Statement</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Effect</span><span class="pi">:</span> <span class="s">Allow</span>
+            <span class="na">Action</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s">logs:CreateLogGroup</span>
+              <span class="pi">-</span> <span class="s">logs:CreateLogStream</span>
+              <span class="pi">-</span> <span class="s">logs:PutLogEvents</span>
+            <span class="na">Resource</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s2">"</span><span class="s">*"</span>
+</code></pre></div></div>
+<h3 id="iam-policy-for-api-user">IAM Policy for API User</h3>
+
+<p>Our API will have IAM authorisation, so we will need our API requests to be signed using the Access Key and Secret Key of an IAM user. However, we don’t want to create that user as part of the stack - creating the user separately ensures the Access Key and Secret Key won’t change just because the Cloudformation stack for the API and lambda has been updated/deleted/etc.</p>
+
+<p>What we <em>do</em> want as part of the stack is a Managed Policy granting access to the API.</p>
+
+<p>Once the stack has been deployed, we’ll attach this policy to the IAM user we’ve manually created, granting access to execute the API.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">ApiUserPolicy</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::IAM::ManagedPolicy</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">Description</span><span class="pi">:</span> <span class="s">Allows user to trigger the stats import API</span>
+      <span class="na">ManagedPolicyName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">UserPolicyName</span>
+      <span class="na">PolicyDocument</span><span class="pi">:</span>
+        <span class="na">Version</span><span class="pi">:</span> <span class="s">2012-10-17</span>
+        <span class="na">Statement</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Effect</span><span class="pi">:</span> <span class="s">Allow</span>
+            <span class="na">Action</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s">execute-api:Invoke</span>
+              <span class="pi">-</span> <span class="s">execute-api:ManageConnections</span>
+            <span class="na">Resource</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="kt">!Join</span> <span class="pi">[</span><span class="s1">'</span><span class="s">'</span><span class="pi">,[</span><span class="kt">!Sub</span> <span class="s1">'</span><span class="s">arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:'</span><span class="pi">,</span><span class="kt">!Ref</span> <span class="nv">RestApi</span><span class="pi">,</span> <span class="s1">'</span><span class="s">*'</span><span class="pi">]]</span>
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <h2 id="complete-template">Complete Template</h2>
+  </li>
+</ol>
+
+<p>If you combine all the ingredients above with some preamble to start the template and define the parameters which will be passed in by the user, the result is a complete Cloudformation SAM template for this example stack. Join me in Part 2 where I will discuss how to deploy and test the stack!</p>
+
+<p>For now, here’s the full template:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">AWSTemplateFormatVersion</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2010-09-09'</span>
+<span class="na">Transform</span><span class="pi">:</span> <span class="s">AWS::Serverless-2016-10-31</span>
+<span class="na">Description</span><span class="pi">:</span> <span class="s">AWS API Gateway with a Lambda Integration</span>
+<span class="na">Parameters</span><span class="pi">:</span>
+  <span class="na">ApiName</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s">my-stats-api</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">name for the REST API</span>
+  <span class="na">ResourcePath</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s">submitstats</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">path for the API resource</span>
+  <span class="na">StageName</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s">v0</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">name for API Stage</span>
+  <span class="na">ValidatorName</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s">request-body-validator</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">name for API request validator</span>
+  <span class="na">ApiPolicyName</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s">my-stats-api-policy</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">name for API execution policy</span>
+  
+  <span class="na">LambdaName</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s">my-stats-lambda</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">name for lambda function</span>
+  <span class="na">LambdaPolicyName</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s">my-stats-lambda-policy</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">name for lambda execution policy</span>
+  
+  <span class="na">UserPolicyName</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s">my-stats-api-user-policy</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">name for API user policy</span>
+    
+<span class="na">Resources</span><span class="pi">:</span>
+  <span class="na">RestApi</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::RestApi</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">ApiKeySourceType</span><span class="pi">:</span> <span class="s">HEADER</span>
+      <span class="na">EndpointConfiguration</span><span class="pi">:</span>
+        <span class="na">Types</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">REGIONAL</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ApiName</span>
+  <span class="na">ApiResource</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::Resource</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">ParentId</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">RestApi.RootResourceId</span>
+      <span class="na">PathPart</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ResourcePath</span>
+      <span class="na">RestApiId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">RestApi</span>
+  <span class="na">PostMethod</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::Method</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">ApiKeyRequired</span><span class="pi">:</span> <span class="no">false</span>
+      <span class="na">AuthorizationType</span><span class="pi">:</span> <span class="s">AWS_IAM</span>
+      <span class="na">HttpMethod</span><span class="pi">:</span> <span class="s">POST</span>
+      <span class="na">Integration</span><span class="pi">:</span>
+        <span class="na">ConnectionType</span><span class="pi">:</span> <span class="s">INTERNET</span>
+        <span class="na">Credentials</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">ApiRole.Arn</span>
+        <span class="na">IntegrationHttpMethod</span><span class="pi">:</span> <span class="s">POST</span>
+        <span class="na">IntegrationResponses</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">StatusCode</span><span class="pi">:</span> <span class="m">200</span>
+        <span class="na">PassthroughBehavior</span><span class="pi">:</span> <span class="s">WHEN_NO_MATCH</span>
+        <span class="na">TimeoutInMillis</span><span class="pi">:</span> <span class="m">29000</span>
+        <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS</span>
+        <span class="na">Uri</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s1">'</span><span class="s">arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaFunction.Arn}/invocations'</span>
+      <span class="na">RequestValidatorId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ApiRequestValidator</span>
+      <span class="na">RequestModels</span><span class="pi">:</span>
+        <span class="na">application/json</span><span class="pi">:</span>
+          <span class="kt">!Ref</span> <span class="s">RequestModel</span>
+      <span class="na">MethodResponses</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">StatusCode</span><span class="pi">:</span> <span class="m">200</span>
+      <span class="na">OperationName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">lambda'</span>
+      <span class="na">ResourceId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ApiResource</span>
+      <span class="na">RestApiId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">RestApi</span>
+  <span class="na">RequestModel</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::Model</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">ContentType</span><span class="pi">:</span> <span class="s1">'</span><span class="s">application/json'</span>
+      <span class="na">RestApiId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">RestApi</span>
+      <span class="na">Schema</span><span class="pi">:</span> <span class="pi">{</span><span class="s2">"</span><span class="s">$schema"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://json-schema.org/draft-04/schema#"</span><span class="pi">,</span>
+      <span class="s2">"</span><span class="s">title"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Stats"</span><span class="pi">,</span>
+      <span class="s2">"</span><span class="s">type"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">object"</span><span class="pi">,</span>
+      <span class="s2">"</span><span class="s">properties"</span><span class="pi">:</span> <span class="pi">{</span>
+          <span class="s2">"</span><span class="s">blue_sold"</span><span class="pi">:</span> <span class="pi">{</span>
+              <span class="s2">"</span><span class="s">type"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">string"</span>
+          <span class="pi">},</span>
+          <span class="s2">"</span><span class="s">red_sold"</span><span class="pi">:</span> <span class="pi">{</span>
+              <span class="s2">"</span><span class="s">type"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">string"</span>
+          <span class="pi">},</span>
+          <span class="s2">"</span><span class="s">green_sold"</span><span class="pi">:</span> <span class="pi">{</span>
+              <span class="s2">"</span><span class="s">type"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">string"</span>
+          <span class="pi">},</span>
+          <span class="s2">"</span><span class="s">location"</span><span class="pi">:</span> <span class="pi">{</span>
+              <span class="s2">"</span><span class="s">type"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">string"</span>
+          <span class="pi">},</span>
+          <span class="s2">"</span><span class="s">date"</span><span class="pi">:</span> <span class="pi">{</span>
+              <span class="s2">"</span><span class="s">type"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">string"</span>
+          <span class="pi">}</span>
+      <span class="pi">},</span>
+      <span class="s2">"</span><span class="s">required"</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">blue_sold"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">red_sold"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">green_sold"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">date"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">location"</span><span class="pi">]</span> <span class="pi">}</span>
+  <span class="na">ApiStage</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::Stage</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">DeploymentId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ApiDeployment</span>
+      <span class="na">Description</span><span class="pi">:</span> <span class="s">API Stage v0</span>
+      <span class="na">RestApiId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">RestApi</span>
+      <span class="na">StageName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">StageName</span>
+  
+  <span class="na">ApiRequestValidator</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::RequestValidator</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ValidatorName</span>
+      <span class="na">RestApiId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">RestApi</span>
+      <span class="na">ValidateRequestBody</span><span class="pi">:</span> <span class="s">True</span>
+      <span class="na">ValidateRequestParameters</span><span class="pi">:</span> <span class="s">False</span>
+  <span class="na">ApiDeployment</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ApiGateway::Deployment</span>
+    <span class="na">DependsOn</span><span class="pi">:</span> <span class="s">PostMethod</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">RestApiId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">RestApi</span>
+  <span class="na">ApiRole</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::IAM::Role</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">AssumeRolePolicyDocument</span><span class="pi">:</span>
+        <span class="na">Version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2012-10-17'</span>
+        <span class="na">Statement</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Sid</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>
+            <span class="na">Effect</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Allow'</span>
+            <span class="na">Principal</span><span class="pi">:</span>
+              <span class="na">Service</span><span class="pi">:</span>
+                <span class="pi">-</span> <span class="s1">'</span><span class="s">apigateway.amazonaws.com'</span>
+            <span class="na">Action</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s1">'</span><span class="s">sts:AssumeRole'</span>
+      <span class="na">Path</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/'</span>
+      <span class="na">Policies</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">PolicyName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ApiPolicyName</span>
+          <span class="na">PolicyDocument</span><span class="pi">:</span>
+            <span class="na">Version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2012-10-17'</span>
+            <span class="na">Statement</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="na">Effect</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Allow'</span>
+                <span class="na">Action</span><span class="pi">:</span> <span class="s1">'</span><span class="s">lambda:*'</span>
+                <span class="na">Resource</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">LambdaFunction.Arn</span>
+  <span class="na">LambdaFunction</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::Serverless::Function</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">FunctionName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">LambdaName</span>
+      <span class="na">Handler</span><span class="pi">:</span> <span class="s">lambda_function.lambda_handler</span>
+      <span class="na">Runtime</span><span class="pi">:</span> <span class="s">python3.7</span>
+      <span class="na">CodeUri</span><span class="pi">:</span> <span class="s">./lambda_code/</span>
+      <span class="na">MemorySize</span><span class="pi">:</span> <span class="m">128</span>
+      <span class="na">Timeout</span><span class="pi">:</span> <span class="m">300</span>
+      <span class="na">Role</span><span class="pi">:</span>
+        <span class="s">Fn::Join:</span>
+          <span class="s">- ''</span>
+          <span class="s">- - "arn:aws:iam::"</span>
+            <span class="s">- Ref</span><span class="err">:</span> <span class="s">AWS::AccountId</span>
+            <span class="s">- ":role/"</span>
+            <span class="s">- Ref</span><span class="err">:</span> <span class="s">LambdaFunctionRole</span>
+  <span class="na">LambdaFunctionRole</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::IAM::Role</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">AssumeRolePolicyDocument</span><span class="pi">:</span>
+        <span class="na">Version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2012-10-17'</span>
+        <span class="na">Statement</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Effect</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Allow'</span>
+            <span class="na">Principal</span><span class="pi">:</span>
+              <span class="na">Service</span><span class="pi">:</span>
+                <span class="pi">-</span> <span class="s1">'</span><span class="s">lambda.amazonaws.com'</span>
+            <span class="na">Action</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s1">'</span><span class="s">sts:AssumeRole'</span>
+      <span class="na">Path</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/'</span>
+  <span class="na">LambdaExecutionPolicy</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::IAM::Policy</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">PolicyName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">LambdaPolicyName</span>
+      <span class="na">Roles</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">LambdaFunctionRole</span>
+      <span class="na">PolicyDocument</span><span class="pi">:</span>
+        <span class="na">Version</span><span class="pi">:</span> <span class="s">2012-10-17</span>
+        <span class="na">Statement</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Effect</span><span class="pi">:</span> <span class="s">Allow</span>
+            <span class="na">Action</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s">logs:CreateLogGroup</span>
+              <span class="pi">-</span> <span class="s">logs:CreateLogStream</span>
+              <span class="pi">-</span> <span class="s">logs:PutLogEvents</span>
+            <span class="na">Resource</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s2">"</span><span class="s">*"</span>
+  <span class="na">ApiUserPolicy</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::IAM::ManagedPolicy</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">Description</span><span class="pi">:</span> <span class="s">Allows user to trigger the stats import API</span>
+      <span class="na">ManagedPolicyName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">UserPolicyName</span>
+      <span class="na">PolicyDocument</span><span class="pi">:</span>
+        <span class="na">Version</span><span class="pi">:</span> <span class="s">2012-10-17</span>
+        <span class="na">Statement</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Effect</span><span class="pi">:</span> <span class="s">Allow</span>
+            <span class="na">Action</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s">execute-api:Invoke</span>
+              <span class="pi">-</span> <span class="s">execute-api:ManageConnections</span>
+            <span class="na">Resource</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="kt">!Join</span> <span class="pi">[</span><span class="s1">'</span><span class="s">'</span><span class="pi">,[</span><span class="kt">!Sub</span> <span class="s1">'</span><span class="s">arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:'</span><span class="pi">,</span><span class="kt">!Ref</span> <span class="nv">RestApi</span><span class="pi">,</span> <span class="s1">'</span><span class="s">*'</span><span class="pi">]]</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/2021/08/02/aws-cloudformation-example-part-1-sam-template-for-rest-api-+-lambda-function.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Dave Bartram Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Dave Bartram Blog</li><li><a class="u-email" href="mailto:david.bartram@gmail.com">david.bartram@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/davidbartram"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">davidbartram</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Lessons I&#39;m learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths &amp; science</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Advent Of Code 2021 Days 11-15 | Dave Bartram Blog</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Advent Of Code 2021 Days 11-15" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Advent of Code 2021 Days 11-15" />
+<meta property="og:description" content="Advent of Code 2021 Days 11-15" />
+<link rel="canonical" href="http://localhost:4000/2022/03/01/advent-of-code-2021-days-11-15.html" />
+<meta property="og:url" content="http://localhost:4000/2022/03/01/advent-of-code-2021-days-11-15.html" />
+<meta property="og:site_name" content="Dave Bartram Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-01T13:45:39+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Advent Of Code 2021 Days 11-15" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-03-01T13:45:39+00:00","datePublished":"2022-03-01T13:45:39+00:00","description":"Advent of Code 2021 Days 11-15","headline":"Advent Of Code 2021 Days 11-15","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/03/01/advent-of-code-2021-days-11-15.html"},"url":"http://localhost:4000/2022/03/01/advent-of-code-2021-days-11-15.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/blog/2021/08-20-Vancian-Spellcasting-in-Tabletop-RPGs/post.txt">Vancian Spellcasting In Tabletop Rpgs</a><a class="page-link" href="/blog/2021/01-04-ReInvent-2020-1--AWS-Systems-Manager/post.txt">Reinvent 2020 Part 1 Aws Systems Manager</a><a class="page-link" href="/blog/2021/06-03-Reflections-on-the-AWS-Solutions-Architect-Associate-certification-(2021)/post.txt">Reflections On The Aws Solutions Architect Associate Certification 2021</a><a class="page-link" href="/blog/2021/03-22-RPG-Review-Worlds-Without-Number/post.txt">Rpg Review Worlds Without Number</a><a class="page-link" href="/blog/2021/08-12-AWS-Cloudformation-Example-Part-2--Deploy-and-Test-a-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-08-Advent-of-Code-2020-Days-1-5/post.txt">Advent Of Code 2020 Days 1-5</a><a class="page-link" href="/blog/2021/07-08-Doubting-Tau--a-question-of-%CF%80/post.txt">Doubting Tau A Question Of %Cf%80</a><a class="page-link" href="/blog/2021/04-29-Configuring-the-nginx-proxy-in-an-Elastic-Beanstalk-Linux-environment/post.txt">Configuring The Nginx Proxy In An Elastic Beanstalk Linux Environment</a><a class="page-link" href="/blog/2021/01-12-ReInvent-2020-2-%E2%80%93-Amazon-CodeGuru/post.txt">Reinvent 2020 2 Amazon Codeguru</a><a class="page-link" href="/blog/2021/08-02-AWS-Cloudformation-Example-Part-1--SAM-Template-for-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-22-ReInvent-2020-3-%E2%80%93-Container-Insights/post.txt">Reinvent 2020 3 Container Insights</a><a class="page-link" href="/blog/2021/09-02-Understanding-a-Python-38-Quine/post.txt">Understanding A Python 3 8 Quine</a><a class="page-link" href="/blog/2021/02-02-Advent-of-Code-2020-Days-11-15/post.txt">Advent Of Code 2020 Days 11-15</a><a class="page-link" href="/blog/2021/10-05-SQL-Server-Queries--Task-Duration-and-Inserting-Defaults/post.txt">Sql Server Queries Task Duration Inserting Defaults</a><a class="page-link" href="/blog/2021/10-26-RPG-Review-Stars-Without-Number-Revised-Edition/post.txt">Rpg Review Stars Without Number Revised Edition</a><a class="page-link" href="/blog/2021/02-22-Adding-Date-Related-Features-to-a-Pandas-Dataframe/post.txt">Adding Date Related Features To A Pandas Dataframe</a><a class="page-link" href="/blog/2021/03-08-Advent-of-Code-2020-Days-16-20/post.txt">Advent Of Code 2020 Days 16-20</a><a class="page-link" href="/blog/2021/12-17-Advent-of-Code-2021-Days-1-5/post.txt">Advent Of Code 2021 Days 1-5</a><a class="page-link" href="/blog/2021/07-15-Python-API-Request-with-Error-Handling-England-and-Wales-Bank-Holidays/post.txt">Python Api Request With Error Handling England Wales Bank Holidays</a><a class="page-link" href="/blog/2021/04-13-How-to-solve-SSL-Error-unable-to-get-local-issuer-certificate-for-Python-on-Windows/post.txt">How To Solve Ssl Error Unable To Get Local Issuer Certificate For Python On Windows</a><a class="page-link" href="/blog/2021/04-06-Advent-of-Code-2020-Days-21-25/post.txt">Advent Of Code 2020 Days 21-25</a><a class="page-link" href="/blog/2021/01-14-Advent-of-Code-2020-Days-6-10/post.txt">Advent Of Code 2020 Days 6-10</a><a class="page-link" href="/blog/2022/01-05-Advent-of-Code-2021-Days-6-10/post.txt">Advent Of Code 2021 Days 6-10</a><a class="page-link" href="/blog/2022/03-01-Advent-of-Code-2021-Days-11-15/post.txt">Advent Of Code 2021 Days 11-15</a><a class="page-link" href="/blog/2022/03-21-Advent-of-Code-2021-Days-16-20/post.txt">Advent Of Code 2021 Days 16-20</a><a class="page-link" href="/blog/2022/04-17-Advent-of-Code-2021--Days-21-25/post.txt">Advent Of Code 2021 Days 21-25</a><a class="page-link" href="/blog/2020/12-23-Bash-Scripting-2--Command-Substitution/post.txt">Bash Scripting 2 Command Substitution</a><a class="page-link" href="/blog/2020/12-18-The-Wizard-is-on-Mute-Roleplaying-During-the-Pandemic/post.txt">Roleplaying During The Pandemic</a><a class="page-link" href="/blog/2020/11-13-Bash-Scripting-1--the-whole-shebang/post.txt">Bash Scripting 1 The Whole Shebang</a><a class="page-link" href="/blog/2020/11-17-Great-content-from-Stand-up-Maths-Benfords-Law-Dodgy-Scatter-Graphs-and-the-2020-US-Election/post.txt">Great Content From Stand Up Maths Benfords Law Dodgy Scatter Graphs And The 2020 Us Election</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Advent Of Code 2021 Days 11-15</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-03-01T13:45:39+00:00" itemprop="datePublished">Mar 1, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="advent-of-code-2021-days-11-15">Advent of Code 2021 Days 11-15</h1>
+
+<p><img src="/images/pexels-photo-6211095.jpeg" alt="christmas tree decorated with baubles and garland" /></p>
+
+<p>Welcome back to some more <a href="http://adventofcode.com/2021/">Advent of Code 2021</a>!</p>
+
+<p>These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github <a href="https://git.io/JmAvJ">here</a>. The code below is for Part 2 of each day, which often incorporates Part 1 in some way.</p>
+
+<h2 id="day-11---dumbo-octopus">Day 11 - <a href="https://adventofcode.com/2021/day/11">Dumbo Octopus</a></h2>
+
+<h3 id="thoughts">Thoughts</h3>
+
+<p>We’re looking at a grid-based puzzle about bioluminescent octopuses. There’s an octopus at every point on a rectangular grid, and each octopus has an integer <strong>energy level</strong>, initially between 0 and 9.</p>
+
+<p>Each iteration, the energy level of every octopus increases by 1. An octopus that reaches an energy level above 9 <strong>flashes</strong>, increasing the energy level of all adjacent octopuses by 1. This can lead to a chain reaction causing a neighbour’s energy to go above 9, causing another flash and so on. Each octopus can only flash once per iteration.</p>
+
+<p>At the end of the iteration, every octopus which has flashed once is reset to an energy level of 0, and the next iteration begins.</p>
+
+<p>The puzzle asks us to find the number of turns before the octopuses have synchronised, with every octopus flashing at once. This can be found by looking for a state where every octopus in the grid has energy 0, meaning they have all just flashed.</p>
+
+<h3 id="python-code">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="c1">#initialise a dict from tuples (i,j) to energy level of the point at coords (i,j)
+</span><span class="n">grid</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+        <span class="n">grid</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">neighbour_coords</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">grid</span><span class="p">):</span>
+    <span class="c1">#returns a list of coords of points adjacent to (i,j) in the grid
+</span>    <span class="n">coords_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+    
+    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span> <span class="o">=</span> <span class="n">step</span>
+        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">+</span><span class="n">dx</span> <span class="o">&lt;</span> <span class="n">cols</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="o">+</span><span class="n">dy</span> <span class="o">&lt;</span> <span class="n">rows</span><span class="p">:</span> 
+            <span class="n">coords_list</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">dy</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">coords_list</span>
+
+<span class="k">def</span> <span class="nf">nb_dict</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+    <span class="c1">#populates a dictionary from each point in the grid to a list of neighbouring points
+</span>    <span class="n">nbdict</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">.</span><span class="n">copy</span><span class="p">():</span>
+        <span class="n">nbdict</span><span class="p">[</span><span class="n">point</span><span class="p">]</span> <span class="o">=</span> <span class="n">neighbour_coords</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">grid</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">nbdict</span>
+
+<span class="k">def</span> <span class="nf">flash</span><span class="p">(</span><span class="n">point</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">flashed_points</span><span class="p">,</span><span class="n">nbdict</span><span class="p">):</span>
+    <span class="c1">#causes a point to flash, and recursively flashes any neighbours whose energy goes above 9
+</span>
+    <span class="n">flashed_points</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">point</span><span class="p">)</span> <span class="c1">#keep track of points which have already flashed
+</span>
+    <span class="n">nbs</span> <span class="o">=</span> <span class="n">nbdict</span><span class="p">[</span><span class="n">point</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">nb</span> <span class="ow">in</span> <span class="n">nbs</span><span class="p">:</span>
+        <span class="n">grid</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">for</span> <span class="n">nb</span> <span class="ow">in</span> <span class="n">nbs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">9</span> <span class="ow">and</span> <span class="n">nb</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">flashed_points</span><span class="p">:</span> <span class="c1">#only flash points that have not flashed this iteration
+</span>            <span class="n">grid</span><span class="p">,</span> <span class="n">flashed_points</span> <span class="o">=</span> <span class="n">flash</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">flashed_points</span><span class="p">,</span> <span class="n">nbdict</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">grid</span><span class="p">,</span><span class="n">flashed_points</span>
+
+<span class="k">def</span> <span class="nf">advance_step</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">nbdict</span><span class="p">,</span> <span class="n">flash_sum</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
+        <span class="n">grid</span><span class="p">[</span><span class="n">point</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">flashed_points</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">point</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">9</span> <span class="ow">and</span> <span class="n">point</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">flashed_points</span><span class="p">:</span> <span class="c1">#only flash points that have not flashed this iteration
+</span>            <span class="n">grid</span><span class="p">,</span> <span class="n">flashed_points</span> <span class="o">=</span> <span class="n">flash</span><span class="p">(</span><span class="n">point</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span> <span class="n">flashed_points</span><span class="p">,</span> <span class="n">nbdict</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">flashed_points</span><span class="p">:</span>
+        <span class="n">grid</span><span class="p">[</span><span class="n">point</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1">#reset points which have flashed to 0 energy
+</span>
+    <span class="n">flash_sum</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">flashed_points</span><span class="p">)</span> <span class="c1">#count flashed points
+</span>    
+    <span class="k">return</span> <span class="n">flash_sum</span>
+
+<span class="k">def</span> <span class="nf">advance_until_synched</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+    <span class="n">nbdict</span> <span class="o">=</span> <span class="n">nb_dict</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+    <span class="n">flash_sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">advance_step</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">nbdict</span><span class="p">,</span><span class="n">flash_sum</span><span class="p">)</span>
+        <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+
+        <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">grid</span><span class="p">.</span><span class="n">values</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#when all points flash
+</span>            <span class="k">return</span> <span class="n">i</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">advance_until_synched</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="day-12---passage-pathing">Day 12 - <a href="https://adventofcode.com/2021/day/12">Passage Pathing</a></h2>
+
+<h3 id="thoughts-1">Thoughts</h3>
+
+<p>Graph time! An underwater cave system can be represented as an unweighted undirected graph with four types of node. We have the <strong>start</strong> node, the <strong>end</strong> node, <strong>big caves</strong> represented by uppercase letters, and <strong>small caves</strong> represented by lowercase letters.</p>
+
+<p>The puzzle is to find the number of possible paths from the start node to the end node. We are allowed to pass through each small cave only once on a given path, but we can visit big caves as many times as we like. In part 2 we are offered an exception to this rule - we can visit <em>exactly one</em> small cave <em>exactly twice</em>.</p>
+
+<p>In the code below, the paths are found by a recursive <a href="https://en.wikipedia.org/wiki/Depth-first_search">depth-first search</a> (DFS).</p>
+
+<p>The function <code class="language-plaintext highlighter-rouge">dfs</code> adds the current node to the current path. If the current node is the target node, a copy of the current path is appended to the <code class="language-plaintext highlighter-rouge">paths</code> variable. Otherwise, the function is called recursively for each of the valid neighbouring nodes.</p>
+
+<p>The ability to visit a single small cave twice is handled by the Boolean <code class="language-plaintext highlighter-rouge">revisits</code> , which starts with the value <code class="language-plaintext highlighter-rouge">True</code>. While <code class="language-plaintext highlighter-rouge">revisits</code> is <code class="language-plaintext highlighter-rouge">True</code> , the function treats all neighbours except the start node as valid. When the function visits a small cave that is already in the current path, it toggles <code class="language-plaintext highlighter-rouge">revisits</code> to <code class="language-plaintext highlighter-rouge">False</code>. For that particular path (and all its child paths in the recursion), small caves that have been visited are no longer valid neighbours.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">revisits</code> Boolean is implemented as an argument of the <code class="language-plaintext highlighter-rouge">dfs</code> function, so that the appropriate value can be passed down into recursive function calls.</p>
+
+<h3 id="python-code-1">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="n">graph</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[])</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'-'</span><span class="p">)</span>
+    <span class="n">graph</span><span class="p">[</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]].</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">graph</span><span class="p">[</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]].</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">revisits</span><span class="p">):</span>
+    
+    <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">path</span> <span class="ow">and</span> <span class="n">node</span><span class="p">.</span><span class="n">islower</span><span class="p">():</span>
+        <span class="n">revisits</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+        <span class="n">paths</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[:])</span> <span class="c1">#append a copy of the current path, not a pointer to the path variable which keeps changing
+</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">neighbour</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+
+            <span class="k">if</span> <span class="n">revisits</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">valid_neighbour</span> <span class="o">=</span> <span class="ow">not</span> <span class="p">(</span><span class="n">neighbour</span> <span class="o">==</span> <span class="s">'start'</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">valid_neighbour</span> <span class="o">=</span> <span class="ow">not</span> <span class="p">(</span><span class="n">neighbour</span> <span class="ow">in</span> <span class="n">path</span> <span class="ow">and</span> <span class="n">neighbour</span><span class="p">.</span><span class="n">islower</span><span class="p">())</span>
+
+            <span class="k">if</span> <span class="n">valid_neighbour</span><span class="p">:</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span><span class="n">neighbour</span><span class="p">,</span><span class="n">target</span><span class="p">,</span><span class="n">path</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">revisits</span><span class="p">)</span>
+
+    <span class="c1">#we are using the same path variable for all the recursive calls
+</span>    <span class="c1">#when a function call completes, we want to leave the path the way we found it
+</span>    <span class="c1">#so remove the node we appended above
+</span>    <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">paths</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span><span class="s">'start'</span><span class="p">,</span><span class="s">'end'</span><span class="p">,[],[],</span> <span class="bp">True</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<h2 id="day-13---transparent-origami">Day 13 - <a href="https://adventofcode.com/2021/day/13">Transparent Origami</a></h2>
+
+<h3 id="thoughts-2">Thoughts</h3>
+
+<p>We are given the coordinates of a set of dots on a sheet of transparent paper, along with a series of horizontal (y=constant) and vertical (x=constant) lines to fold the sheet along. We are told that none of the dots lie exactly on a fold line. The way the folds are performed, and the fact that none of the dots lie on any fold line, results in the following facts:</p>
+
+<p>A fold in the line <code class="language-plaintext highlighter-rouge">x=p</code> sends each point <code class="language-plaintext highlighter-rouge">(x,y)</code> where <code class="language-plaintext highlighter-rouge">x&gt;p</code> to <code class="language-plaintext highlighter-rouge">(2p-x, y)</code>.</p>
+
+<p>A fold in the line <code class="language-plaintext highlighter-rouge">y=q</code> sends each point <code class="language-plaintext highlighter-rouge">(x,y)</code> where <code class="language-plaintext highlighter-rouge">y&gt;q</code> to <code class="language-plaintext highlighter-rouge">(x, 2q-y)</code>.</p>
+
+<p>Since the variable <code class="language-plaintext highlighter-rouge">dots</code> (and its temporary copy <code class="language-plaintext highlighter-rouge">newdots</code>) is implemented as a <em>set</em>, any dots which exactly overlaps with a previous dot will be ignored. We only care about whether a given point has a dot present or not, we are not counting how many dots land on that position. Making a set a natural choice to avoid duplicates.</p>
+
+<p>The goal is to find the pattern of the dots after all the fold instructions have been executed. When printed, this pattern resembles a string of capital letters which is the final puzzle solution. Many participants included optical character recognition (OCR) to output the final solution, however I was content with simply printing the pattern to the console and using the OCR device attached to my eyeballs:</p>
+
+<p><img src="/images/origami.jpg" alt="" /></p>
+
+<h3 id="python-code-2">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span>
+
+<span class="n">dots</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="n">folds</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+
+    <span class="k">if</span> <span class="s">','</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+        <span class="c1">#populate a set of tuples (x,y) with the coordinates of each dot on the paper
+</span>        <span class="c1">#because it is a set, any dot that exactly overlaps with a previous dot will be ignored
+</span>        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">","</span><span class="p">)</span>
+        <span class="n">dots</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+    
+    <span class="k">if</span> <span class="s">'='</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+        <span class="c1">#populate a list of fold instructions, for example ('x',100) would mean fold along the line x=100
+</span>        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">'fold along '</span><span class="p">,</span><span class="s">''</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">"="</span><span class="p">)</span> 
+        <span class="n">folds</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+
+<span class="k">def</span> <span class="nf">perform_fold</span><span class="p">(</span><span class="n">dots</span><span class="p">,</span><span class="n">fold</span><span class="p">):</span>
+
+    <span class="n">newdots</span> <span class="o">=</span> <span class="n">dots</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">fold</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'x'</span><span class="p">:</span>
+        <span class="c1">#perform a fold along a vertical line x=fold[1]
+</span>        <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dots</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">fold</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">newdots</span><span class="p">.</span><span class="n">remove</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+                <span class="n">newdots</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">fold</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">fold</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'y'</span><span class="p">:</span>
+            <span class="c1">#perform a fold on a horizontal line y=fold[1]
+</span>            <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dots</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="n">fold</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                    <span class="n">newdots</span><span class="p">.</span><span class="n">remove</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+                    <span class="n">newdots</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">fold</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">y</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">newdots</span>
+
+<span class="k">def</span> <span class="nf">final_dots</span><span class="p">(</span><span class="n">dots</span><span class="p">,</span> <span class="n">folds</span><span class="p">):</span>
+    <span class="c1">#perform all the folds in the input
+</span>    <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="n">folds</span><span class="p">:</span>
+        <span class="n">dots</span> <span class="o">=</span> <span class="n">perform_fold</span><span class="p">(</span><span class="n">dots</span><span class="p">,</span><span class="n">fold</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dots</span>
+
+<span class="k">def</span> <span class="nf">print_dots</span><span class="p">(</span><span class="n">dots</span><span class="p">):</span>
+    <span class="c1">#print the final pattern of dots so that the puzzle solution
+</span>    <span class="c1">#can be read from the console
+</span>    <span class="n">max_x</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">dot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">dot</span> <span class="ow">in</span> <span class="n">dots</span><span class="p">])</span>
+    <span class="n">max_y</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">dot</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">dot</span> <span class="ow">in</span> <span class="n">dots</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_y</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="s">''</span>
+
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_x</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dots</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s">'█'</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s">' '</span>
+        
+        <span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+<span class="n">end_state</span> <span class="o">=</span> <span class="n">final_dots</span><span class="p">(</span><span class="n">dots</span><span class="p">,</span><span class="n">folds</span><span class="p">)</span>
+
+<span class="n">print_dots</span><span class="p">(</span><span class="n">end_state</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="day-14---extended-polymerization">Day 14 - <a href="https://adventofcode.com/2021/day/14">Extended Polymerization</a></h2>
+
+<h3 id="thoughts-3">Thoughts</h3>
+
+<p>A polymer is represented by a sequence of capital letters, e.g. “NNCH”.</p>
+
+<p>The polymer expands according to a list of <strong>pair insertion rules</strong> provided in the input. These rules are applied simultaneously on each iteration. For example, the rule “NC -&gt; B” means that B should be inserted between N and C, i.e. any occurrences of the pair NC in the polymer will be replaced by NBC.</p>
+
+<p>The puzzle warns us - “<em>this polymer grows quickly</em>”. And indeed it does. If modelled as a string, the polymer increases exponentially in size, similar to the Lanternfish puzzle on Day 6. The puzzle, however, only requires us to find the difference in frequency between the most common element (letter) in the polymer and the least common. In part 1 we are asked to find this quantity after 10 iterations, in part 2 we need to apply 40 iterations.</p>
+
+<p>The needful things to track are the frequency of each <em>pair</em> in the polymer, and the frequency of each individual element. In fact the latter could be calculated from the former fairly easily, but I have chosen to keep track of it throughout in the implementation below.</p>
+
+<p>The polymer NNCH would be represented by the dictionary <code class="language-plaintext highlighter-rouge">elements=={N:2, C:1, H:1}</code> and the dictionary <code class="language-plaintext highlighter-rouge">pairs=={'NN':1,'NC':1,'CH':1}</code>. This way the insertion rules can be followed without keeping track of the entire polymer.</p>
+
+<p>After 10 iterations, the polymer from my input contained nearly twenty thousand elements - nothing dramatic! However after 40 iterations it contained more than twenty <em>trillion</em> elements, amply demonstrating the need to find something more efficient than a string representation of the entire polymer.</p>
+
+<h3 id="python-code-3">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span>
+
+<span class="n">polymer</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="s">''</span><span class="p">)</span>
+
+<span class="n">rules</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="s">''</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">' -&gt; '</span><span class="p">,</span><span class="s">''</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">:]]</span>
+
+<span class="k">def</span> <span class="nf">initialise</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+
+    <span class="n">polymer</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="s">''</span><span class="p">)</span>
+
+    <span class="n">rules</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="s">''</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">' -&gt; '</span><span class="p">,</span><span class="s">''</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">:]]</span> <span class="c1">#AB -&gt; N  becomes (A,B,N)
+</span>
+    <span class="n">elements</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">polymer</span><span class="p">,</span><span class="n">polymer</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+        <span class="n">elements</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">pairs</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">elements</span><span class="p">[</span><span class="n">polymer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span><span class="mi">1</span> <span class="c1">#the last element in the zip object above will be (polymer[n-1],polymer[n]) so the last element won't be counted
+</span>    
+    <span class="k">return</span> <span class="n">elements</span><span class="p">,</span> <span class="n">pairs</span><span class="p">,</span> <span class="n">rules</span>
+
+<span class="k">def</span> <span class="nf">apply_rules</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">elements</span><span class="p">,</span> <span class="n">pairs</span><span class="p">):</span>
+    
+    <span class="n">newelements</span> <span class="o">=</span> <span class="n">elements</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">newpairs</span> <span class="o">=</span> <span class="n">pairs</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="o">=</span> <span class="n">rule</span>
+
+        <span class="n">count</span> <span class="o">=</span> <span class="n">pairs</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
+
+        <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">newpairs</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">-=</span> <span class="n">count</span> <span class="c1">#pairs are removed when new char inserted
+</span>
+            <span class="n">newelements</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="o">+=</span> <span class="n">count</span> <span class="c1">#new char inserted for each pair
+</span>            <span class="n">newpairs</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">count</span> <span class="c1">#new pair created for each pair
+</span>            <span class="n">newpairs</span><span class="p">[(</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">count</span> <span class="c1">#new pair created for each pair
+</span>    
+    <span class="k">return</span> <span class="n">newelements</span><span class="p">,</span> <span class="n">newpairs</span>
+
+<span class="k">def</span> <span class="nf">apply_rules_n_times</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">elements</span><span class="p">,</span><span class="n">pairs</span><span class="p">):</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">elements</span><span class="p">,</span> <span class="n">pairs</span> <span class="o">=</span> <span class="n">apply_rules</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">elements</span><span class="p">,</span> <span class="n">pairs</span><span class="p">)</span>
+
+    <span class="n">freqs</span> <span class="o">=</span> <span class="n">elements</span><span class="p">.</span><span class="n">values</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span>
+
+<span class="n">elements</span><span class="p">,</span> <span class="n">pairs</span><span class="p">,</span> <span class="n">rules</span> <span class="o">=</span> <span class="n">initialise</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">apply_rules_n_times</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span><span class="n">elements</span><span class="p">,</span><span class="n">pairs</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">apply_rules_n_times</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span><span class="n">elements</span><span class="p">,</span><span class="n">pairs</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="day-15---chiton">Day 15 - <a href="https://adventofcode.com/2021/day/15">Chiton</a></h2>
+
+<h3 id="thoughts-4">Thoughts</h3>
+
+<p>I’ve spent many hours with <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra’s algorithm</a> - mainly in the form of teaching it to A-Level Maths students, who (unaccountably) need to be able to carry out the algorithm with pencil and paper. Here I was given a nice opportunity to code the algorithm in Python using a <a href="https://www.geeksforgeeks.org/priority-queue-in-python/">PriorityQueue</a>.</p>
+
+<p>The puzzle is based on a grid of integers called “risk levels”. The goal is to find the path from the top left to the bottom right, with no diagonal steps, that minimises the sum of the risk levels you pass over. This is a very simple case for Dijkstra.</p>
+
+<p>The added complexity in part 2 is that the puzzle input turns out not to show the whole grid. The true grid is five times as large in both dimensions. The original tile is repeated right and downwards, but each time it is repeated, the risk level of each point in the new copy is increased by 1.</p>
+
+<p>After a bit of contemplation, I figured out that the risk level at coordinates <code class="language-plaintext highlighter-rouge">(x,y)</code> in the enlarged grid is given by:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">risk_level</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[(</span><span class="n">x</span><span class="o">%</span><span class="n">x_len</span><span class="p">,</span><span class="n">y</span><span class="o">%</span><span class="n">y_len</span><span class="p">)]</span> <span class="o">+</span> <span class="n">x</span><span class="o">//</span><span class="n">x_len</span> <span class="o">+</span> <span class="n">y</span><span class="o">//</span><span class="n">y_len</span>
+</code></pre></div></div>
+
+<p>Where <code class="language-plaintext highlighter-rouge">grid</code> is a dictionary from coordinate tuples to the values in the original smaller grid.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">x_len</code> is the x dimension of the original grid.</li>
+  <li><code class="language-plaintext highlighter-rouge">y_len</code> is the y dimension of the original grid.</li>
+  <li><code class="language-plaintext highlighter-rouge">a%b</code> is the <strong>modulo</strong> operation, returning the remainder when <code class="language-plaintext highlighter-rouge">a</code> is divided by <code class="language-plaintext highlighter-rouge">b</code>.</li>
+  <li>a//b is the <strong>floor division</strong> operation, returning the integer part of the quotient when a is divided by b.</li>
+</ul>
+
+<p>However the puzzle also states that risk levels above 9 wrap back around to 1, requiring the following adjustment:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">risk_level</span> <span class="o">=</span> <span class="p">(</span><span class="n">risk_level</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p>With that dealt with, the remainder of the code is a very standard implementation of <a href="https://brilliant.org/wiki/dijkstras-short-path-finder/">Dijkstra’s algorithm</a> using a queue of nodes to be visited, prioritised by the current shortest distance from the start node to that node.</p>
+
+<h3 id="python-code-4">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">splitlines</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">initialise</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1">#set up the initial grid, before the enlargement
+</span>    <span class="n">grid</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+            <span class="n">grid</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="n">visit</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
+    <span class="n">visit</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="mi">0</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)))</span>
+
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">math</span><span class="p">.</span><span class="n">inf</span><span class="p">)</span>
+    <span class="n">distance</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">target</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">grid</span><span class="p">,</span><span class="n">visit</span><span class="p">,</span><span class="n">distance</span><span class="p">,</span> <span class="n">target</span>
+
+<span class="k">def</span> <span class="nf">neighbour_coords</span><span class="p">(</span><span class="n">point</span><span class="p">,</span><span class="n">grid</span><span class="p">):</span>
+<span class="c1">#returns a list of coords of points adjacent to (i,j) in the grid
+</span>    <span class="n">coords_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+        
+    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">point</span>
+        <span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span> <span class="o">=</span> <span class="n">step</span>
+        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">+</span><span class="n">dx</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="o">+</span><span class="n">dy</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">coords_list</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">dy</span><span class="p">))</span>
+        
+    <span class="k">return</span> <span class="n">coords_list</span>
+
+<span class="k">def</span> <span class="nf">get_node_value</span><span class="p">(</span><span class="n">point</span><span class="p">,</span><span class="n">grid</span><span class="p">):</span>
+    <span class="c1">#use modular arithmetic to get the value of a node at any point in the enlarged grid
+</span>    <span class="c1">#by referencing the initial grid (pre-enlargement)
+</span>    <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">point</span>
+    <span class="n">x_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">y_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="n">value</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[(</span><span class="n">x</span><span class="o">%</span><span class="n">x_len</span><span class="p">,</span><span class="n">y</span><span class="o">%</span><span class="n">y_len</span><span class="p">)]</span> <span class="o">+</span> <span class="n">x</span><span class="o">//</span><span class="n">x_len</span> <span class="o">+</span> <span class="n">y</span><span class="o">//</span><span class="n">y_len</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">value</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">visit</span><span class="p">,</span><span class="n">distance</span><span class="p">,</span><span class="n">target</span><span class="p">):</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">visit</span><span class="p">.</span><span class="n">empty</span><span class="p">():</span>
+        <span class="p">(</span><span class="n">d</span><span class="p">,(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span> <span class="o">=</span> <span class="n">visit</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">nb</span> <span class="ow">in</span> <span class="n">neighbour_coords</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="n">grid</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">d</span> <span class="o">+</span> <span class="n">get_node_value</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span><span class="n">grid</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">distance</span><span class="p">[</span><span class="n">nb</span><span class="p">]:</span>
+                <span class="n">distance</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span> <span class="o">+</span> <span class="n">get_node_value</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span><span class="n">grid</span><span class="p">)</span>
+                <span class="n">visit</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="n">distance</span><span class="p">[</span><span class="n">nb</span><span class="p">],</span> <span class="n">nb</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">distance</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
+
+
+<span class="n">grid</span><span class="p">,</span><span class="n">visit</span><span class="p">,</span><span class="n">distance</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">initialise</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">dijkstra</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">visit</span><span class="p">,</span><span class="n">distance</span><span class="p">,</span><span class="n">target</span><span class="p">))</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/2022/03/01/advent-of-code-2021-days-11-15.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Dave Bartram Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Dave Bartram Blog</li><li><a class="u-email" href="mailto:david.bartram@gmail.com">david.bartram@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/davidbartram"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">davidbartram</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Lessons I&#39;m learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths &amp; science</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

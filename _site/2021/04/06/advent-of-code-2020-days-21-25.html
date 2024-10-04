@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Advent Of Code 2020 Days 21-25 | Dave Bartram Blog</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Advent Of Code 2020 Days 21-25" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Advent of Code 2020 Days 21-25" />
+<meta property="og:description" content="Advent of Code 2020 Days 21-25" />
+<link rel="canonical" href="http://localhost:4000/2021/04/06/advent-of-code-2020-days-21-25.html" />
+<meta property="og:url" content="http://localhost:4000/2021/04/06/advent-of-code-2020-days-21-25.html" />
+<meta property="og:site_name" content="Dave Bartram Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-06T14:45:39+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Advent Of Code 2020 Days 21-25" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-04-06T14:45:39+01:00","datePublished":"2021-04-06T14:45:39+01:00","description":"Advent of Code 2020 Days 21-25","headline":"Advent Of Code 2020 Days 21-25","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/04/06/advent-of-code-2020-days-21-25.html"},"url":"http://localhost:4000/2021/04/06/advent-of-code-2020-days-21-25.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/blog/2021/08-20-Vancian-Spellcasting-in-Tabletop-RPGs/post.txt">Vancian Spellcasting In Tabletop Rpgs</a><a class="page-link" href="/blog/2021/01-04-ReInvent-2020-1--AWS-Systems-Manager/post.txt">Reinvent 2020 Part 1 Aws Systems Manager</a><a class="page-link" href="/blog/2021/06-03-Reflections-on-the-AWS-Solutions-Architect-Associate-certification-(2021)/post.txt">Reflections On The Aws Solutions Architect Associate Certification 2021</a><a class="page-link" href="/blog/2021/03-22-RPG-Review-Worlds-Without-Number/post.txt">Rpg Review Worlds Without Number</a><a class="page-link" href="/blog/2021/08-12-AWS-Cloudformation-Example-Part-2--Deploy-and-Test-a-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-08-Advent-of-Code-2020-Days-1-5/post.txt">Advent Of Code 2020 Days 1-5</a><a class="page-link" href="/blog/2021/07-08-Doubting-Tau--a-question-of-%CF%80/post.txt">Doubting Tau A Question Of %Cf%80</a><a class="page-link" href="/blog/2021/04-29-Configuring-the-nginx-proxy-in-an-Elastic-Beanstalk-Linux-environment/post.txt">Configuring The Nginx Proxy In An Elastic Beanstalk Linux Environment</a><a class="page-link" href="/blog/2021/01-12-ReInvent-2020-2-%E2%80%93-Amazon-CodeGuru/post.txt">Reinvent 2020 2 Amazon Codeguru</a><a class="page-link" href="/blog/2021/08-02-AWS-Cloudformation-Example-Part-1--SAM-Template-for-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-22-ReInvent-2020-3-%E2%80%93-Container-Insights/post.txt">Reinvent 2020 3 Container Insights</a><a class="page-link" href="/blog/2021/09-02-Understanding-a-Python-38-Quine/post.txt">Understanding A Python 3 8 Quine</a><a class="page-link" href="/blog/2021/02-02-Advent-of-Code-2020-Days-11-15/post.txt">Advent Of Code 2020 Days 11-15</a><a class="page-link" href="/blog/2021/10-05-SQL-Server-Queries--Task-Duration-and-Inserting-Defaults/post.txt">Sql Server Queries Task Duration Inserting Defaults</a><a class="page-link" href="/blog/2021/10-26-RPG-Review-Stars-Without-Number-Revised-Edition/post.txt">Rpg Review Stars Without Number Revised Edition</a><a class="page-link" href="/blog/2021/02-22-Adding-Date-Related-Features-to-a-Pandas-Dataframe/post.txt">Adding Date Related Features To A Pandas Dataframe</a><a class="page-link" href="/blog/2021/03-08-Advent-of-Code-2020-Days-16-20/post.txt">Advent Of Code 2020 Days 16-20</a><a class="page-link" href="/blog/2021/12-17-Advent-of-Code-2021-Days-1-5/post.txt">Advent Of Code 2021 Days 1-5</a><a class="page-link" href="/blog/2021/07-15-Python-API-Request-with-Error-Handling-England-and-Wales-Bank-Holidays/post.txt">Python Api Request With Error Handling England Wales Bank Holidays</a><a class="page-link" href="/blog/2021/04-13-How-to-solve-SSL-Error-unable-to-get-local-issuer-certificate-for-Python-on-Windows/post.txt">How To Solve Ssl Error Unable To Get Local Issuer Certificate For Python On Windows</a><a class="page-link" href="/blog/2021/04-06-Advent-of-Code-2020-Days-21-25/post.txt">Advent Of Code 2020 Days 21-25</a><a class="page-link" href="/blog/2021/01-14-Advent-of-Code-2020-Days-6-10/post.txt">Advent Of Code 2020 Days 6-10</a><a class="page-link" href="/blog/2022/01-05-Advent-of-Code-2021-Days-6-10/post.txt">Advent Of Code 2021 Days 6-10</a><a class="page-link" href="/blog/2022/03-01-Advent-of-Code-2021-Days-11-15/post.txt">Advent Of Code 2021 Days 11-15</a><a class="page-link" href="/blog/2022/03-21-Advent-of-Code-2021-Days-16-20/post.txt">Advent Of Code 2021 Days 16-20</a><a class="page-link" href="/blog/2022/04-17-Advent-of-Code-2021--Days-21-25/post.txt">Advent Of Code 2021 Days 21-25</a><a class="page-link" href="/blog/2020/12-23-Bash-Scripting-2--Command-Substitution/post.txt">Bash Scripting 2 Command Substitution</a><a class="page-link" href="/blog/2020/12-18-The-Wizard-is-on-Mute-Roleplaying-During-the-Pandemic/post.txt">Roleplaying During The Pandemic</a><a class="page-link" href="/blog/2020/11-13-Bash-Scripting-1--the-whole-shebang/post.txt">Bash Scripting 1 The Whole Shebang</a><a class="page-link" href="/blog/2020/11-17-Great-content-from-Stand-up-Maths-Benfords-Law-Dodgy-Scatter-Graphs-and-the-2020-US-Election/post.txt">Great Content From Stand Up Maths Benfords Law Dodgy Scatter Graphs And The 2020 Us Election</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Advent Of Code 2020 Days 21-25</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-04-06T14:45:39+01:00" itemprop="datePublished">Apr 6, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="advent-of-code-2020-days-21-25">Advent of Code 2020 Days 21-25</h1>
+
+<p><img src="/images/pexels-photo-195030.jpeg" alt="advent architecture blur business" /></p>
+
+<p>With Christmas only a distant memory, I finally conclude <a href="http://adventofcode.com/2020/">Advent of Code 2020</a>. What a fun, enlightening journey this has been! All my Python 3 solutions are on Github <a href="https://github.com/DavidBartram/advent-of-code/">here</a>.</p>
+
+<h2 id="day-21---allergen-assessment">Day 21 - <a href="https://adventofcode.com/2020/day/21">Allergen Assessment</a></h2>
+
+<h3 id="thoughts">Thoughts</h3>
+
+<p>We’re looking for allergens in a list of recipes written partly in a language we don’t understand!</p>
+
+<p>This recipe:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
+</code></pre></div></div>
+
+<p>tells us that one of the ingredients <code class="language-plaintext highlighter-rouge">mxmxvkd</code> , <code class="language-plaintext highlighter-rouge">kfcds</code>, <code class="language-plaintext highlighter-rouge">sqjhc</code> and <code class="language-plaintext highlighter-rouge">nhms</code> contains dairy, and another one of them contains fish.</p>
+
+<p>We are told that each ingredient contains at most one allergen, and that each allergen is contained in only one ingredient. However, we can’t rely that all the allergens in the recipe have been identified. <code class="language-plaintext highlighter-rouge">sqjhc</code> may contain soy, for all we know!</p>
+
+<p>So what can we actually determine from the recipe? The only thing we can be sure of is that any ingredient that is <strong>not</strong> mentioned in the recipe <strong>does not</strong> contain any of the allergens listed for that recipe. There’s only one fishy ingredient in the whole puzzle, and it’s definitely one of <code class="language-plaintext highlighter-rouge">mxmxvkd</code> , <code class="language-plaintext highlighter-rouge">kfcds</code>, <code class="language-plaintext highlighter-rouge">sqjhc</code> or <code class="language-plaintext highlighter-rouge">nhms</code>. Another ingredient, such as <code class="language-plaintext highlighter-rouge">fvjkl</code>, cannot possibly be the fishy one.</p>
+
+<p>Knowing this, we can iterate through the recipes in the input and build up an adjacency matrix, or possibility matrix (here implemented as the dictionary <code class="language-plaintext highlighter-rouge">possibility</code>) to represent all the possible matchings between ingredients and allergens. Then we’re back to the standard problem of <a href="https://www.geeksforgeeks.org/maximum-bipartite-matching/">Maximum Bipartite Matching</a>, as previously seen in <a href="https://davebartram.blot.im/2021/04/06/advent-of-code-2020-days-16-20">Day 16</a>.</p>
+
+<p>This was a refreshing palette cleanser after some pretty hefty puzzling.</p>
+
+<h3 id="python-code">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+
+<span class="c1">#https://en.wikipedia.org/wiki/Top_Trumps
+</span>    <span class="n">allergen_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s">'\(contains (.+)\)'</span>
+    <span class="n">allergens</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="n">allergen_pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+
+<span class="n">allergens</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">allergens</span><span class="p">]</span>
+<span class="n">allergens</span> <span class="o">=</span> <span class="p">[[</span><span class="n">y</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">' '</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">allergens</span><span class="p">]</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">ingredient_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s">'([a-z]+) '</span>
+    <span class="n">ingredients</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="n">ingredient_pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+
+<span class="n">ingredients</span> <span class="o">=</span> <span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">ingredients</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">'contains'</span><span class="p">)</span>
+
+<span class="n">ingredients</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">.</span><span class="n">split</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ingredients</span><span class="p">]</span>
+
+<span class="n">ingredients</span><span class="p">.</span><span class="n">remove</span><span class="p">([])</span>
+
+<span class="c1">#Construct a set of all allergens in the input
+</span><span class="n">all_allergens</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">allergens</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="n">all_allergens</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1">#Construct a set of all ingredients in the input
+</span><span class="n">all_ingredients</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ingredients</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="n">all_ingredients</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># (B) MAXIMUM BIPARTITE MATCHING OF INGREDIENTS &amp; ALLERGENS
+</span>
+<span class="c1">#create a dict called possibility. the keys will be tuples of (ingredient,allergen) e.g. ('mfp','dairy')
+#the value will be 1 if the ingredient may contain the allergen
+#the value will be 0 if the ingredient definitely does not contain the allergen
+</span><span class="n">possibility</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1">#initialise the dictionary with all matchings possible
+</span><span class="k">for</span> <span class="p">(</span><span class="n">ing</span><span class="p">,</span><span class="n">allerg</span><span class="p">)</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">all_ingredients</span><span class="p">,</span> <span class="n">all_allergens</span><span class="p">):</span>
+    <span class="n">possibility</span><span class="p">[(</span><span class="n">ing</span><span class="p">,</span><span class="n">allerg</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+
+
+<span class="c1">#the only deduction we can make from the input is the following:
+#IF an ingredient does not appear in a given row
+#THEN that ingredient DOES NOT contain any of that row's listed allergens
+</span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ingredients</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ing</span> <span class="ow">in</span> <span class="n">all_ingredients</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ing</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">allerg</span> <span class="ow">in</span> <span class="n">allergens</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">possibility</span><span class="p">[(</span><span class="n">ing</span><span class="p">,</span><span class="n">allerg</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">possibility</span><span class="p">,</span><span class="n">allerg</span><span class="p">,</span><span class="n">all_ingredients</span><span class="p">,</span> <span class="n">matchR</span><span class="p">,</span> <span class="n">seen</span><span class="p">):</span>
+    <span class="c1">#takes the possibility dictionary, a particular allergen, the current assignment of ingredients to allergens, and a dict to keep track of which ingredients have been visited
+</span>    <span class="c1">#if the conditions are met, assigns the allergen to a particular ingredient in matchR and returns True
+</span>    <span class="c1">#otherwise returns False
+</span>
+
+    <span class="c1">#iterate over the possible ingredients that could contain the allergen
+</span>    <span class="k">for</span> <span class="n">ing</span> <span class="ow">in</span> <span class="n">all_ingredients</span><span class="p">:</span>
+        
+        <span class="c1"># If the matching of the ingredient to the allergen is possible
+</span>        <span class="c1"># and the ingredient has not yet been visited
+</span>        <span class="k">if</span> <span class="n">possibility</span><span class="p">[(</span><span class="n">ing</span><span class="p">,</span><span class="n">allerg</span><span class="p">)]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">seen</span><span class="p">[</span><span class="n">ing</span><span class="p">]</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span> 
+            <span class="c1"># Mark the allergen as visited
+</span>            <span class="n">seen</span><span class="p">[</span><span class="n">ing</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span> 
+  
+            <span class="c1">#If the ingredient is not currently assigned to an allergen (matchR[ing] == -1)
+</span>            <span class="c1"># OR the previously assigned allergen for the ingredient (matchR[ing]) has an alternate ingredient available
+</span>            <span class="k">if</span> <span class="n">matchR</span><span class="p">[</span><span class="n">ing</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">match</span><span class="p">(</span><span class="n">possibility</span><span class="p">,</span><span class="n">matchR</span><span class="p">[</span><span class="n">ing</span><span class="p">],</span> <span class="n">all_ingredients</span><span class="p">,</span> <span class="n">matchR</span><span class="p">,</span> <span class="n">seen</span><span class="p">):</span> 
+                <span class="n">matchR</span><span class="p">[</span><span class="n">ing</span><span class="p">]</span> <span class="o">=</span> <span class="n">allerg</span> <span class="c1">#assign the allergen to the ingredient we are considering
+</span>                <span class="c1">#print(matchR)
+</span>                <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">maxmatch</span><span class="p">(</span><span class="n">possibility</span><span class="p">,</span> <span class="n">all_allergens</span><span class="p">,</span> <span class="n">all_ingredients</span><span class="p">):</span> 
+    <span class="c1"># takes the possibility dict, the set of all allergens in the input, the set of all ingredients in the input
+</span>    <span class="c1"># returns matchR for the maximum matching
+</span>    <span class="c1"># matchR is a dict showing which ingredients have been assigned to which allergens
+</span>    <span class="c1"># in matchR the keys is an ingredient, the value is an allergen, or -1 if the ingredient has not yet been assigned to an allergen
+</span>    <span class="n">matchR</span> <span class="o">=</span> <span class="p">{</span><span class="n">ing</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">ing</span> <span class="ow">in</span> <span class="n">all_ingredients</span><span class="p">}</span> <span class="c1">#initialise with no allergens assigned to ingredients
+</span>    
+    <span class="c1">#iterate over ingredients
+</span>    <span class="k">for</span> <span class="n">allergen</span> <span class="ow">in</span> <span class="n">all_allergens</span><span class="p">:</span> 
+        <span class="n">seen</span> <span class="o">=</span> <span class="p">{</span><span class="n">ing</span><span class="p">:</span> <span class="bp">False</span> <span class="k">for</span> <span class="n">ing</span> <span class="ow">in</span> <span class="n">all_ingredients</span><span class="p">}</span> <span class="c1">#before considering a new allergen, reset the visited ingredients
+</span>        <span class="n">match</span><span class="p">(</span><span class="n">possibility</span><span class="p">,</span> <span class="n">allergen</span><span class="p">,</span> <span class="n">all_ingredients</span><span class="p">,</span> <span class="n">matchR</span><span class="p">,</span> <span class="n">seen</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">matchR</span>
+
+
+<span class="n">matchR</span> <span class="o">=</span> <span class="n">maxmatch</span><span class="p">(</span><span class="n">possibility</span><span class="p">,</span> <span class="n">all_allergens</span><span class="p">,</span> <span class="n">all_ingredients</span><span class="p">)</span> <span class="c1">#run the matching function
+</span>
+<span class="c1">#construct a list of allergen-free ingredients
+</span><span class="n">allerg_free_ings</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">ing</span> <span class="ow">in</span> <span class="n">matchR</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">matchR</span><span class="p">[</span><span class="n">ing</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="c1">#if the ingredient has no allergen assigned at this stage, then it contains no allergens
+</span>        <span class="n">allerg_free_ings</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">ing</span><span class="p">)</span>
+
+
+<span class="c1">#Part 1
+#count the number of times the allergen-free ingredients appear in the full list of recipes
+</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">ingredients</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">ing</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ing</span> <span class="ow">in</span> <span class="n">allerg_free_ings</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span><span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="c1">#part 1 answer
+</span>
+
+<span class="c1">#Part 2
+</span>
+<span class="c1">#remove the allergen-free ingredients from the match dictionary
+</span><span class="k">for</span> <span class="n">ing</span> <span class="ow">in</span> <span class="n">allerg_free_ings</span><span class="p">:</span>
+    <span class="k">del</span> <span class="n">matchR</span><span class="p">[</span><span class="n">ing</span><span class="p">]</span>
+
+<span class="c1">#sort the (ingredient,allergen) tuples alphabetically by allergen
+</span><span class="n">sorted_tuples</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">matchR</span><span class="p">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1">#take the allergen-bearing ingredients and join into one comma-separated string
+</span><span class="n">sorted_ings</span> <span class="o">=</span> <span class="s">','</span><span class="p">.</span><span class="n">join</span><span class="p">(</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sorted_tuples</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">sorted_ings</span><span class="p">)</span> <span class="c1">#part_2 answer
+</span></code></pre></div></div>
+
+<h2 id="day-22---crab-combat">Day 22 - <a href="https://adventofcode.com/2020/day/22">Crab Combat</a></h2>
+
+<h3 id="thoughts-1">Thoughts</h3>
+
+<p>Who doesn’t love a game of <a href="https://en.wikipedia.org/wiki/Top_Trumps">Top Trumps</a>?</p>
+
+<p>With a crab?</p>
+
+<p>And a recursive variation in which games spawn sub-games and sub-sub-games and you and this (evidently very patient) crab battle it out for supremacy?</p>
+
+<p>Python has a format called a deque (double-ended queue) which is handy for modelling a deck of cards where cards get taken off the top and placed at the bottom during gameplay. It’s more efficient than a list for these kinds of contexts where you want to append and remove from both ends of the data structure.</p>
+
+<p>Some AoC fans jokingly call the competition “Advent of Reading Comprehension”, given that many of the most common problems solving the puzzle stem from struggling to understand the requirements. Here, the trick that took me a while was understanding exactly which cards are propagated from a game to the sub-game. The number of cards that get a player carries into the subgame is equal to the number on their top card at the time the subgame is created. Without realising this, I was propagating all of the remaining cards into the subgame and getting everything completely wrong!</p>
+
+<h3 id="python-code-1">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+
+<span class="c1">#(A) Process the Input
+</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">decks</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">decks</span> <span class="o">=</span> <span class="n">decks</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'Player'</span><span class="p">)</span>
+
+<span class="n">decks</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s">''</span><span class="p">)</span>
+
+<span class="n">decks</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">:].</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">decks</span><span class="p">]</span>
+
+<span class="n">decks</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">decks</span> <span class="p">]</span>
+
+<span class="n">decks</span> <span class="o">=</span> <span class="p">[</span><span class="n">collections</span><span class="p">.</span><span class="n">deque</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">decks</span><span class="p">]</span>
+
+<span class="n">deck_p1</span> <span class="o">=</span> <span class="n">decks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#player 1 deck
+</span>
+<span class="n">deck_p2</span> <span class="o">=</span> <span class="n">decks</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#player 2 deck
+</span>
+<span class="c1">#(B) Play Recursive Crab Combat
+</span>
+<span class="c1">#helper function to adjust decks based on the winner of a round
+</span><span class="k">def</span> <span class="nf">win</span><span class="p">(</span><span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span><span class="p">,</span> <span class="n">winner</span><span class="p">):</span>
+    <span class="n">card_p1</span> <span class="o">=</span> <span class="n">deck_p1</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+    <span class="n">card_p2</span> <span class="o">=</span> <span class="n">deck_p2</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">winner</span> <span class="o">==</span> <span class="s">'P1'</span><span class="p">:</span>
+        <span class="n">deck_p1</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">card_p1</span><span class="p">)</span>
+        <span class="n">deck_p1</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">card_p2</span><span class="p">)</span>
+    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">deck_p2</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">card_p2</span><span class="p">)</span>
+        <span class="n">deck_p2</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">card_p1</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span>
+
+<span class="c1">#function to play crab combat and output the winner and both final decks
+</span><span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span><span class="p">):</span>
+
+    <span class="n">decks_seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+
+        <span class="n">len1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">deck_p1</span><span class="p">)</span>
+        <span class="n">len2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">deck_p2</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">card1</span> <span class="o">=</span> <span class="n">deck_p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">card2</span> <span class="o">=</span> <span class="n">deck_p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span> <span class="nb">IndexError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        
+        <span class="k">if</span> <span class="n">len1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#if P1's deck is empty, P2 wins
+</span>            <span class="k">return</span> <span class="s">'P2'</span><span class="p">,</span> <span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span>
+
+        <span class="k">elif</span> <span class="n">len2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#if P2's deck is empty, P1 wins
+</span>            <span class="k">return</span> <span class="s">'P1'</span><span class="p">,</span> <span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span>
+        
+        <span class="k">elif</span> <span class="n">len1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">card1</span> <span class="ow">or</span> <span class="n">len2</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">card2</span><span class="p">:</span>
+            <span class="c1">#if at least one player doesn't have enough cards to recurse
+</span>            <span class="c1">#then we play the round normally
+</span>            <span class="n">dtup</span> <span class="o">=</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">deck_p1</span><span class="p">),</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">deck_p2</span><span class="p">))</span> <span class="c1">#current configuration as a tuple of tuples
+</span>            <span class="k">if</span> <span class="n">dtup</span> <span class="ow">in</span> <span class="n">decks_seen</span><span class="p">:</span>
+                <span class="c1">#if the configuration has been seen before in this game
+</span>                <span class="c1">#P1 wins, per the rules
+</span>                <span class="k">return</span> <span class="s">'P1'</span><span class="p">,</span> <span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">decks_seen</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">dtup</span><span class="p">)</span> <span class="c1">#add the current configuration to decks_seen
+</span>            
+                <span class="k">if</span> <span class="n">card1</span> <span class="o">&gt;</span> <span class="n">card2</span><span class="p">:</span>
+                    <span class="c1">#P1 wins the round
+</span>                    <span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span> <span class="o">=</span> <span class="n">win</span><span class="p">(</span><span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span><span class="p">,</span> <span class="s">'P1'</span><span class="p">)</span>
+                
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1">#P2 wins the round
+</span>                    <span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span> <span class="o">=</span> <span class="n">win</span><span class="p">(</span><span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span><span class="p">,</span> <span class="s">'P2'</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">#both players have enough cards to recurse
+</span>            <span class="c1">#so we recurse!
+</span>            <span class="n">new_deck_p1</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">deque</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">deck_p1</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="n">card1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">new_deck_p2</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">deque</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">deck_p2</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="n">card2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">winner</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">new_deck_p1</span><span class="p">,</span> <span class="n">new_deck_p2</span><span class="p">)</span>
+
+            
+            <span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span> <span class="o">=</span> <span class="n">win</span><span class="p">(</span><span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span><span class="p">,</span> <span class="n">winner</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">winner</span><span class="p">,</span> <span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span>
+
+<span class="c1">#(C) Calculate the Puzzle Answer
+</span>
+<span class="n">winner</span><span class="p">,</span> <span class="n">deck_p1</span><span class="p">,</span> <span class="n">deck_p2</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">deck_p1</span><span class="p">,</span><span class="n">deck_p2</span><span class="p">)</span>
+
+<span class="n">final_deck</span> <span class="o">=</span> <span class="n">deck_p1</span>
+
+<span class="k">if</span> <span class="n">winner</span> <span class="o">==</span> <span class="s">'P2'</span><span class="p">:</span>
+    <span class="n">final_deck</span> <span class="o">=</span> <span class="n">deck_p2</span>
+    
+<span class="n">points</span> <span class="o">=</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">final_deck</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">score</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">a</span><span class="o">*</span><span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">final_deck</span><span class="p">,</span><span class="n">points</span><span class="p">)])</span>
+    
+<span class="k">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="day-23---crab-cups">Day 23 - <a href="https://adventofcode.com/2020/day/23">Crab Cups</a></h2>
+
+<h3 id="thoughts-2">Thoughts</h3>
+
+<p>Now we’re playing another game, involving numbered cups arranged in a circle. During the game, cups get moved around the circle. The goal is simple - model ten million turns of the cup game for a set of one million cups!</p>
+
+<p>The need here is for a “circular” data structure that is reasonably efficient. Really all you need to know about a given cup is which cup comes after it. To capture that information I’ve just used a list called <code class="language-plaintext highlighter-rouge">nex_list</code> where the list index is the current cup, and the value at that index is the next cup number moving clockwise. So if <code class="language-plaintext highlighter-rouge">nex_list[37] == 12</code> that means that cup 12 lies immediately clockwise of cup 37.</p>
+
+<p>With this structure you can move cups around without having to change every piece of data. Imagine using a list of cup numbers clockwise from the top of the circle - when you pick up a cup and insert it somewhere else, you have to shunt a whole bunch of cup numbers to different positions in the list, which (certainly in Python) will slow your code down a lot.</p>
+
+<p>An alternative to my approach would be to use a <a href="https://realpython.com/linked-lists-python/">linked list</a>.</p>
+
+<h3 id="python-code-2">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">input</span> <span class="o">=</span> <span class="s">'389125467'</span> <span class="c1">#puzzle input
+</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">]</span>
+
+<span class="c1">#fill in additional cups up to 1,000,000 cups
+</span>
+<span class="n">max_cup</span> <span class="o">=</span> <span class="mi">1000000</span>
+
+<span class="nb">input</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_cup</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="c1">#initialise a list called nex_list
+#in this list, nex_list[i] is the number of the cup immediately clockwise of cup i
+#so if nex_list[5] == 2  then cup 2 is directly clockwise of cup 5
+#this allows for efficiently moving cups from one position in the circle to another,
+#without the reindexing that can slow down a circular data structure such as a Python deque
+</span>
+<span class="n">nex_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1000001</span><span class="p">)</span>
+
+<span class="n">input_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+
+<span class="c1">#insert the initial values into nex_list
+</span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">input_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">nex_list</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nex_list</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span>  <span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="n">nex_list</span><span class="p">,</span> <span class="n">current</span><span class="p">):</span>
+    <span class="c1">#play one round of the cup game
+</span>    
+    <span class="n">pickup</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1">#current cup number
+</span>    <span class="n">x</span> <span class="o">=</span> <span class="n">current</span>
+
+    <span class="c1">#"pick up" the next three cups by adding their values to the pickup list
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">pickup</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nex_list</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nex_list</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+
+    <span class="c1">#calculate the destination cup according to the rules
+</span>    <span class="n">dest</span> <span class="o">=</span> <span class="n">current</span> <span class="o">-</span> <span class="mi">1</span>
+
+    
+    <span class="k">while</span> <span class="n">dest</span> <span class="ow">in</span> <span class="n">pickup</span><span class="p">:</span>
+        <span class="n">dest</span> <span class="o">=</span> <span class="n">dest</span> <span class="o">-</span> <span class="mi">1</span>
+    
+    <span class="k">if</span> <span class="n">dest</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">dest</span> <span class="o">=</span> <span class="n">max_cup</span>
+    
+    <span class="k">while</span> <span class="n">dest</span> <span class="ow">in</span> <span class="n">pickup</span><span class="p">:</span>
+        <span class="n">dest</span> <span class="o">=</span> <span class="n">dest</span> <span class="o">-</span> <span class="mi">1</span>
+
+    
+    <span class="c1">#update nex_list to account for the new positions of the picked-up cups
+</span>
+    <span class="n">nex_list</span><span class="p">[</span><span class="n">current</span><span class="p">]</span> <span class="o">=</span> <span class="n">nex_list</span><span class="p">[</span><span class="n">pickup</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+
+    <span class="n">nex_list</span><span class="p">[</span><span class="n">pickup</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">pickup</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">nex_list</span><span class="p">[</span><span class="n">pickup</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">pickup</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">nex_list</span><span class="p">[</span><span class="n">pickup</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="n">nex_list</span><span class="p">[</span><span class="n">dest</span><span class="p">]</span>
+
+    <span class="n">nex_list</span><span class="p">[</span><span class="n">dest</span><span class="p">]</span> <span class="o">=</span> <span class="n">pickup</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">nex_list</span><span class="p">,</span> <span class="n">nex_list</span><span class="p">[</span><span class="n">current</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">make_list</span><span class="p">(</span><span class="n">nex_list</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="c1">#helper function to create a list of cup numbers going clockwise from a starting cup
+</span>    <span class="c1">#used only for debugging
+</span>    <span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="n">start</span>
+
+    <span class="k">while</span> <span class="n">nex_list</span><span class="p">[</span><span class="n">current</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+        <span class="n">seen</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+        <span class="n">output</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nex_list</span><span class="p">[</span><span class="n">current</span><span class="p">])</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">nex_list</span><span class="p">[</span><span class="n">current</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">output</span>
+
+<span class="c1">#ten million turns
+</span><span class="n">turns</span> <span class="o">=</span> <span class="mi">10000000</span>
+
+<span class="n">current</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">turns</span><span class="p">):</span>
+    <span class="n">nex_list</span><span class="p">,</span> <span class="n">current</span> <span class="o">=</span> <span class="n">play</span><span class="p">(</span><span class="n">nex_list</span><span class="p">,</span><span class="n">current</span><span class="p">)</span>
+
+
+<span class="c1">#construct required output for puzzle
+</span><span class="n">cup</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">output</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">cup</span> <span class="o">=</span> <span class="n">nex_list</span><span class="p">[</span><span class="n">cup</span><span class="p">]</span>
+    <span class="n">output</span> <span class="o">*=</span> <span class="n">cup</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="day-24---lobby-layout">Day 24 - <a href="https://adventofcode.com/2020/day/24">Lobby Layout</a></h2>
+
+<h3 id="thoughts-3">Thoughts</h3>
+
+<p>Conway’s Game of Life returns again, this time on a hexagonal grid!</p>
+
+<p>And this time, I produced a reasonably sensible and efficient solution.</p>
+
+<p>The key decision point here was how to set up a coordinate system for a 2D grid of tiled hexagons. For this quandary, look no further than <a href="https://www.redblobgames.com/grids/hexagons/">https://www.redblobgames.com/grids/hexagons/</a> , which lays out a number of options for doing just that!</p>
+
+<p>I decided to use cube coordinates, exactly as laid out in the source above.</p>
+
+<p>One thing that I’ve improved in this implementation, compared to previous solutions, is that rather than iterate over the whole grid, counting the occupied neighbours of each hex, I instead iterate over the <em>occupied</em> hexes only, adding one to the count of occupied neighbours for hex adjacent to the occupied hex under consideration. This simple change saves a lot of time if only a small proportion of hexes are occupied, since you’re not wasting time doing things like counting six empty neighbours for an empty hex that’s miles away from any occupied hexes.</p>
+
+<h3 id="python-code-3">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">def</span> <span class="nf">parse_line</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="c1">#parse a single line of commands from the input
+</span>    <span class="n">cmds</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">while</span> <span class="n">string</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">string</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="s">'e'</span><span class="p">,</span><span class="s">'w'</span><span class="p">}:</span>
+            <span class="n">cmds</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">string</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        
+        <span class="k">if</span> <span class="n">string</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="s">'n'</span><span class="p">,</span><span class="s">'s'</span><span class="p">}:</span>
+            <span class="c1">#north and south don't exist on this hex grid, only ne,nw,se,sw
+</span>            <span class="c1">#so take two characters
+</span>            <span class="n">cmds</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+        
+        <span class="k">if</span> <span class="n">string</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">}:</span>
+            <span class="c1">#ignore line break character
+</span>            <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    
+    <span class="k">return</span> <span class="n">cmds</span>
+
+<span class="c1">#Use the "cube coordinates" system from https://www.redblobgames.com/grids/hexagons/
+</span>
+<span class="k">def</span> <span class="nf">shift</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="nb">dir</span><span class="p">):</span>
+    <span class="c1">#shift the given coordinates one hex in the direction specified
+</span>    <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="o">=</span> <span class="n">coords</span>
+    <span class="k">if</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'ne'</span><span class="p">:</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'e'</span><span class="p">:</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'se'</span><span class="p">:</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'sw'</span><span class="p">:</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'w'</span><span class="p">:</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'nw'</span><span class="p">:</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">coords</span>
+
+<span class="k">def</span> <span class="nf">initialise</span><span class="p">():</span>
+    <span class="c1">#initialise the hex grid
+</span>    <span class="c1">#the grid is represented by a defaultdict
+</span>    <span class="c1">#key = tuple of coordinates
+</span>    <span class="c1">#value = 0 for a white tile, 1 for a black tile
+</span>    <span class="n">grid</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="c1">#parse the input file
+</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span>
+
+    <span class="n">lines_cmds</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_line</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+
+    <span class="c1">#flip tiles according to the input
+</span>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines_cmds</span><span class="p">:</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">coords</span> <span class="o">=</span> <span class="n">shift</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">cmd</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">grid</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">grid</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">return</span> <span class="n">grid</span>
+
+<span class="k">def</span> <span class="nf">count_black</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+    <span class="c1">#count the black tiles in a grid
+</span>    <span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">count</span>
+
+<span class="k">def</span> <span class="nf">create_nb_grid</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+    <span class="c1">#create a new defaultdict
+</span>    <span class="c1">#key = tuple of coordinates
+</span>    <span class="c1">#value = number of neighbouring tiles which are black
+</span>
+    <span class="n">nb_grid</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">coords</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1">#every black tile increases the count of black tiles
+</span>            <span class="c1">#for its neighbours by one
+</span>            <span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="p">{</span><span class="s">'ne'</span><span class="p">,</span><span class="s">'e'</span><span class="p">,</span><span class="s">'se'</span><span class="p">,</span><span class="s">'sw'</span><span class="p">,</span><span class="s">'w'</span><span class="p">,</span><span class="s">'nw'</span><span class="p">}:</span>
+                <span class="n">nb_grid</span><span class="p">[</span><span class="n">shift</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span><span class="n">cmd</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="n">nb_grid</span>
+            
+<span class="k">def</span> <span class="nf">advance</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+    <span class="c1">#advance the grid one generation according to the rules
+</span>
+    <span class="c1">#create the grid showing how many black tiles neighbour each tile
+</span>    <span class="n">nb_grid</span> <span class="o">=</span> <span class="n">create_nb_grid</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+    
+    <span class="c1">#initialise new grid
+</span>    <span class="n">new_grid</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="c1">#apply the rules to determine the new state of each hex tile
+</span>    <span class="k">for</span> <span class="n">coords</span> <span class="ow">in</span> <span class="n">nb_grid</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">nb_grid</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="n">nb_grid</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">new_grid</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new_grid</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        
+        <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">nb_grid</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
+                <span class="n">new_grid</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new_grid</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">return</span> <span class="n">new_grid</span>
+
+
+<span class="c1">#Part 1
+</span><span class="n">grid</span> <span class="o">=</span> <span class="n">initialise</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">count_black</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+
+<span class="c1">#Part 2
+</span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">advance</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">count_black</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="day-25---combo-breaker">Day 25 - <a href="https://adventofcode.com/2020/day/25">Combo Breaker</a></h2>
+
+<h3 id="thoughts-4">Thoughts</h3>
+
+<p>Put briefly, this puzzle asks you to reverse <a href="https://en.wikipedia.org/wiki/Modular_exponentiation">modular exponentiation</a>, to find the exponent given the base, the modulus, and the value resulting from the exponentiation.</p>
+
+<p>Modular exponentiation is a process used in public key cryptography such as the RSA algorithm, precisely because it is much easier to carry out the calculation than to reverse it. Fortunately with the (comparatively) small numbers involved in the puzzle, this task is not hopeless.</p>
+
+<p>There’s no analytical inverse to modular exponentiation, so there are two main choices here. Brute force, or implementing an algorithm such as <a href="https://en.wikipedia.org/wiki/Baby-step_giant-step">baby-step giant-step</a> to compute the solution more efficiently.</p>
+
+<p>No reader will be surprised that I chose brute force, which runs in a few seconds for the (small) numbers involved in the puzzle. I’ve also made use of the <code class="language-plaintext highlighter-rouge">pow</code> built-in function, which it turns out does modular exponentiation if you give it a third argument (the modulus). Fun!</p>
+
+<h3 id="python-code-4">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">findsize</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">transformed</span><span class="p">):</span>
+    <span class="c1">#find the loop size by brute force
+</span>    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100000000</span><span class="p">:</span>
+        <span class="c1">#python's built-in pow function calculates modular exponentiation
+</span>        <span class="k">if</span> <span class="nb">pow</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">20201227</span><span class="p">)</span> <span class="o">==</span> <span class="n">transformed</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">i</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">subject</span> <span class="o">=</span> <span class="mi">7</span>  <span class="c1">#initial value, fixed in the puzzle rules
+</span><span class="n">card_key</span> <span class="o">=</span> <span class="mi">5764801</span> <span class="c1">#card's public key from puzzle input
+</span>
+<span class="n">loopsize</span> <span class="o">=</span> <span class="n">findsize</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span><span class="n">card_key</span><span class="p">)</span>
+
+<span class="n">door_key</span> <span class="o">=</span> <span class="mi">17807724</span> <span class="c1">#door's public key from puzzle input
+</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">door_key</span><span class="p">,</span> <span class="n">loopsize</span><span class="p">,</span> <span class="mi">20201227</span><span class="p">))</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/2021/04/06/advent-of-code-2020-days-21-25.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Dave Bartram Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Dave Bartram Blog</li><li><a class="u-email" href="mailto:david.bartram@gmail.com">david.bartram@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/davidbartram"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">davidbartram</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Lessons I&#39;m learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths &amp; science</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

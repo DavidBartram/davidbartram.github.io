@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function | Dave Bartram Blog</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="AWS Cloudformation Example Part 2 - Deploy and Test a REST API + Lambda Function" />
+<meta property="og:description" content="AWS Cloudformation Example Part 2 - Deploy and Test a REST API + Lambda Function" />
+<link rel="canonical" href="http://localhost:4000/2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-+-lambda-function.html" />
+<meta property="og:url" content="http://localhost:4000/2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-+-lambda-function.html" />
+<meta property="og:site_name" content="Dave Bartram Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-12T14:45:39+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-08-12T14:45:39+01:00","datePublished":"2021-08-12T14:45:39+01:00","description":"AWS Cloudformation Example Part 2 - Deploy and Test a REST API + Lambda Function","headline":"Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-+-lambda-function.html"},"url":"http://localhost:4000/2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-+-lambda-function.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/blog/2021/08-20-Vancian-Spellcasting-in-Tabletop-RPGs/post.txt">Vancian Spellcasting In Tabletop Rpgs</a><a class="page-link" href="/blog/2021/01-04-ReInvent-2020-1--AWS-Systems-Manager/post.txt">Reinvent 2020 Part 1 Aws Systems Manager</a><a class="page-link" href="/blog/2021/06-03-Reflections-on-the-AWS-Solutions-Architect-Associate-certification-(2021)/post.txt">Reflections On The Aws Solutions Architect Associate Certification 2021</a><a class="page-link" href="/blog/2021/03-22-RPG-Review-Worlds-Without-Number/post.txt">Rpg Review Worlds Without Number</a><a class="page-link" href="/blog/2021/08-12-AWS-Cloudformation-Example-Part-2--Deploy-and-Test-a-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-08-Advent-of-Code-2020-Days-1-5/post.txt">Advent Of Code 2020 Days 1-5</a><a class="page-link" href="/blog/2021/07-08-Doubting-Tau--a-question-of-%CF%80/post.txt">Doubting Tau A Question Of %Cf%80</a><a class="page-link" href="/blog/2021/04-29-Configuring-the-nginx-proxy-in-an-Elastic-Beanstalk-Linux-environment/post.txt">Configuring The Nginx Proxy In An Elastic Beanstalk Linux Environment</a><a class="page-link" href="/blog/2021/01-12-ReInvent-2020-2-%E2%80%93-Amazon-CodeGuru/post.txt">Reinvent 2020 2 Amazon Codeguru</a><a class="page-link" href="/blog/2021/08-02-AWS-Cloudformation-Example-Part-1--SAM-Template-for-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-22-ReInvent-2020-3-%E2%80%93-Container-Insights/post.txt">Reinvent 2020 3 Container Insights</a><a class="page-link" href="/blog/2021/09-02-Understanding-a-Python-38-Quine/post.txt">Understanding A Python 3 8 Quine</a><a class="page-link" href="/blog/2021/02-02-Advent-of-Code-2020-Days-11-15/post.txt">Advent Of Code 2020 Days 11-15</a><a class="page-link" href="/blog/2021/10-05-SQL-Server-Queries--Task-Duration-and-Inserting-Defaults/post.txt">Sql Server Queries Task Duration Inserting Defaults</a><a class="page-link" href="/blog/2021/10-26-RPG-Review-Stars-Without-Number-Revised-Edition/post.txt">Rpg Review Stars Without Number Revised Edition</a><a class="page-link" href="/blog/2021/02-22-Adding-Date-Related-Features-to-a-Pandas-Dataframe/post.txt">Adding Date Related Features To A Pandas Dataframe</a><a class="page-link" href="/blog/2021/03-08-Advent-of-Code-2020-Days-16-20/post.txt">Advent Of Code 2020 Days 16-20</a><a class="page-link" href="/blog/2021/12-17-Advent-of-Code-2021-Days-1-5/post.txt">Advent Of Code 2021 Days 1-5</a><a class="page-link" href="/blog/2021/07-15-Python-API-Request-with-Error-Handling-England-and-Wales-Bank-Holidays/post.txt">Python Api Request With Error Handling England Wales Bank Holidays</a><a class="page-link" href="/blog/2021/04-13-How-to-solve-SSL-Error-unable-to-get-local-issuer-certificate-for-Python-on-Windows/post.txt">How To Solve Ssl Error Unable To Get Local Issuer Certificate For Python On Windows</a><a class="page-link" href="/blog/2021/04-06-Advent-of-Code-2020-Days-21-25/post.txt">Advent Of Code 2020 Days 21-25</a><a class="page-link" href="/blog/2021/01-14-Advent-of-Code-2020-Days-6-10/post.txt">Advent Of Code 2020 Days 6-10</a><a class="page-link" href="/blog/2022/01-05-Advent-of-Code-2021-Days-6-10/post.txt">Advent Of Code 2021 Days 6-10</a><a class="page-link" href="/blog/2022/03-01-Advent-of-Code-2021-Days-11-15/post.txt">Advent Of Code 2021 Days 11-15</a><a class="page-link" href="/blog/2022/03-21-Advent-of-Code-2021-Days-16-20/post.txt">Advent Of Code 2021 Days 16-20</a><a class="page-link" href="/blog/2022/04-17-Advent-of-Code-2021--Days-21-25/post.txt">Advent Of Code 2021 Days 21-25</a><a class="page-link" href="/blog/2020/12-23-Bash-Scripting-2--Command-Substitution/post.txt">Bash Scripting 2 Command Substitution</a><a class="page-link" href="/blog/2020/12-18-The-Wizard-is-on-Mute-Roleplaying-During-the-Pandemic/post.txt">Roleplaying During The Pandemic</a><a class="page-link" href="/blog/2020/11-13-Bash-Scripting-1--the-whole-shebang/post.txt">Bash Scripting 1 The Whole Shebang</a><a class="page-link" href="/blog/2020/11-17-Great-content-from-Stand-up-Maths-Benfords-Law-Dodgy-Scatter-Graphs-and-the-2020-US-Election/post.txt">Great Content From Stand Up Maths Benfords Law Dodgy Scatter Graphs And The 2020 Us Election</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-08-12T14:45:39+01:00" itemprop="datePublished">Aug 12, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="aws-cloudformation-example-part-2---deploy-and-test-a-rest-api--lambda-function">AWS Cloudformation Example Part 2 - Deploy and Test a REST API + Lambda Function</h1>
+
+<p><img src="/images/pexels-photo-4175032.jpeg" alt="person in black long sleeve shirt holding white tissue paper" /></p>
+
+<p>In <a href="https://david-bartram.com/2021/08/02/aws-cloudformation-example-part-1-sam-template-for-rest-api-lambda-function/">Part 1</a> we put together a Cloudformation SAM template for a simple REST API backed by a lambda function. The resulting code is available in <a href="https://github.com/DavidBartram/cloudformation-api-lambda">this repo</a>.</p>
+
+<p>In this post, we’ll walk through how to deploy the template to AWS and test the API using Postman.</p>
+
+<ol>
+  <li>
+    <h2 id="install-sam-cli">Install SAM CLI</h2>
+  </li>
+</ol>
+
+<p>To deploy SAM templates, you’ll want to <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html">install the SAM CLI</a>. Make sure that the IAM user whose access key and secret key you are using has the necessary permissions to deploy this. If you’re doing this as a learning activity on a personal account, as I was, it’s simplest to use the credentials of a user with Administrator access.</p>
+
+<h2 id="2-clone-repository">2<strong>.</strong> Clone repository</h2>
+
+<p>Now you’ll need a SAM template to deploy, along with the code you want to use in the lambda function. The code we’re using here can be found on <a href="https://github.com/DavidBartram/cloudformation-api-lambda">my GitHub</a> and was explained in <a href="https://david-bartram.com/2021/08/02/aws-cloudformation-example-part-1-sam-template-for-rest-api-lambda-function/">Part 1</a>. Fork the repo and clone it down to your machine.</p>
+
+<ol>
+  <li>
+    <h2 id="sam-build">SAM build</h2>
+  </li>
+</ol>
+
+<p>Using your command line of choice, change directory to the cloned repo. (My main laptop is Windows so it would be PowerShell for me - stop hissing in the background, you lot. I like bash as well.)</p>
+
+<p>Enter the <code class="language-plaintext highlighter-rouge">sam build</code> command.</p>
+
+<p>This will package the separate components in the folder (e.g. the SAM template and the lambda code in this example) together into a deployable artifact.</p>
+
+<p><code class="language-plaintext highlighter-rouge">sam build</code> is expecting a file call <code class="language-plaintext highlighter-rouge">template.yml</code> in the root of the directory, but of course it is easy to set the template name with the -t option if required. The options are documented <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-build.html">here</a>.</p>
+
+<p>You’re hoping for a successful build, like the below:</p>
+
+<p><img src="/images/image.png" alt="" /></p>
+
+<ol>
+  <li>
+    <h2 id="sam-deploy">SAM deploy</h2>
+  </li>
+</ol>
+
+<p>Well, who am I to argue with the suggestion that we use <code class="language-plaintext highlighter-rouge">sam deploy --guided</code> ?</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">--guided</code> option, as you’d expect, means that SAM will guide you through the process with prompts.</p>
+
+<p>However we want to deploy IAM resources with custom names, which requires a capability called CAPABILITY_NAMED_IAM. So our full command will look like:</p>
+
+<p><code class="language-plaintext highlighter-rouge">sam deploy --guided --capabilities CAPABILITY_NAMED_IAM</code></p>
+
+<p>You can choose what to name your Cloudformation stack, the Region you want to deploy to, and the values of all the parameters in <code class="language-plaintext highlighter-rouge">template.yml</code>. I was happy with the defaults, so I only had to choose the stack name and the last few options.</p>
+
+<p><img src="/images/image-2.png" alt="" /></p>
+
+<p>The last 3 options will save the SAM configuration to a <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html">config file</a> called <code class="language-plaintext highlighter-rouge">samconfig.toml</code> in the root of the directory.</p>
+
+<p>I asked to confirm the changes before deployment, so I get a chance to look at the changeset:</p>
+
+<p><img src="/images/image-3.png" alt="" /></p>
+
+<p>Those look like the resources I asked for in my template, so I will answer in the affirmative to <code class="language-plaintext highlighter-rouge">Deploy this changeset? [y/N]</code> <code class="language-plaintext highlighter-rouge">.</code></p>
+
+<p>You can watch it being created, and soon enough the stack will be successfully deployed:</p>
+
+<p><img src="/images/image-4.png" alt="" /></p>
+
+<ol>
+  <li>
+    <h2 id="view-cloudformation-stack-in-aws-console">View Cloudformation Stack in AWS Console</h2>
+  </li>
+</ol>
+
+<p>Let’s hope into the AWS console, go to the Cloudformation console and select the stack you’ve just created. If you go to the Resources tab you can see all the resources that have been created. At this point if you’re anything like me you’ll want to visit some of the resources and poke around, see if things are as you expected based on your template.</p>
+
+<p><img src="/images/image-5.png" alt="" /></p>
+
+<ol>
+  <li>
+    <h2 id="test-api-in-aws-console">Test API in AWS Console</h2>
+  </li>
+</ol>
+
+<p>Let’s start testing the API that we’ve deployed. Firstly we’re going to test it from the console, by clicking the “physical ID” of the RestApi resource in the table shown in the image above. This will open up the API Gateway console and let us look at our API.</p>
+
+<p>There’s plenty of interesting things we could look at, but for now click on the POST method and then click the test button:</p>
+
+<p><img src="/images/image-6.png" alt="" /></p>
+
+<p>This test bypasses any authorization on the API. For the request body, enter something that matches the schema we set up for submitting sales stats for coloured widgets. It should look something like this:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-28"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Manchester"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"red_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2051"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"blue_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"green_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"588"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>You’re expecting a matching response</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"Notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thank you for submitting data. You submitted the following. Date 2021-07-28 at location Manchester, number of red widgets sold was 2051, number of blue widgets sold was 37, number of green widgets sold was 588."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<ol>
+  <li>
+    <h2 id="create-iam-user--attach-policy">Create IAM user + attach policy</h2>
+  </li>
+</ol>
+
+<p>If we want to use the API properly, we need the right authorization. Last time, I decided to use IAM authorization. We want to create our IAM user separately from the stack, as we want their details to persist if changes are made to the stack.</p>
+
+<p>Follow the instructions <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html">here</a> to create an IAM user with programmatic access. Make sure you save the access key and secret key.</p>
+
+<p>The only permissions this user needs are in the API user managed policy created as part of the stack. Attach that policy to the user, and they will have access to this API.</p>
+
+<ol>
+  <li>
+    <h2 id="install-postman">Install Postman</h2>
+  </li>
+</ol>
+
+<p><a href="https://www.postman.com/">Postman</a> is a great tool for working on APIs, and it’s particularly easy to send a test API request with Postman and look at the response. It’s especially handy here as it can automatically sign the API request the way AWS IAM expects, using an access key and secret key. Download it <a href="https://www.postman.com/downloads/">here</a>.</p>
+
+<ol>
+  <li>
+    <h2 id="test-api-with-postman">Test API with Postman</h2>
+  </li>
+</ol>
+
+<p>Let’s construct our request. Click New in Postman, and choose a basic request. Give it a name and save it.</p>
+
+<p>Select POST from the dropdown, and enter your API’s URL.</p>
+
+<p>The url will be of this form:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://&lt;API ID&gt;.execute-api.&lt;region&gt;.amazonaws.com/&lt;stage&gt;/&lt;resource&gt;
+</code></pre></div></div>
+
+<p>You don’t need to pass in any query parameters.</p>
+
+<p>Select the Body tab, select the “raw” option and choose JSON from the dropdown. Enter a valid JSON Body.</p>
+
+<p><img src="/images/image-8.png" alt="" /></p>
+
+<p>If you click Send now, you’ll get a “Missing Authentication Token” error in response. This API isn’t available to just anyone - you need to sign your request with the access key and secret key of the IAM user you created earlier.</p>
+
+<p>Go to the Authorization tab and select AWS Signature from the Authorization Type dropdown. Enter your access key and secret key on the right. Click Advanced and enter the AWS region.</p>
+
+<p><img src="/images/image-9.png" alt="" /></p>
+
+<p>Now when you hit Send, you’ll get the response you expect below your request.</p>
+
+<p>Congratulations - you’ve made and deployed an API Gateway backed by a lambda function with AWS, and tested it from inside and outside AWS!</p>
+
+  </div><a class="u-url" href="/2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-+-lambda-function.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Dave Bartram Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Dave Bartram Blog</li><li><a class="u-email" href="mailto:david.bartram@gmail.com">david.bartram@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/davidbartram"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">davidbartram</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Lessons I&#39;m learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths &amp; science</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

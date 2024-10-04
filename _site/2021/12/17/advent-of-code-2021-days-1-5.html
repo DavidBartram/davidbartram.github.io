@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Advent Of Code 2021 Days 1-5 | Dave Bartram Blog</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Advent Of Code 2021 Days 1-5" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Advent of Code 2021 Days 1-5" />
+<meta property="og:description" content="Advent of Code 2021 Days 1-5" />
+<link rel="canonical" href="http://localhost:4000/2021/12/17/advent-of-code-2021-days-1-5.html" />
+<meta property="og:url" content="http://localhost:4000/2021/12/17/advent-of-code-2021-days-1-5.html" />
+<meta property="og:site_name" content="Dave Bartram Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-17T13:45:39+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Advent Of Code 2021 Days 1-5" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-12-17T13:45:39+00:00","datePublished":"2021-12-17T13:45:39+00:00","description":"Advent of Code 2021 Days 1-5","headline":"Advent Of Code 2021 Days 1-5","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/12/17/advent-of-code-2021-days-1-5.html"},"url":"http://localhost:4000/2021/12/17/advent-of-code-2021-days-1-5.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/blog/2021/08-20-Vancian-Spellcasting-in-Tabletop-RPGs/post.txt">Vancian Spellcasting In Tabletop Rpgs</a><a class="page-link" href="/blog/2021/01-04-ReInvent-2020-1--AWS-Systems-Manager/post.txt">Reinvent 2020 Part 1 Aws Systems Manager</a><a class="page-link" href="/blog/2021/06-03-Reflections-on-the-AWS-Solutions-Architect-Associate-certification-(2021)/post.txt">Reflections On The Aws Solutions Architect Associate Certification 2021</a><a class="page-link" href="/blog/2021/03-22-RPG-Review-Worlds-Without-Number/post.txt">Rpg Review Worlds Without Number</a><a class="page-link" href="/blog/2021/08-12-AWS-Cloudformation-Example-Part-2--Deploy-and-Test-a-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-08-Advent-of-Code-2020-Days-1-5/post.txt">Advent Of Code 2020 Days 1-5</a><a class="page-link" href="/blog/2021/07-08-Doubting-Tau--a-question-of-%CF%80/post.txt">Doubting Tau A Question Of %Cf%80</a><a class="page-link" href="/blog/2021/04-29-Configuring-the-nginx-proxy-in-an-Elastic-Beanstalk-Linux-environment/post.txt">Configuring The Nginx Proxy In An Elastic Beanstalk Linux Environment</a><a class="page-link" href="/blog/2021/01-12-ReInvent-2020-2-%E2%80%93-Amazon-CodeGuru/post.txt">Reinvent 2020 2 Amazon Codeguru</a><a class="page-link" href="/blog/2021/08-02-AWS-Cloudformation-Example-Part-1--SAM-Template-for-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-22-ReInvent-2020-3-%E2%80%93-Container-Insights/post.txt">Reinvent 2020 3 Container Insights</a><a class="page-link" href="/blog/2021/09-02-Understanding-a-Python-38-Quine/post.txt">Understanding A Python 3 8 Quine</a><a class="page-link" href="/blog/2021/02-02-Advent-of-Code-2020-Days-11-15/post.txt">Advent Of Code 2020 Days 11-15</a><a class="page-link" href="/blog/2021/10-05-SQL-Server-Queries--Task-Duration-and-Inserting-Defaults/post.txt">Sql Server Queries Task Duration Inserting Defaults</a><a class="page-link" href="/blog/2021/10-26-RPG-Review-Stars-Without-Number-Revised-Edition/post.txt">Rpg Review Stars Without Number Revised Edition</a><a class="page-link" href="/blog/2021/02-22-Adding-Date-Related-Features-to-a-Pandas-Dataframe/post.txt">Adding Date Related Features To A Pandas Dataframe</a><a class="page-link" href="/blog/2021/03-08-Advent-of-Code-2020-Days-16-20/post.txt">Advent Of Code 2020 Days 16-20</a><a class="page-link" href="/blog/2021/12-17-Advent-of-Code-2021-Days-1-5/post.txt">Advent Of Code 2021 Days 1-5</a><a class="page-link" href="/blog/2021/07-15-Python-API-Request-with-Error-Handling-England-and-Wales-Bank-Holidays/post.txt">Python Api Request With Error Handling England Wales Bank Holidays</a><a class="page-link" href="/blog/2021/04-13-How-to-solve-SSL-Error-unable-to-get-local-issuer-certificate-for-Python-on-Windows/post.txt">How To Solve Ssl Error Unable To Get Local Issuer Certificate For Python On Windows</a><a class="page-link" href="/blog/2021/04-06-Advent-of-Code-2020-Days-21-25/post.txt">Advent Of Code 2020 Days 21-25</a><a class="page-link" href="/blog/2021/01-14-Advent-of-Code-2020-Days-6-10/post.txt">Advent Of Code 2020 Days 6-10</a><a class="page-link" href="/blog/2022/01-05-Advent-of-Code-2021-Days-6-10/post.txt">Advent Of Code 2021 Days 6-10</a><a class="page-link" href="/blog/2022/03-01-Advent-of-Code-2021-Days-11-15/post.txt">Advent Of Code 2021 Days 11-15</a><a class="page-link" href="/blog/2022/03-21-Advent-of-Code-2021-Days-16-20/post.txt">Advent Of Code 2021 Days 16-20</a><a class="page-link" href="/blog/2022/04-17-Advent-of-Code-2021--Days-21-25/post.txt">Advent Of Code 2021 Days 21-25</a><a class="page-link" href="/blog/2020/12-23-Bash-Scripting-2--Command-Substitution/post.txt">Bash Scripting 2 Command Substitution</a><a class="page-link" href="/blog/2020/12-18-The-Wizard-is-on-Mute-Roleplaying-During-the-Pandemic/post.txt">Roleplaying During The Pandemic</a><a class="page-link" href="/blog/2020/11-13-Bash-Scripting-1--the-whole-shebang/post.txt">Bash Scripting 1 The Whole Shebang</a><a class="page-link" href="/blog/2020/11-17-Great-content-from-Stand-up-Maths-Benfords-Law-Dodgy-Scatter-Graphs-and-the-2020-US-Election/post.txt">Great Content From Stand Up Maths Benfords Law Dodgy Scatter Graphs And The 2020 Us Election</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Advent Of Code 2021 Days 1-5</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-12-17T13:45:39+00:00" itemprop="datePublished">Dec 17, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="advent-of-code-2021-days-1-5">Advent of Code 2021 Days 1-5</h1>
+
+<p><img src="/images/pexels-photo-6211095.jpeg" alt="christmas tree decorated with baubles and garland" /></p>
+
+<p>This year I’m a bit more timely with <a href="http://adventofcode.com/2021/">Advent of Code 2021</a>! Really enjoying it so far! Here are my thoughts and solutions for the first 5 days of coding Christmas!</p>
+
+<p>These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github <a href="https://git.io/JmAvJ">here</a>. The code below is for Part 2 of each day, which often incorporates Part 1 in some way.</p>
+
+<h2 id="day-1---sonar-sweep">Day 1 - <a href="https://adventofcode.com/2021/day/1">Sonar Sweep</a></h2>
+
+<h3 id="thoughts">Thoughts</h3>
+
+<p>A bit of data manipulation here. Starting with a list of integers, consider a sliding window of three values at a time. Calculate the sum of the values in each window, and compare it to the previous sum.</p>
+
+<p>The goal is to output the number of sums which are larger than the previous sum.</p>
+
+<p>The method below is fairly straightforward, calculating a list of all the sums first. I then offer two ways of calculating the required output.</p>
+
+<p>The first way uses indexing, while the second way uses the <a href="https://www.w3schools.com/python/ref_func_zip.asp">zip</a> function.</p>
+
+<p>Zip is one of my favourite python functions - it produces a “zip object”, an iterator of tuples, pairing up the elements from each input iterator. So if <code class="language-plaintext highlighter-rouge">list1</code> is [<code class="language-plaintext highlighter-rouge">a,b,c,d,e]</code> and <code class="language-plaintext highlighter-rouge">list2</code> is <code class="language-plaintext highlighter-rouge">[1, 2, 3]</code> then <code class="language-plaintext highlighter-rouge">zip(list1,list2)</code> will contain the tuples <code class="language-plaintext highlighter-rouge">(a,1)</code>, <code class="language-plaintext highlighter-rouge">(b,2)</code> and <code class="language-plaintext highlighter-rouge">(c,3)</code>. The length of the output is determined by the shorter of the two inputs.</p>
+
+<p>zip(list,list[1:]) will produce a list of tuples of consecutive elements in the list, for example:</p>
+
+<p><code class="language-plaintext highlighter-rouge">list = [1,2,3,5,8,13]</code></p>
+
+<p>then <code class="language-plaintext highlighter-rouge">list[1:] == [2,3,5,8,13]</code></p>
+
+<p>and <code class="language-plaintext highlighter-rouge">zip(list,list[1:])</code> contains <code class="language-plaintext highlighter-rouge">(1,2) , (2,3) , (3,5), (5,8)</code> and <code class="language-plaintext highlighter-rouge">(8,13)</code></p>
+
+<p>Given that, hopefully the list comprehension below makes sense. Remember that when summing a list of booleans, True will be treated as 1 and False will be treated as 0.</p>
+
+<h3 id="python-code">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">depths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+
+<span class="c1">#calculate sums of windows of 3 depths each
+</span><span class="n">sums</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">window_size</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">depths</span><span class="p">)</span><span class="o">-</span><span class="n">window_size</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">sums</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">depths</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">window_size</span><span class="p">]))</span>
+
+<span class="c1">#non-pythonic way with indexing
+</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">sums</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">sums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">sums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+
+
+<span class="c1">#more pythonic way with list comprehension
+</span>
+<span class="n">increase</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">&lt;</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sums</span><span class="p">,</span><span class="n">sums</span><span class="p">[</span><span class="mi">1</span><span class="p">:])]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">increase</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="day-2---dive">Day 2 - <a href="https://adventofcode.com/2021/day/2">Dive!</a></h2>
+
+<h3 id="thoughts-1">Thoughts</h3>
+
+<p>Now we are keeping track of the movements of the elves’ Christmas submarine.</p>
+
+<p>We get a set of instructions something like the following.</p>
+
+<p>We need to keep track of the sub’s horizontal position <code class="language-plaintext highlighter-rouge">x</code> and depth <code class="language-plaintext highlighter-rouge">y</code>, and also its current <code class="language-plaintext highlighter-rouge">aim</code> value, which tells you the direction the sub is currently pointing in, and thus how it will move when told to go “forward”.</p>
+
+<p>Our input is a text file with instructions like forward 3, “down 7”, “up 2” etc, obeying the following rubric:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">down X</code> <em>increases</em> your <code class="language-plaintext highlighter-rouge">aim</code> by <code class="language-plaintext highlighter-rouge">X</code> units.</li>
+  <li><code class="language-plaintext highlighter-rouge">up X</code> <em>decreases</em> your <code class="language-plaintext highlighter-rouge">aim</code> by <code class="language-plaintext highlighter-rouge">X</code> units.</li>
+  <li><code class="language-plaintext highlighter-rouge">forward X</code> does two things:
+    <ul>
+      <li>It increases your horizontal position by <code class="language-plaintext highlighter-rouge">X</code> units.</li>
+      <li>It increases your depth by your aim <em>multiplied by</em> <code class="language-plaintext highlighter-rouge">X</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The required output is the product of <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> after all the instructions in the input file have been followed. The code below pretty much follows the rubric above line by line. :-)</p>
+
+<h3 id="python-code-1">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">moves</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">]</span>
+
+<span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">aim</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">move</span> <span class="ow">in</span> <span class="n">moves</span><span class="p">:</span>
+    <span class="nb">dir</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">move</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
+
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'forward'</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">+=</span> <span class="n">value</span>
+        <span class="n">y</span> <span class="o">+=</span> <span class="n">aim</span><span class="o">*</span><span class="n">value</span>
+    
+    <span class="k">elif</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'up'</span><span class="p">:</span>
+        <span class="n">aim</span> <span class="o">-=</span> <span class="n">value</span>
+    
+    <span class="k">elif</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'down'</span><span class="p">:</span>
+        <span class="n">aim</span> <span class="o">+=</span> <span class="n">value</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="day-3---binary-diagnostic">Day 3 - <a href="https://adventofcode.com/2021/day/3">Binary Diagnostic</a></h2>
+
+<h3 id="thoughts-2">Thoughts</h3>
+
+<p>We are given a list of binary numbers. We need to filter this list down to two values called the “<strong>oxygen generator rating</strong>” and the “<strong>CO2 scrubber rating</strong>”.</p>
+
+<p>Apply the following procedure to filter the list to a single value:</p>
+
+<ul>
+  <li>Start with the full list of binary numbers and consider the first bit of each number</li>
+  <li>Discard all numbers which do not match the relevant _bit criteri_on</li>
+  <li>If you only have one number left, stop; this is the rating value for which you are searching.</li>
+  <li>Otherwise, repeat the process, considering the next bit to the right.</li>
+</ul>
+
+<p>The <em>bit criterion</em> varies depending upon which rating you want to find:</p>
+
+<ul>
+  <li>To find <strong>oxygen generator rating</strong>, determine the <em>most common</em> value (<code class="language-plaintext highlighter-rouge">0</code> or <code class="language-plaintext highlighter-rouge">1</code>) in the current bit position, and keep only numbers with that bit in that position. If <code class="language-plaintext highlighter-rouge">0</code> and <code class="language-plaintext highlighter-rouge">1</code> are equally common, keep values with a <code class="language-plaintext highlighter-rouge">_1_</code> in the position being considered.</li>
+  <li>To find <strong>CO2 scrubber rating</strong>, determine the <em>least common</em> value (<code class="language-plaintext highlighter-rouge">0</code> or <code class="language-plaintext highlighter-rouge">1</code>) in the current bit position, and keep only numbers with that bit in that position. If <code class="language-plaintext highlighter-rouge">0</code> and <code class="language-plaintext highlighter-rouge">1</code> are equally common, keep values with a <code class="language-plaintext highlighter-rouge">_0_</code> in the position being considered.</li>
+</ul>
+
+<p>In the code below, the rating is found via the <code class="language-plaintext highlighter-rouge">get_rating</code> function, which has a Boolean argument <code class="language-plaintext highlighter-rouge">co2</code> which should be set to <code class="language-plaintext highlighter-rouge">True</code> to calculate <strong>CO2 scrubber rating</strong>, or <code class="language-plaintext highlighter-rouge">False</code> to calculate <strong>oxygen generator rating</strong>. The puzzle requires calculating both ratings, multiplying them, and returning the value in decimal notation.</p>
+
+<p>The function is recursive, moving on to the next bit and filtering the list further until it reaches the base case, when the list has only 1 element.</p>
+
+<h3 id="python-code-2">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">get_rating</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">co2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ones</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">'1'</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">])</span> <span class="c1">#number of ones in the column being considered
+</span>            
+            <span class="n">comparator</span> <span class="o">=</span> <span class="s">'0'</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">co2</span><span class="o">==</span><span class="bp">True</span> <span class="ow">and</span> <span class="n">ones</span> <span class="o">&lt;</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="ow">or</span> <span class="p">(</span><span class="n">co2</span><span class="o">==</span><span class="bp">False</span> <span class="ow">and</span> <span class="n">ones</span> <span class="o">&gt;=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="p">:</span>
+                <span class="n">comparator</span> <span class="o">=</span> <span class="s">'1'</span>
+
+            <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span> <span class="k">if</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="n">comparator</span><span class="p">]</span> <span class="c1">#filter the list
+</span>
+            <span class="k">return</span> <span class="n">get_rating</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">co2</span><span class="p">)</span>
+
+
+<span class="n">o2</span> <span class="o">=</span> <span class="n">get_rating</span><span class="p">(</span><span class="n">values</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">co2</span> <span class="o">=</span> <span class="n">get_rating</span><span class="p">(</span><span class="n">values</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">co2</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">o2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">co2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="day-4---giant-squid">Day 4 - <a href="https://adventofcode.com/2021/day/4">Giant Squid</a></h2>
+
+<h3 id="thoughts-3">Thoughts</h3>
+
+<p>The giant squid loves bingo, apparently. Each time a number is drawn, cross off all matching numbers on all the bingo cards.</p>
+
+<p>Given a list of bingo cards and a list of numbers to be drawn, the goal is to find the <strong>score</strong> of the <em>last</em> card to win, and multiply it by the last number drawn. The score of a card is the sum of all the numbers on the card which have not been crossed off.</p>
+
+<p>Each bingo card is a 5x5 grid of integers, and a card wins when a full row or column has been crossed off. Diagonals do not count (thankfully!).</p>
+
+<p>My approach below does not involve “marking” the cards - I don’t keep track of whether any given number on a card has been marked. Instead I repeatedly add the next number to the list of numbers drawn so far, and then iterate over the cards, using simple set operations to determine if the card wins.</p>
+
+<p>This is probably inefficient compared to keeping a record of which numbers have been marked, but its the approach that occurred to me and it runs in reasonable time on my machine. I try not to let the perfect be the enemy of the good when doing these puzzles - which is handy as my code is far from perfect!</p>
+
+<p>One trick that I didn’t initially realise, is the fact that the columns of each bingo card can be appended to the card as extra rows. When I initially solved the puzzle, I made a transposed version of each bingo card and checked the whole set.</p>
+
+<p>The Python one-liner:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">grids</span> <span class="o">=</span> <span class="p">[</span><span class="n">grid</span> <span class="o">+</span> <span class="p">[[</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">))]</span> <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">grids</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>is pretty ugly-looking, but it appends the columns to each bingo card as new rows, as required.</p>
+
+<p>Really there’s nothing too clever below. There’s a list called <code class="language-plaintext highlighter-rouge">nums_so_far</code> of numbers drawn so far, and a list of <code class="language-plaintext highlighter-rouge">remaining_cards</code> to keep track of which indices of the <code class="language-plaintext highlighter-rouge">card</code>s list represent cards that are still in play. Iteratively we append a new number to <code class="language-plaintext highlighter-rouge">nums_so_far</code>, then check all the cards, remove the indices of any winners from <code class="language-plaintext highlighter-rouge">remaining_cards</code>, and repeat until only one card survives.</p>
+
+<h3 id="python-code-3">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\n\n</span><span class="s">'</span><span class="p">)</span>
+
+    <span class="n">win_nums</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span>
+
+    <span class="n">grids</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+
+    <span class="n">grids</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="n">replace</span><span class="p">(</span><span class="s">'  '</span><span class="p">,</span> <span class="s">' '</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">]</span> <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">grids</span><span class="p">]</span>
+
+    <span class="n">grids</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">remove</span><span class="p">([</span><span class="s">''</span><span class="p">])</span>
+
+<span class="c1">#append columns to each grid as if they were additional rows
+</span><span class="n">grids</span> <span class="o">=</span> <span class="p">[</span><span class="n">grid</span> <span class="o">+</span> <span class="p">[[</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">))]</span> <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">grids</span><span class="p">]</span> 
+
+<span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="n">card</span><span class="p">,</span><span class="n">nums</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">card</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">row</span><span class="p">).</span><span class="n">issubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+
+<span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">card</span><span class="p">,</span><span class="n">nums</span><span class="p">):</span>
+    <span class="n">nums_on_card</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">val</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">card</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">row</span><span class="p">])</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">nums_on_card</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">total</span>
+
+<span class="k">def</span> <span class="nf">part2_play</span><span class="p">(</span><span class="n">cards</span><span class="p">,</span><span class="n">nums</span><span class="p">):</span>
+
+    <span class="n">nums_so_far</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1">#list of indices of cards still in play
+</span>    <span class="c1"># e.g. if cards[3] is still in play, then 3 will be in remaining_cards
+</span>    <span class="n">remaining_cards</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cards</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+        <span class="n">nums_so_far</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">remaining_cards</span><span class="p">:</span>
+            
+            <span class="k">if</span> <span class="n">check</span><span class="p">(</span><span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">nums_so_far</span><span class="p">)</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">remaining_cards</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining_cards</span><span class="p">)</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="n">final_card</span> <span class="o">=</span> <span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="k">return</span> <span class="n">score</span><span class="p">(</span><span class="n">final_card</span><span class="p">,</span><span class="n">nums_so_far</span><span class="p">)</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>                
+
+<span class="k">print</span><span class="p">(</span><span class="n">part2_play</span><span class="p">(</span><span class="n">grids</span><span class="p">,</span><span class="n">win_nums</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="day-5---hydrothermal-venture">Day 5 - <a href="https://adventofcode.com/2021/day/5">Hydrothermal Venture</a></h2>
+
+<h3 id="thoughts-4">Thoughts</h3>
+
+<p>Here we are given a set of lines. They are specified by the coordinates of their end points. The lines are either horizontal, vertical or at exactly 45 degrees. Our goal to determine the number of points with integer coordinates where two or more lines intersect.</p>
+
+<p>Putting aside vertical lines, the horizontal and diagonal lines will all have integer gradients (in fact all the gradients are either 0, +1 or -1). This means to find the integer coordinates a line passes through, we just need to step through from the start to the end, changing x by 1 and y by the gradient for each step. Each step will produce a new point on the grid that the line passes through, so we should increment the count of intersecting lines at that point by one. We stop when we reach the end point.</p>
+
+<p>Vertical lines have infinite gradient but are easy to step through in a similar way, changing y by 1 each step and leaving x alone.</p>
+
+<p>There is no distinction between the “start” and “end” points of a line, and so the code sometimes swaps them so that they can be stepped through by <em>increasing</em> x by 1 per step (for non-vertical lines) or by <em>increasing</em> y by 1 per step (for vertical lines). This is just for convenience.</p>
+
+<h3 id="python-code-4">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="n">end_points</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">#Process each line to produce a list of lists of endpoints
+#e.g. end_points = [ [(3,2),(4,2)], [(1,1), (5,5)], ....]
+</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">' -&gt; '</span><span class="p">,</span> <span class="s">','</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span>
+    <span class="n">end_points</span><span class="p">.</span><span class="n">append</span><span class="p">([(</span><span class="nb">int</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">])),(</span><span class="nb">int</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">3</span><span class="p">]))])</span>
+
+<span class="c1">#dictionary from coordinate tuples (x,y) to number of overlapping lines at that point
+</span><span class="n">overlap_count</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">dx</span><span class="p">,</span><span class="n">dy</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">end_points</span><span class="p">:</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1">#vertical lines need special treatment as their gradient is undefined
+</span>    <span class="k">if</span> <span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+
+        <span class="c1">#for convenience the point with lower y-value will be used as the start
+</span>        <span class="k">if</span> <span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">start</span><span class="p">,</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span><span class="p">,</span><span class="n">start</span>
+        
+        
+        <span class="n">dx</span><span class="p">,</span><span class="n">dy</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
+        <span class="c1">#an integer step along a vertical line adds +0 to x and +1 to y
+</span>
+    <span class="c1">#horizontal and diagonal lines
+</span>    <span class="k">else</span><span class="p">:</span>
+        <span class="c1">#for convenience the point with lower x-value will be used as the start
+</span>        <span class="k">if</span> <span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">start</span><span class="p">,</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span><span class="p">,</span><span class="n">start</span>
+        
+        <span class="n">dx</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="c1">#gradient
+</span>
+        <span class="c1">#an integer step along the line adds +1 to x and +(gradient) to y
+</span>    
+    <span class="n">overlap_count</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">start</span>
+
+    <span class="c1">#keep taking integer steps along the line
+</span>    <span class="c1">#until we reach the end point
+</span>    <span class="k">while</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">!=</span> <span class="n">end</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">dy</span>
+        <span class="n">overlap_count</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">+=</span><span class="mi">1</span> <span class="c1">#increment the count of lines crossing that point
+</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span><span class="o">&gt;</span><span class="mi">1</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">overlap_count</span><span class="p">.</span><span class="n">values</span><span class="p">()])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/2021/12/17/advent-of-code-2021-days-1-5.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Dave Bartram Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Dave Bartram Blog</li><li><a class="u-email" href="mailto:david.bartram@gmail.com">david.bartram@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/davidbartram"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">davidbartram</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Lessons I&#39;m learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths &amp; science</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

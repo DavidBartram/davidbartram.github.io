@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Advent Of Code 2020 Days 11-15 | Dave Bartram Blog</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Advent Of Code 2020 Days 11-15" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Advent of Code 2020 Days 11-15" />
+<meta property="og:description" content="Advent of Code 2020 Days 11-15" />
+<link rel="canonical" href="http://localhost:4000/2021/02/02/advent-of-code-2020-days-11-15.html" />
+<meta property="og:url" content="http://localhost:4000/2021/02/02/advent-of-code-2020-days-11-15.html" />
+<meta property="og:site_name" content="Dave Bartram Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-02T13:45:39+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Advent Of Code 2020 Days 11-15" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-02-02T13:45:39+00:00","datePublished":"2021-02-02T13:45:39+00:00","description":"Advent of Code 2020 Days 11-15","headline":"Advent Of Code 2020 Days 11-15","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/02/advent-of-code-2020-days-11-15.html"},"url":"http://localhost:4000/2021/02/02/advent-of-code-2020-days-11-15.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/blog/2021/08-20-Vancian-Spellcasting-in-Tabletop-RPGs/post.txt">Vancian Spellcasting In Tabletop Rpgs</a><a class="page-link" href="/blog/2021/01-04-ReInvent-2020-1--AWS-Systems-Manager/post.txt">Reinvent 2020 Part 1 Aws Systems Manager</a><a class="page-link" href="/blog/2021/06-03-Reflections-on-the-AWS-Solutions-Architect-Associate-certification-(2021)/post.txt">Reflections On The Aws Solutions Architect Associate Certification 2021</a><a class="page-link" href="/blog/2021/03-22-RPG-Review-Worlds-Without-Number/post.txt">Rpg Review Worlds Without Number</a><a class="page-link" href="/blog/2021/08-12-AWS-Cloudformation-Example-Part-2--Deploy-and-Test-a-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-08-Advent-of-Code-2020-Days-1-5/post.txt">Advent Of Code 2020 Days 1-5</a><a class="page-link" href="/blog/2021/07-08-Doubting-Tau--a-question-of-%CF%80/post.txt">Doubting Tau A Question Of %Cf%80</a><a class="page-link" href="/blog/2021/04-29-Configuring-the-nginx-proxy-in-an-Elastic-Beanstalk-Linux-environment/post.txt">Configuring The Nginx Proxy In An Elastic Beanstalk Linux Environment</a><a class="page-link" href="/blog/2021/01-12-ReInvent-2020-2-%E2%80%93-Amazon-CodeGuru/post.txt">Reinvent 2020 2 Amazon Codeguru</a><a class="page-link" href="/blog/2021/08-02-AWS-Cloudformation-Example-Part-1--SAM-Template-for-REST-API-+-Lambda-Function/post.txt">Aws Cloudformation Example Part 1 Sam Template For Rest Api Lambda Function</a><a class="page-link" href="/blog/2021/01-22-ReInvent-2020-3-%E2%80%93-Container-Insights/post.txt">Reinvent 2020 3 Container Insights</a><a class="page-link" href="/blog/2021/09-02-Understanding-a-Python-38-Quine/post.txt">Understanding A Python 3 8 Quine</a><a class="page-link" href="/blog/2021/02-02-Advent-of-Code-2020-Days-11-15/post.txt">Advent Of Code 2020 Days 11-15</a><a class="page-link" href="/blog/2021/10-05-SQL-Server-Queries--Task-Duration-and-Inserting-Defaults/post.txt">Sql Server Queries Task Duration Inserting Defaults</a><a class="page-link" href="/blog/2021/10-26-RPG-Review-Stars-Without-Number-Revised-Edition/post.txt">Rpg Review Stars Without Number Revised Edition</a><a class="page-link" href="/blog/2021/02-22-Adding-Date-Related-Features-to-a-Pandas-Dataframe/post.txt">Adding Date Related Features To A Pandas Dataframe</a><a class="page-link" href="/blog/2021/03-08-Advent-of-Code-2020-Days-16-20/post.txt">Advent Of Code 2020 Days 16-20</a><a class="page-link" href="/blog/2021/12-17-Advent-of-Code-2021-Days-1-5/post.txt">Advent Of Code 2021 Days 1-5</a><a class="page-link" href="/blog/2021/07-15-Python-API-Request-with-Error-Handling-England-and-Wales-Bank-Holidays/post.txt">Python Api Request With Error Handling England Wales Bank Holidays</a><a class="page-link" href="/blog/2021/04-13-How-to-solve-SSL-Error-unable-to-get-local-issuer-certificate-for-Python-on-Windows/post.txt">How To Solve Ssl Error Unable To Get Local Issuer Certificate For Python On Windows</a><a class="page-link" href="/blog/2021/04-06-Advent-of-Code-2020-Days-21-25/post.txt">Advent Of Code 2020 Days 21-25</a><a class="page-link" href="/blog/2021/01-14-Advent-of-Code-2020-Days-6-10/post.txt">Advent Of Code 2020 Days 6-10</a><a class="page-link" href="/blog/2022/01-05-Advent-of-Code-2021-Days-6-10/post.txt">Advent Of Code 2021 Days 6-10</a><a class="page-link" href="/blog/2022/03-01-Advent-of-Code-2021-Days-11-15/post.txt">Advent Of Code 2021 Days 11-15</a><a class="page-link" href="/blog/2022/03-21-Advent-of-Code-2021-Days-16-20/post.txt">Advent Of Code 2021 Days 16-20</a><a class="page-link" href="/blog/2022/04-17-Advent-of-Code-2021--Days-21-25/post.txt">Advent Of Code 2021 Days 21-25</a><a class="page-link" href="/blog/2020/12-23-Bash-Scripting-2--Command-Substitution/post.txt">Bash Scripting 2 Command Substitution</a><a class="page-link" href="/blog/2020/12-18-The-Wizard-is-on-Mute-Roleplaying-During-the-Pandemic/post.txt">Roleplaying During The Pandemic</a><a class="page-link" href="/blog/2020/11-13-Bash-Scripting-1--the-whole-shebang/post.txt">Bash Scripting 1 The Whole Shebang</a><a class="page-link" href="/blog/2020/11-17-Great-content-from-Stand-up-Maths-Benfords-Law-Dodgy-Scatter-Graphs-and-the-2020-US-Election/post.txt">Great Content From Stand Up Maths Benfords Law Dodgy Scatter Graphs And The 2020 Us Election</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Advent Of Code 2020 Days 11-15</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-02-02T13:45:39+00:00" itemprop="datePublished">Feb 2, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="advent-of-code-2020-days-11-15">Advent of Code 2020 Days 11-15</h1>
+
+<p><img src="/images/pexels-photo-195030.jpeg" alt="advent architecture blur business" /></p>
+
+<p>Continuing my series of posts as I work through <a href="http://adventofcode.com/2020/">Advent of Code 2020</a> at my own pace. Here are some of my thoughts and solutions.</p>
+
+<p>These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github <a href="https://git.io/JmAvJ">here</a>. The code below is for Part 2 of each day, which often incorporates Part 1 in some way.</p>
+
+<h2 id="day-11---seating-system">Day 11 - <a href="https://adventofcode.com/2020/day/11">Seating System</a></h2>
+
+<h3 id="thoughts">Thoughts</h3>
+
+<p>The puzzle asks you to implement a <a href="https://en.wikipedia.org/wiki/Cellular_automaton">cellular automaton</a> , not at all dissimilar to <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway’s Game of Life</a>. Some of the cells are fixed and don’t affect how other cells update - in Part 2, you need to look <em>past</em> these cells when determining what counts as a neighbouring cell.</p>
+
+<p>I tried this a couple of ways, with my preferred method shown below. It involves a number of functions:</p>
+
+<p><code class="language-plaintext highlighter-rouge">ray</code> is a recursive function follows a particular direction from the specified cell, ignoring the fixed cells, to find the next non-fixed cell in that direction.</p>
+
+<p><code class="language-plaintext highlighter-rouge">nbs</code> uses ray to produce a list of all the cells which are neighbours of the given cell, by the appropriate definition of “neighbour”</p>
+
+<p><code class="language-plaintext highlighter-rouge">nbdict</code> populates a dictionary where the keys are the coordinates of every cell in the grid and the corresponding value is a list of the coordinates of all the neighbouring cells, by the appropriate definition of “neighbouring”.</p>
+
+<p>The function <code class="language-plaintext highlighter-rouge">advance</code> moves the cellular automaton ahead one generation.</p>
+
+<p>The function <code class="language-plaintext highlighter-rouge">findstability</code> repeatedly advances the cellular automaton, until it finds a fixed point where the layout does not change.</p>
+
+<h3 id="python-code">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">initial</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">splitlines</span><span class="p">()</span>
+    <span class="n">initial</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">initial</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">ray</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+
+    <span class="n">y</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="n">l</span>
+
+    <span class="k">if</span> <span class="mi">0</span><span class="o">&lt;=</span><span class="n">y</span><span class="o">&lt;</span><span class="n">rows</span> <span class="ow">and</span> <span class="mi">0</span><span class="o">&lt;=</span><span class="n">x</span><span class="o">&lt;</span><span class="n">cols</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'.'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="mi">0</span><span class="o">&lt;=</span><span class="n">y</span><span class="o">+</span><span class="n">k</span><span class="o">&lt;</span><span class="n">rows</span> <span class="ow">and</span> <span class="mi">0</span><span class="o">&lt;=</span><span class="n">x</span><span class="o">+</span><span class="n">l</span><span class="o">&lt;</span><span class="n">cols</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ray</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">grid</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">nbs</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+
+    <span class="n">steps</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+        
+    <span class="n">nbs</span> <span class="o">=</span> <span class="p">[]</span>
+        
+    <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">)</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ray</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">grid</span><span class="p">):</span>
+            <span class="n">nbs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">ray</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">grid</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">nbs</span>
+
+<span class="k">def</span> <span class="nf">nbdict</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+    <span class="n">dict_</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+            <span class="n">dict_</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">nbs</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">grid</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dict_</span>
+
+<span class="k">def</span> <span class="nf">advance</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">nbdict</span><span class="p">):</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+    <span class="n">newgrid</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+
+            <span class="n">nbs</span> <span class="o">=</span> <span class="n">nbdict</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">occ</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="k">for</span> <span class="n">y</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="n">nbs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="s">'#'</span><span class="p">:</span>
+                    <span class="n">occ</span> <span class="o">+=</span> <span class="mi">1</span>
+            
+            <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'L'</span> <span class="ow">and</span> <span class="n">occ</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">newgrid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s">'#'</span>
+            
+            <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'#'</span> <span class="ow">and</span> <span class="n">occ</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">newgrid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s">'L'</span>
+    
+    <span class="k">return</span> <span class="n">newgrid</span>
+
+<span class="k">def</span> <span class="nf">findstability</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">nbdict</span><span class="p">):</span>
+    <span class="n">oldgrid</span> <span class="o">=</span> <span class="n">grid</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">newgrid</span> <span class="o">=</span> <span class="n">advance</span><span class="p">(</span><span class="n">oldgrid</span><span class="p">,</span> <span class="n">nbdict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">newgrid</span> <span class="o">==</span> <span class="n">oldgrid</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">newgrid</span><span class="p">:</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="n">row</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">'#'</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">count</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">oldgrid</span> <span class="o">=</span> <span class="n">newgrid</span>
+
+<span class="n">nbdict</span> <span class="o">=</span> <span class="n">nbdict</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">findstability</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">nbdict</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="day-12---rain-risk">Day 12 - <a href="https://adventofcode.com/2020/day/12">Rain Risk</a></h2>
+
+<h3 id="thoughts-1">Thoughts</h3>
+
+<p>This is some good old fashioned discrete modelling of motion on a coordinate grid, the kind of thing that was bread and butter for me studying computational physics….a long time ago. The goal is to interpret a list of instructions for the movement of a ship and a waypoint that determines the ship’s forward heading, and determine the final location of the ship. The answer is the <a href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan</a> <a href="https://en.wikipedia.org/wiki/Taxicab_geometry">distance</a> of the ship from its original location after all the instructions have been followed.</p>
+
+<p>My use of trigonometric functions (sine and cosine) is a bit lazy here, as the only rotations are by multiples of 90 degrees, which can be calculated without resorting to trig. But I’ve always loved a good rotation matrix, so it was the natural approach for me.</p>
+
+<h3 id="python-code-1">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">radians</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">cmds</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">]</span>
+
+<span class="n">heading</span> <span class="o">=</span> <span class="s">'E'</span>
+
+<span class="n">bearings</span> <span class="o">=</span> <span class="p">{</span><span class="s">'N'</span><span class="p">:{</span><span class="s">'dx'</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s">'dy'</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> <span class="s">'S'</span><span class="p">:{</span><span class="s">'dx'</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s">'dy'</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">},</span> <span class="s">'E'</span><span class="p">:{</span><span class="s">'dx'</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s">'dy'</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span> <span class="s">'W'</span><span class="p">:{</span><span class="s">'dx'</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s">'dy'</span><span class="p">:</span><span class="mi">0</span><span class="p">}}</span>
+
+<span class="k">def</span> <span class="nf">rotation</span><span class="p">(</span><span class="n">wp</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">radians</span><span class="p">(</span><span class="n">arg</span><span class="p">)))</span> <span class="c1">#safe to cast to int as arg is always an element of {-270,-180,-90,90,180,270}
+</span>    <span class="n">s</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">radians</span><span class="p">(</span><span class="n">arg</span><span class="p">)))</span> <span class="c1">#safe to cast to int as arg is always an element of {-270,-180,-90,90,180,270}
+</span>    <span class="n">wp</span><span class="p">[</span><span class="s">'x'</span><span class="p">],</span> <span class="n">wp</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">wp</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span> <span class="o">-</span> <span class="n">s</span><span class="o">*</span><span class="n">wp</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span> <span class="p">,</span> <span class="n">s</span><span class="o">*</span><span class="n">wp</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">wp</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span>
+
+<span class="n">newbearings</span> <span class="o">=</span> <span class="p">[</span><span class="s">'N'</span><span class="p">,</span><span class="s">'E'</span><span class="p">,</span><span class="s">'S'</span><span class="p">,</span><span class="s">'W'</span><span class="p">]</span>
+
+<span class="n">ship</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x'</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">'y'</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+
+<span class="n">wp</span> <span class="o">=</span> <span class="p">{</span><span class="s">'x'</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s">'y'</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="n">cmds</span><span class="p">:</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s">'(\w)(\d+)'</span><span class="p">,</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="n">op</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">arg</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s">'F'</span><span class="p">:</span>
+            <span class="n">ship</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span> <span class="o">+=</span> <span class="n">arg</span><span class="o">*</span><span class="n">wp</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span>
+            <span class="n">ship</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span> <span class="o">+=</span> <span class="n">arg</span><span class="o">*</span><span class="n">wp</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">bearings</span><span class="p">:</span>
+        <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">bearings</span><span class="p">[</span><span class="n">op</span><span class="p">][</span><span class="s">'dx'</span><span class="p">]</span> <span class="p">,</span> <span class="n">bearings</span><span class="p">[</span><span class="n">op</span><span class="p">][</span><span class="s">'dy'</span><span class="p">]</span>
+        <span class="n">wp</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span> <span class="o">+=</span> <span class="n">arg</span><span class="o">*</span><span class="n">dx</span>
+        <span class="n">wp</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span> <span class="o">+=</span> <span class="n">arg</span><span class="o">*</span><span class="n">dy</span>
+    
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s">'L'</span><span class="p">:</span>
+        <span class="n">rotation</span><span class="p">(</span><span class="n">wp</span><span class="p">,</span><span class="n">arg</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s">'R'</span><span class="p">:</span>
+        <span class="n">rotation</span><span class="p">(</span><span class="n">wp</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">arg</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">((</span><span class="n">ship</span><span class="p">[</span><span class="s">'x'</span><span class="p">],</span><span class="n">ship</span><span class="p">[</span><span class="s">'y'</span><span class="p">],</span><span class="n">heading</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">ship</span><span class="p">[</span><span class="s">'x'</span><span class="p">])</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">ship</span><span class="p">[</span><span class="s">'y'</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<h2 id="day-13---shuttle-search">Day 13 - <a href="https://adventofcode.com/2020/day/13">Shuttle Search</a></h2>
+
+<h3 id="thoughts-2">Thoughts</h3>
+
+<p>We have a problem based on the <a href="https://en.wikipedia.org/wiki/Chinese_remainder_theorem">Chinese Remainder Theorem</a> of modular arithmetic.</p>
+
+<p>The puzzle here revolves around a set of buses that each appear every <code class="language-plaintext highlighter-rouge">k</code> minutes (the period <code class="language-plaintext highlighter-rouge">k</code>). The goal is to find a time <code class="language-plaintext highlighter-rouge">t</code> such that bus 0 with period <code class="language-plaintext highlighter-rouge">k0</code> arrives at time <code class="language-plaintext highlighter-rouge">t</code> , bus 1 with period <code class="language-plaintext highlighter-rouge">k1</code> arrives at time <code class="language-plaintext highlighter-rouge">t+1</code>, bus 2 with period <code class="language-plaintext highlighter-rouge">k`2`</code> arrives at time <code class="language-plaintext highlighter-rouge">t+2</code> and so on.</p>
+
+<p>My first attempt was a brute force solution that stood no hope of finding an answer for t higher than a hundred trillion in a reasonable timescale. Since I didn’t initially know of the Chinese Remainder Theorem, I didn’t apply it in my code, but I did find a way to speed up the search.</p>
+
+<p>Let’s say you’ve found a time <code class="language-plaintext highlighter-rouge">t1</code> where only the first two buses (periods <code class="language-plaintext highlighter-rouge">k0</code>, <code class="language-plaintext highlighter-rouge">k1</code>) have the desired offsets. You can ensure that those offsets remain as they are by incrementing <code class="language-plaintext highlighter-rouge">t</code> by the lowest common multiple (LCM) of <code class="language-plaintext highlighter-rouge">k0</code> and <code class="language-plaintext highlighter-rouge">k1</code>. Once you find <code class="language-plaintext highlighter-rouge">t2</code>, you can start incrementing t by the LCM of <code class="language-plaintext highlighter-rouge">k0</code>, <code class="language-plaintext highlighter-rouge">k1</code> and <code class="language-plaintext highlighter-rouge">k2</code>.</p>
+
+<p>And so on, you can keep increasing the increment you advance t by as you get more and more of the buses to slot into the offsets you want. This speeds the search up to the point where you can find <code class="language-plaintext highlighter-rouge">t</code> (which for me was 939490236001473) in a sensible timescale.</p>
+
+<h3 id="python-code-2">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">gcd</span>
+
+<span class="k">def</span> <span class="nf">lcm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="o">//</span> <span class="n">gcd</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">notes</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">","</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">]</span>
+
+<span class="n">buses</span> <span class="o">=</span> <span class="n">notes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">offsets</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">buslist</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">bus</span> <span class="ow">in</span> <span class="n">buses</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">bus</span> <span class="o">!=</span> <span class="s">'x'</span><span class="p">:</span>
+        <span class="n">offsets</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">bus</span><span class="p">)]</span> <span class="o">=</span> <span class="n">buses</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">bus</span><span class="p">)</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">bus</span><span class="p">)</span> <span class="c1">#the modulus is really helpful if int(bus) &lt; buses.index(bus)
+</span>        <span class="n">buslist</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">bus</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">increment</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">buslist</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">i</span>
+
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">buslist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">offsets</span><span class="p">[</span><span class="n">buslist</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span>
+
+            <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">buslist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+                <span class="n">new_inc</span> <span class="o">=</span> <span class="n">lcm</span><span class="p">(</span><span class="n">increment</span><span class="p">,</span><span class="n">buslist</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+                <span class="k">return</span> <span class="n">find</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">new_inc</span><span class="p">)</span>
+                
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">increment</span>
+    
+<span class="k">print</span><span class="p">(</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">buslist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">buslist</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> 
+</code></pre></div></div>
+
+<h2 id="day-14---docking-data">Day 14 - <a href="https://adventofcode.com/2020/day/14">Docking Data</a></h2>
+
+<h3 id="thoughts-3">Thoughts</h3>
+
+<p>Part 2 is a fun problem involving a bitmask and a memory address decoder. The memory address to be written to is represented by a 36-bit binary address. This address can contain floating bits represented by the character X, which can each be either 0 or 1. The solution needs to write the value to all of the various memory addresses produced by setting each X to either 0 or 1. In my solution these permutations are all found by the recursive function <code class="language-plaintext highlighter-rouge">keyversions</code>.</p>
+
+<h3 id="python-code-3">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">).</span><span class="n">split</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">]</span>
+
+<span class="n">mask</span> <span class="o">=</span> <span class="s">''</span>
+
+<span class="n">mem</span> <span class="o">=</span> <span class="p">{}</span>  
+
+<span class="k">def</span> <span class="nf">keyversions</span><span class="p">(</span><span class="n">keylist</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s">'X'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">keylist</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">keylist</span><span class="p">)</span>
+        <span class="n">mem</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">keycopy</span> <span class="o">=</span> <span class="n">keylist</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keylist</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s">'X'</span><span class="p">:</span>
+                <span class="n">keycopy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">'0'</span>
+                <span class="n">keyversions</span><span class="p">(</span><span class="n">keycopy</span><span class="p">,</span><span class="n">value</span><span class="p">)</span>
+                <span class="n">keycopy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">'1'</span>
+                <span class="n">keyversions</span><span class="p">(</span><span class="n">keycopy</span><span class="p">,</span><span class="n">value</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">startswith</span><span class="p">(</span><span class="s">'mask'</span><span class="p">):</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">replace</span><span class="p">(</span><span class="s">'mem['</span><span class="p">,</span><span class="s">''</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">']'</span><span class="p">,</span><span class="s">''</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="nb">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="p">),</span><span class="s">'036b'</span><span class="p">)</span>
+        <span class="n">keylist</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">mask</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">'0'</span><span class="p">:</span>
+                <span class="n">keylist</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">mask</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">'1'</span><span class="p">:</span>
+                <span class="n">keylist</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">'1'</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">mask</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">'X'</span><span class="p">:</span>
+                <span class="n">keylist</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">'X'</span><span class="p">)</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="n">keyversions</span><span class="p">(</span><span class="n">keylist</span><span class="p">,</span><span class="n">value</span><span class="p">)</span>
+
+
+<span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">mem</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">val</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="day-15---rambunctious-recitation">Day 15 - <a href="https://adventofcode.com/2020/day/15">Rambunctious Recitation</a></h2>
+
+<h3 id="thoughts-4">Thoughts</h3>
+
+<p>The goal here is to model a seemingly simple game:</p>
+
+<p>In this game, the players take turns saying <em>numbers</em>. They begin by taking turns reading from a list of <em>starting numbers</em> (your puzzle input). Then, each turn consists of considering the <em>most recently spoken number</em>:</p>
+
+<ul>
+  <li>If that was the <em>first</em> time the number has been spoken, the current player says <em><code class="language-plaintext highlighter-rouge">0</code></em>.</li>
+  <li>Otherwise, the number had been spoken before; the current player announces <em>how many turns apart</em> the number is from when it was previously spoken.</li>
+</ul>
+
+<p>In Part 1, the goal was to predict the 2020th number spoken. In Part 2, the rules didn’t change, but the goal was to predict the 30 millionth number spoken - i.e. to optimise your code from Part 1. My dictionary-based solution to Part 1 was far too slow to reach a solution in sensible times.</p>
+
+<p>It turns out it’s much more efficient to initialise a huge list of zeroes. Rather than store the turns sequentially, the list index is the number spoken, and the list value is the last turn that this number was spoken.</p>
+
+<p>So the statement <code class="language-plaintext highlighter-rouge">past[57] == 13</code> would mean that the number 57 was last spoken in turn 13.</p>
+
+<p><code class="language-plaintext highlighter-rouge">past[57] == 0</code> would mean that 57 has never been spoken before, because <code class="language-plaintext highlighter-rouge">past</code> was initialised with every value as zero.</p>
+
+<h3 id="python-code-4">Python Code</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="n">turns</span><span class="p">):</span>
+    <span class="n">past</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">turns</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">game</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#when the game begins, this is the most recent number to consider
+</span>    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#this is the turn counter
+</span>
+    <span class="c1">#enter the initial numbers (the list "game") into the "past" list
+</span>    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">game</span><span class="p">):</span>
+        <span class="n">past</span><span class="p">[</span><span class="n">game</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="c1">#take the last number spoken, x, and update it to the next number spoken.
+</span>    <span class="c1">#while ensuring that past[x] equals the last turn that the number x was spoken.
+</span>    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">turns</span><span class="p">:</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">past</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+        <span class="n">past</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">j</span>
+        
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">play</span><span class="p">([</span><span class="mi">17</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="mi">2020</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">play</span><span class="p">([</span><span class="mi">17</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="mi">30000000</span><span class="p">))</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/2021/02/02/advent-of-code-2020-days-11-15.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Dave Bartram Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Dave Bartram Blog</li><li><a class="u-email" href="mailto:david.bartram@gmail.com">david.bartram@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/davidbartram"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">davidbartram</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Lessons I&#39;m learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths &amp; science</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
