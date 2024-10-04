@@ -2,7 +2,7 @@
 layout: post
 title: "Understanding A Python 3 8 Quine"
 date: 2021-09-02 14:45:39 +0100
-tags: Coding, Python
+tags: coding python
 ---
 
 # Understanding a Python 3.8 Quine

@@ -2,7 +2,7 @@
 layout: post
 title: "How To Solve Ssl Error Unable To Get Local Issuer Certificate For Python On Windows"
 date: 2021-04-13 14:45:39 +0100
-tags: Coding, Fixes &amp; Tricks, Python
+tags: coding fixes-&amp;-tricks python
 ---
 
 # How to solve SSL Error "unable to get local issuer certificate" for Python on Windows

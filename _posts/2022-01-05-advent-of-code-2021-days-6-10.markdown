@@ -2,7 +2,7 @@
 layout: post
 title: "Advent Of Code 2021 Days 6-10"
 date: 2022-01-05 14:45:39 +0100
-tags: Advent of Code, Coding, Python
+tags: advent-of-code coding python
 ---
 
 # Advent of Code 2021 Days 6-10

@@ -2,7 +2,7 @@
 layout: post
 title: "Advent Of Code 2020 Days 16-20"
 date: 2021-03-08 14:45:39 +0100
-tags: Advent of Code, AoC, Coding, Python
+tags: advent-of-code aoc coding python
 ---
 
 # Advent of Code 2020 Days 16-20

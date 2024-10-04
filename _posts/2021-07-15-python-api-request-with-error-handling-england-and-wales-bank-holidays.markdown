@@ -2,7 +2,7 @@
 layout: post
 title: "Python Api Request With Error Handling England Wales Bank Holidays"
 date: 2021-07-15 14:45:39 +0100
-tags: Coding, Fixes &amp; Tricks, Python
+tags: coding fixes-&amp;-tricks python
 ---
 
 # Python API Request with Error Handling: England &amp; Wales Bank Holidays

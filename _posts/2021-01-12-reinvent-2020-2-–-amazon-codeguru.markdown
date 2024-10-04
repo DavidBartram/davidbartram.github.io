@@ -2,7 +2,7 @@
 layout: post
 title: "Reinvent 2020 2 Amazon Codeguru"
 date: 2021-01-12 14:45:39 +0100
-tags: Automation, AWS, AWS Reinvent, Cloud, Coding
+tags: automation aws aws-reinvent cloud coding
 ---
 
 # Re:Invent 2020 2 – Amazon CodeGuru

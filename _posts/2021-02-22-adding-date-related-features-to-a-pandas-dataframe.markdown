@@ -2,7 +2,7 @@
 layout: post
 title: "Adding Date Related Features To A Pandas Dataframe"
 date: 2021-02-22 14:45:39 +0100
-tags: Coding, Data, Pandas, Python
+tags: coding data pandas python
 ---
 
 # Adding Date-Related Features to a Pandas Dataframe

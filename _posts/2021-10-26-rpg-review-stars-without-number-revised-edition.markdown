@@ -2,7 +2,7 @@
 layout: post
 title: "Rpg Review Stars Without Number Revised Edition"
 date: 2021-10-26 14:45:39 +0100
-tags: Reviews, Tabletop Roleplaying
+tags: reviews tabletop-roleplaying
 ---
 
 # RPG Review: Stars Without Number Revised Edition

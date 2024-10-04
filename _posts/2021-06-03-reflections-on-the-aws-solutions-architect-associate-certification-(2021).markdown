@@ -2,7 +2,7 @@
 layout: post
 title: "Reflections On The Aws Solutions Architect Associate Certification 2021"
 date: 2021-06-03 14:45:39 +0100
-tags: AWS
+tags: aws
 ---
 
 # Reflections on the AWS Solutions Architect Associate certification (2021)

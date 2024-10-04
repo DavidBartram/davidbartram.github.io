@@ -2,7 +2,7 @@
 layout: post
 title: "Bash Scripting 2 Command Substitution"
 date: 2020-12-23 14:45:39 +0100
-tags: Bash Scripting, Coding
+tags: bash-scripting coding
 ---
 
 # Bash Scripting 2 - Command Substitution

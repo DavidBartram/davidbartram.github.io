@@ -2,7 +2,7 @@
 layout: post
 title: "Configuring The Nginx Proxy In An Elastic Beanstalk Linux Environment"
 date: 2021-04-29 14:45:39 +0100
-tags: AWS, Fixes &amp; Tricks
+tags: aws fixes-&amp;-tricks
 ---
 
 # Configuring the nginx proxy in an Elastic Beanstalk Linux environment

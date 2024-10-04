@@ -2,7 +2,7 @@
 layout: post
 title: "Sql Server Queries Task Duration Inserting Defaults"
 date: 2021-10-05 14:45:39 +0100
-tags: Coding, Fixes &amp; Tricks, SQL
+tags: coding fixes-&amp;-tricks sql
 ---
 
 # SQL Server Queries - Task Duration &amp; Inserting Defaults

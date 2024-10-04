@@ -2,7 +2,7 @@
 layout: post
 title: "Doubting Tau A Question Of %Cf%80"
 date: 2021-07-08 14:45:39 +0100
-tags: Maths
+tags: maths
 ---
 
 # Doubting Tau - a question of π

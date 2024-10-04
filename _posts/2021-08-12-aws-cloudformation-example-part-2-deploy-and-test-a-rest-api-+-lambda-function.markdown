@@ -2,7 +2,7 @@
 layout: post
 title: "Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function"
 date: 2021-08-12 14:45:39 +0100
-tags: API Gateway, AWS, Cloudformation, Lambda
+tags: api-gateway aws cloudformation lambda
 ---
 
 # AWS Cloudformation Example Part 2 - Deploy and Test a REST API + Lambda Function

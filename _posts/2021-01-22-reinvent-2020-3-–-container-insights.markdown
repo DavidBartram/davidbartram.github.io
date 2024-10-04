@@ -2,7 +2,7 @@
 layout: post
 title: "Reinvent 2020 3 Container Insights"
 date: 2021-01-22 14:45:39 +0100
-tags: AWS, AWS Reinvent, Cloud, Containers
+tags: aws aws-reinvent cloud containers
 ---
 
 # Re:Invent 2020 3 – Container Insights
