@@ -17,7 +17,7 @@ title: Dave Bartram Blog
 email: david.bartram@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Lessons I'm learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths & science
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/docs" # the subpath of your site, e.g. /blog
 domain: davidbartram.github.io
 url: "https://davidbartram.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  davidbartram
