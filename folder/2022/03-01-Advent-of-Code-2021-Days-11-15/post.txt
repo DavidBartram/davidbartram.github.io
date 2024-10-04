@@ -1,0 +1,449 @@
+Date: 2022-03-01
+Tags: Advent of Code, AoC, Coding, Python
+Link: /2022/03/01/advent-of-code-2021-days-11-15/
+
+# Advent of Code 2021 Days 11-15
+
+![christmas tree decorated with baubles and garland](_pexels-photo-6211095.jpeg)
+
+Welcome back to some more [Advent of Code 2021](http://adventofcode.com/2021/)!
+
+These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github [here](https://git.io/JmAvJ). The code below is for Part 2 of each day, which often incorporates Part 1 in some way.
+
+Day 11 - [Dumbo Octopus](https://adventofcode.com/2021/day/11)
+--------------------------------------------------------------
+
+### Thoughts
+
+We're looking at a grid-based puzzle about bioluminescent octopuses. There's an octopus at every point on a rectangular grid, and each octopus has an integer **energy level**, initially between 0 and 9.
+
+Each iteration, the energy level of every octopus increases by 1. An octopus that reaches an energy level above 9 **flashes**, increasing the energy level of all adjacent octopuses by 1. This can lead to a chain reaction causing a neighbour's energy to go above 9, causing another flash and so on. Each octopus can only flash once per iteration.
+
+At the end of the iteration, every octopus which has flashed once is reset to an energy level of 0, and the next iteration begins.
+
+The puzzle asks us to find the number of turns before the octopuses have synchronised, with every octopus flashing at once. This can be found by looking for a state where every octopus in the grid has energy 0, meaning they have all just flashed.
+
+### Python Code
+```python
+import sys
+
+with open(sys.argv[1]) as file:
+    data = file.read().splitlines()
+
+#initialise a dict from tuples (i,j) to energy level of the point at coords (i,j)
+grid = {}
+
+for j, row in enumerate(data):
+    for i, item in enumerate(row):
+        grid[(i,j)] = int(item)
+
+rows = len(data)
+cols = len(data[0])
+
+def neighbour_coords(i,j,grid):
+    #returns a list of coords of points adjacent to (i,j) in the grid
+    coords_list = []
+    steps = [(1,0),(-1,0),(0,1),(0,-1),(1,1),(1,-1),(-1,1),(-1,-1)]
+    
+    for step in steps:
+        (dx,dy) = step
+        if 0 <= i+dx < cols and 0 <= j+dy < rows: 
+            coords_list.append((i+dx,j+dy))
+    
+    return coords_list
+
+def nb_dict(grid):
+    #populates a dictionary from each point in the grid to a list of neighbouring points
+    nbdict = {}
+
+    for point in grid.copy():
+        nbdict[point] = neighbour_coords(point[0],point[1],grid)
+    
+    return nbdict
+
+def flash(point,grid,flashed_points,nbdict):
+    #causes a point to flash, and recursively flashes any neighbours whose energy goes above 9
+
+    flashed_points.append(point) #keep track of points which have already flashed
+
+    nbs = nbdict[point]
+
+    for nb in nbs:
+        grid[nb] += 1
+    
+    for nb in nbs:
+        if grid[nb]>9 and nb not in flashed_points: #only flash points that have not flashed this iteration
+            grid, flashed_points = flash(nb, grid, flashed_points, nbdict)
+    
+    return grid,flashed_points
+
+def advance_step(grid, nbdict, flash_sum):
+    for point in grid:
+        grid[point] += 1
+
+    flashed_points = []
+
+    for point in grid:
+        if grid[point] > 9 and point not in flashed_points: #only flash points that have not flashed this iteration
+            grid, flashed_points = flash(point,grid, flashed_points, nbdict)
+
+    for point in flashed_points:
+        grid[point] = 0   #reset points which have flashed to 0 energy
+
+    flash_sum += len(flashed_points) #count flashed points
+    
+    return flash_sum
+
+def advance_until_synched(grid):
+    nbdict = nb_dict(grid)
+    flash_sum = 0
+    i=0
+
+    while True:
+        advance_step(grid, nbdict,flash_sum)
+        i+=1
+
+        if max(grid.values()) == 0: #when all points flash
+            return i
+
+print(advance_until_synched(grid))
+```
+
+Day 12 - [Passage Pathing](https://adventofcode.com/2021/day/12)
+----------------------------------------------------------------
+
+### Thoughts
+
+Graph time! An underwater cave system can be represented as an unweighted undirected graph with four types of node. We have the **start** node, the **end** node, **big caves** represented by uppercase letters, and **small caves** represented by lowercase letters.
+
+The puzzle is to find the number of possible paths from the start node to the end node. We are allowed to pass through each small cave only once on a given path, but we can visit big caves as many times as we like. In part 2 we are offered an exception to this rule - we can visit _exactly one_ small cave _exactly twice_.
+
+In the code below, the paths are found by a recursive [depth-first search](https://en.wikipedia.org/wiki/Depth-first_search) (DFS).
+
+The function `dfs` adds the current node to the current path. If the current node is the target node, a copy of the current path is appended to the `paths` variable. Otherwise, the function is called recursively for each of the valid neighbouring nodes.
+
+The ability to visit a single small cave twice is handled by the Boolean `revisits` , which starts with the value `True`. While `revisits` is `True` , the function treats all neighbours except the start node as valid. When the function visits a small cave that is already in the current path, it toggles `revisits` to `False`. For that particular path (and all its child paths in the recursion), small caves that have been visited are no longer valid neighbours.
+
+The `revisits` Boolean is implemented as an argument of the `dfs` function, so that the appropriate value can be passed down into recursive function calls.
+
+### Python Code
+```python
+import sys
+from collections import defaultdict
+
+with open(sys.argv[1]) as file:
+    data = file.read().splitlines()
+
+graph = defaultdict(lambda: [])
+
+for line in data:
+    line = line.split('-')
+    graph[line[0]].append(line[1])
+    graph[line[1]].append(line[0])
+
+
+def dfs(graph, node, target, path, paths, revisits):
+    
+    if node in path and node.islower():
+        revisits = False
+
+    path.append(node)
+
+    if node == target:
+        paths.append(path[:]) #append a copy of the current path, not a pointer to the path variable which keeps changing
+
+    else:
+        for neighbour in graph[node]:
+
+            if revisits == True:
+                valid_neighbour = not (neighbour == 'start')
+            else:
+                valid_neighbour = not (neighbour in path and neighbour.islower())
+
+            if valid_neighbour:
+                dfs(graph,neighbour,target,path, paths, revisits)
+
+    #we are using the same path variable for all the recursive calls
+    #when a function call completes, we want to leave the path the way we found it
+    #so remove the node we appended above
+    path.pop()
+
+    return paths
+
+print(len(dfs(graph,'start','end',[],[], True)))
+```
+
+Day 13 - [Transparent Origami](https://adventofcode.com/2021/day/13)
+--------------------------------------------------------------------
+
+### Thoughts
+
+We are given the coordinates of a set of dots on a sheet of transparent paper, along with a series of horizontal (y=constant) and vertical (x=constant) lines to fold the sheet along. We are told that none of the dots lie exactly on a fold line. The way the folds are performed, and the fact that none of the dots lie on any fold line, results in the following facts:
+
+A fold in the line `x=p` sends each point `(x,y)` where `x>p` to `(2p-x, y)`.
+
+A fold in the line `y=q` sends each point `(x,y)` where `y>q` to `(x, 2q-y)`.
+
+Since the variable `dots` (and its temporary copy `newdots`) is implemented as a _set_, any dots which exactly overlaps with a previous dot will be ignored. We only care about whether a given point has a dot present or not, we are not counting how many dots land on that position. Making a set a natural choice to avoid duplicates.
+
+The goal is to find the pattern of the dots after all the fold instructions have been executed. When printed, this pattern resembles a string of capital letters which is the final puzzle solution. Many participants included optical character recognition (OCR) to output the final solution, however I was content with simply printing the pattern to the console and using the OCR device attached to my eyeballs:
+
+![](_origami.jpg)
+
+### Python Code
+```python
+import sys
+
+with open(sys.argv[1]) as file:
+    data = file.readlines()
+
+dots = set()
+
+folds = []
+
+for line in data:
+
+    if ',' in line:
+        #populate a set of tuples (x,y) with the coordinates of each dot on the paper
+        #because it is a set, any dot that exactly overlaps with a previous dot will be ignored
+        line = line.rstrip('\n').split(",")
+        dots.add((int(line[0]), int(line[1])))
+    
+    if '=' in line:
+        #populate a list of fold instructions, for example ('x',100) would mean fold along the line x=100
+        line = line.rstrip('\n').replace('fold along ','').split("=") 
+        folds.append((line[0],int(line[1])))
+
+def perform_fold(dots,fold):
+
+    newdots = dots.copy()
+
+    if fold[0] == 'x':
+        #perform a fold along a vertical line x=fold[1]
+        for (x,y) in dots:
+            if x > fold[1]:
+                newdots.remove((x,y))
+                newdots.add((2*fold[1]-x,y))
+    
+    if fold[0] == 'y':
+            #perform a fold on a horizontal line y=fold[1]
+            for (x,y) in dots:
+                if y > fold[1]:
+                    newdots.remove((x,y))
+                    newdots.add((x,2*fold[1]-y))
+
+    return newdots
+
+def final_dots(dots, folds):
+    #perform all the folds in the input
+    for fold in folds:
+        dots = perform_fold(dots,fold)
+
+    return dots
+
+def print_dots(dots):
+    #print the final pattern of dots so that the puzzle solution
+    #can be read from the console
+    max_x = max([dot[0] for dot in dots])
+    max_y = max([dot[1] for dot in dots])
+
+    for y in range(max_y+1):
+        output = ''
+
+        for x in range(max_x+1):
+            if (x,y) in dots:
+                output += '█'
+            else:
+                output += ' '
+        
+        print(output)
+
+end_state = final_dots(dots,folds)
+
+print_dots(end_state)
+```
+
+Day 14 - [Extended Polymerization](https://adventofcode.com/2021/day/14)
+------------------------------------------------------------------------
+
+### Thoughts
+
+A polymer is represented by a sequence of capital letters, e.g. "NNCH".
+
+The polymer expands according to a list of **pair insertion rules** provided in the input. These rules are applied simultaneously on each iteration. For example, the rule "NC -> B" means that B should be inserted between N and C, i.e. any occurrences of the pair NC in the polymer will be replaced by NBC.
+
+The puzzle warns us - "_this polymer grows quickly_". And indeed it does. If modelled as a string, the polymer increases exponentially in size, similar to the Lanternfish puzzle on Day 6. The puzzle, however, only requires us to find the difference in frequency between the most common element (letter) in the polymer and the least common. In part 1 we are asked to find this quantity after 10 iterations, in part 2 we need to apply 40 iterations.
+
+The needful things to track are the frequency of each _pair_ in the polymer, and the frequency of each individual element. In fact the latter could be calculated from the former fairly easily, but I have chosen to keep track of it throughout in the implementation below.
+
+The polymer NNCH would be represented by the dictionary `elements=={N:2, C:1, H:1}` and the dictionary `pairs=={'NN':1,'NC':1,'CH':1}`. This way the insertion rules can be followed without keeping track of the entire polymer.
+
+After 10 iterations, the polymer from my input contained nearly twenty thousand elements - nothing dramatic! However after 40 iterations it contained more than twenty _trillion_ elements, amply demonstrating the need to find something more efficient than a string representation of the entire polymer.
+
+### Python Code
+```python
+import sys
+from collections import defaultdict
+
+with open(sys.argv[1]) as file:
+    data = file.readlines()
+
+polymer = data[0].replace('\n','')
+
+rules = [tuple(x.replace('\n','').replace(' -> ','')) for x in data[2:]]
+
+def initialise(data):
+
+    polymer = data[0].replace('\n','')
+
+    rules = [tuple(x.replace('\n','').replace(' -> ','')) for x in data[2:]] #AB -> N  becomes (A,B,N)
+
+    elements = defaultdict(lambda: 0)
+
+    pairs = defaultdict(lambda: 0)
+    
+    for (x,y) in zip(polymer,polymer[1:]):
+        elements[x] += 1
+        pairs[(x,y)] += 1
+
+    elements[polymer[-1]] +=1 #the last element in the zip object above will be (polymer[n-1],polymer[n]) so the last element won't be counted
+    
+    return elements, pairs, rules
+
+def apply_rules(rules, elements, pairs):
+    
+    newelements = elements.copy()
+    newpairs = pairs.copy()
+
+    for rule in rules:
+        (x,y,z) = rule
+
+        count = pairs[(x,y)]
+
+        if count > 0:
+            newpairs[(x,y)] -= count #pairs are removed when new char inserted
+
+            newelements[z] += count #new char inserted for each pair
+            newpairs[(x,z)] += count #new pair created for each pair
+            newpairs[(z,y)] += count #new pair created for each pair
+    
+    return newelements, newpairs
+
+def apply_rules_n_times(n, rules, elements,pairs):
+
+    for i in range(n):
+        elements, pairs = apply_rules(rules, elements, pairs)
+
+    freqs = elements.values()
+
+    return max(freqs) - min(freqs)
+
+elements, pairs, rules = initialise(data)
+
+print(apply_rules_n_times(10, rules,elements,pairs))
+
+print(apply_rules_n_times(40, rules,elements,pairs))
+```
+
+Day 15 - [Chiton](https://adventofcode.com/2021/day/15)
+-------------------------------------------------------
+
+### Thoughts
+
+I've spent many hours with [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) - mainly in the form of teaching it to A-Level Maths students, who (unaccountably) need to be able to carry out the algorithm with pencil and paper. Here I was given a nice opportunity to code the algorithm in Python using a [PriorityQueue](https://www.geeksforgeeks.org/priority-queue-in-python/).
+
+The puzzle is based on a grid of integers called "risk levels". The goal is to find the path from the top left to the bottom right, with no diagonal steps, that minimises the sum of the risk levels you pass over. This is a very simple case for Dijkstra.
+
+The added complexity in part 2 is that the puzzle input turns out not to show the whole grid. The true grid is five times as large in both dimensions. The original tile is repeated right and downwards, but each time it is repeated, the risk level of each point in the new copy is increased by 1.
+
+After a bit of contemplation, I figured out that the risk level at coordinates `(x,y)` in the enlarged grid is given by:
+
+```python
+risk_level = grid[(x%x_len,y%y_len)] + x//x_len + y//y_len
+```
+
+Where `grid` is a dictionary from coordinate tuples to the values in the original smaller grid.
+
+*   `x_len` is the x dimension of the original grid.
+*   `y_len` is the y dimension of the original grid.
+*   `a%b` is the **modulo** operation, returning the remainder when `a` is divided by `b`.
+*   a//b is the **floor division** operation, returning the integer part of the quotient when a is divided by b.
+
+However the puzzle also states that risk levels above 9 wrap back around to 1, requiring the following adjustment:
+
+```python
+risk_level = (risk_level - 1)%9 + 1
+```
+
+With that dealt with, the remainder of the code is a very standard implementation of [Dijkstra's algorithm](https://brilliant.org/wiki/dijkstras-short-path-finder/) using a queue of nodes to be visited, prioritised by the current shortest distance from the start node to that node.
+
+### Python Code
+```python
+import sys
+from collections import defaultdict
+from queue import PriorityQueue
+import math
+
+with open(sys.argv[1]) as file:
+    data = file.read().splitlines()
+
+
+def initialise(data):
+    #set up the initial grid, before the enlargement
+    grid = {}
+
+    for j, row in enumerate(data):
+        for i, item in enumerate(row):
+            grid[(i,j)] = int(item)
+
+    visit = PriorityQueue()
+    visit.put((0,(0,0)))
+
+    distance = defaultdict(lambda: math.inf)
+    distance[(0,0)] = 0
+
+    target = (5*len(data[0])-1, 5*len(data)-1)
+
+    return grid,visit,distance, target
+
+def neighbour_coords(point,grid):
+#returns a list of coords of points adjacent to (i,j) in the grid
+    coords_list = []
+    steps = [(1,0),(-1,0),(0,1),(0,-1)]
+        
+    for step in steps:
+        (i,j) = point
+        (dx,dy) = step
+        if 0 <= i+dx <= (5*len(data[0])-1) and 0 <= j+dy <= (5*len(data)-1):
+            coords_list.append((i+dx,j+dy))
+        
+    return coords_list
+
+def get_node_value(point,grid):
+    #use modular arithmetic to get the value of a node at any point in the enlarged grid
+    #by referencing the initial grid (pre-enlargement)
+    (x,y) = point
+    x_len = len(data[0])
+    y_len = len(data)
+
+    value = grid[(x%x_len,y%y_len)] + x//x_len + y//y_len
+
+    return (value-1)%9 + 1
+
+def dijkstra(grid,visit,distance,target):
+
+    while not visit.empty():
+        (d,(x,y)) = visit.get()
+
+        for nb in neighbour_coords((x,y), grid):
+            if d + get_node_value(nb,grid) < distance[nb]:
+                distance[nb] = d + get_node_value(nb,grid)
+                visit.put((distance[nb], nb))
+    
+    return distance[target]
+
+
+grid,visit,distance, target = initialise(data)
+
+print(dijkstra(grid,visit,distance,target))
+```

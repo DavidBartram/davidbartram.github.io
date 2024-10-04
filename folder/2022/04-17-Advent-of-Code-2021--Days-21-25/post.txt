@@ -1,0 +1,886 @@
+Date: 2022-04-17
+Tags: Advent of Code, AoC, Coding, Python
+Link: /2022/04/17/advent-of-code-2021-days-21-25/
+
+# Advent of Code 2021 - Days 21-25
+
+![christmas tree decorated with baubles and garland](_pexels-photo-6211095.jpeg)
+
+Welcome to the final instalment of my series on Advent of Code 2021! Christmas is but a faded memory now, indeed it is literally Easter Sunday 2022 as I type. But I'm still here to spread one last dose of festive Python joy. All code on Github [here](https://git.io/JmAvJ). The code below is for Part 2 of each day, which often incorporates Part 1 in some way.
+
+I hope you've enjoyed joining me on this journey through AoC 2021, I've learned a lot, I hope you've picked up one or two things as well. Merry Christmas and Happy Easter to all!
+
+Day 21 - [Dirac Dice](https://adventofcode.com/2021/day/16)
+-----------------------------------------------------------
+
+### Thoughts
+
+As a former student of quantum mechanics, the name and concept of this puzzle appealed to me. Paul Dirac was one of the founding physicists in quantum mechanics, inventing many of the concepts and notations still used in quantum physics (and quantum computing) today.
+
+As far as Part 2 of the puzzle is concerned, a Dirac die is a 3-sided die with sides labelled 1, 2 and 3.
+
+We take our Dirac die and play a game against the computer of Santa's submarine. The game consists of a circular track of ten spaces labelled 1 through 10 clockwise. The starting position of each player is given by the puzzle input, and each player starts with a score of 0.
+
+To take a turn, roll the Dirac die three times and add up the results. Move that many spaces clockwise on the circular path. Add the number of the space you land on to your score. If your score is 21 or better, you have won! Otherwise, your opponent takes a turn.
+
+Unfortunately, Dirac dice are imbued with powers inspired by the Many Worlds interpretation of quantum mechanics. Every time you roll a Dirac die, the universe splits into three worlds, one where the die rolled each possible outcome. In taking a single turn, a player rolls the Dirac die three times, creating 27 universes!
+
+"All" we have to do is determine whether Player 1 or Player 2 wins in more universes, and the puzzle answer is the number of universes in which that player wins. What could be simpler?
+
+#### Dice Result Frequencies
+
+The first thing I wanted to do was count a few universes at a time. When three Dirac dice are thrown and added up, there are 27 possible universes. But many of those universes share the same value for the sum of the dice, and are thus indistinguishable in terms of the game rules.
+
+There's only 1 universe in which you roll a 3. You must have rolled {1,1,1}.
+
+There are 3 universes in which you get a total of 4, depending on which die rolls a 2. You might roll {2,1,1}, {1,2,1} or {1,1,2}.
+
+And so on. My code calculates these values directly to produce a dictionary from total score to number of universes called `dice_freq`, but this doesn't depend on the input and will always be as follows:
+
+```json
+{
+3: 1,
+4: 3,
+5: 6,
+6: 7,
+7: 6,
+8: 3,
+9: 1
+}
+```
+
+#### Recursive Function for Playing Dirac Dice
+
+Before a turn is taken, the game state can be defined by 5 parameters. The position and score for each player, and whose turn is next. The game of Dirac dice has no "memory". If the game state is the same, it doesn't matter if it is reached on turn 2 or turn 200.
+
+To play Dirac dice recursively, the solution below does the following via a function `play_dirac_dice`:
+
+*   Check if either player won at the end of the last turn. I count victory for player 1 with a weight of 1, and victory for player 2 with a weight of 0.
+*   If the game is not over, we need to deal with subgames - all the further turns that happen in various universes branching off the current state.
+*   Track the total number of victories for player 1 in a variable called `subgame_total`, which is initialised at 0.
+*   Iterate over all the possible scores on the dice (the keys of `dice_freq`).
+    *   Increase `subgame_total` by the frequency of that score (`dice_freq[score]`) multiplied by the output of `play_dirac_dice`, passing in the state of the game as it would be if that score had just been rolled by the active player.
+*   Recursive function calls will continue until either player 1 wins (returning 1 back up the chain of recursion) or player 0 wins (returning 0).
+*   `subgame_total` will thus accumulate the total number of universes in which player 1 is victorious, given the starting state passed in to `play_dirac_dice` at the beginning.
+*   Return `subgame_total`.
+
+This function calculates the number of universes in which player 1 wins. We also need to calculate the number of universes in which player 2 wins, which is achieved by passing a different initial game state to the function. In essence, to find out when player 2 wins, initialise the game state such that player 1 and player 2 have swapped labels. Their initial position swaps, and the first turn goes to the newly-labelled "player 2", who was originally player 1.
+
+#### Caching
+
+The numbers of universes involved here are combinatorically huge - there are around a quadrillion possible universes in total, give or take.
+
+Yes, we've added slight efficiency by calculating the frequency of different dice results in advance, but we haven't made serious strides in cutting down the universe count. This kind of recursion could easily take an unholy amount to time to run.
+
+The key thing to realise here, is that while the number of possible universes is vast, the number of possible game states is relatively small. Each player can be in one of 10 positions on the board, have a score from 0 to 30 (a score of 30 happens if your score is 20, just below the threshold to win, then you land on a 10 and win). The next player to take a turn is either player 1 or player 2.
+
+The number of possible game states is 10 x 10 x 31 x 31 x 2 = 192,200. And not all of those states are necessarily accessible from a given starting state.
+
+As a result, we can see that we will be calling `play_dirac_dice` many times with the same input. This is exactly what caching was made for. Every time we call `play_dirac_dice` with an input we've seen before, we should return the previous output rather than running the function again.
+
+You can implement this caching (or "memoization") yourself with a dictionary from input to output, but in this case I used the built-in Python LRU cache decorator.
+
+### Python Code
+```python
+from collections import defaultdict, Counter
+from itertools import product
+from functools import lru_cache
+import sys
+
+
+#calculate the frequency of each possible sum of 3 rolls of a 3-sided die with sides labelled 1, 2 and 3
+dice_results = list(product({1,2,3},repeat=3))
+
+dice_results = [sum(result) for result in dice_results]
+
+dice_freq = dict(Counter(dice_results))
+
+@lru_cache(maxsize=200000) #caching
+def play_dirac_dice(pos1, score1, pos2, score2, whoseTurn):
+    #given the position and score of each player, and a marker for whose turn is next
+    #return the number of universes arising from this game state in which player 1 wins
+
+    #print(pos1, score1, pos2, score2, whoseTurn)
+
+    if score1>=21: #player 1 wins
+        return 1
+    
+    elif score2>=21: #player 2 wins
+        return 0
+    
+    subgame_total = 0
+
+    if whoseTurn == 1: #player 1 takes a turn next
+        for dice in dice_freq:
+            newpos = (pos1+dice-1)%10 + 1 #update player 1's position
+
+            #recursively call the function for the updated game state
+            #multiply by dice_freq[dice] because each total on the dice has a different frequency
+            #e.g. there are 3 universes in which dice==3 but 7 universes in which dice==6
+            subgame_total += dice_freq[dice]*play_dirac_dice(newpos,score1+newpos,pos2,score2,2)
+
+    else: #player 2 takes a turn next
+        for dice in dice_freq:
+            newpos = (pos2+dice-1)%10 + 1 #update player 1's position
+
+            #as above, recursively call the function for the updated game state
+            subgame_total += dice_freq[dice]*play_dirac_dice(pos1,score1,newpos,score2+newpos,1)
+
+    return subgame_total
+
+#starting positions hard-coded from the input
+start1 = 7 
+start2 = 5 
+
+wins = (play_dirac_dice(start1,0,start2,0,1), play_dirac_dice(start2,0,start1,0,2))
+
+print(max(wins))
+```
+Day 22 - [Reactor Reboot](https://adventofcode.com/2021/day/22)
+---------------------------------------------------------------
+
+### Thoughts
+
+After a lot of initial frustration, this problem really caught my imagination and I solved it a few slightly different ways. I'm going to describe the method that I implemented last. It's probably the best...or at least the one I remember most clearly...
+
+#### The problem
+
+Consider a 3D grid made up of cubes. Each cube sits at an integer 3D coordinate `(x,y,z)`. A cube can either be **on** or **off**. Initially, every cube in the grid is off.
+
+The goal is to apply a set of instructions to this grid.
+
+Each instruction consists of a **cuboid**, and the instruction to set the state of all the cubes inside that cuboid to either **on** or **off**. Each cuboid is defined by contiguous intervals of each coordinate. The end points of the intervals are all integers, and they are inclusive. So for example a cuboid might include all cubes whose coordinates `(x,y,z)` satisfy `-5 <= x <= 10, 300 <= y <= 350` and `45 <= z <= 51`
+
+In my solution, each cuboid is defined by three **closed interval** objects from the [intervals](https://github.com/kvesteri/intervals) library.
+
+The goal is to execute approximately 400 of these instructions, some with coordinate boundaries in the tens of thousands. A method based on tracking the state of individual cubes is doomed to failure by the scale of the problem.
+
+#### Approach
+
+First let's decide how to represent the instructions we want to apply.
+
+Each element in the list `instructions` is a tuple `(op, (ix, iy, iz))` where op is the operation (either 'on' or 'off'), and the other element is a `cuboid` object, a tuple of [interval](https://github.com/kvesteri/intervals) objects defining a cuboid.
+
+The key concept in applying these instructions, is that whenever a new cuboid is switched either on or off, we have to tread carefully if the new cuboid _overlaps_ with any previous cuboids.
+
+We begin with all the cubes in the off state. Let's say we apply an **on** cuboid, called Cuboid A. Now we have a nice neat cuboid of **on** cubes. The number of cubes switched on is just the volume of Cuboid A.
+
+If we apply a second **on** cuboid, what's the number of cubes switched on? We could try adding the volume of Cuboid A to Cuboid B - and that's the right answer if the cuboids don't overlap. If they do overlap, we'll count some of the cubes twice. To correct that, we can add the volume of cuboid A to the volume of cuboid B, and subtract the volume of the intersection.
+
+This is an application of the [inclusion-exclusion principle](https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle), which in its guise as the "addition rule" is popular with probability students everywhere.
+
+To handle this, my solution includes a defaultdict `cuboids` from cuboids to signs. The sign of a cuboid is either 1, -1 or 0. 0 is the default value. When we calculate the total number of on cuboids at the end of the solution, we will simply sum the volume of each cuboid multiplied by its sign.
+
+The key is keeping the sign correct. For the case of two intersecting **'on'** cuboids, this is simple. The two cuboids should have sign +1, and their cuboid of intersection should have sign -1.
+
+Note that at this point we would have applied only _two_ instructions but our `cuboids` dictionary will contain _three_ cuboids and their respective signs. As more instructions are applied, `cuboids` will contain original cuboids from the instruction list, cuboids of intersection between them, cuboids of intersection between cuboids of intersection and new cuboids, and so on. It's dizzying to imagine but the mathematics will bestow upon every cuboid its proper sign, and keep them all in place. Since `cuboids` is a dictionary, it will also keep track only of unique cuboids. From time to time a new cuboid, or cuboid of intersection, will exactly overlap with a previous one. Again, we trust to mathematics to correctly handle this, my visualisation skills are not up to the task of imagining the process!
+
+#### Applying a Single Instruction
+
+So how does this mathematics work? How do we apply an arbitrary instruction?
+
+Let's call it instruction X, consisting of operation X (either 'off' or 'on') and cuboid X.
+
+First, create a copy of the current cuboids dictionary and call it `new`.
+
+If operation X is 'on', we need to add cuboid x to the `new` dictionary as a key with a value of 1. This is intuitive, we ultimately want to count the total number of 'on' cubes, so we want to count this cuboid as a positive.
+
+If operation X is 'off', we do not add it to the `new` dictionary at all. We're not counting the 'off' cuboids, so we don't need this. We definitely care if cuboid X is 'off' and overlaps with an 'on' cuboid, turning some previously 'on' cubes to the 'off' state, but that's handled below. For now, do nothing.
+
+Regardless of operation X, we now iterate over the current `cuboids` dictionary (not the `new` dictionary).
+
+We calculate the cuboid of intersection between each cuboid in the dictionary, and cuboid X, our brand new cuboid. If the cuboid of intersection exists, we add it to `new` with the appropriate sign, based on its current sign in the new dictionary and the sign of its 'parent' cuboid (the cuboid that was intersected with cuboid X to produce it).
+
+"The appropriate sign" is the part of the procedure that is frankly magical.
+
+**The sign of the cuboid of intersection (if it exists), is equal to its current value in the `new` dictionary, minus the value of its 'parent' cuboid in the `cuboids` dictionary.**
+
+Once we have followed this procedure for every cuboid in `cuboids`, we return `new`. This has successfully applied the instruction.
+
+#### Wait, what???
+
+That's it. No handling of edge cases is required. You might be worried that the new cuboid could be a duplicate of a previous cuboid - that's fine. Or that some of these many, many cuboids of intersection will also be duplicates of each other, or duplicates of previous cuboids - that's also fine. As long as each unique cuboid is in the dictionary with a correct sign, I don't care where it came from. And the procedure above keeps the signs correct regardless of the scenario.
+
+**The sign of the cuboid of intersection (if it exists), is equal to its current value in the `new` dictionary, minus the value of its 'parent' cuboid in the `cuboids` dictionary.**
+
+Let's consider the simple case of two 'on' instructions, A and B. Assume that cuboid A intersects with cuboid B, but they are not identical.
+
+Both `cuboids` and `new` are empty, but remember these are defaultdicts, and will return 0 if the value for any key is requested.
+
+##### Instruction A (an 'on' cuboid)
+
+To apply instruction A, we add cuboid A to the new dictionary with value 1. We then iterate over `cuboids`, which is empty, so we do nothing. Then we return `new`, and set `cuboids = new`.
+
+At this point, `cuboids == { cuboid A : 1}`.
+
+If we calculated the volume of 'on' cuboids now, we would just get the volume of cuboid A. Quite right.
+
+##### Instruction B (another 'on' cuboid)
+
+Now apply instruction B. Make a copy of `cuboids` and call it `new`. Since instruction B is also an 'on' instruction, we will add cuboid B to `new` with a value of 1.
+
+Now iterate over cuboids, which currently only contains cuboid A. We calculate the intersection between cuboids A and B, and give it a sign. The sign should be its current value in the new dictionary (which is 0, because this cuboid hasn't been put into new yet), minus the value of cuboid A in the cuboids dictionary (which is 1).
+
+Therefore, the cuboid of intersection is added to new with the sign 0 - 1 = -1.
+
+Then we return `new`, and set `cuboids = new`.
+
+At this point, `cuboids == { cuboid A : 1, cuboid B : 1, intersection(A,B)` : -1`}` If we calculated the number of 'on' cubes now, we would simply be applying the inclusion-exclusion principle, which would surely give the correct result!
+
+##### Instruction C (an 'off' cuboid)
+
+Now let's apply instruction C, which is an 'off' cuboid. Let's assume it overlaps with cuboid A, cuboid B and cuboid C but is not identical to any of them.
+
+Make a copy of `cuboids` and call it `new`. We don't need to add cuboid C to new, as it is an 'off' cuboid.
+
+Iterate over `cuboids`, which contains cuboid A, cuboid B and intersection(A,B).
+
+cuboid A will produce intersection(A,C) with sign 0 - 1 = -1.
+
+cuboid B will produce intersection(B,C) with sign 0 - 1 = -1.
+
+intersection(A,B) will produce intersection(A,B,C) with sign 0 - (-1) = 1.
+
+Then we return `new`, and set `cuboids = new`.
+
+At this point, `cuboids == { cuboid A : 1, cuboid B : 1, intersection(A,B)` : -1, intersection(A,C) : -1, `intersection(B,C)` : -1, `intersection(A,B,C)` : 1`}`.
+
+Does this make sense? Well, yes! We add the volumes of cuboid A and cuboid B, which double counts intersection(A,B). Subtracting intersection(A,B) corrects that.
+
+But then cuboid C comes along and turns off all the previously-on cubes in intersection(A,C) and intersection(B,C), so we subtract those volumes.
+
+But we've overcounted here as well! We've subtracted too much, because intersection(A,C) and intersection(B,C) intersect! We've double counted intersection(A,B,C), but we've overcounted while subtracting. The appropriate correction is to _add_ the volume of intersection(A,B,C) back into our total. Which, indeed, is why intersection(A,B,C) has a sign of 1.
+
+This example doesn't cover every possibility, but it hopefully illustrates how the solution correctly handles 'on' and 'off' instructions, while dealing with intersections correctly.
+
+### Python Code
+```python
+import sys
+import intervals as I
+import re
+from collections import defaultdict
+from statistics import median
+
+def initialise():
+    #read the input file
+    #output instructions, a list of tuples (op, (ix,iy,iz))
+    #op is either 'on' or 'off', representing the operation for that instruction
+    #ix, iy, iz are intervals defining the cuboid for that instruction
+
+    with open(sys.argv[1]) as file:
+        data = file.readlines()
+
+    instructions = []
+
+    for line in data:
+        op = line.split(' ')[0]
+        ranges = ''.join(line.split(' ')[1:])
+        values = [int(x) for x in re.findall(r'-{0,1}\d{1,10}', ranges)]
+        ix = I.closed(values[0],values[1])
+        iy = I.closed(values[2],values[3])
+        iz = I.closed(values[4],values[5])
+        instructions.append((op,(ix,iy,iz)))
+
+    return instructions
+
+def volume(cuboid):
+    #calculate the number of cubes contained in a cuboid
+    #cubes on the boundary of a cuboid count as contained within that cuboid
+
+    ix, iy, iz = cuboid
+
+    a = ix.upper - ix.lower + 1
+    b = iy.upper - iy.lower + 1
+    c = iz.upper - iz.lower + 1
+
+    return a*b*c
+
+
+def intersect(cuboid1,cuboid2):
+    #calculate the cuboid of intersection between two cuboids
+    #return the cuboid of intersection, or False if the input cuboids do not intersect
+
+    ix1,iy1,iz1 = cuboid1
+    ix2, iy2, iz2 = cuboid2
+
+    ix = ix1 & ix2 #interval intersection
+    iy = iy1 & iy2
+    iz = iz1 & iz2
+
+    if ix.is_empty() or iy.is_empty() or iz.is_empty():
+        return False
+    
+    return (ix,iy,iz)
+
+def apply_one_instruction(cuboids,newcuboid, onoff):
+    #apply a single instruction
+
+    new = cuboids.copy()
+
+    if onoff == 'on':
+        new[newcuboid] = 1
+
+    for cuboid, sign in cuboids.items():
+        overlap = intersect(newcuboid,cuboid)
+        if overlap:
+            new[overlap] -= sign
+
+    return new
+
+def apply_instructions(instructions):
+    #apply all the instructions in the input file
+    #return the total number of 'on' cubes after all instructions are applied
+    cuboids = defaultdict(lambda: 0)
+
+    for instruction in instructions:
+        onoff = instruction[0]
+        newcuboid = instruction[1]
+        cuboids = apply_one_instruction(cuboids,newcuboid,onoff)
+    
+    total = 0
+
+    for cuboid, sign in cuboids.items():
+        total += sign*volume(cuboid)
+
+
+    return total
+
+instructions = initialise()
+
+print(apply_instructions(instructions))
+```
+
+Day 23 - [Amphipod](https://adventofcode.com/2021/day/23)
+---------------------------------------------------------
+
+### Thoughts
+
+This puzzle was complex to implement but the concept is simple. Four types of amphipod (types A, B, C and D) consist in a burrow consisting of four rooms and one hallway. Each room can hold four amphipods in single file.
+
+There are four of each type of amphipod. The amphipods start disorganised (their starting arrangement is based on your individual puzzle input), and the goal is to move them so that the type A amphipods are in the leftmost room, the type B's are one room to the right of the type A's, and so on.
+
+The amphipods can move around the burrow, obeying certain rules.
+
+*   Amphipods cannot pass through each other.
+*   Moving an amphipod one space has a cost of 1 energy for a type A, 10 energy for a type B, 100 energy for a type C, and 1000 energy for a type D.
+*   Amphipods cannot stop on the space directly outside any room. They can only move into that space if they immediately continue moving.
+*   Amphipods cannot move from the hallway into a room unless that room is their destination **and** the room currently contains no amphipods of a different type.
+
+The goal is to find the minimum total energy cost to arrange the amphipods correctly.
+
+#### My Approach
+
+My approach here was to use Dijkstra's algorithm, implemented with a Python [Priority Queue](https://www.geeksforgeeks.org/priority-queue-in-python/).
+
+Since the energy cost for the different types of amphipod are powers of 10, it is easier to think of the amphipod types as 0, 1, 2, 3 rather than A,B,C,D. Then the rooms can be labelled the same way, so that the type 0 amphipods are aiming to get into room 0, and so on. The type of an amphipod is usually denoted by the variable `amphi`.
+
+The room number under consideration is denoted by the variable `r`.
+
+To map out the burrow, I labelled the seven hallway positions 0 to 6 from left to right. In the code, the hallway position is denoted by the variable `h.`
+
+Positions inside a room are denoted by the variable `r_pos`, where `r_pos`=0 is the space next to the hallway and `r_pos` increases as you go deeper into the room, to a maximum of `r_pos`=4.
+
+The dictionary `distance` from tuples `(h,r)` to integer distances is hard-coded with the number of spaces required to move from hallway position `h` to room position 0 inside room `r`.
+
+`distance[(3,1)] == 2` means that an amphipod needs to move two spaces to get from hallway position 3 to position 0 inside room 1.
+
+A state of the game board is represented by two tuples, `hall` and `rooms`.
+
+For example, my initial state looks like this:
+
+`hall = (None,None,None,None,None,None,None)`
+
+`rooms = ((3,3,3,3),(2,2,1,2),(0,1,0,1),(1,0,2,0))`
+
+This means that all seven positions in the hallway are unoccupied. Room 0 contains four amphipods of type 3, and so on up to room 3, which contains two type 0 amphipods, a type 2 and a type 1. The type 1 amphipod in room 3 is directly adjacent to the hallway, with the other three in single file behind it.
+
+Let's say we moved the type 1 amphipod in room 3 out into hallway position 6. This is a legal move and would result in the following board state:
+
+`hall = (None,None,None,None,None,None,1)`
+
+`rooms = ((3,3,3,3),(2,2,1,2),(0,1,0,1),(None,0,2,0))`
+
+The goal is to find the minimum energy cost to achieve the desired final state, which looks like this:
+
+`hall = (None,None,None,None,None,None,None)`
+
+`rooms = ((0,0,0,0),(1,1,1,1),(2,2,2,2),(3,3,3,3))`
+
+The implementation below is a little finicky in the details, and not particularly fast, but it does the job!
+
+### Python Code
+```python
+from collections import defaultdict
+from math import inf, ceil
+from queue import PriorityQueue
+from itertools import count
+
+#distance (h,r) = distance from hallway position h to front of room r or vice-versa
+distance ={
+    (0,0):3,(0,1):5,(0,2):7,(0,3):9,
+    (1,0):2,(1,1):4,(1,2):6,(1,3):8,
+    (2,0):2,(2,1):2,(2,2):4,(2,3):6,
+    (3,0):4,(3,1):2,(3,2):2,(3,3):4,
+    (4,0):6,(4,1):4,(4,2):2,(4,3):2,
+    (5,0):8,(5,1):6,(5,2):4,(5,3):2,
+    (6,0):9,(6,1):7,(6,2):5,(6,3):3
+    }
+
+def move_cost(r,h,amphi,r_pos):
+    #calculate the energy cost to move an amphipod
+    #from hallway position h to room position r_pos inside room r
+    #or vice-versa
+    cost = distance[h,r] + r_pos
+
+    cost = cost*(10**amphi)
+
+    return cost
+
+def hall_to_room(amphi,h,hall,rooms):
+    #given an amphipod of type amphi in hallway position h
+    #with the current hall and room occupations given by hall and rooms
+    #return None if the amphipod cannot be moved to its destination room
+    #otherwise, return (newhall, newrooms, cost) representing the new hall and room occupations
+    #and the cost of moving that amphipod to its destination room
+
+
+    room_index = {0:1.5, 1:2.5, 2:3.5, 3:4.5}
+    j = room_index[amphi]
+    k = int(ceil(j))
+
+    newhall = list(hall)
+    newrooms = [list(room) for room in rooms]
+
+    #check if there are any amphipods between this amphipod and its destination room
+    if h<j:
+        intervening_hall = [obj!=None for obj in hall[h+1:k]]
+
+    if h>j:
+        intervening_hall = [obj!=None for obj in hall[k:h]]
+    
+    #check if there are any amphipods of the wrong type in the destination room
+    wrong_amphi = [(x!=amphi and x!=None) for x in rooms[amphi]]
+
+    if any(intervening_hall) or any(wrong_amphi):
+        #if the hallway is blocked or there are any wrong-type amphipods in the room
+        return None
+
+    if not (any(intervening_hall) or any(wrong_amphi)):
+        #calculate the position inside the destination room that the amphipod will move to
+        r_pos = len(rooms[amphi]) - 1 - sum([x==amphi for x in rooms[amphi]])
+        #calculate the energy cost of the move
+        cost = move_cost(amphi,h,amphi,r_pos)
+        #update the state of the hallway and rooms to account for the move
+        newhall[h] = None
+        newrooms[amphi][r_pos] = amphi
+        newhall = tuple(newhall)
+        newrooms = tuple([tuple(newroom) for newroom in newrooms])
+        return (newhall, newrooms, cost)
+
+def room_to_hall(r,h,amphi,hall,rooms, r_pos):
+    #given an amphipod of type amphi in room r
+    #with the current hall and room occupations given by hall and rooms
+    #return None if the amphipod cannot be moved to hallway position h
+    #otherwise, return (newhall, newrooms, cost) representing the new hall and room occupations
+    #and the cost of moving that amphipod to hallway position h
+
+    room_index = {0:1.5, 1:2.5, 2:3.5, 3:4.5}
+    j = room_index[r]
+    k = int(ceil(j))
+
+    newhall = list(hall)
+    newrooms = [list(room) for room in rooms]
+
+    #check if there are any amphipods in the hallway between this amphipod and hallway position h
+    if h<j:
+        intervening_hall = [obj!=None for obj in hall[h:k]]
+
+    if h>j:
+        intervening_hall = [obj!=None for obj in hall[k:h+1]]
+    
+    #check if there are any amphipods in the room between this amphipod and the hallway
+    if r_pos == 0:
+        intervening_room = [None]
+    
+    if r_pos != 0:
+        intervening_room = [obj!=None for obj in rooms[r][0:r_pos]]
+
+    if any(intervening_hall) or any(intervening_room):
+        #if there is an amphipod blocking this path
+        return None
+    
+    if not (any(intervening_hall) or any(intervening_room)):
+        #calculate the cost of moving to hallway position h
+        cost = move_cost(r,h,amphi,r_pos)
+        #update the state of the hallway and rooms to account for the move
+        newhall[h] = amphi
+        newrooms[r][r_pos] = None
+        newhall = tuple(newhall)
+        newrooms = tuple([tuple(newroom) for newroom in newrooms])
+        return (newhall, newrooms, cost)
+
+def neighbours(hall,rooms):
+    #find the legal board states one move away from the current board
+    #helper function for Dijkstra
+    neighbours = []
+
+    for h,amphi in enumerate(hall):
+        if amphi!=None:
+            result = hall_to_room(amphi,h,hall,rooms)
+            if result:
+                neighbours.append(result)
+    
+    for h,_ in enumerate(hall):
+        for r,room in enumerate(rooms):
+            for r_pos, amphi in enumerate(room):
+                if amphi!=None:
+                    result = room_to_hall(r,h,amphi,hall,rooms, r_pos)
+                    if result:
+                        #print(result)
+                        neighbours.append(result)
+    
+    return neighbours
+
+def dijkstra(visit,costs):
+    #dijkstra's algorithm
+    
+    while not visit.empty():
+        (c,_,(hall,rooms)) = visit.get() #get the next board state in the queue
+
+        if hall == final_hall and rooms == final_rooms:
+            #if the final state has been reached, return the cost
+            return c
+        
+        #identify neighbouring board states
+        nbs = neighbours(hall,rooms)
+
+        #dijkstra procedure
+        for nb in nbs:
+            #update the cost with the cost of the move to that neighbour state
+            newc = c + nb[2]
+            if newc < costs[(nb[0],nb[1])]:
+                #update label if new cost is lower than current cost
+                costs[(nb[0],nb[1])] = newc
+                #add the new board state to the queue
+                visit.put((newc, next(unique),(nb[0],nb[1])))
+
+
+#starting board state - hard-coded from my puzzle input
+start_hall = (None,None,None,None,None,None,None)
+start_rooms = ((3,3,3,3),(2,2,1,2),(0,1,0,1),(1,0,2,0))
+
+#destination board state
+final_hall = (None,None,None,None,None,None,None)
+final_rooms = ((0,0,0,0),(1,1,1,1),(2,2,2,2),(3,3,3,3))
+
+#initialise variables for dijkstra
+start_costs = defaultdict(lambda : inf) #cost to reach all board states is initialised at infinity
+start_costs[(start_hall,start_rooms)] = 0 #cost to reach initial board state is zero
+unique=count() #a unique index for each board state, purely to break ties in the priority queue
+
+visit = PriorityQueue() #priority queue of board states to visit
+visit.put((0,next(unique),(start_hall,start_rooms))) #initially, queue contains only the starting board state
+
+
+print(dijkstra(visit,start_costs)) #print puzzle answer
+```
+Day 24 - [Arithmetic Logic Unit](https://adventofcode.com/2021/day/24)
+----------------------------------------------------------------------
+
+### Thoughts
+
+A very tricky puzzle that I eventually solved without any code at all. Here, the goal is to _understand_ the input code, and then solve the puzzle from that understanding. It's a code _reading_ puzzle, not a code _writing_ puzzle!
+
+Santa's submarine uses a program called MONAD to validate submarine model numbers. A model number is a 14-digit number. MONAD is a program which expects 14 sequential inputs. To validate a model number, enter the next digit of the model number into the program whenever an input is required. If and only if the model number is valid, MONAD will output a final value of zero for the variable `z.`
+
+The goal is to find the smallest (part 1) and largest (part 2) valid model numbers.
+
+The processing unit that runs MONAD can store four integer variables:`w`,`x`,`y`, and `z`. These variables all start with the value `0`.
+
+MONAD contains instructions of 6 types.
+
+*   `inp a`- Read an input value and write it to variable `a`. As stated above, each time this type of instruction arises, we enter the next digit of the model number we are trying to verify.
+*   `add a b`- Add the value of `a` to the value of `b`, then store the result in variable `a`.
+*   `mul a b` - Multiply the value of `a` by the value of `b`, then store the result in variable `a`.
+*   `div a b` - Divide the value of `a` by the value of `b`, truncate the result to an integer, then store the result in variable `a`.
+*   `mod a b` - Divide the value of `a` by the value of `b`, then store the _remainder_ in variable `a`.
+*   `eql a b` - If the value of `a` and `b` are equal, then store the value `1` in variable `a`. Otherwise, store the value `0` in variable `a`.
+
+To understand MONAD, we have to look at our puzzle input. For my input, it was clear that MONAD consists of 14 blocks of 18 lines. Each block takes in a single input. Each block falls into one of two categories, which I've called Type I and Type II.
+
+There are seven Type I blocks and seven Type II blocks in the input.
+
+#### Type I Block
+
+```
+inp w
+mul x 0
+add x z
+mod x 26
+div z 1
+add x P
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y Q
+mul y x
+add z y
+```
+
+Here P and Q are constants which vary in different Type I blocks in the MONAD program. For example the first block in my input had P=13 and Q=13, whereas the third block had P=15 and Q=5. This is hard-coded into the program - P and Q are not variables in the processor, they are determined solely by the MONAD program.
+
+Observing my input, I noticed the following are true for all Type I blocks:
+
+*   9 < P < 17
+*   0 < Q < 17
+
+What does a Type I block do?
+
+Well, if we look at lines 2 and 9, we see that x and y are zeroed before they are used. So any values of x and y currently stored in memory are ignored.
+
+Lines 3, 4 and 6 will update the value of x such that x = zmod26 + P. Note that line 5 does nothing at all.
+
+Line 7 checks whether w == z mod 26 + P. w is the latest input, which is a digit from the model number. Since P>9 throughout MONAD, **this equality will never hold**.
+
+z mod 26 + P will always be a two-digit number, and since w is a digit from the model number, they cannot be equal. As a result, every Type I block will write 0 to the variable x.
+
+Therefore, when line 8 checks whether x == 0, this equality always holds. Therefore the program will write 1 to the variable x.
+
+Lines 9-12 will always set y = 26, so line 13 will set z = 26*z.
+
+Lines 14-17 will set y = w + Q.
+
+Line 18 will set z = z + w + Q.
+
+The overall effect of the block is to set `z_final = z_initial*26 + w + Q`.
+
+Changes to x and y are irrelevant, as they will be zeroed in the next block (both Type I and Type II blocks set x and y to zero before doing anything with them).
+
+**This process looks like appending a digit in base 26.**
+
+Sticking to base 10 for a minute, how would we turn z=123 into z=1234. Well, we'd have to multiply 123 by 10 to get 1230, then add the 4 to get 1234.
+
+Similarly, `z_final = z_initial*26 + w + Q` , considered in base 26, has the effect of **appending the digit (w + Q) to the end of the digits of z_initial.**
+
+**Type I blocks append the digit to the base-26 representation of z.**
+
+#### Type II Block
+
+A Type II block looks very similar to a Type I block, but the differences are important!
+
+```
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x P
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y Q
+mul y x
+add z y
+```
+
+Observing my input, I noticed the following are true for all Type II blocks:
+
+*   -17 < P <= 0
+*   0 < Q < 17
+
+Understanding the block follows the same logic as before:
+
+If we look at lines 2 and 9, we see again that x and y are zeroed before they are used.
+
+Lines 3, 4 and 6 will update the value of x such that x = z mod 26 + P.
+
+Note that line 5 will set z = z//26. In a type I block, this line did nothing!
+
+Line 7 checks whether w == z mod 26 + P. w is the latest input, which is a digit from the model number. Since P is always less than or equal to 0, it is possible that this equality is true, depending on the values of z and w.
+
+##### Case A: w == z mod 26 + P
+
+Line 7 sets x=1.
+
+Line 8 sets x=0.
+
+Lines 9-12 will set y = 1, so line 13 will do nothing.
+
+Lines 14-17 will set y = 0, so line 18 will do nothing.
+
+In Case A, the overall effect of the block is to set `**z_final = z_initial//26**`.
+
+**This process is removing the final digit in base 26.**
+
+Again we can compare to base-10. If we take the number 1234 and want to change it to 123, all we have to do is divide by 10 and round down. 1234//10 gives 123.
+
+Note that 6//10 = 0, so a single-digit number gets reduced to 0 rather than made into a "zero digit number", whatever that would mean.
+
+**In Case A, Type II blocks remove the final digit of the base-26 representation of z.** **If the base-26 representation of z only has one digit, then the block will set z to zero.**
+
+##### Case B: w != z mod 26 + P
+
+Line 7 sets x=0.
+
+Line 8 sets x=1.
+
+Lines 9-12 will set y = 26, so line 13 will set z = 26*z
+
+Lines 14-17 will set y = w + Q.
+
+Line 18 will set z = z + w + Q.
+
+In Case B, the overall effect of the block is to set `**z_final = (z_initial//26)*26 + w + Q**`.
+
+This is replacing the final digit. Again we can imagine the base-10 situation. What if we want to turn 1234 into 1237. Well first we divide by 10 and round down, 1234//10 gives us 123. Then we multiply by 10 to give us 1230. Then we add z.
+
+**In Case B, Type II blocks replace the final digit of the base-26 representation of z.**
+
+#### Which model numbers will be valid?
+
+Now we can approach the question of when a model number will be valid. For a 14-digit model number to be validated by MONAD, the program must output z=0 when we input the digits of the model number as the inputs to the 14 blocks in MONAD.
+
+We know that Type I blocks add a digit to the base-26 representation of z.
+
+We know that Type II blocks either remove a digit from the base-26 representation of z (Case A), or replace the final digit with a new digit (Case B).
+
+z=0 when MONAD starts. If we want z=0 at the end, we need to remove any digits that get added by Type I blocks. For that to happen, **every Type II block must follow Case A.**
+
+This means for every Type II block, we need **w == z mod 26 + R**
+
+*   w is the input digit, taken from the model number.
+*   z mod 26 is the final digit of the base-26 representation of z
+    *   Base-10 example: 1234 mod 10 is the remainder when 1234 is divided by 10.
+    *   1234 mod 10 = 4 , i.e. the final digit of 1234
+*   R is hard-coded in the particular Type II block we are looking at.
+
+**Simultaneous Equations To The Rescue**
+
+Now we need to read through each block of MONAD, keeping track of the value of z as we do so. We're going to assume that w == z mod 26 + R is true every time we hit a Type II block.
+
+Let's say that our 14 digit model number is abcdefghijklmn , where each letter represents a single digit of the number.
+
+Here is the situation for the first 6 blocks of my particular input:
+
+| Block # | Input digit | Block Type | P    | Q  | Case A condition         | base-26 digits of z_final |
+| ------- | ----------- | ---------- | ---- | -- | ------------------------ | ------------------------- |
+| 0       | –           | –          | –    | –  | –                        | [0]                       |
+| 1       | a           | I          | 13   | 13 | –                        | [a+13]                    |
+| 2       | b           | I          | 11   | 10 | –                        | [a+13, b+10]              |
+| 3       | c           | I          | 15   | 5  | –                        | [a+13, b+10, c+5]         |
+| 4       | d           | II         | \-11 | 14 | d = c+5+-11<br>(d = c-6) | [a+13,b+10]               |
+| 5       | e           | I          | 14   | 5  | –                        | [a+13,b+10, e+5]          |
+| 6       | f           | II         | 0    | 15 | f = e+5+0<br>(f = e+5)   | [a+13,b+10]               |
+
+Every time we encounter a Type II block, we get an equation relating two of the input digits.
+
+#### Solving the Puzzle
+
+At the end of the process we will have 7 equations for 14 unknown digits. This means there is no unique solution. But that's fine - there are many possible valid model numbers.
+
+We know that the digits can only be integers between 0 and 9 inclusive.
+
+To find the **smallest** valid model number and solve part 1, we simply need to make the digits as small as possible while satisfying the equations.
+
+*   d = c - 6
+    *   Since a digit cannot be negative, the lowest possible value of c would be 6, and the lowest possible value of d would be 0.
+*   f = e + 5
+    *   The lowest value of f would be 5 and the lowest value of e would be 0.
+
+The opposite logic will give us the digits of the **largest** valid model number:
+
+*   d = c - 6
+    *   Since a digit cannot be higher than 9, the highest possible value of c would be 9, and the highest possible value of d would be 3.
+*   f = e + 5
+    *   The highest value of f would be 9 and the highest value of e would be 4.
+
+And thus the solution is in reach. I continued the table above, covering all 14 blocks of my input, created and solved 7 equations, and wrote down my answer.
+
+No code was required! Now of course you could make certain assumptions about the input and write a solver, but the problem here depends sensitively on the details of the input. Without checking other people's puzzle inputs, I can't tell whether MONAD always uses base 26, whether it always splits neatly into 14 blocks, and so on. I'm sure that the puzzle inputs follow a strict pattern, but the point here is to reverse engineer the solution from the MONAD problem. This puzzle isn't about coding a solution, it's about reading, understanding and reverse-engineering someone else's code.
+
+Day 25 - [Sea Cucumber](https://adventofcode.com/2021/day/25)
+-------------------------------------------------------------
+
+### Thoughts
+
+After some serious brain work on days 21-24, we get a light, refreshing single-part puzzle for Christmas Day, to round out Advent of Code 2021.
+
+Sea cucumbers live on a grid.
+
+Sea cucumbers come in two herds. An east-facing sea cucumber (>) always moves east. A south-facing sea cucumber (v) always moves south.
+
+Each step, the east-facing herd simultaneously try to move one square to the east, then the south-facing herd simultaneously try to move one square to the south.
+
+A sea cucumber can only move into an unoccupied (.) space. If the space a sea cucumber would like to move to is occupied by another sea cucumber, it will not move on this step.
+
+Sea cucumbers live in a toroidal space. If an east-facing cucumber reaches the eastmost edge of their row, on the next step they will try to move to the westmost position in that row. Likewise, if a south-facing cucumber reaches the southmost edge of their column, on the next step they will try to move to the northmost position in that column.
+
+The question is, given an input grid, how many steps are required before no sea cucumber can move?
+
+The code below attacks this problem without any particular elegance. The function `advance` will advance the grid by a single step, following the rules laid out above. The function `find_stability` will check after each step whether the grid has remained unchanged. If the grid hasn't changed, `find_stability` will return the number of steps so far.
+
+### Python Code
+```python
+import sys
+from copy import deepcopy
+
+
+with open(sys.argv[1]) as file:
+    data = file.read().splitlines()
+
+data = [list(row) for row in data]
+
+width = len(data[0])
+height = len(data)
+
+def advance(grid):
+    grid1 = deepcopy(grid)
+
+    for i,row in enumerate(grid):
+        for j,char in enumerate(row):
+            if char=='>':
+                destination = row[(j+1)%width]
+                if destination == '.':
+                    grid1[i][j] ='.'
+                    grid1[i][(j+1)%width] = '>'
+
+    grid2 = deepcopy(grid1)
+    
+    for i,row in enumerate(grid1):
+        for j,char in enumerate(row):
+            if char=='v':
+                destination = grid1[(i+1)%height][j]
+                if destination == '.':
+                    grid2[i][j] = '.'
+                    grid2[(i+1)%height][j] = 'v'
+    
+    return grid2
+
+def find_stability(grid):
+    stable = False
+    i = 0
+
+    while stable == False:
+        i+=1
+        newgrid = advance(grid)
+        if newgrid == grid:
+            stable = True
+        else:
+            grid = newgrid
+    
+    return i
+
+print(find_stability(data))
+```
