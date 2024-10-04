@@ -4,7 +4,7 @@ Link: /2021/08/20/vancian-spellcasting-in-tabletop-rpgs/
 
 # Vancian Spellcasting in Tabletop RPGs
 
-![alluring young woman preparing potion against black background](_pexels-photo-4355630-1.jpeg)
+![alluring young woman preparing potion against black background]({{ "images/pexels-photo-4355630-1.jpeg" | relative_url }})
 
 "Vancian" magic systems - which is to say, those based on the work of 20th century fantasy author Jack Vance - are common in roleplaying games (particularly D&D and its various derivatives, homages, and clones). The Vancian idiom also makes its way into fantasy fiction from time to time, perhaps more often by association with D&D rather than the work of Jack Vance.
 

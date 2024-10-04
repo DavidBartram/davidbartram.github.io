@@ -4,7 +4,7 @@ Link: /2022/04/17/advent-of-code-2021-days-21-25/
 
 # Advent of Code 2021 - Days 21-25
 
-![christmas tree decorated with baubles and garland](_pexels-photo-6211095.jpeg)
+![christmas tree decorated with baubles and garland]({{ "images/pexels-photo-6211095.jpeg" | relative_url }})
 
 Welcome to the final instalment of my series on Advent of Code 2021! Christmas is but a faded memory now, indeed it is literally Easter Sunday 2022 as I type. But I'm still here to spread one last dose of festive Python joy. All code on Github [here](https://git.io/JmAvJ). The code below is for Part 2 of each day, which often incorporates Part 1 in some way.
 

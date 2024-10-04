@@ -4,7 +4,7 @@ Link: /2021/09/02/understanding-a-python-3-8-quine/
 
 # Understanding a Python 3.8 Quine
 
-![a primate examines themselves in the mirror](_pexels-photo-1207875.jpeg)
+![a primate examines themselves in the mirror]({{ "images/pexels-photo-1207875.jpeg" | relative_url }})
 
 What is a quine?
 ----------------

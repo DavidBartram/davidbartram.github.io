@@ -4,7 +4,7 @@ Link: /2021/04/06/advent-of-code-2020-days-21-25/
 
 # Advent of Code 2020 Days 21-25
 
-![advent architecture blur business](_pexels-photo-195030.jpeg)
+![advent architecture blur business]({{ "images/pexels-photo-195030.jpeg" | relative_url }})
 
 With Christmas only a distant memory, I finally conclude [Advent of Code 2020](http://adventofcode.com/2020/). What a fun, enlightening journey this has been! All my Python 3 solutions are on Github [here](https://github.com/DavidBartram/advent-of-code/).
 

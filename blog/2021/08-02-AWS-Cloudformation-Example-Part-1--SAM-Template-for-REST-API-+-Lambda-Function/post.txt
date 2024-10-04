@@ -4,7 +4,7 @@ Link: /2021/08/02/aws-cloudformation-example-part-1-sam-template-for-rest-api-la
 
 # AWS Cloudformation Example Part 1 - SAM Template for REST API + Lambda Function
 
-![scenic photo of clouds during daytime](_pexels-photo-2909083.jpeg)
+![scenic photo of clouds during daytime]({{ "images/pexels-photo-2909083.jpeg" | relative_url }})
 
 The goal of this example is to show how to use a Cloudformation SAM (serverless application management) template and the SAM CLI to deploy a simple REST API backed by a lambda function. All the code below is available in [this repo](https://github.com/DavidBartram/cloudformation-api-lambda).
 

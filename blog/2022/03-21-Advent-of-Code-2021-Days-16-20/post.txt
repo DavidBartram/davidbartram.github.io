@@ -4,7 +4,7 @@ Link: /2022/03/21/advent-of-code-2021-days-16-20/
 o
 # Advent of Code 2021 Days 16-20
 
-![christmas tree decorated with baubles and garland](_pexels-photo-6211095.jpeg)
+![christmas tree decorated with baubles and garland]({{ "images/pexels-photo-6211095.jpeg" | relative_url }})
 
 Welcome back to some more [Advent of Code 2021](http://adventofcode.com/2021/)!
 
@@ -34,7 +34,7 @@ Literal values have their header followed by groups of five bits. The first bit 
 
 For example, a literal value packet, converted from hexadecimal to binary, might look like this: 111100100101011010001. The interpretation of this packet is explained by the diagram below:
 
-![](_bits_literal_value_package.jpg)
+![]({{ "images/bits_literal_value_package.jpg" | relative_url }})
 
 #### Operator Packets
 
@@ -58,11 +58,11 @@ If length type is 1, then the next 11 bits of the packet represent an integer wh
 
 Below is an example of an operator subpacket using length type 1, with value 4 + 3 = 7.
 
-![](_bits_operator_packet_sum.jpg)
+![]({{ "images/bits_operator_packet_sum.jpg" | relative_url }})
 
 And another example using length type 0, with value 4 x 3 = 12.
 
-![](_bits_operator_packet_product.jpg)
+![]({{ "images/bits_operator_packet_product.jpg" | relative_url }})
 
 #### Approach
 

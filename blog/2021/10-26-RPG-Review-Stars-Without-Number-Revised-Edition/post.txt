@@ -4,14 +4,14 @@ Link: /2021/10/26/rpg-review-stars-without-number-revised-edition/
 
 # RPG Review: Stars Without Number Revised Edition
 
-![stars-without-number-rpg-artwork-2](_stars-without-number-rpg-artwork-2.png)
+![stars-without-number-rpg-artwork-2]({{ "images/stars-without-number-rpg-artwork-2.png" | relative_url }})
 
 Overview
 --------
 
 [Sine Nomine Publishing](http://www.sinenomine-pub.com/) has recently Kickstarted a new offset print edition of [Stars Without Number Revised](https://www.drivethrurpg.com/product/226996/Stars-Without-Number-Revised-Edition), the 2017 science fiction RPG based loosely on Dungeons and Dragons [B/X edition](https://en.wikipedia.org/wiki/Dungeons_%26_Dragons_Basic_Set) rules. I'm also coming towards the end of a SWN:R campaign, so I have plenty of experience with the game. I thought it was high time for a review, even though the game is a few years old now, and with Dune coming out in cinemas, what better time to talk about science fiction!
 
-![](_swnr.jpg)
+![]({{ "images/swnr.jpg" | relative_url }})
 
 SWN:R is the second edition of Stars Without Number. The game is intended for running science fiction games in a wide variety of genres, from cyberpunk dystopia to military SF. If there is such a thing as a "default" SWN:R game, it would be something akin to the typical [Traveller](https://en.wikipedia.org/wiki/Traveller_(role-playing_game)) game, with the PCs taking the role of adventurers with a small interstellar ship and a large hunger for profit and adventure.
 
@@ -34,7 +34,7 @@ The book contains plenty of rules for weapons and equipment, including TL5 artif
 
 Starship combat has its own ruleset, which is probably one of my least favourite aspects of the system. It's functional, but it relies on your PCs thinking and acting as a team, because it doesn't always give each character something fun to do. The system is built around building up a supply of Command Points each turn and then spending them on actions by various departments on the ship. There are actions available for the Captain, Comms Officer, Pilot and Engineer but often it is best to ignore those options in favour of generating Command Points for the Gunnery Officer to blast away with. Viewed as a team activity it works well, but most of the time it's the player or players operating the guns who will get to roll the most dice and make the most impact.
 
-![](_stars-without-number-rpg-artwork-2.png)
+![]({{ "images/stars-without-number-rpg-artwork-2.png" | relative_url }})
 
 Setting
 -------

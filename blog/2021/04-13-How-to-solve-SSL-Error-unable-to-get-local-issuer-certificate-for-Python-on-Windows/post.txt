@@ -4,7 +4,7 @@ Link: /2021/04/13/how-to-solve-ssl-error-unable-to-get-local-issuer-certificate-
 
 # How to solve SSL Error "unable to get local issuer certificate" for Python on Windows
 
-![man people art sign](_pexels-photo-4439425.jpeg)
+![man people art sign]({{ "images/pexels-photo-4439425.jpeg" | relative_url }})
 
 I ran into an issue where any https request from Python would fail on my Win 10 laptop, anything based on the `requests` library, which includes the humble `pip install`!
 

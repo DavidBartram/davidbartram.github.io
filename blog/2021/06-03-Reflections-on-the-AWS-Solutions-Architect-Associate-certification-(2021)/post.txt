@@ -4,7 +4,7 @@ Link: /2021/06/03/reflections-on-the-aws-solutions-architect-associate-certifica
 
 # Reflections on the AWS Solutions Architect Associate certification (2021)
 
-![person holding black pen](_pexels-photo-1109541.jpeg)
+![person holding black pen]({{ "images/pexels-photo-1109541.jpeg" | relative_url }})
 
 Last week I sat and passed the AWS Solutions Architect Associate exam (SAA-C02), and I'm here to share a few thoughts on preparation and the experience of the exam itself.
 

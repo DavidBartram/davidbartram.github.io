@@ -4,7 +4,7 @@ Link: /2021/04/29/configuring-the-nginx-proxy-in-an-elastic-beanstalk-linux-envi
 
 # Configuring the nginx proxy in an Elastic Beanstalk Linux environment
 
-![person holding a green plant](_pexels-photo-1072824.jpeg)
+![person holding a green plant]({{ "images/pexels-photo-1072824.jpeg" | relative_url }})
 
 How to resolve the error "upstream sent too big header while reading response header from upstream" by extending the nginx config in Elastic Beanstalk.
 

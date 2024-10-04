@@ -4,7 +4,7 @@ Link: /2021/07/08/doubting-tau-a-question-of-%cf%80/
 
 # Doubting Tau - a question of π
 
-![ball black bubble colorful](_soap-bubble-colorful-ball-soapy-water.jpg)
+![ball black bubble colorful]({{ "images/soap-bubble-colorful-ball-soapy-water.jpg" | relative_url }})
 
 I've spent a lot of my life talking about _π_. Seven years as a maths educator will do that to a person.
 
@@ -23,7 +23,7 @@ Circumference is not a particularly unique property of a circle, it's just a spe
 
 Diameter, however, is on slightly shaky ground. Every circle has a fixed diameter, it is true, but the circle isn't the only 2D shape that has the property of having a [constant width](https://en.wikipedia.org/wiki/Curve_of_constant_width) regardless of orientation. So you can define a "diameter" for many kinds of shape, such as the [Reuleaux triangle](https://en.wikipedia.org/wiki/Reuleaux_triangle).
 
-![](_220px-Reuleaux_triangle_Animation.gif)
+![]({{ "images/220px-Reuleaux_triangle_Animation.gif" | relative_url }})
 
 This Reuleaux triangle is not a circle, but it does have a constant width, regardless of how it rotates. This is shown by the shape always touching all 4 sides of the square.
 
@@ -51,7 +51,7 @@ The expression 2π crops up all over the place in mathematics. It's the value of
 
 If we used τ instead, a full turn would be τ radians. Half a turn would be half of τ. Neat, isn't it? The diagram below shows angles in radians in terms of τ , in all their intuitive neatness.
 
-![](_tau-angles.png)
+![]({{ "images/tau-angles.png" | relative_url }})
 
 Examples of special angles in terms of τ
 
@@ -103,7 +103,7 @@ At first glance this doesn't look any nicer. The fraction at the front hasn't go
 
 But there is an insight to be gleaned from this way of writing it. **τ r^3^** is the volume of a cylinder with radius r and height 2r. This cylinder would completely enclose the sphere, just touching it, as shown below:
 
-![](_image.png)
+![]({{ "images/image.png" | relative_url }})
 
 A sphere inside the smallest cylinder that could enclose it.
 

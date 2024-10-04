@@ -4,7 +4,7 @@ Link: /2021/07/15/python-api-request-with-error-handling-england-wales-bank-holi
 
 # Python API Request with Error Handling: England &amp; Wales Bank Holidays
 
-![woman writing on whiteboard](_pexels-photo-3861943.jpeg)
+![woman writing on whiteboard]({{ "images/pexels-photo-3861943.jpeg" | relative_url }})
 
 A brief example of using the requests library in Python to query an API, in this case the gov.uk Bank Holidays API.
 

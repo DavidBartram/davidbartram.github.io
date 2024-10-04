@@ -4,7 +4,7 @@ Link: /2021/01/22/reinvent-2020-3-container-insights/
 
 # Re:Invent 2020 3 – Container Insights
 
-![14796090251_5d6467a59b_b](_14796090251_5d6467a59b_b.jpg)
+![14796090251_5d6467a59b_b]({{ "images/14796090251_5d6467a59b_b.jpg" | relative_url }})
 
 [Re:Invent](https://reinvent.awsevents.com/) is AWS's annual learning conference, and this is the first one I've been able to attend (virtually of course!). I'm going to write up my thoughts on some of the talks that I enjoyed and got value out of, though there has been a lot of other great stuff at the conference.
 
@@ -24,7 +24,7 @@ Jothiprakash started with an overview of the needs expressed by AWS customers fo
 
 What Container Insights provides is prebuilt and automated dashboards with CloudWatch features. The information in Container Insights is provided by Cloudwatch agents, X-ray agents, Open Telemetry agents and the new Cloudwatch Prometheus agent.
 
-![](_screenshot-2021-01-22-093532.png)
+![]({{ "images/screenshot-2021-01-22-093532.png" | relative_url }})
 
 #### Container Insights and Prometheus
 

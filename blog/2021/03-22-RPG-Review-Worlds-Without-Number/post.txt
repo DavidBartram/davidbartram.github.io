@@ -4,14 +4,14 @@ Link: /2021/03/22/rpg-review-worlds-without-number/
 
 # RPG Review: Worlds Without Number
 
-![WWN](_wwn.jpg)
+![WWN]({{ "images/wwn.jpg" | relative_url }})
 
 Overview
 --------
 
 [Worlds Without Number](https://www.drivethrurpg.com/product/348791/Worlds-Without-Number) is the latest tabletop RPG from [Sine Nomine Publishing](http://www.sinenomine-pub.com/), a one-man band operated by the prolific Kevin Crawford. Crawford has made his name by writing games with mechanics based on old-school D&D, particularly the [B/X](https://en.wikipedia.org/wiki/Dungeons_%26_Dragons_Basic_Set) edition. Over the years he has created numerous settings and refined his own take on the ruleset.
 
-![](_wwn.jpg)
+![]({{ "images/wwn.jpg" | relative_url }})
 
 Worlds Without Number (WWN) is a fantasy version of 2017's [Stars Without Number Revised](https://www.drivethrurpg.com/product/226996/Stars-Without-Number-Revised-Edition?term=Stars+Without+Number+Revised) (SWN:R), the latest edition of Crawford's science fiction ruleset. In particular, WWN tries to capture the feel of the Dying Earth genre of fantasy, featuring a far future world returned to a faux-medieval society by entropy and the sheer weight of history. The Dying Earth books by Jack Vance are the quintessential example of the genre - hence the name - but other works such as M. John Harrison's Viriconium and Gene Wolfe's Book of the New Sun form part of the inspiration for WWN.
 

@@ -4,7 +4,7 @@ Link: /2021/03/08/advent-of-code-2020-days-16-20/
 
 # Advent of Code 2020 Days 16-20
 
-![advent architecture blur business](_pexels-photo-195030.jpeg)
+![advent architecture blur business]({{ "images/pexels-photo-195030.jpeg" | relative_url }})
 
 Continuing my series of posts as I work through [Advent of Code 2020](http://adventofcode.com/2020/) at my own pace. Here are some of my thoughts and solutions.
 

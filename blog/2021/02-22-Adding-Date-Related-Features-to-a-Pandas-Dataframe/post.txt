@@ -4,7 +4,7 @@ Link: /2021/02/22/adding-date-related-features-to-a-pandas-dataframe/
 
 # Adding Date-Related Features to a Pandas Dataframe
 
-![calendar dates paper schedule](_pexels-photo-273153.jpeg)
+![calendar dates paper schedule]({{ "images/pexels-photo-273153.jpeg" | relative_url }})
 
 This post captures a few examples of feature enrichment in Pandas. In particular, these examples focus on adding a few simple features related to the date.
 

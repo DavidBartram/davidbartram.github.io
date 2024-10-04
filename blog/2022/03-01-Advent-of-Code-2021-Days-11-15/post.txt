@@ -4,7 +4,7 @@ Link: /2022/03/01/advent-of-code-2021-days-11-15/
 
 # Advent of Code 2021 Days 11-15
 
-![christmas tree decorated with baubles and garland](_pexels-photo-6211095.jpeg)
+![christmas tree decorated with baubles and garland]({{ "images/pexels-photo-6211095.jpeg" | relative_url }})
 
 Welcome back to some more [Advent of Code 2021](http://adventofcode.com/2021/)!
 
@@ -188,7 +188,7 @@ Since the variable `dots` (and its temporary copy `newdots`) is implemented as a
 
 The goal is to find the pattern of the dots after all the fold instructions have been executed. When printed, this pattern resembles a string of capital letters which is the final puzzle solution. Many participants included optical character recognition (OCR) to output the final solution, however I was content with simply printing the pattern to the console and using the OCR device attached to my eyeballs:
 
-![](_origami.jpg)
+![]({{ "images/origami.jpg" | relative_url }})
 
 ### Python Code
 ```python

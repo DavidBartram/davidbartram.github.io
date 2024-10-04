@@ -4,7 +4,7 @@ Link: /2022/01/05/advent-of-code-2021-days-6-10/
 
 # Advent of Code 2021 Days 6-10
 
-![christmas tree decorated with baubles and garland](_pexels-photo-6211095.jpeg)
+![christmas tree decorated with baubles and garland]({{ "images/pexels-photo-6211095.jpeg" | relative_url }})
 
 Welcome back to some more [Advent of Code 2021](http://adventofcode.com/2021/)!
 
@@ -117,7 +117,7 @@ We have a bunch of badly mis-wired [seven-segment displays](https://en.wikipedia
 
 The displays represent the digits 0-9 as shown in the diagram below, with segments labelled a to g.
 
-![](_7segmentdisplay-1.jpg)
+![]({{ "images/7segmentdisplay-1.jpg" | relative_url }})
 
 For each 4 digit display in the input, we get a list of what all ten possible digits look like, plus the four digits the display is actually trying to show. Each display is miswired in a different way, so the 10 possible digits will not look like the above diagram! Each display always lights up the correct number of segments, but the segments have been mixed up in a consistent way. For example, a certain display might light up segment `f` _every time_ it is supposed to light up segment `b`.
 
@@ -125,7 +125,7 @@ While this mapping will be consistent _within_ a given display, each display is 
 
 The scrambled seven-segment displays are represented by strings, for example `febca`, showing which segments are lit. `febca` would represent the following display:
 
-![](_febca.jpg)
+![]({{ "images/febca.jpg" | relative_url }})
 
 Let's look at an example line of our input, representing various configurations of a single mis-wired display:
 
@@ -145,11 +145,11 @@ We can decode the entire output just by thinking about sets of segments which ar
 
 Firstly let's organise the digits by the number of segments lit, with a quick glance at the diagram above.
 
-![](_segments_1.jpg)
+![]({{ "images/segments_1.jpg" | relative_url }})
 
-![](_segments_2.jpg)
+![]({{ "images/segments_2.jpg" | relative_url }})
 
-![](_segments_3.jpg)
+![]({{ "images/segments_3.jpg" | relative_url }})
 
 The digits 1, 4, 7, and 8 can be identified immediately by the number of segments lit.
 
@@ -159,7 +159,7 @@ Compare the unidentified sets of segments with the ones that have already been i
 
 First consider 2, 3 and 5. Each of these has exactly five segments lit.
 
-![](_shared_segs_1.jpg)
+![]({{ "images/shared_segs_1.jpg" | relative_url }})
 
 *   Only 3 has exactly three segments in common with 7
 *   Only 5 has exactly three segments in common with 4
@@ -167,7 +167,7 @@ First consider 2, 3 and 5. Each of these has exactly five segments lit.
 
 Now repeat the process with 0, 6 and 9, which all have exactly six segments lit.
 
-![](_shared_segs_2.jpg)
+![]({{ "images/shared_segs_2.jpg" | relative_url }})
 
 *   Only 6 has exactly two segments in common with 7
 *   Only 9 has exactly four segments in common with 4

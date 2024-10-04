@@ -4,7 +4,7 @@ Link: /2020/11/17/great-content-from-stand-up-maths-benfords-law-dodgy-scatter-g
 
 # Great content from Stand-up Maths: Benford's Law, Dodgy Scatter Graphs and the 2020 US Election
 
-![benford's law](_benfords-law-2.png)
+![benford's law]({{ "images/benfords-law-2.png" | relative_url }})
 
 The internet is full of misinformation about the 2020 election (and about most other topics as well), and I was really interested to see one of my favourite YouTubers, Matt Parker of Stand-up Maths [http://standupmaths.com](http://standupmaths.com)/ , weigh in on the subject of dubious statistics. Normally elections wouldn't be in Stand-up Maths' bag of tricks - most of their videos are about fun mathematical puzzles, games and curiosities. But it looks like his patrons asked him to take a look at a couple of claims about electoral fraud...
 

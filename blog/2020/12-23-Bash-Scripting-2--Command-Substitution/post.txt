@@ -4,7 +4,7 @@ Link: /2020/12/23/bash-scripting-2-command-substitution/
 
 # Bash Scripting 2 - Command Substitution
 
-![backticks-vs-dollarsign](_backticks-vs-dollarsign-big-3.png)
+![backticks-vs-dollarsign]({{ "images/backticks-vs-dollarsign-big-3.png" | relative_url }})
 
 Let's ask a very simple question - how do I make a Bash command which will print the current date?
 

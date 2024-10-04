@@ -4,7 +4,7 @@ Link: /2020/12/18/roleplaying-during-the-pandemic/
 
 # "The Wizard is on Mute": Roleplaying During the Pandemic
 
-![dice2 (2)](_dice2-2.jpg)
+![dice2 (2)]({{ "images/dice2-2.jpg" | relative_url }})
 
 Covid-19's impact has been felt in all areas of life, including how we spend our free time. I've been very fortunate that tabletop roleplaying is one hobby that can be readily adapted for online play.
 

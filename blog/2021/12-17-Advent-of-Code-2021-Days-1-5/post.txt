@@ -4,7 +4,7 @@ Link: /2021/12/17/advent-of-code-2021-days-1-5/
 
 # Advent of Code 2021 Days 1-5
 
-![christmas tree decorated with baubles and garland](_pexels-photo-6211095.jpeg)
+![christmas tree decorated with baubles and garland]({{ "images/pexels-photo-6211095.jpeg" | relative_url }})
 
 This year I'm a bit more timely with [Advent of Code 2021](http://adventofcode.com/2021/)! Really enjoying it so far! Here are my thoughts and solutions for the first 5 days of coding Christmas!
 

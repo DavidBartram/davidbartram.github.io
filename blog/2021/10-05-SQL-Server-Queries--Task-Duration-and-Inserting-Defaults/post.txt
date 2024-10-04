@@ -4,7 +4,7 @@ Link: /2021/10/05/sql-server-queries-task-duration-inserting-defaults/
 
 # SQL Server Queries - Task Duration &amp; Inserting Defaults
 
-![stock exchange board](_pexels-photo-210607.jpeg)
+![stock exchange board]({{ "images/pexels-photo-210607.jpeg" | relative_url }})
 
 The title says it all really - two SQL (T-SQL) snippets designed for running against a Microsoft SQL Server database. They'll most likely work in whichever flavour of SQL you prefer, with a little tweaking.
 

@@ -4,7 +4,7 @@ Link: /2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-l
 
 # AWS Cloudformation Example Part 2 - Deploy and Test a REST API + Lambda Function
 
-![person in black long sleeve shirt holding white tissue paper](_pexels-photo-4175032.jpeg)
+![person in black long sleeve shirt holding white tissue paper]({{ "images/pexels-photo-4175032.jpeg" | relative_url }})
 
 In [Part 1](https://david-bartram.com/2021/08/02/aws-cloudformation-example-part-1-sam-template-for-rest-api-lambda-function/) we put together a Cloudformation SAM template for a simple REST API backed by a lambda function. The resulting code is available in [this repo](https://github.com/DavidBartram/cloudformation-api-lambda).
 
@@ -33,7 +33,7 @@ This will package the separate components in the folder (e.g. the SAM template a
 
 You're hoping for a successful build, like the below:
 
-![](_image.png)
+![]({{ "images/image.png" | relative_url }})
 
 4. SAM deploy
 -------------
@@ -48,26 +48,26 @@ However we want to deploy IAM resources with custom names, which requires a capa
 
 You can choose what to name your Cloudformation stack, the Region you want to deploy to, and the values of all the parameters in `template.yml`. I was happy with the defaults, so I only had to choose the stack name and the last few options.
 
-![](_image-2.png)
+![]({{ "images/image-2.png" | relative_url }})
 
 The last 3 options will save the SAM configuration to a [config file](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html) called `samconfig.toml` in the root of the directory.
 
 I asked to confirm the changes before deployment, so I get a chance to look at the changeset:
 
-![](_image-3.png)
+![]({{ "images/image-3.png" | relative_url }})
 
 Those look like the resources I asked for in my template, so I will answer in the affirmative to `Deploy this changeset? [y/N]` `.`
 
 You can watch it being created, and soon enough the stack will be successfully deployed:
 
-![](_image-4.png)
+![]({{ "images/image-4.png" | relative_url }})
 
 5. View Cloudformation Stack in AWS Console
 -------------------------------------------
 
 Let's hope into the AWS console, go to the Cloudformation console and select the stack you've just created. If you go to the Resources tab you can see all the resources that have been created. At this point if you're anything like me you'll want to visit some of the resources and poke around, see if things are as you expected based on your template.
 
-![](_image-5.png)
+![]({{ "images/image-5.png" | relative_url }})
 
 6. Test API in AWS Console
 --------------------------
@@ -76,7 +76,7 @@ Let's start testing the API that we've deployed. Firstly we're going to test it 
 
 There's plenty of interesting things we could look at, but for now click on the POST method and then click the test button:
 
-![](_image-6.png)
+![]({{ "images/image-6.png" | relative_url }})
 
 This test bypasses any authorization on the API. For the request body, enter something that matches the schema we set up for submitting sales stats for coloured widgets. It should look something like this:
 
@@ -129,13 +129,13 @@ You don't need to pass in any query parameters.
 
 Select the Body tab, select the "raw" option and choose JSON from the dropdown. Enter a valid JSON Body.
 
-![](_image-8.png)
+![]({{ "images/image-8.png" | relative_url }})
 
 If you click Send now, you'll get a "Missing Authentication Token" error in response. This API isn't available to just anyone - you need to sign your request with the access key and secret key of the IAM user you created earlier.
 
 Go to the Authorization tab and select AWS Signature from the Authorization Type dropdown. Enter your access key and secret key on the right. Click Advanced and enter the AWS region.
 
-![](_image-9.png)
+![]({{ "images/image-9.png" | relative_url }})
 
 Now when you hit Send, you'll get the response you expect below your request.
 

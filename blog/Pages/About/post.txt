@@ -3,7 +3,7 @@ Link: /about/
 
 # About
 
-![](_20200422_180104-2.jpg)
+![]({{ "images/20200422_180104-2.jpg" | relative_url }})
 
 David Bartram
 -------------
