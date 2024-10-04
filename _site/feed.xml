@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-04T15:24:50+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Dave Bartram Blog</title><subtitle>Lessons I&apos;m learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths &amp; science</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2024/10/04/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2024-10-04T14:45:39+01:00</published><updated>2024-10-04T14:45:39+01:00</updated><id>http://localhost:4000/jekyll/update/2024/10/04/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/10/04/welcome-to-jekyll.html"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+<p>To add new posts, simply add a file in the <code class="language-plaintext highlighter-rouge">_posts</code> directory that follows the convention <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.]]></summary></entry><entry><title type="html">Bash Scripting 1 - the whole shebang</title><link href="http://localhost:4000/2020/11/13/bash-scripting-1.html" rel="alternate" type="text/html" title="Bash Scripting 1 - the whole shebang" /><published>2020-11-13T13:45:39+00:00</published><updated>2020-11-13T13:45:39+00:00</updated><id>http://localhost:4000/2020/11/13/bash-scripting-1</id><content type="html" xml:base="http://localhost:4000/2020/11/13/bash-scripting-1.html"><![CDATA[<h1 id="bash-scripting-1---the-whole-shebang">Bash Scripting 1 - the whole shebang</h1>
+
+<p><img src="/images/shebang-big.png" alt="shebang-big" /></p>
+
+<p>I’ve spent some time over the last couple of weeks trying to learn some Bash scripting. I wanted to break out a bit of the Windows headspace and refresh my knowledge of Linux command line syntax. I’m going to document some of the key things I’ve learned on this blog - hopefully you find it useful.</p>
+
+<h3 id="hey-what-even-is-a-bash-script"><strong>Hey, what even is a Bash script?</strong></h3>
+
+<p>Without going into too much detail, Bash (the <strong>B</strong>ourne <strong>A</strong>gain <strong>Sh</strong>ell) is a Unix shell that interprets commands. If you’re familiar with Unixland, you’ll have spent a fair bit of time with commands like <strong><code class="language-plaintext highlighter-rouge">ls</code></strong> , <strong><code class="language-plaintext highlighter-rouge">grep</code></strong> and <strong><code class="language-plaintext highlighter-rouge">echo</code>.</strong></p>
+
+<p>A Bash script is a text file containing a series of commands. When you execute the script, those commands are run by the Bash shell much as they would be at the command line. Bash scripting a great, simple form of automation - take a process that requires multiple command line inputs, write a script for it, and next time all you need to do is run the script. You can pass in arguments to the script, or prompt for user inputs, and all that good stuff.</p>
+
+<h3 id="start-with-a-shebang"><strong>Start with a shebang</strong></h3>
+
+<p>If you Google up some Bash scripts (<a href="https://github.com/alexanderepstein/Bash-Snippets">https://github.com/alexanderepstein/Bash-Snippets</a> has some fun ones), you’ll find they all have a first line that’s something like <code class="language-plaintext highlighter-rouge">#!/bin/bash</code>.</p>
+
+<p>The characters #! are called a “shebang”, hence this post’s title. But what is a line like <code class="language-plaintext highlighter-rouge">#!/bin/bash</code> doing for your script?</p>
+
+<p>Well, in a very real sense, it’s the shebang (or rather, what comes after) that makes your script a Bash script. <code class="language-plaintext highlighter-rouge">/bin/bash</code> is the path to the Bash interpreter. The line <code class="language-plaintext highlighter-rouge">#!/bin/bash</code> tells the machine that the file is a script, and that it should be interpreted with <code class="language-plaintext highlighter-rouge">bash</code>. If you wrote your script in Python, you should put the path to your Python interpreter here (e.g. <code class="language-plaintext highlighter-rouge">#!/usr/bin/python</code>) , and so on.</p>
+
+<p><code class="language-plaintext highlighter-rouge">#!/bin/bash</code> tells your script to be interpreted with <code class="language-plaintext highlighter-rouge">bash</code>, which is installed in the /<code class="language-plaintext highlighter-rouge">bin</code> folder. Which is where you would expect bash to be on most Linux machines.</p>
+
+<h3 id="which-shebang-to-choose">Which shebang to choose?</h3>
+
+<p>An alternative shebang line is <code class="language-plaintext highlighter-rouge">#!/usr/bin/env bash</code> . Instead of looking for <code class="language-plaintext highlighter-rouge">bash</code> in <code class="language-plaintext highlighter-rouge">/bin</code>, the script will search for <code class="language-plaintext highlighter-rouge">bash</code> in the user’s <code class="language-plaintext highlighter-rouge">$PATH</code> variable, and start with the first one they can find. This approach has advantages and disadvantages, which are well explained here: <a href="https://stackoverflow.com/questions/21612980/why-is-usr-bin-env-bash-superior-to-bin-bash">https://stackoverflow.com/questions/21612980/why-is-usr-bin-env-bash-superior-to-bin-bash</a></p>
+
+<p>So, you can run into controversy and confusion in the first line of your script!</p>
+
+<p>Fortunately, at the moment I’m just learning the ropes, and on the Linux VM I’ve set up to practice, I know for sure that <code class="language-plaintext highlighter-rouge">#!/bin/bash</code> will work. So for now, that’s the shebang for me.</p>]]></content><author><name></name></author><category term="Bash," /><category term="Bash" /><category term="Scripting," /><category term="Coding," /><category term="Linux," /><category term="Scripting," /><category term="Unix" /><summary type="html"><![CDATA[Bash Scripting 1 - the whole shebang]]></summary></entry></feed>
