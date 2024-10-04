@@ -1,6 +1,9 @@
-Date: 2020-12-23
-Tags: Bash Scripting, Coding
-Link: /2020/12/23/bash-scripting-2-command-substitution/
+---
+layout: post
+title: "Bash Scripting 2 Command Substitution"
+date: 2020-12-23 14:45:39 +0100
+tags: Bash Scripting, Coding
+---
 
 # Bash Scripting 2 - Command Substitution
 

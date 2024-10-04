@@ -1,6 +1,9 @@
-Date: 2021-08-20
-Tags: Tabletop Roleplaying
-Link: /2021/08/20/vancian-spellcasting-in-tabletop-rpgs/
+---
+layout: post
+title: "Vancian Spellcasting In Tabletop Rpgs"
+date: 2021-08-20 14:45:39 +0100
+tags: Tabletop Roleplaying
+---
 
 # Vancian Spellcasting in Tabletop RPGs
 

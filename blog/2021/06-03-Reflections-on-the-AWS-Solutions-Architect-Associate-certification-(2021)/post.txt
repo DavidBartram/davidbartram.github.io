@@ -1,6 +1,9 @@
-Date: 2021-06-03
-Tags: AWS
-Link: /2021/06/03/reflections-on-the-aws-solutions-architect-associate-certification-2021/
+---
+layout: post
+title: "Reflections On The Aws Solutions Architect Associate Certification 2021"
+date: 2021-06-03 14:45:39 +0100
+tags: AWS
+---
 
 # Reflections on the AWS Solutions Architect Associate certification (2021)
 

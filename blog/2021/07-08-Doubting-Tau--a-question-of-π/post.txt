@@ -1,6 +1,9 @@
-Date: 2021-07-08
-Tags: Maths
-Link: /2021/07/08/doubting-tau-a-question-of-%cf%80/
+---
+layout: post
+title: "Doubting Tau A Question Of %Cf%80"
+date: 2021-07-08 14:45:39 +0100
+tags: Maths
+---
 
 # Doubting Tau - a question of π
 

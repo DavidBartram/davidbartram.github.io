@@ -1,6 +1,9 @@
-Date: 2021-09-02
-Tags: Coding, Python
-Link: /2021/09/02/understanding-a-python-3-8-quine/
+---
+layout: post
+title: "Understanding A Python 3 8 Quine"
+date: 2021-09-02 14:45:39 +0100
+tags: Coding, Python
+---
 
 # Understanding a Python 3.8 Quine
 

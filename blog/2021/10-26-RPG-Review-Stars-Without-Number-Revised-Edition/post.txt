@@ -1,6 +1,9 @@
-Date: 2021-10-26
-Tags: Reviews, Tabletop Roleplaying
-Link: /2021/10/26/rpg-review-stars-without-number-revised-edition/
+---
+layout: post
+title: "Rpg Review Stars Without Number Revised Edition"
+date: 2021-10-26 14:45:39 +0100
+tags: Reviews, Tabletop Roleplaying
+---
 
 # RPG Review: Stars Without Number Revised Edition
 

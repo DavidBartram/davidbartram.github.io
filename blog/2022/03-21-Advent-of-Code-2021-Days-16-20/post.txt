@@ -1,6 +1,9 @@
-Date: 2022-03-21
-Tags: Advent of Code, AoC, Coding, Python
-Link: /2022/03/21/advent-of-code-2021-days-16-20/
+---
+layout: post
+title: "Advent Of Code 2021 Days 16-20"
+date: 2022-03-21 14:45:39 +0100
+tags: Advent of Code, AoC, Coding, Python
+---
 o
 # Advent of Code 2021 Days 16-20
 

@@ -1,6 +1,9 @@
-Date: 2021-01-22
-Tags: AWS, AWS Reinvent, Cloud, Containers
-Link: /2021/01/22/reinvent-2020-3-container-insights/
+---
+layout: post
+title: "Reinvent 2020 3 Container Insights"
+date: 2021-01-22 14:45:39 +0100
+tags: AWS, AWS Reinvent, Cloud, Containers
+---
 
 # Re:Invent 2020 3 – Container Insights
 

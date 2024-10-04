@@ -1,6 +1,9 @@
-Date: 2021-12-17
-Tags: Advent of Code, Coding, Python
-Link: /2021/12/17/advent-of-code-2021-days-1-5/
+---
+layout: post
+title: "Advent Of Code 2021 Days 1-5"
+date: 2021-12-17 14:45:39 +0100
+tags: Advent of Code, Coding, Python
+---
 
 # Advent of Code 2021 Days 1-5
 

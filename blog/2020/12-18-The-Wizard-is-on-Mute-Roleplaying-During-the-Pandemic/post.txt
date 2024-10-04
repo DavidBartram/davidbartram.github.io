@@ -1,6 +1,9 @@
-Date: 2020-12-18
-Tags: D&amp;D, D6, Roll20, rpgs, Tabletop Roleplaying
-Link: /2020/12/18/roleplaying-during-the-pandemic/
+---
+layout: post
+title: "Roleplaying During The Pandemic"
+date: 2020-12-18 14:45:39 +0100
+tags: D&amp;D, D6, Roll20, rpgs, Tabletop Roleplaying
+---
 
 # "The Wizard is on Mute": Roleplaying During the Pandemic
 

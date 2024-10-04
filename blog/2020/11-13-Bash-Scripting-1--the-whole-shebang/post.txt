@@ -1,6 +1,9 @@
-Date: 2020-11-13
-Tags: Bash, Bash Scripting, Coding, Linux, Scripting, Unix
-Link: /2020/11/13/bash-scripting-1-the-whole-shebang/
+---
+layout: post
+title: "Bash Scripting 1 The Whole Shebang"
+date: 2020-11-13 14:45:39 +0100
+tags: Bash, Bash Scripting, Coding, Linux, Scripting, Unix
+---
 
 # Bash Scripting 1 - the whole shebang
 

@@ -1,6 +1,9 @@
-Date: 2021-01-08
-Tags: Advent of Code, AoC, Coding, Python
-Link: /2021/01/08/advent-of-code-2020-days-1-5/
+---
+layout: post
+title: "Advent Of Code 2020 Days 1-5"
+date: 2021-01-08 14:45:39 +0100
+tags: Advent of Code, AoC, Coding, Python
+---
 
 # Advent of Code 2020 Days 1-5
 

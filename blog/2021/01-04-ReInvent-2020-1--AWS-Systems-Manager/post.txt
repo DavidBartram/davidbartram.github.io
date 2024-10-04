@@ -1,6 +1,9 @@
-Date: 2021-01-04
-Tags: Automation, AWS, AWS Reinvent, Cloud
-Link: /2021/01/04/reinvent-2020-part-1-aws-systems-manager/
+---
+layout: post
+title: "Reinvent 2020 Part 1 Aws Systems Manager"
+date: 2021-01-04 14:45:39 +0100
+tags: Automation, AWS, AWS Reinvent, Cloud
+---
 
 # Re:Invent 2020 1 - AWS Systems Manager
 
