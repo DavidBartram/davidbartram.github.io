@@ -7,7 +7,7 @@ tags: Bash, Bash Scripting, Coding, Linux, Scripting, Unix
 
 # Bash Scripting 1 - the whole shebang
 
-![shebang-big](/images/shebang-big.png)
+![shebang-big]({{ "images/shebang-big.png" | relative_url }})
 
 I've spent some time over the last couple of weeks trying to learn some Bash scripting. I wanted to break out a bit of the Windows headspace and refresh my knowledge of Linux command line syntax. I'm going to document some of the key things I've learned on this blog - hopefully you find it useful.
 
