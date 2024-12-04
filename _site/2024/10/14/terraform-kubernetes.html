@@ -3,21 +3,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Terraform &amp; Kubernetes - a simple project | Dave Bartram Blog</title>
+<title>Terraform, Kubernetes, EKS - a simple project | Dave Bartram Blog</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Terraform &amp; Kubernetes - a simple project" />
+<meta property="og:title" content="Terraform, Kubernetes, EKS - a simple project" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Terraform &amp; Kubernetes - a simple project" />
-<meta property="og:description" content="Terraform &amp; Kubernetes - a simple project" />
+<meta name="description" content="Terraform, Kubernetes, EKS - a simple project" />
+<meta property="og:description" content="Terraform, Kubernetes, EKS - a simple project" />
 <link rel="canonical" href="http://localhost:4000/2024/10/14/terraform-kubernetes.html" />
 <meta property="og:url" content="http://localhost:4000/2024/10/14/terraform-kubernetes.html" />
 <meta property="og:site_name" content="Dave Bartram Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2024-10-14T15:04:44+01:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Terraform &amp; Kubernetes - a simple project" />
+<meta property="twitter:title" content="Terraform, Kubernetes, EKS - a simple project" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-14T15:04:44+01:00","datePublished":"2024-10-14T15:04:44+01:00","description":"Terraform &amp; Kubernetes - a simple project","headline":"Terraform &amp; Kubernetes - a simple project","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/10/14/terraform-kubernetes.html"},"url":"http://localhost:4000/2024/10/14/terraform-kubernetes.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-14T15:04:44+01:00","datePublished":"2024-10-14T15:04:44+01:00","description":"Terraform, Kubernetes, EKS - a simple project","headline":"Terraform, Kubernetes, EKS - a simple project","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/10/14/terraform-kubernetes.html"},"url":"http://localhost:4000/2024/10/14/terraform-kubernetes.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" />
   <link rel="stylesheet" href="/assets/tipuesearch/css/normalize.css">
@@ -62,16 +62,16 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Terraform &amp; Kubernetes - a simple project</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Terraform, Kubernetes, EKS - a simple project</h1>
     <p class="post-meta">
       <time class="dt-published" datetime="2024-10-14T15:04:44+01:00" itemprop="datePublished">Oct 14, 2024
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <h1 id="terraform--kubernetes---a-simple-project">Terraform &amp; Kubernetes - a simple project</h1>
+    <h1 id="terraform-kubernetes-eks---a-simple-project">Terraform, Kubernetes, EKS - a simple project</h1>
 
-<p>I took a couple of days to work with Terraform recently. I decided that a simple project to deploy an AWS EKS cluster with a Kubernetes service that would run a simple web app over HTTPS would be a good way to learn some Terraform fundamentals.</p>
+<p>I took some time recently to work with Terraform. I decided that a simple project to deploy an AWS EKS (Elastic Kubernetes Service) cluster with a Kubernetes service that would run a simple web app over HTTPS would be a good way to learn some Terraform fundamentals.</p>
 
 <p>The project can be found here <a href="https://github.com/DavidBartram/terraform-k8s">Terraform-k8s on GitHub</a></p>
 
@@ -81,23 +81,56 @@
 
 <h2 id="basic-experiments">Basic Experiments</h2>
 
+<p>In the <code class="language-plaintext highlighter-rouge">basic-experiments</code> directory I played with some features of Terraform, creating EC2 instances with random names and and create an EC2 using the latest Amazon Linux AMI.</p>
+
 <h2 id="project-structure">Project Structure</h2>
+
+<p>The main EKS Terraform project lives in the <code class="language-plaintext highlighter-rouge">k8s</code> directory, and here I structured the Terraform project into modules and used <a href="https://github.com/terraform-docs/terraform-docs"><code class="language-plaintext highlighter-rouge">terraform-docs</code></a> for automatic documentation.</p>
+
+<p>The <a href="https://github.com/DavidBartram/terraform-k8s">project repo</a> itself contains the most detailed guide, I will just summarise a few points here.</p>
+
+<p>The main module takes a docker hub image ref for the web app you want to host on EKS, a Route53 domain name and hosted zone ID (for a hosted zone you’ve already set up separately), and a few other details. Given this, it will create an EKS cluster, deploy the app to the cluster, and serve the app at the given domain name. It will output the URL at which you can test the web app.</p>
 
 <h3 id="providers">Providers</h3>
 
+<h4 id="aws">AWS</h4>
+<p>Unsurprisingly this project uses the standard Terraform <a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs"><code class="language-plaintext highlighter-rouge">aws</code></a> provider to deploy resources to an AWS account.</p>
+
+<h4 id="kubernetes">Kubernetes</h4>
+<p>Unsurprisingly this project uses the standard Terraform <a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs"><code class="language-plaintext highlighter-rouge">kubernetes</code></a> provider so that Terraform can interact with the Kubernetes cluster on EKS without needing to use <code class="language-plaintext highlighter-rouge">kubectl</code> commands.</p>
+
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">provider</span> <span class="s2">"kubernetes"</span> <span class="p">{</span>
+  <span class="nx">host</span>                   <span class="p">=</span> <span class="nx">module</span><span class="err">.</span><span class="nx">eks</span><span class="err">-</span><span class="nx">cluster</span><span class="err">.</span><span class="nx">cluster_endpoint</span>
+  <span class="nx">cluster_ca_certificate</span> <span class="p">=</span> <span class="nx">base64decode</span><span class="err">(</span><span class="nx">module</span><span class="err">.</span><span class="nx">eks</span><span class="err">-</span><span class="nx">cluster</span><span class="err">.</span><span class="nx">cluster_certificate_authority_data</span><span class="err">)</span>
+  <span class="nx">exec</span> <span class="p">{</span>
+    <span class="nx">api_version</span> <span class="p">=</span> <span class="s2">"client.authentication.k8s.io/v1beta1"</span>
+    <span class="nx">command</span>     <span class="p">=</span> <span class="s2">"aws"</span>
+    <span class="nx">args</span>        <span class="p">=</span> <span class="p">[</span><span class="s2">"--profile"</span><span class="p">,</span> <span class="nx">var</span><span class="err">.</span><span class="nx">profile</span><span class="p">,</span> <span class="s2">"eks"</span><span class="p">,</span> <span class="s2">"get-token"</span><span class="p">,</span> <span class="s2">"--cluster-name"</span><span class="p">,</span> <span class="nx">module</span><span class="err">.</span><span class="nx">eks</span><span class="err">-</span><span class="nx">cluster</span><span class="err">.</span><span class="nx">cluster_name</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>We can see that the provider uses an AWS CLI call to to the <code class="language-plaintext highlighter-rouge">aws eks get-token</code> API to obtain credentials for the EKS cluster.</p>
+
+<p>This allows for some declarative interaction with the cluster, though a potential expansion would be to use <a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs">Helm charts</a> for this purpose.</p>
+
 <h3 id="eks-cluster-module">eks-cluster module</h3>
+
+<p>This module handles the AWS infrastructure needed for the kubernetes app to be deployed.</p>
+
+<p>It sets up a VPC, an EKS cluster, and an Amazon Certificate Manager certificate to allow for SSL/TLS.</p>
 
 <h3 id="kubernetes-module">kubernetes module</h3>
 
-<h2 id="key-challenges">Key Challenges</h2>
+<p>This module creates a Kubernetes deployment and service, along with a Route53 DNS record (an A record) to point to the deployed service. For this project I didn’t want to add an ingress, so to simplify matters the service only listens on HTTPS on port 443 and does not have redirection of HTTP to HTTPS.</p>
 
-<h3 id="managing-kubernetes-cluster-with-the-terraform-kubernetes-provider">Managing Kubernetes cluster with the Terraform kubernetes provider</h3>
+<h2 id="brief-comparison-with-cloudformation">Brief Comparison with CloudFormation</h2>
 
-<h3 id="https-without-an-ingress">HTTPS (without an Ingress)</h3>
-
-<h3 id="dependencies">Dependencies</h3>
+<p>Having worked a great deal with AWS CloudFormation, Terraform is significantly different. The ease with which I can make and combine modules, and understand them by way of their inputs and outputs, is very impressive. It was also a welcome change to see <code class="language-plaintext highlighter-rouge">Terraform plan</code> determine the current state of the resources in AWS before deciding what to do - CloudFormation is notoriously reliant on the previously deployed template as a record of current state. Terraform instead queries AWS APIs to determine the current state, and thus can easily detect and remediate drift - a feature I enjoyed playing around with by manually adding unneccessary tags to resources and watching Terraform squash them.</p>
 
 <h2 id="final-thoughts">Final Thoughts</h2>
+
+<p>This was an enjoyable project to work with Terraform and Kubernetes, deploying a public-facing HTTPS web app entirely from declarative code. I was a little disappointed with cases where I needed an explicit <code class="language-plaintext highlighter-rouge">depends_on</code>, such as ensuring that the Route 53 records associated with the ACM certificate validation were deployed after the ACM certificate…I might naively have hoped that Terraform’s AWS provider could determine the right order for those (given that the certificate resource’s attributes are referenced in the Route 53 resource). Likewise I had to explicitly note that the Route53 A record pointing to the web app service should only be deployed after the web app service.</p>
 
   </div><a class="u-url" href="/2024/10/14/terraform-kubernetes.html" hidden></a>
 </article>
