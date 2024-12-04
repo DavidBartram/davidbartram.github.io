@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Vancian Spellcasting In Tabletop Rpgs"
 date: 2021-08-20 14:45:39 +0100
 tags: tabletop-roleplaying
@@ -15,8 +16,7 @@ Here I'm going to share a few thoughts on how spellcasting works in Vance's _Dyi
 
 The _Dying Earth_ stories are set in the waning days of our planet, eons into the future, after countless civilisations have walked the earth practicing science and magic. In the last days of earth, science is largely forgotten in favour of wizardry, or perhaps one has evolved into the other. The sun flickers in the sky, and is expected to go dark any day now. In this moribund world, Vance's cast of characters strut and fret their hour upon a collapsing stage. In general they are a venal and untrustworthy lot, prone to excesses for which the term "content warning" is not remotely ill-suited.
 
-Spells in the Dying Earth
--------------------------
+## Spells in the Dying Earth
 
 A spell, in Dying Earth terminology, is a sequence of mystical syllables designed in ages past to achieve a particular purpose. By the era of Vance's stories, most of the thousands of spells devised by the wizards of old are lost, leaving scarcely more than a hundred.
 
@@ -32,8 +32,7 @@ In a process most D&D players will be familiar with, Mazirian the Magician (in t
 
 Here we see some of the criticial features of Vancian spellcasting - choosing which spells to prepare, and having a limited number of castings. D&D has separated and permuted these features in various ways over the years. Some classes can cast any spell they have learned, without having prepared a particular selection for the day. However, such classes generally expend a "spell slot" of the spell's level to cast it, and so cannot hurl dozens of **Fireballs** in a day.
 
-Questions Raised by Dying Earth Spells
---------------------------------------
+## Questions Raised by Dying Earth Spells
 
 For anyone planning to build their own spell system inspired by Dying Earth, there are some critical design questions which Vance, being a storyteller rather than a rulebook writer, fails to address. Various editions of D&D and other games find various convenient answers to these, but it's interesting to revisit them with a fresh mind:
 
@@ -59,14 +58,12 @@ This issue is probably why the term "prepare" has become more common than "memor
 
 Once I have memorised the **Curse of the Macroid Toe**, how long do I have to unleash it on some unsuspecting malefactor? There's no clear answer in the stories - perhaps it persists indefinitely, perhaps it depends on the spellcaster's natural powers of memory. RPGs will tend to answer this with a simple, definite time - perhaps the following dawn, or the next time the spellcaster sleeps.
 
-Other Magic of the Dying Earth
-------------------------------
+## Other Magic of the Dying Earth
 
 For those who have only heard of Vancian magic from roleplaying circles, it's easy to presume that all magic in the Dying Earth works according to this strict set of rules. In fact this is far from the case. The Dying Earth is full of magic items with strange powers that require no spell, demons and ghosts which can be summoned forth to do a wizard's bidding, and alien creatures whose abilities are tantamount to sorcery.
 
 Indeed the most powerful wizards of the Dying Earth rarely cast a spell at all, having bound into their service certain reluctantly powerful creatures called sandestin. By commands, entreaties, bargains and threats, these wizards coax their sandestin into performing such wonders as they require, much like holding the lamp of a particularly snide and recalcitrant genie.
 
-Conclusions or lack thereof
----------------------------
+## Conclusions or lack thereof
 
 Really this post is just an opportunity to revisit Jack Vance's take on magic, rather than provide any serious mechanical analysis of various forms of Vancian magic that exist in RPGs. For me it's useful to know where the term comes from, and how Vance actually wrote about magic. Comparing that to how RPGs employ the concept is an interesting process, but where it leads will depend on your own thoughts and preferences.

@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Advent Of Code 2020 Days 21-25"
 date: 2021-04-06 14:45:39 +0100
 tags: advent-of-code coding python
@@ -11,14 +12,14 @@ tags: advent-of-code coding python
 
 With Christmas only a distant memory, I finally conclude [Advent of Code 2020](http://adventofcode.com/2020/). What a fun, enlightening journey this has been! All my Python 3 solutions are on Github [here](https://github.com/DavidBartram/advent-of-code/).
 
-Day 21 - [Allergen Assessment](https://adventofcode.com/2020/day/21)
---------------------------------------------------------------------
+## Day 21 - [Allergen Assessment](https://adventofcode.com/2020/day/21)
 
 ### Thoughts
 
 We're looking for allergens in a list of recipes written partly in a language we don't understand!
 
 This recipe:
+
 ```
     mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
 ```
@@ -34,6 +35,7 @@ Knowing this, we can iterate through the recipes in the input and build up an ad
 This was a refreshing palette cleanser after some pretty hefty puzzling.
 
 ### Python Code
+
 ```python
 import sys
 import re
@@ -102,31 +104,31 @@ def match(possibility,allerg,all_ingredients, matchR, seen):
 
     #iterate over the possible ingredients that could contain the allergen
     for ing in all_ingredients:
-        
+
         # If the matching of the ingredient to the allergen is possible
         # and the ingredient has not yet been visited
-        if possibility[(ing,allerg)] == 1 and seen[ing] == False: 
+        if possibility[(ing,allerg)] == 1 and seen[ing] == False:
             # Mark the allergen as visited
-            seen[ing] = True 
-  
+            seen[ing] = True
+
             #If the ingredient is not currently assigned to an allergen (matchR[ing] == -1)
             # OR the previously assigned allergen for the ingredient (matchR[ing]) has an alternate ingredient available
-            if matchR[ing] == -1 or match(possibility,matchR[ing], all_ingredients, matchR, seen): 
+            if matchR[ing] == -1 or match(possibility,matchR[ing], all_ingredients, matchR, seen):
                 matchR[ing] = allerg #assign the allergen to the ingredient we are considering
                 #print(matchR)
                 return True
 
     return False
 
-def maxmatch(possibility, all_allergens, all_ingredients): 
+def maxmatch(possibility, all_allergens, all_ingredients):
     # takes the possibility dict, the set of all allergens in the input, the set of all ingredients in the input
     # returns matchR for the maximum matching
     # matchR is a dict showing which ingredients have been assigned to which allergens
     # in matchR the keys is an ingredient, the value is an allergen, or -1 if the ingredient has not yet been assigned to an allergen
     matchR = {ing:-1 for ing in all_ingredients} #initialise with no allergens assigned to ingredients
-    
+
     #iterate over ingredients
-    for allergen in all_allergens: 
+    for allergen in all_allergens:
         seen = {ing: False for ing in all_ingredients} #before considering a new allergen, reset the visited ingredients
         match(possibility, allergen, all_ingredients, matchR, seen)
 
@@ -169,8 +171,7 @@ sorted_ings = ','.join( [x[0] for x in sorted_tuples] )
 print(sorted_ings) #part_2 answer
 ```
 
-Day 22 - [Crab Combat](https://adventofcode.com/2020/day/22)
-------------------------------------------------------------
+## Day 22 - [Crab Combat](https://adventofcode.com/2020/day/22)
 
 ### Thoughts
 
@@ -185,6 +186,7 @@ Python has a format called a deque (double-ended queue) which is handy for model
 Some AoC fans jokingly call the competition "Advent of Reading Comprehension", given that many of the most common problems solving the puzzle stem from struggling to understand the requirements. Here, the trick that took me a while was understanding exactly which cards are propagated from a game to the sub-game. The number of cards that get a player carries into the subgame is equal to the number on their top card at the time the subgame is created. Without realising this, I was propagating all of the remaining cards into the subgame and getting everything completely wrong!
 
 ### Python Code
+
 ```python
 import sys
 import re
@@ -219,11 +221,11 @@ def win(deck_p1, deck_p2, winner):
     if winner == 'P1':
         deck_p1.append(card_p1)
         deck_p1.append(card_p2)
-    
+
     else:
         deck_p2.append(card_p2)
         deck_p2.append(card_p1)
-    
+
     return deck_p1, deck_p2
 
 #function to play crab combat and output the winner and both final decks
@@ -241,13 +243,13 @@ def play(deck_p1, deck_p2):
             card2 = deck_p2[0]
         except IndexError:
             pass
-        
+
         if len1 == 0: #if P1's deck is empty, P2 wins
             return 'P2', deck_p1, deck_p2
 
         elif len2 == 0: #if P2's deck is empty, P1 wins
             return 'P1', deck_p1, deck_p2
-        
+
         elif len1 - 1 < card1 or len2 - 1 < card2:
             #if at least one player doesn't have enough cards to recurse
             #then we play the round normally
@@ -259,11 +261,11 @@ def play(deck_p1, deck_p2):
 
             else:
                 decks_seen.add(dtup) #add the current configuration to decks_seen
-            
+
                 if card1 > card2:
                     #P1 wins the round
                     deck_p1, deck_p2 = win(deck_p1, deck_p2, 'P1')
-                
+
                 else:
                     #P2 wins the round
                     deck_p1, deck_p2 = win(deck_p1, deck_p2, 'P2')
@@ -275,9 +277,9 @@ def play(deck_p1, deck_p2):
             new_deck_p2 = collections.deque(list(deck_p2)[1:card2 + 1])
             winner, _, _ = play(new_deck_p1, new_deck_p2)
 
-            
+
             deck_p1, deck_p2 = win(deck_p1, deck_p2, winner)
-    
+
     return winner, deck_p1, deck_p2
 
 #(C) Calculate the Puzzle Answer
@@ -288,16 +290,15 @@ final_deck = deck_p1
 
 if winner == 'P2':
     final_deck = deck_p2
-    
+
 points = reversed(range(1,len(final_deck)+1))
 
 score = sum([a*b for a,b in zip(final_deck,points)])
-    
+
 print(score)
 ```
 
-Day 23 - [Crab Cups](https://adventofcode.com/2020/day/23)
-----------------------------------------------------------
+## Day 23 - [Crab Cups](https://adventofcode.com/2020/day/23)
 
 ### Thoughts
 
@@ -310,6 +311,7 @@ With this structure you can move cups around without having to change every piec
 An alternative to my approach would be to use a [linked list](https://realpython.com/linked-lists-python/).
 
 ### Python Code
+
 ```python
 input = '389125467' #puzzle input
 
@@ -336,14 +338,14 @@ for i,x in enumerate(input):
 
     if i == input_len - 1:
         nex_list[x] = input[0]
-    
+
     else:
         nex_list[x] =  input[i+1]
 
 
 def play(nex_list, current):
     #play one round of the cup game
-    
+
     pickup = [0,0,0]
     #current cup number
     x = current
@@ -356,17 +358,17 @@ def play(nex_list, current):
     #calculate the destination cup according to the rules
     dest = current - 1
 
-    
-    while dest in pickup:
-        dest = dest - 1
-    
-    if dest < 1:
-        dest = max_cup
-    
+
     while dest in pickup:
         dest = dest - 1
 
-    
+    if dest < 1:
+        dest = max_cup
+
+    while dest in pickup:
+        dest = dest - 1
+
+
     #update nex_list to account for the new positions of the picked-up cups
 
     nex_list[current] = nex_list[pickup[2]]
@@ -378,7 +380,7 @@ def play(nex_list, current):
     nex_list[pickup[2]] = nex_list[dest]
 
     nex_list[dest] = pickup[0]
-    
+
     return nex_list, nex_list[current]
 
 def make_list(nex_list, start):
@@ -392,7 +394,7 @@ def make_list(nex_list, start):
         seen.add(current)
         output.append(nex_list[current])
         current = nex_list[current]
-    
+
     return output
 
 #ten million turns
@@ -415,8 +417,7 @@ for i in range(2):
 print(output)
 ```
 
-Day 24 - [Lobby Layout](https://adventofcode.com/2020/day/24)
--------------------------------------------------------------
+## Day 24 - [Lobby Layout](https://adventofcode.com/2020/day/24)
 
 ### Thoughts
 
@@ -431,6 +432,7 @@ I decided to use cube coordinates, exactly as laid out in the source above.
 One thing that I've improved in this implementation, compared to previous solutions, is that rather than iterate over the whole grid, counting the occupied neighbours of each hex, I instead iterate over the _occupied_ hexes only, adding one to the count of occupied neighbours for hex adjacent to the occupied hex under consideration. This simple change saves a lot of time if only a small proportion of hexes are occupied, since you're not wasting time doing things like counting six empty neighbours for an empty hex that's miles away from any occupied hexes.
 
 ### Python Code
+
 ```python
 import sys
 from collections import defaultdict
@@ -443,17 +445,17 @@ def parse_line(string):
         if string[0] in {'e','w'}:
             cmds.append(string[0])
             string = string[1:]
-        
+
         if string[0] in {'n','s'}:
             #north and south don't exist on this hex grid, only ne,nw,se,sw
             #so take two characters
             cmds.append(string[0:2])
             string = string[2:]
-        
+
         if string[0] in {'\n'}:
             #ignore line break character
             string = string[1:]
-    
+
     return cmds
 
 #Use the "cube coordinates" system from https://www.redblobgames.com/grids/hexagons/
@@ -473,7 +475,7 @@ def shift(coords, dir):
         coords = (x-1, y+1, z)
     if dir == 'nw':
         coords = (x, y+1, z-1)
-    
+
     return coords
 
 def initialise():
@@ -500,7 +502,7 @@ def initialise():
 
         else:
             grid[coords] = 0
-    
+
     return grid
 
 def count_black(grid):
@@ -523,15 +525,15 @@ def create_nb_grid(grid):
             #for its neighbours by one
             for cmd in {'ne','e','se','sw','w','nw'}:
                 nb_grid[shift(coords,cmd)] += 1
-    
+
     return nb_grid
-            
+
 def advance(grid):
     #advance the grid one generation according to the rules
 
     #create the grid showing how many black tiles neighbour each tile
     nb_grid = create_nb_grid(grid)
-    
+
     #initialise new grid
     new_grid = defaultdict(int)
 
@@ -542,13 +544,13 @@ def advance(grid):
                 new_grid[coords] = 0
             else:
                 new_grid[coords] = 1
-        
+
         if grid[coords] ==0:
             if nb_grid[coords]==2:
                 new_grid[coords] = 1
             else:
                 new_grid[coords] = 0
-    
+
     return new_grid
 
 
@@ -565,8 +567,7 @@ for _ in range(n):
 print(count_black(grid))
 ```
 
-Day 25 - [Combo Breaker](https://adventofcode.com/2020/day/25)
-------------------------------------------------------------------------------------------------------
+## Day 25 - [Combo Breaker](https://adventofcode.com/2020/day/25)
 
 ### Thoughts
 
@@ -579,6 +580,7 @@ There's no analytical inverse to modular exponentiation, so there are two main c
 No reader will be surprised that I chose brute force, which runs in a few seconds for the (small) numbers involved in the puzzle. I've also made use of the `pow` built-in function, which it turns out does modular exponentiation if you give it a third argument (the modulus). Fun!
 
 ### Python Code
+
 ```python
 def findsize(subject, transformed):
     #find the loop size by brute force

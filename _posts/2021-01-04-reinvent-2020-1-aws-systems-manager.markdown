@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Reinvent 2020 Part 1 Aws Systems Manager"
 date: 2021-01-04 14:45:39 +0100
 tags: automation aws aws-reinvent cloud
@@ -25,9 +26,9 @@ Once the runbook is defined, you can then run it from Systems Manager in the AWS
 
 The talk then wraps up discussing the latest features of AWS Systems Manager:
 
-*   **[Fleet Manager](https://aws.amazon.com/blogs/aws/new-aws-systems-manager-fleet-manager/)**: for administering a fleet of servers running on AWS and on-premises, allowing you to manage VMs without RDP/SSH and perform common tasks from a single console
-*   [**Application Manager**](https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager.html): discovers application resources across multiple AWS services and consolidates operational data in a single console.
-*   **[Change Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/change-manager.html):** allows automated approval processes for operational changes, such as new automation runbooks. I found this particularly interesting because it ties into some of the downsides of automation - as Meszaros said during the talk, you don't really want a broken automation runbook being created and run on a Friday afternoon.
+- **[Fleet Manager](https://aws.amazon.com/blogs/aws/new-aws-systems-manager-fleet-manager/)**: for administering a fleet of servers running on AWS and on-premises, allowing you to manage VMs without RDP/SSH and perform common tasks from a single console
+- [**Application Manager**](https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager.html): discovers application resources across multiple AWS services and consolidates operational data in a single console.
+- **[Change Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/change-manager.html):** allows automated approval processes for operational changes, such as new automation runbooks. I found this particularly interesting because it ties into some of the downsides of automation - as Meszaros said during the talk, you don't really want a broken automation runbook being created and run on a Friday afternoon.
 
 #### Takeaway
 

@@ -3,6 +3,7 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: home
+tipue_search_active: true
 ---
 ![]({{ "images/20241004_165330.jpg" | relative_url }}){:height="400px"}.
 

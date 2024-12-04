@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-04T16:55:24+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Dave Bartram Blog</title><subtitle>Lessons I&apos;m learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths &amp; science</subtitle><entry><title type="html">Advent Of Code 2021 Days 21-25</title><link href="http://localhost:4000/2022/04/17/advent-of-code-2021-days-21-25.html" rel="alternate" type="text/html" title="Advent Of Code 2021 Days 21-25" /><published>2022-04-17T14:45:39+01:00</published><updated>2022-04-17T14:45:39+01:00</updated><id>http://localhost:4000/2022/04/17/advent-of-code-2021-days-21-25</id><content type="html" xml:base="http://localhost:4000/2022/04/17/advent-of-code-2021-days-21-25.html"><![CDATA[<h1 id="advent-of-code-2021---days-21-25">Advent of Code 2021 - Days 21-25</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-04T20:06:01+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Dave Bartram Blog</title><subtitle>Lessons I&apos;m learning as a: Software platform engineer, Tabletop roleplayer, Lifelong lover of maths &amp; science</subtitle><entry><title type="html">Terraform &amp;amp; Kubernetes - a simple project</title><link href="http://localhost:4000/2024/10/14/terraform-kubernetes.html" rel="alternate" type="text/html" title="Terraform &amp;amp; Kubernetes - a simple project" /><published>2024-10-14T15:04:44+01:00</published><updated>2024-10-14T15:04:44+01:00</updated><id>http://localhost:4000/2024/10/14/terraform-kubernetes</id><content type="html" xml:base="http://localhost:4000/2024/10/14/terraform-kubernetes.html"><![CDATA[<h1 id="terraform--kubernetes---a-simple-project">Terraform &amp; Kubernetes - a simple project</h1>
+
+<p>I took a couple of days to work with Terraform recently. I decided that a simple project to deploy an AWS EKS cluster with a Kubernetes service that would run a simple web app over HTTPS would be a good way to learn some Terraform fundamentals.</p>
+
+<p>The project can be found here <a href="https://github.com/DavidBartram/terraform-k8s">Terraform-k8s on GitHub</a></p>
+
+<p>This is set up to host any simple single-container web app, for example the <a href="https://hub.docker.com/_/nginx">nginx image on DockerHub</a> can be used to display a simple welcome page.</p>
+
+<p>I wanted some amount of interactivity, so I hosted my <a href="https://github.com/DavidBartram/godbound-dice-roller">Godbound Dice Roller</a> app, a very simple Flask app I made to make it easier to roll for damage in an obscure tabletop RPG.</p>
+
+<h2 id="basic-experiments">Basic Experiments</h2>
+
+<h2 id="project-structure">Project Structure</h2>
+
+<h3 id="providers">Providers</h3>
+
+<h3 id="eks-cluster-module">eks-cluster module</h3>
+
+<h3 id="kubernetes-module">kubernetes module</h3>
+
+<h2 id="key-challenges">Key Challenges</h2>
+
+<h3 id="managing-kubernetes-cluster-with-the-terraform-kubernetes-provider">Managing Kubernetes cluster with the Terraform kubernetes provider</h3>
+
+<h3 id="https-without-an-ingress">HTTPS (without an Ingress)</h3>
+
+<h3 id="dependencies">Dependencies</h3>
+
+<h2 id="final-thoughts">Final Thoughts</h2>]]></content><author><name></name></author><category term="coding" /><category term="iac" /><category term="terraform" /><summary type="html"><![CDATA[Terraform &amp; Kubernetes - a simple project]]></summary></entry><entry><title type="html">Advent Of Code 2021 Days 21-25</title><link href="http://localhost:4000/2022/04/17/advent-of-code-2021-days-21-25.html" rel="alternate" type="text/html" title="Advent Of Code 2021 Days 21-25" /><published>2022-04-17T14:45:39+01:00</published><updated>2022-04-17T14:45:39+01:00</updated><id>http://localhost:4000/2022/04/17/advent-of-code-2021-days-21-25</id><content type="html" xml:base="http://localhost:4000/2022/04/17/advent-of-code-2021-days-21-25.html"><![CDATA[<h1 id="advent-of-code-2021---days-21-25">Advent of Code 2021 - Days 21-25</h1>
 
 <p><img src="/images/pexels-photo-6211095.jpeg" alt="christmas tree decorated with baubles and garland" /></p>
 
@@ -33,13 +61,13 @@
 <p>And so on. My code calculates these values directly to produce a dictionary from total score to number of universes called <code class="language-plaintext highlighter-rouge">dice_freq</code>, but this doesn’t depend on the input and will always be as follows:</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-</span><span class="mi">3</span><span class="err">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-</span><span class="mi">4</span><span class="err">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-</span><span class="mi">5</span><span class="err">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-</span><span class="mi">6</span><span class="err">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-</span><span class="mi">7</span><span class="err">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-</span><span class="mi">8</span><span class="err">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-</span><span class="mi">9</span><span class="err">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="nl">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"4"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"5"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"6"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"7"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"8"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"9"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
@@ -80,6 +108,7 @@
 <p>You can implement this caching (or “memoization”) yourself with a dictionary from input to output, but in this case I used the built-in Python LRU cache decorator.</p>
 
 <h3 id="python-code">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
@@ -102,10 +131,10 @@
 </span>
     <span class="k">if</span> <span class="n">score1</span><span class="o">&gt;=</span><span class="mi">21</span><span class="p">:</span> <span class="c1">#player 1 wins
 </span>        <span class="k">return</span> <span class="mi">1</span>
-    
+
     <span class="k">elif</span> <span class="n">score2</span><span class="o">&gt;=</span><span class="mi">21</span><span class="p">:</span> <span class="c1">#player 2 wins
 </span>        <span class="k">return</span> <span class="mi">0</span>
-    
+
     <span class="n">subgame_total</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">if</span> <span class="n">whoseTurn</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">#player 1 takes a turn next
@@ -127,15 +156,15 @@
     <span class="k">return</span> <span class="n">subgame_total</span>
 
 <span class="c1">#starting positions hard-coded from the input
-</span><span class="n">start1</span> <span class="o">=</span> <span class="mi">7</span> 
-<span class="n">start2</span> <span class="o">=</span> <span class="mi">5</span> 
+</span><span class="n">start1</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">start2</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="n">wins</span> <span class="o">=</span> <span class="p">(</span><span class="n">play_dirac_dice</span><span class="p">(</span><span class="n">start1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">start2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">play_dirac_dice</span><span class="p">(</span><span class="n">start2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">start1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 
 <span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">wins</span><span class="p">))</span>
 </code></pre></div></div>
-<p>Day 22 - <a href="https://adventofcode.com/2021/day/22">Reactor Reboot</a>
-—————————————————————</p>
+
+<h2 id="day-22---reactor-reboot">Day 22 - <a href="https://adventofcode.com/2021/day/22">Reactor Reboot</a></h2>
 
 <h3 id="thoughts-1">Thoughts</h3>
 
@@ -252,6 +281,7 @@
 <p>This example doesn’t cover every possibility, but it hopefully illustrates how the solution correctly handles ‘on’ and ‘off’ instructions, while dealing with intersections correctly.</p>
 
 <h3 id="python-code-1">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">intervals</span> <span class="k">as</span> <span class="n">I</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -306,7 +336,7 @@
 
     <span class="k">if</span> <span class="n">ix</span><span class="p">.</span><span class="n">is_empty</span><span class="p">()</span> <span class="ow">or</span> <span class="n">iy</span><span class="p">.</span><span class="n">is_empty</span><span class="p">()</span> <span class="ow">or</span> <span class="n">iz</span><span class="p">.</span><span class="n">is_empty</span><span class="p">():</span>
         <span class="k">return</span> <span class="bp">False</span>
-    
+
     <span class="k">return</span> <span class="p">(</span><span class="n">ix</span><span class="p">,</span><span class="n">iy</span><span class="p">,</span><span class="n">iz</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">apply_one_instruction</span><span class="p">(</span><span class="n">cuboids</span><span class="p">,</span><span class="n">newcuboid</span><span class="p">,</span> <span class="n">onoff</span><span class="p">):</span>
@@ -333,7 +363,7 @@
         <span class="n">onoff</span> <span class="o">=</span> <span class="n">instruction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">newcuboid</span> <span class="o">=</span> <span class="n">instruction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">cuboids</span> <span class="o">=</span> <span class="n">apply_one_instruction</span><span class="p">(</span><span class="n">cuboids</span><span class="p">,</span><span class="n">newcuboid</span><span class="p">,</span><span class="n">onoff</span><span class="p">)</span>
-    
+
     <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">for</span> <span class="n">cuboid</span><span class="p">,</span> <span class="n">sign</span> <span class="ow">in</span> <span class="n">cuboids</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
@@ -407,6 +437,7 @@
 <p>The implementation below is a little finicky in the details, and not particularly fast, but it does the job!</p>
 
 <h3 id="python-code-2">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">inf</span><span class="p">,</span> <span class="n">ceil</span>
 <span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>
@@ -454,7 +485,7 @@
 
     <span class="k">if</span> <span class="n">h</span><span class="o">&gt;</span><span class="n">j</span><span class="p">:</span>
         <span class="n">intervening_hall</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">!=</span><span class="bp">None</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">hall</span><span class="p">[</span><span class="n">k</span><span class="p">:</span><span class="n">h</span><span class="p">]]</span>
-    
+
     <span class="c1">#check if there are any amphipods of the wrong type in the destination room
 </span>    <span class="n">wrong_amphi</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="o">!=</span><span class="n">amphi</span> <span class="ow">and</span> <span class="n">x</span><span class="o">!=</span><span class="bp">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rooms</span><span class="p">[</span><span class="n">amphi</span><span class="p">]]</span>
 
@@ -494,18 +525,18 @@
 
     <span class="k">if</span> <span class="n">h</span><span class="o">&gt;</span><span class="n">j</span><span class="p">:</span>
         <span class="n">intervening_hall</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">!=</span><span class="bp">None</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">hall</span><span class="p">[</span><span class="n">k</span><span class="p">:</span><span class="n">h</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span>
-    
+
     <span class="c1">#check if there are any amphipods in the room between this amphipod and the hallway
 </span>    <span class="k">if</span> <span class="n">r_pos</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">intervening_room</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span>
-    
+
     <span class="k">if</span> <span class="n">r_pos</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">intervening_room</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">!=</span><span class="bp">None</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">rooms</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="n">r_pos</span><span class="p">]]</span>
 
     <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">intervening_hall</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span><span class="n">intervening_room</span><span class="p">):</span>
         <span class="c1">#if there is an amphipod blocking this path
 </span>        <span class="k">return</span> <span class="bp">None</span>
-    
+
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="n">intervening_hall</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span><span class="n">intervening_room</span><span class="p">)):</span>
         <span class="c1">#calculate the cost of moving to hallway position h
 </span>        <span class="n">cost</span> <span class="o">=</span> <span class="n">move_cost</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">amphi</span><span class="p">,</span><span class="n">r_pos</span><span class="p">)</span>
@@ -526,7 +557,7 @@
             <span class="n">result</span> <span class="o">=</span> <span class="n">hall_to_room</span><span class="p">(</span><span class="n">amphi</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">hall</span><span class="p">,</span><span class="n">rooms</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
                 <span class="n">neighbours</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-    
+
     <span class="k">for</span> <span class="n">h</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hall</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">room</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rooms</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">r_pos</span><span class="p">,</span> <span class="n">amphi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">room</span><span class="p">):</span>
@@ -535,19 +566,19 @@
                     <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
                         <span class="c1">#print(result)
 </span>                        <span class="n">neighbours</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">neighbours</span>
 
 <span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">visit</span><span class="p">,</span><span class="n">costs</span><span class="p">):</span>
     <span class="c1">#dijkstra's algorithm
-</span>    
+</span>
     <span class="k">while</span> <span class="ow">not</span> <span class="n">visit</span><span class="p">.</span><span class="n">empty</span><span class="p">():</span>
         <span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">_</span><span class="p">,(</span><span class="n">hall</span><span class="p">,</span><span class="n">rooms</span><span class="p">))</span> <span class="o">=</span> <span class="n">visit</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="c1">#get the next board state in the queue
 </span>
         <span class="k">if</span> <span class="n">hall</span> <span class="o">==</span> <span class="n">final_hall</span> <span class="ow">and</span> <span class="n">rooms</span> <span class="o">==</span> <span class="n">final_rooms</span><span class="p">:</span>
             <span class="c1">#if the final state has been reached, return the cost
 </span>            <span class="k">return</span> <span class="n">c</span>
-        
+
         <span class="c1">#identify neighbouring board states
 </span>        <span class="n">nbs</span> <span class="o">=</span> <span class="n">neighbours</span><span class="p">(</span><span class="n">hall</span><span class="p">,</span><span class="n">rooms</span><span class="p">)</span>
 
@@ -581,8 +612,8 @@
 
 <span class="k">print</span><span class="p">(</span><span class="n">dijkstra</span><span class="p">(</span><span class="n">visit</span><span class="p">,</span><span class="n">start_costs</span><span class="p">))</span> <span class="c1">#print puzzle answer
 </span></code></pre></div></div>
-<p>Day 24 - <a href="https://adventofcode.com/2021/day/24">Arithmetic Logic Unit</a>
-———————————————————————-</p>
+
+<h2 id="day-24---arithmetic-logic-unit">Day 24 - <a href="https://adventofcode.com/2021/day/24">Arithmetic Logic Unit</a></h2>
 
 <h3 id="thoughts-3">Thoughts</h3>
 
@@ -922,6 +953,7 @@ add z y
 <p>The code below attacks this problem without any particular elegance. The function <code class="language-plaintext highlighter-rouge">advance</code> will advance the grid by a single step, following the rules laid out above. The function <code class="language-plaintext highlighter-rouge">find_stability</code> will check after each step whether the grid has remained unchanged. If the grid hasn’t changed, <code class="language-plaintext highlighter-rouge">find_stability</code> will return the number of steps so far.</p>
 
 <h3 id="python-code-3">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
@@ -946,7 +978,7 @@ add z y
                     <span class="n">grid1</span><span class="p">[</span><span class="n">i</span><span class="p">][(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">width</span><span class="p">]</span> <span class="o">=</span> <span class="s">'&gt;'</span>
 
     <span class="n">grid2</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">grid1</span><span class="p">)</span>
-    
+
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid1</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">char</span><span class="o">==</span><span class="s">'v'</span><span class="p">:</span>
@@ -954,7 +986,7 @@ add z y
                 <span class="k">if</span> <span class="n">destination</span> <span class="o">==</span> <span class="s">'.'</span><span class="p">:</span>
                     <span class="n">grid2</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s">'.'</span>
                     <span class="n">grid2</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">height</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s">'v'</span>
-    
+
     <span class="k">return</span> <span class="n">grid2</span>
 
 <span class="k">def</span> <span class="nf">find_stability</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
@@ -968,11 +1000,12 @@ add z y
             <span class="n">stable</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">grid</span> <span class="o">=</span> <span class="n">newgrid</span>
-    
+
     <span class="k">return</span> <span class="n">i</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">find_stability</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></div>]]></content><author><name></name></author><category term="advent-of-code" /><category term="aoc" /><category term="coding" /><category term="python" /><summary type="html"><![CDATA[Advent of Code 2021 - Days 21-25]]></summary></entry><entry><title type="html">Advent Of Code 2021 Days 16-20</title><link href="http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20.html" rel="alternate" type="text/html" title="Advent Of Code 2021 Days 16-20" /><published>2022-03-21T13:45:39+00:00</published><updated>2022-03-21T13:45:39+00:00</updated><id>http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20</id><content type="html" xml:base="http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20.html"><![CDATA[<p>o</p>
+
 <h1 id="advent-of-code-2021-days-16-20">Advent of Code 2021 Days 16-20</h1>
 
 <p><img src="/images/pexels-photo-6211095.jpeg" alt="christmas tree decorated with baubles and garland" /></p>
@@ -1079,6 +1112,7 @@ add z y
 <p>Evaluating a packet’s value is left to an external function <code class="language-plaintext highlighter-rouge">apply_operators</code>, outside the Message class, which takes in the parsed (tuple) version of a packet and applies the operations required by the puzzle rules.</p>
 
 <h3 id="python-code">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">binascii</span>
 <span class="kn">import</span> <span class="nn">math</span>
@@ -1090,7 +1124,7 @@ add z y
 
         <span class="c1">#convert transmission from hexadecimal to binary
 </span>        <span class="n">bin_data</span> <span class="o">=</span> <span class="n">binascii</span><span class="p">.</span><span class="n">a2b_hex</span><span class="p">(</span><span class="n">hex_data</span><span class="p">)</span>
-        
+
         <span class="c1">#pos is an integer attribute representing the current position of the parser in parsing the message
 </span>        <span class="bp">self</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -1100,7 +1134,7 @@ add z y
         <span class="c1">#add the bits from the input file into the bits attribute of the Message object
 </span>        <span class="k">for</span> <span class="n">byte</span> <span class="ow">in</span> <span class="n">bin_data</span><span class="p">:</span>
             <span class="bp">self</span><span class="p">.</span><span class="n">bits</span> <span class="o">+=</span> <span class="s">'{:08b}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">byte</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">integer_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_bits</span><span class="p">):</span>
         <span class="c1">#returns the integer value, in decimal, of the next n_bits bits of the message
 </span>
@@ -1109,7 +1143,7 @@ add z y
         <span class="c1">#advance the position
 </span>        <span class="bp">self</span><span class="p">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">n_bits</span>
         <span class="k">return</span> <span class="n">result</span>
-    
+
     <span class="k">def</span> <span class="nf">parse_one_packet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1">#parse the next packet of the message
 </span>        <span class="c1">#return the packet as a tuple of (packet version, type id, packet content)
@@ -1137,7 +1171,7 @@ add z y
 </span>                <span class="n">n_packets</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">integer_value</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
 
                 <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">parse_one_packet</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_packets</span><span class="p">)]</span>
-            
+
             <span class="k">if</span> <span class="n">length_type</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#the next 15 binary digits give the total number of bits in the subpackets
 </span>                <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">integer_value</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="c1">#need to do this on a separate line as it changes self.pos
 </span>                <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">pos</span> <span class="o">+</span> <span class="n">x</span> <span class="c1">#end = self.pos + self.integer_value(15) one one line would be bad as it would depend on the order that pos and integer_value are evaluated
@@ -1188,7 +1222,7 @@ add z y
         <span class="k">if</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
             <span class="n">total</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">total</span>
-    
+
     <span class="k">if</span> <span class="nb">id</span><span class="o">==</span><span class="mi">6</span><span class="p">:</span> <span class="c1"># &lt; packet. contains exactly two subpackets, if the first has a value less than the second, return 1. Otherwise return 0.
 </span>        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
@@ -1200,7 +1234,7 @@ add z y
         <span class="k">if</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
             <span class="n">total</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">total</span>
-    
+
 
 <span class="c1">#initialise a Message object from the input file
 </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
@@ -1257,6 +1291,7 @@ add z y
 </ul>
 
 <h3 id="python-code-1">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="c1">#read the input data to find the boundaries of the target area
@@ -1283,7 +1318,7 @@ add z y
 
         <span class="k">if</span> <span class="n">x_min</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">x_max</span>  <span class="ow">and</span> <span class="n">y_min</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">y_max</span><span class="p">:</span> <span class="c1">#if the position is in the target area
 </span>            <span class="k">return</span> <span class="bp">True</span>
-        
+
         <span class="k">if</span> <span class="n">vx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">vx</span> <span class="o">-=</span> <span class="mi">1</span>
 
@@ -1291,12 +1326,12 @@ add z y
             <span class="k">if</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">x_min</span> <span class="ow">or</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">x_max</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">False</span>    <span class="c1">#if the probe is left or right of the target area and has x-velocity zero
 </span>                                <span class="c1">#it will never reach the target area
-</span>        
+</span>
         <span class="k">if</span> <span class="n">vx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">vx</span> <span class="o">+=</span> <span class="mi">1</span>
-        
+
         <span class="n">vy</span> <span class="o">-=</span> <span class="mi">1</span>
-    
+
     <span class="k">return</span> <span class="bp">False</span>
 
 <span class="n">on_target_probes</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1432,7 +1467,7 @@ add z y
 <ol>
   <li>Identify the leftmost integer value in the list that is greater than 9
     <ul>
-      <li>So the list is of the form [<code class="language-plaintext highlighter-rouge">…, (x,d), …]</code> where <code class="language-plaintext highlighter-rouge">x&gt;9</code> and <code class="language-plaintext highlighter-rouge">d</code> is the depth of <code class="language-plaintext highlighter-rouge">x</code>.</li>
+      <li>So the list is of the form [<code class="language-plaintext highlighter-rouge">…, (x,d), …]</code>where<code class="language-plaintext highlighter-rouge">x&gt;9</code>and<code class="language-plaintext highlighter-rouge">d</code>is the depth of<code class="language-plaintext highlighter-rouge">x</code>.</li>
     </ul>
   </li>
   <li>Insert the tuple <code class="language-plaintext highlighter-rouge">(ceil(x/2),d+1)</code> in the list directly after <code class="language-plaintext highlighter-rouge">(x,d)</code></li>
@@ -1465,6 +1500,7 @@ add z y
 </ol>
 
 <h3 id="python-code-2">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span><span class="p">,</span> <span class="n">floor</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
@@ -1493,13 +1529,13 @@ add z y
                 <span class="n">newsnail</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">val</span><span class="p">,</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
             <span class="k">if</span> <span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="o">&lt;=</span><span class="nb">len</span><span class="p">(</span><span class="n">snail</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
                 <span class="n">newsnail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-            
+
             <span class="n">newsnail</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 
             <span class="n">newsnail</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">depth</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    
+
             <span class="k">return</span> <span class="n">newsnail</span>
-    
+
     <span class="k">return</span> <span class="bp">False</span>
 
 <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="n">snail</span><span class="p">):</span>
@@ -1512,7 +1548,7 @@ add z y
             <span class="n">newsnail</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">leftval</span><span class="p">,</span><span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">newsnail</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">rightval</span><span class="p">,</span><span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
             <span class="k">return</span> <span class="n">newsnail</span>
-    
+
     <span class="k">return</span> <span class="bp">False</span>
 
 <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">snail1</span><span class="p">,</span> <span class="n">snail2</span><span class="p">):</span>
@@ -1532,7 +1568,7 @@ add z y
 
         <span class="k">elif</span> <span class="n">spl</span><span class="p">:</span>
             <span class="n">snail</span> <span class="o">=</span> <span class="n">spl</span>
-        
+
     <span class="k">return</span> <span class="n">snail</span>
 
 <span class="k">def</span> <span class="nf">add_and_snail_reduce</span><span class="p">(</span><span class="n">snail1</span><span class="p">,</span><span class="n">snail2</span><span class="p">):</span>
@@ -1558,7 +1594,7 @@ add z y
             <span class="n">snail</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span> 
+            <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
 
     <span class="k">return</span> <span class="n">magnitude</span><span class="p">(</span><span class="n">snail</span><span class="p">)</span>
 
@@ -1580,7 +1616,7 @@ add z y
     <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">mags</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
-    <span class="n">snails</span> <span class="o">=</span> <span class="p">[</span><span class="n">read</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">]</span>   
+    <span class="n">snails</span> <span class="o">=</span> <span class="p">[</span><span class="n">read</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">]</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">part_one</span><span class="p">(</span><span class="n">snails</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="n">part_two</span><span class="p">(</span><span class="n">snails</span><span class="p">))</span>
@@ -1675,6 +1711,7 @@ add z y
 <p><strong>Yes, it would probably have been easier just to use rotation matrices.</strong></p>
 
 <h3 id="python-code-3">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
@@ -1693,7 +1730,7 @@ add z y
         <span class="k">if</span> <span class="s">','</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
             <span class="n">beacon</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)])</span>
             <span class="n">scanner</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">beacon</span><span class="p">)</span>
-        
+
         <span class="k">elif</span> <span class="n">line</span> <span class="o">==</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">:</span>
             <span class="n">scanners</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">scanner</span><span class="p">)</span>
             <span class="n">scanner</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1722,7 +1759,7 @@ add z y
 
         <span class="k">if</span> <span class="n">parity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">correct_sigs</span><span class="p">[</span><span class="n">perm</span><span class="p">]</span> <span class="o">=</span> <span class="p">{(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
-    
+
     <span class="k">return</span> <span class="n">correct_sigs</span>
 
 <span class="n">scanners</span><span class="p">,</span> <span class="n">perms</span> <span class="o">=</span> <span class="n">initialise</span><span class="p">()</span>
@@ -1760,7 +1797,7 @@ add z y
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">common_points</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">12</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">True</span>
-    
+
     <span class="k">return</span> <span class="bp">False</span>
 
 <span class="k">def</span> <span class="nf">compare</span><span class="p">(</span><span class="n">scannerA</span><span class="p">,</span><span class="n">scannerB</span><span class="p">):</span>
@@ -1778,7 +1815,7 @@ add z y
                     <span class="n">xb</span><span class="p">,</span><span class="n">yb</span><span class="p">,</span><span class="n">zb</span> <span class="o">=</span> <span class="n">beaconB</span>
                     <span class="n">offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">xa</span><span class="o">-</span><span class="n">xb</span><span class="p">,</span><span class="n">ya</span><span class="o">-</span><span class="n">yb</span><span class="p">,</span><span class="n">za</span><span class="o">-</span><span class="n">zb</span><span class="p">)</span>
                     <span class="n">transB</span> <span class="o">=</span> <span class="n">translate</span><span class="p">(</span><span class="n">rotB</span><span class="p">,</span><span class="n">offset</span><span class="p">)</span>
-                    
+
                     <span class="k">if</span> <span class="n">match12</span><span class="p">(</span><span class="n">scannerA</span><span class="p">,</span><span class="n">transB</span><span class="p">):</span>
                         <span class="k">return</span> <span class="n">offset</span><span class="p">,</span> <span class="n">perm</span><span class="p">,</span> <span class="n">sig</span>
 
@@ -1806,7 +1843,7 @@ add z y
                     <span class="k">continue</span>
 
                 <span class="n">result</span> <span class="o">=</span> <span class="n">compare</span><span class="p">(</span><span class="n">base_scanner</span><span class="p">,</span> <span class="n">scanner</span><span class="p">)</span>
-            
+
                 <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
                     <span class="n">offset</span><span class="p">,</span> <span class="n">perm</span><span class="p">,</span> <span class="n">sig</span> <span class="o">=</span> <span class="n">result</span>
                     <span class="n">offsets</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
@@ -1815,7 +1852,7 @@ add z y
                     <span class="n">new_scanner</span> <span class="o">=</span> <span class="n">translate</span><span class="p">(</span><span class="n">new_scanner</span><span class="p">,</span><span class="n">offset</span><span class="p">)</span>
                     <span class="n">visited</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
                     <span class="n">base_scanner</span> <span class="o">=</span> <span class="n">base_scanner</span> <span class="o">|</span> <span class="n">new_scanner</span> <span class="c1">#incorporate the scanner's beacons into the base scanner
-</span>    
+</span>
     <span class="c1">#calculate the manhattan distance between every pair of scanners
 </span>    <span class="c1">#return the maximum manhattan distance (the puzzle solution)
 </span>    <span class="n">manhattans</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1824,7 +1861,7 @@ add z y
             <span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">z1</span> <span class="o">=</span> <span class="n">off1</span>
             <span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">z2</span> <span class="o">=</span> <span class="n">off2</span>
             <span class="n">manhattans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y2</span><span class="o">-</span><span class="n">y1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z2</span><span class="o">-</span><span class="n">z1</span><span class="p">))</span>
-                
+
     <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">manhattans</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">part_two</span><span class="p">(</span><span class="n">scanners</span><span class="p">))</span>
@@ -1853,6 +1890,7 @@ add z y
 <p>The puzzle answer is the number of light pixels in the infinite grid after 50 iterations. Since 50 is even, most of the infinite grid will be dark at this point, so there is a finite answer!</p>
 
 <h3 id="python-code-4">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
@@ -1876,15 +1914,15 @@ add z y
 
     <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
         <span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span> <span class="o">=</span> <span class="n">step</span>
-        
+
         <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="o">+</span><span class="n">dx</span> <span class="o">&lt;=</span> <span class="n">xmax</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="o">+</span><span class="n">dy</span> <span class="o">&lt;=</span> <span class="n">ymax</span><span class="p">:</span>
             <span class="c1">#if in the bounds of the grid, return the value
 </span>            <span class="n">idx</span> <span class="o">+=</span> <span class="n">image</span><span class="p">[</span><span class="n">y</span><span class="o">+</span><span class="n">dy</span><span class="p">][</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span>
-        
+
         <span class="k">else</span><span class="p">:</span>
             <span class="c1">#if out of bounds, return current value of oob
 </span>            <span class="n">idx</span> <span class="o">+=</span> <span class="n">oob</span>
-    
+
     <span class="n">idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">algo</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
@@ -1893,7 +1931,7 @@ add z y
 <span class="k">def</span> <span class="nf">apply_algo</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="n">algo</span><span class="p">,</span> <span class="n">oob</span><span class="p">):</span>
     <span class="c1">#apply the enhancement algorithm once to the image grid
 </span>    <span class="c1">#return the new image grid
-</span>    
+</span>
     <span class="n">image2</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="n">xmax</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span>
@@ -1905,7 +1943,7 @@ add z y
                 <span class="n">new_row</span> <span class="o">+=</span> <span class="n">update</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="n">image</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">oob</span><span class="p">)</span>
 
             <span class="n">image2</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_row</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">image2</span>
 
 <span class="k">def</span> <span class="nf">print_image</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
@@ -1939,7 +1977,7 @@ add z y
 
 <span class="n">pix_sum</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">part_one</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="n">algo</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">pix_sum</span><span class="p">)</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="advent-of-code" /><category term="aoc" /><category term="coding" /><category term="python" /><summary type="html"><![CDATA[o Advent of Code 2021 Days 16-20]]></summary></entry><entry><title type="html">Advent Of Code 2021 Days 11-15</title><link href="http://localhost:4000/2022/03/01/advent-of-code-2021-days-11-15.html" rel="alternate" type="text/html" title="Advent Of Code 2021 Days 11-15" /><published>2022-03-01T13:45:39+00:00</published><updated>2022-03-01T13:45:39+00:00</updated><id>http://localhost:4000/2022/03/01/advent-of-code-2021-days-11-15</id><content type="html" xml:base="http://localhost:4000/2022/03/01/advent-of-code-2021-days-11-15.html"><![CDATA[<h1 id="advent-of-code-2021-days-11-15">Advent of Code 2021 Days 11-15</h1>
+</code></pre></div></div>]]></content><author><name></name></author><category term="advent-of-code" /><category term="aoc" /><category term="coding" /><category term="python" /><summary type="html"><![CDATA[o]]></summary></entry><entry><title type="html">Advent Of Code 2021 Days 11-15</title><link href="http://localhost:4000/2022/03/01/advent-of-code-2021-days-11-15.html" rel="alternate" type="text/html" title="Advent Of Code 2021 Days 11-15" /><published>2022-03-01T13:45:39+00:00</published><updated>2022-03-01T13:45:39+00:00</updated><id>http://localhost:4000/2022/03/01/advent-of-code-2021-days-11-15</id><content type="html" xml:base="http://localhost:4000/2022/03/01/advent-of-code-2021-days-11-15.html"><![CDATA[<h1 id="advent-of-code-2021-days-11-15">Advent of Code 2021 Days 11-15</h1>
 
 <p><img src="/images/pexels-photo-6211095.jpeg" alt="christmas tree decorated with baubles and garland" /></p>
 
@@ -1960,6 +1998,7 @@ add z y
 <p>The puzzle asks us to find the number of turns before the octopuses have synchronised, with every octopus flashing at once. This can be found by looking for a state where every octopus in the grid has energy 0, meaning they have all just flashed.</p>
 
 <h3 id="python-code">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
@@ -1979,12 +2018,12 @@ add z y
     <span class="c1">#returns a list of coords of points adjacent to (i,j) in the grid
 </span>    <span class="n">coords_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">steps</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
-    
+
     <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
         <span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span> <span class="o">=</span> <span class="n">step</span>
-        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">+</span><span class="n">dx</span> <span class="o">&lt;</span> <span class="n">cols</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="o">+</span><span class="n">dy</span> <span class="o">&lt;</span> <span class="n">rows</span><span class="p">:</span> 
+        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">+</span><span class="n">dx</span> <span class="o">&lt;</span> <span class="n">cols</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="o">+</span><span class="n">dy</span> <span class="o">&lt;</span> <span class="n">rows</span><span class="p">:</span>
             <span class="n">coords_list</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">dy</span><span class="p">))</span>
-    
+
     <span class="k">return</span> <span class="n">coords_list</span>
 
 <span class="k">def</span> <span class="nf">nb_dict</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
@@ -1993,7 +2032,7 @@ add z y
 
     <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">.</span><span class="n">copy</span><span class="p">():</span>
         <span class="n">nbdict</span><span class="p">[</span><span class="n">point</span><span class="p">]</span> <span class="o">=</span> <span class="n">neighbour_coords</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">grid</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">nbdict</span>
 
 <span class="k">def</span> <span class="nf">flash</span><span class="p">(</span><span class="n">point</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">flashed_points</span><span class="p">,</span><span class="n">nbdict</span><span class="p">):</span>
@@ -2005,11 +2044,11 @@ add z y
 
     <span class="k">for</span> <span class="n">nb</span> <span class="ow">in</span> <span class="n">nbs</span><span class="p">:</span>
         <span class="n">grid</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-    
+
     <span class="k">for</span> <span class="n">nb</span> <span class="ow">in</span> <span class="n">nbs</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">9</span> <span class="ow">and</span> <span class="n">nb</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">flashed_points</span><span class="p">:</span> <span class="c1">#only flash points that have not flashed this iteration
 </span>            <span class="n">grid</span><span class="p">,</span> <span class="n">flashed_points</span> <span class="o">=</span> <span class="n">flash</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">flashed_points</span><span class="p">,</span> <span class="n">nbdict</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">grid</span><span class="p">,</span><span class="n">flashed_points</span>
 
 <span class="k">def</span> <span class="nf">advance_step</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">nbdict</span><span class="p">,</span> <span class="n">flash_sum</span><span class="p">):</span>
@@ -2026,7 +2065,7 @@ add z y
         <span class="n">grid</span><span class="p">[</span><span class="n">point</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1">#reset points which have flashed to 0 energy
 </span>
     <span class="n">flash_sum</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">flashed_points</span><span class="p">)</span> <span class="c1">#count flashed points
-</span>    
+</span>
     <span class="k">return</span> <span class="n">flash_sum</span>
 
 <span class="k">def</span> <span class="nf">advance_until_synched</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
@@ -2061,6 +2100,7 @@ add z y
 <p>The <code class="language-plaintext highlighter-rouge">revisits</code> Boolean is implemented as an argument of the <code class="language-plaintext highlighter-rouge">dfs</code> function, so that the appropriate value can be passed down into recursive function calls.</p>
 
 <h3 id="python-code-1">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
@@ -2076,7 +2116,7 @@ add z y
 
 
 <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">revisits</span><span class="p">):</span>
-    
+
     <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">path</span> <span class="ow">and</span> <span class="n">node</span><span class="p">.</span><span class="n">islower</span><span class="p">():</span>
         <span class="n">revisits</span> <span class="o">=</span> <span class="bp">False</span>
 
@@ -2123,6 +2163,7 @@ add z y
 <p><img src="/images/origami.jpg" alt="" /></p>
 
 <h3 id="python-code-2">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
@@ -2139,10 +2180,10 @@ add z y
 </span>        <span class="c1">#because it is a set, any dot that exactly overlaps with a previous dot will be ignored
 </span>        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">","</span><span class="p">)</span>
         <span class="n">dots</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
-    
+
     <span class="k">if</span> <span class="s">'='</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
         <span class="c1">#populate a list of fold instructions, for example ('x',100) would mean fold along the line x=100
-</span>        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">'fold along '</span><span class="p">,</span><span class="s">''</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">"="</span><span class="p">)</span> 
+</span>        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">'fold along '</span><span class="p">,</span><span class="s">''</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="s">"="</span><span class="p">)</span>
         <span class="n">folds</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
 
 <span class="k">def</span> <span class="nf">perform_fold</span><span class="p">(</span><span class="n">dots</span><span class="p">,</span><span class="n">fold</span><span class="p">):</span>
@@ -2155,7 +2196,7 @@ add z y
             <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">fold</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
                 <span class="n">newdots</span><span class="p">.</span><span class="n">remove</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
                 <span class="n">newdots</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">fold</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
-    
+
     <span class="k">if</span> <span class="n">fold</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'y'</span><span class="p">:</span>
             <span class="c1">#perform a fold on a horizontal line y=fold[1]
 </span>            <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dots</span><span class="p">:</span>
@@ -2186,7 +2227,7 @@ add z y
                 <span class="n">output</span> <span class="o">+=</span> <span class="s">'█'</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">output</span> <span class="o">+=</span> <span class="s">' '</span>
-        
+
         <span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
 
 <span class="n">end_state</span> <span class="o">=</span> <span class="n">final_dots</span><span class="p">(</span><span class="n">dots</span><span class="p">,</span><span class="n">folds</span><span class="p">)</span>
@@ -2211,6 +2252,7 @@ add z y
 <p>After 10 iterations, the polymer from my input contained nearly twenty thousand elements - nothing dramatic! However after 40 iterations it contained more than twenty <em>trillion</em> elements, amply demonstrating the need to find something more efficient than a string representation of the entire polymer.</p>
 
 <h3 id="python-code-3">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
@@ -2230,17 +2272,17 @@ add z y
     <span class="n">elements</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="n">pairs</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
-    
+
     <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">polymer</span><span class="p">,</span><span class="n">polymer</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
         <span class="n">elements</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">pairs</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="n">elements</span><span class="p">[</span><span class="n">polymer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span><span class="mi">1</span> <span class="c1">#the last element in the zip object above will be (polymer[n-1],polymer[n]) so the last element won't be counted
-</span>    
+</span>
     <span class="k">return</span> <span class="n">elements</span><span class="p">,</span> <span class="n">pairs</span><span class="p">,</span> <span class="n">rules</span>
 
 <span class="k">def</span> <span class="nf">apply_rules</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">elements</span><span class="p">,</span> <span class="n">pairs</span><span class="p">):</span>
-    
+
     <span class="n">newelements</span> <span class="o">=</span> <span class="n">elements</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">newpairs</span> <span class="o">=</span> <span class="n">pairs</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
 
@@ -2255,7 +2297,7 @@ add z y
             <span class="n">newelements</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="o">+=</span> <span class="n">count</span> <span class="c1">#new char inserted for each pair
 </span>            <span class="n">newpairs</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">count</span> <span class="c1">#new pair created for each pair
 </span>            <span class="n">newpairs</span><span class="p">[(</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">count</span> <span class="c1">#new pair created for each pair
-</span>    
+</span>
     <span class="k">return</span> <span class="n">newelements</span><span class="p">,</span> <span class="n">newpairs</span>
 
 <span class="k">def</span> <span class="nf">apply_rules_n_times</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">elements</span><span class="p">,</span><span class="n">pairs</span><span class="p">):</span>
@@ -2306,6 +2348,7 @@ add z y
 <p>With that dealt with, the remainder of the code is a very standard implementation of <a href="https://brilliant.org/wiki/dijkstras-short-path-finder/">Dijkstra’s algorithm</a> using a queue of nodes to be visited, prioritised by the current shortest distance from the start node to that node.</p>
 
 <h3 id="python-code-4">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>
@@ -2337,13 +2380,13 @@ add z y
 <span class="c1">#returns a list of coords of points adjacent to (i,j) in the grid
 </span>    <span class="n">coords_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">steps</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
-        
+
     <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
         <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">point</span>
         <span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span> <span class="o">=</span> <span class="n">step</span>
         <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">+</span><span class="n">dx</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="o">+</span><span class="n">dy</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
             <span class="n">coords_list</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">dy</span><span class="p">))</span>
-        
+
     <span class="k">return</span> <span class="n">coords_list</span>
 
 <span class="k">def</span> <span class="nf">get_node_value</span><span class="p">(</span><span class="n">point</span><span class="p">,</span><span class="n">grid</span><span class="p">):</span>
@@ -2366,7 +2409,7 @@ add z y
             <span class="k">if</span> <span class="n">d</span> <span class="o">+</span> <span class="n">get_node_value</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span><span class="n">grid</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">distance</span><span class="p">[</span><span class="n">nb</span><span class="p">]:</span>
                 <span class="n">distance</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span> <span class="o">+</span> <span class="n">get_node_value</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span><span class="n">grid</span><span class="p">)</span>
                 <span class="n">visit</span><span class="p">.</span><span class="n">put</span><span class="p">((</span><span class="n">distance</span><span class="p">[</span><span class="n">nb</span><span class="p">],</span> <span class="n">nb</span><span class="p">))</span>
-    
+
     <span class="k">return</span> <span class="n">distance</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
 
 
@@ -2394,6 +2437,7 @@ add z y
 <p>Basically the question was trying to trick you into representing lanternfish individually, and thus gobbling up all your computer’s memory due to the exponential rate of growth. Instead, the code below tracks the population of lanternfish with each timer value. This is done with a <code class="language-plaintext highlighter-rouge">defaultdict</code> from timer value to population. The <code class="language-plaintext highlighter-rouge">defaultdict</code> returns 0 if the key isn’t found, which saves having to initialise populations of zero in each state.</p>
 
 <h3 id="python-code">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
@@ -2410,7 +2454,7 @@ add z y
 <span class="k">def</span> <span class="nf">advance</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
     <span class="n">newstate</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
 
-    
+
 
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">t</span><span class="o">==</span><span class="mi">8</span><span class="p">:</span>
@@ -2419,7 +2463,7 @@ add z y
             <span class="n">newstate</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">newstate</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-    
+
     <span class="k">return</span> <span class="n">newstate</span>
 
 <span class="n">generations</span> <span class="o">=</span> <span class="mi">256</span>
@@ -2429,8 +2473,8 @@ add z y
 
 <span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">.</span><span class="n">values</span><span class="p">()))</span>
 </code></pre></div></div>
-<p>Day 7 - <a href="https://adventofcode.com/2021/day/7">The Treachery of Whales</a>
-———————————————————————-</p>
+
+<h2 id="day-7---the-treachery-of-whales">Day 7 - <a href="https://adventofcode.com/2021/day/7">The Treachery of Whales</a></h2>
 
 <h3 id="thoughts-1">Thoughts</h3>
 
@@ -2449,6 +2493,7 @@ add z y
 <p>(I’m actually a bit suspicious of the continuous calculus that goes into some “proofs” of the result that the optimum position lies within 0.5 of the mean, but the result appears to be true and can be shown without calculus, albeit it gets a bit messy).</p>
 
 <h3 id="python-code-1">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
@@ -2460,7 +2505,7 @@ add z y
     <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
         <span class="n">d</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">position</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
         <span class="nb">sum</span> <span class="o">+=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
 
 <span class="n">min_cost</span> <span class="o">=</span> <span class="n">sum_fuel_costs</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
@@ -2548,6 +2593,7 @@ add z y
 <p>Not again that this solution doesn’t actually determine how the individual segments in each display are mis-wired. Does <code class="language-plaintext highlighter-rouge">f</code> get lit instead of <code class="language-plaintext highlighter-rouge">a</code>? Does <code class="language-plaintext highlighter-rouge">b</code> get lit instead of <code class="language-plaintext highlighter-rouge">c</code>? Does <code class="language-plaintext highlighter-rouge">g</code> get lit correctly? Not a clue, this solution assigns sets of lit segments to digits without needing to answer any such questions.</p>
 
 <h3 id="python-code-2">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
@@ -2556,7 +2602,7 @@ add z y
 
     <span class="n">signals</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
-    
+
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
     <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">)</span>
 
@@ -2577,10 +2623,10 @@ add z y
         <span class="n">segs</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)].</span><span class="n">append</span><span class="p">(</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">decoder</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span> <span class="o">=</span> <span class="s">'1'</span>
-                
+
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
             <span class="n">decoder</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span> <span class="o">=</span> <span class="s">'4'</span>
-                
+
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
             <span class="n">decoder</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span> <span class="o">=</span> <span class="s">'7'</span>
 
@@ -2594,10 +2640,10 @@ add z y
 
         <span class="k">if</span> <span class="n">overlap_with_7</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
             <span class="n">decoder</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="s">'3'</span>
-        
+
         <span class="k">elif</span> <span class="n">overlap_with_4</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
             <span class="n">decoder</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="s">'5'</span>
-        
+
         <span class="k">else</span><span class="p">:</span>
             <span class="n">decoder</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="s">'2'</span>
 
@@ -2608,14 +2654,14 @@ add z y
 
         <span class="k">if</span> <span class="n">overlap_with_7</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">decoder</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="o">=</span> <span class="s">'6'</span>
-            
+
         <span class="k">elif</span> <span class="n">overlap_with_4</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
             <span class="n">decoder</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="o">=</span> <span class="s">'9'</span>
-            
+
         <span class="k">else</span><span class="p">:</span>
             <span class="n">decoder</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="o">=</span> <span class="s">'0'</span>
-        
-    
+
+
     <span class="k">return</span> <span class="n">decoder</span>
 
 
@@ -2629,16 +2675,16 @@ add z y
 
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
             <span class="n">decoded_output</span> <span class="o">+=</span> <span class="n">decoder</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
-        
+
         <span class="n">decoded_outputs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">decoded_output</span><span class="p">))</span>
-        
-    
+
+
     <span class="k">return</span> <span class="n">decoded_outputs</span>
 
 <span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">decode_outputs</span><span class="p">(</span><span class="n">signals</span><span class="p">,</span><span class="n">outputs</span><span class="p">)))</span>
 </code></pre></div></div>
-<p>Day 9 - <a href="https://adventofcode.com/2021/day/4">Smoke Basin</a>
-———————————————————-</p>
+
+<h2 id="day-9---smoke-basin">Day 9 - <a href="https://adventofcode.com/2021/day/4">Smoke Basin</a></h2>
 
 <h3 id="thoughts-3">Thoughts</h3>
 
@@ -2661,6 +2707,7 @@ add z y
 <p>Now it turns out the above is actually excessive work, since all we need to do is find the size of each basin. The individual heights inside the basin are actually irrelevant - a basin can be defined as <strong>any region bounded by points with height 9.</strong> As an alternative solution, I implemented a <a href="https://github.com/DavidBartram/advent-of-code/blob/main/2021/day09-2-floodfill.py">Flood Fill</a> which starts at a low point and fills the surrounding basin with 9s, counting the points as it goes along.</p>
 
 <h3 id="python-code-basin-id-solution">Python Code (basin ID solution)</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
@@ -2684,12 +2731,12 @@ add z y
     <span class="c1">#returns a list of coords of points adjacent to (i,j) in the grid
 </span>    <span class="n">coords_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">steps</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
-    
+
     <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
         <span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span> <span class="o">=</span> <span class="n">step</span>
         <span class="k">if</span> <span class="n">grid</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">dy</span><span class="p">)]</span> <span class="o">!=</span> <span class="mi">100</span><span class="p">:</span> <span class="c1">#default value is 100 if (i+dx,j_dy) is not already in grid
 </span>            <span class="n">coords_list</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">dy</span><span class="p">))</span>
-    
+
     <span class="k">return</span> <span class="n">coords_list</span>
 
 <span class="k">def</span> <span class="nf">get_basin_ID</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">basin_IDs</span><span class="p">):</span>
@@ -2705,7 +2752,7 @@ add z y
         <span class="c1">#assign high points a basin ID of -1
 </span>        <span class="n">basin_IDs</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-    
+
     <span class="k">else</span><span class="p">:</span>
 
         <span class="c1">#find the value and coords of the lowest point neighbouring (i,j)
@@ -2722,7 +2769,7 @@ add z y
             <span class="n">basin_IDs</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">new_basin_ID</span>
             <span class="c1">#print('new basin ID ', new_basin_ID)
 </span>            <span class="k">return</span> <span class="n">new_basin_ID</span>
-        
+
         <span class="k">else</span><span class="p">:</span>
             <span class="c1">#if (i,j) is not known, and is not a new low point
 </span>            <span class="c1">#recursively call the function for the coords of the lowest neighbouring point
@@ -2742,7 +2789,7 @@ add z y
 </span>            <span class="n">basin_IDs</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">get_basin_ID</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">basin_IDs</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">basin_IDs</span>
-    
+
 
 <span class="k">def</span> <span class="nf">three_largest_basins</span><span class="p">(</span><span class="n">basin_IDs</span><span class="p">):</span>
     <span class="c1">#The high points (height=9) were assigned basin ID = -1
@@ -2761,6 +2808,7 @@ add z y
 </code></pre></div></div>
 
 <h3 id="python-code-flood-fill-solution">Python Code (flood fill solution)</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
@@ -2782,23 +2830,23 @@ add z y
     <span class="n">neigh_list</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="n">steps</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
-    
+
     <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
         <span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span> <span class="o">=</span> <span class="n">step</span>
         <span class="n">neigh_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">grid</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">dy</span><span class="p">)])</span>
-    
+
     <span class="k">return</span> <span class="n">neigh_list</span>
 
 <span class="k">def</span> <span class="nf">neighbour_coords</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">grid</span><span class="p">):</span>
     <span class="c1">#returns a list of coords of points adjacent to (i,j) in the grid
 </span>    <span class="n">coords_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">steps</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
-        
+
     <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
         <span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span> <span class="o">=</span> <span class="n">step</span>
         <span class="k">if</span> <span class="n">grid</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">dy</span><span class="p">)]</span> <span class="o">!=</span> <span class="mi">10</span><span class="p">:</span> <span class="c1">#default value is 10 if (i+dx,j_dy) is not already in grid
 </span>            <span class="n">coords_list</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="n">dx</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="n">dy</span><span class="p">))</span>
-        
+
     <span class="k">return</span> <span class="n">coords_list</span>
 
 <span class="k">def</span> <span class="nf">find_low_points</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
@@ -2821,7 +2869,7 @@ add z y
         <span class="c1">#stop if you've reached the edge of the basin
 </span>        <span class="c1">#or a point that's already been counted (see below)
 </span>        <span class="k">return</span> <span class="n">count</span>
-        
+
     <span class="k">else</span><span class="p">:</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1">#count this point
 </span>        <span class="n">grid</span><span class="p">[</span><span class="n">point</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span> <span class="c1">#flood fill with 9s, prevents counting this point again
@@ -2829,7 +2877,7 @@ add z y
         <span class="c1">#recursively count the neighbouring points
 </span>        <span class="k">for</span> <span class="n">nb</span> <span class="ow">in</span> <span class="n">neighbour_coords</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">grid</span><span class="p">):</span>
             <span class="n">count</span> <span class="o">+=</span> <span class="n">flood_fill_and_count</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span><span class="n">grid</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">count</span>
 
 <span class="k">def</span> <span class="nf">find_basin_sizes</span><span class="p">(</span><span class="n">low_points</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
@@ -2864,10 +2912,10 @@ add z y
 <p>The score is determined by considering the completion string character-by-character. Start with a total score ofÂ <code class="language-plaintext highlighter-rouge">0</code>. Then, for each character, multiply the total score by 5 and then increase the total score by the point value given for the character below:</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">")"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 point"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"]"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 points"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3 points"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"&gt;"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4 points"</span><span class="w">
+  </span><span class="nl">")"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 point"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"]"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 points"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"}"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3 points"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"&gt;"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4 points"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
@@ -2896,6 +2944,7 @@ add z y
 <p>To get a final solution we just need to score every completion string and find the median score.</p>
 
 <h3 id="python-code-3">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">statistics</span> <span class="kn">import</span> <span class="n">median</span>
 
@@ -2916,13 +2965,13 @@ add z y
     <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">openers</span><span class="p">:</span>
             <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
-        
+
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">bracketmap</span><span class="p">[</span><span class="n">char</span><span class="p">]:</span>
                 <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">False</span>
-    
+
     <span class="n">stack</span><span class="p">.</span><span class="n">reverse</span><span class="p">()</span>
 
     <span class="n">stack</span> <span class="o">=</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">([</span><span class="n">invbracketmap</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">stack</span><span class="p">])</span>
@@ -2939,7 +2988,7 @@ add z y
 
 <span class="k">def</span> <span class="nf">solve_part_two</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
     <span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">score</span><span class="p">(</span><span class="n">completion_string</span><span class="p">(</span><span class="n">line</span><span class="p">))</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span> <span class="k">if</span> <span class="n">completion_string</span><span class="p">(</span><span class="n">line</span><span class="p">)]</span>
-    
+
     <span class="k">return</span><span class="p">(</span><span class="n">median</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
 
 
@@ -2964,7 +3013,7 @@ add z y
 
 <p>The first way uses indexing, while the second way uses the <a href="https://www.w3schools.com/python/ref_func_zip.asp">zip</a> function.</p>
 
-<p>Zip is one of my favourite python functions - it produces a “zip object”, an iterator of tuples, pairing up the elements from each input iterator. So if <code class="language-plaintext highlighter-rouge">list1</code> is [<code class="language-plaintext highlighter-rouge">a,b,c,d,e]</code> and <code class="language-plaintext highlighter-rouge">list2</code> is <code class="language-plaintext highlighter-rouge">[1, 2, 3]</code> then <code class="language-plaintext highlighter-rouge">zip(list1,list2)</code> will contain the tuples <code class="language-plaintext highlighter-rouge">(a,1)</code>, <code class="language-plaintext highlighter-rouge">(b,2)</code> and <code class="language-plaintext highlighter-rouge">(c,3)</code>. The length of the output is determined by the shorter of the two inputs.</p>
+<p>Zip is one of my favourite python functions - it produces a “zip object”, an iterator of tuples, pairing up the elements from each input iterator. So if <code class="language-plaintext highlighter-rouge">list1</code> is [<code class="language-plaintext highlighter-rouge">a,b,c,d,e]</code>and<code class="language-plaintext highlighter-rouge">list2</code>is<code class="language-plaintext highlighter-rouge">[1, 2, 3]</code>then<code class="language-plaintext highlighter-rouge">zip(list1,list2)</code>will contain the tuples<code class="language-plaintext highlighter-rouge">(a,1)</code>, <code class="language-plaintext highlighter-rouge">(b,2)</code>and<code class="language-plaintext highlighter-rouge">(c,3)</code>. The length of the output is determined by the shorter of the two inputs.</p>
 
 <p>zip(list,list[1:]) will produce a list of tuples of consecutive elements in the list, for example:</p>
 
@@ -2977,6 +3026,7 @@ add z y
 <p>Given that, hopefully the list comprehension below makes sense. Remember that when summing a list of booleans, True will be treated as 1 and False will be treated as 0.</p>
 
 <h3 id="python-code">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 
 
@@ -3034,6 +3084,7 @@ add z y
 <p>The required output is the product of <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> after all the instructions in the input file have been followed. The code below pretty much follows the rubric above line by line. :-)</p>
 
 <h3 id="python-code-1">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
@@ -3045,14 +3096,14 @@ add z y
     <span class="nb">dir</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">move</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
 
     <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-    
+
     <span class="k">if</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'forward'</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">+=</span> <span class="n">value</span>
         <span class="n">y</span> <span class="o">+=</span> <span class="n">aim</span><span class="o">*</span><span class="n">value</span>
-    
+
     <span class="k">elif</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'up'</span><span class="p">:</span>
         <span class="n">aim</span> <span class="o">-=</span> <span class="n">value</span>
-    
+
     <span class="k">elif</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'down'</span><span class="p">:</span>
         <span class="n">aim</span> <span class="o">+=</span> <span class="n">value</span>
 
@@ -3086,6 +3137,7 @@ add z y
 <p>The function is recursive, moving on to the next bit and filtering the list further until it reaches the base case, when the list has only 1 element.</p>
 
 <h3 id="python-code-2">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
 
@@ -3095,10 +3147,10 @@ add z y
 <span class="k">def</span> <span class="nf">get_rating</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">co2</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        
+
         <span class="k">else</span><span class="p">:</span>
             <span class="n">ones</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">'1'</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">])</span> <span class="c1">#number of ones in the column being considered
-</span>            
+</span>
             <span class="n">comparator</span> <span class="o">=</span> <span class="s">'0'</span>
 
             <span class="k">if</span> <span class="p">(</span><span class="n">co2</span><span class="o">==</span><span class="bp">True</span> <span class="ow">and</span> <span class="n">ones</span> <span class="o">&lt;</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="ow">or</span> <span class="p">(</span><span class="n">co2</span><span class="o">==</span><span class="bp">False</span> <span class="ow">and</span> <span class="n">ones</span> <span class="o">&gt;=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="p">:</span>
@@ -3141,6 +3193,7 @@ add z y
 <p>Really there’s nothing too clever below. There’s a list called <code class="language-plaintext highlighter-rouge">nums_so_far</code> of numbers drawn so far, and a list of <code class="language-plaintext highlighter-rouge">remaining_cards</code> to keep track of which indices of the <code class="language-plaintext highlighter-rouge">card</code>s list represent cards that are still in play. Iteratively we append a new number to <code class="language-plaintext highlighter-rouge">nums_so_far</code>, then check all the cards, remove the indices of any winners from <code class="language-plaintext highlighter-rouge">remaining_cards</code>, and repeat until only one card survives.</p>
 
 <h3 id="python-code-3">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
@@ -3155,7 +3208,7 @@ add z y
     <span class="n">grids</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">remove</span><span class="p">([</span><span class="s">''</span><span class="p">])</span>
 
 <span class="c1">#append columns to each grid as if they were additional rows
-</span><span class="n">grids</span> <span class="o">=</span> <span class="p">[</span><span class="n">grid</span> <span class="o">+</span> <span class="p">[[</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">))]</span> <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">grids</span><span class="p">]</span> 
+</span><span class="n">grids</span> <span class="o">=</span> <span class="p">[</span><span class="n">grid</span> <span class="o">+</span> <span class="p">[[</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">))]</span> <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">grids</span><span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="n">card</span><span class="p">,</span><span class="n">nums</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">card</span><span class="p">:</span>
@@ -3180,13 +3233,13 @@ add z y
         <span class="n">nums_so_far</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">remaining_cards</span><span class="p">:</span>
-            
+
             <span class="k">if</span> <span class="n">check</span><span class="p">(</span><span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">nums_so_far</span><span class="p">)</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
                 <span class="n">remaining_cards</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining_cards</span><span class="p">)</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
                     <span class="n">final_card</span> <span class="o">=</span> <span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                    <span class="k">return</span> <span class="n">score</span><span class="p">(</span><span class="n">final_card</span><span class="p">,</span><span class="n">nums_so_far</span><span class="p">)</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>                
+                    <span class="k">return</span> <span class="n">score</span><span class="p">(</span><span class="n">final_card</span><span class="p">,</span><span class="n">nums_so_far</span><span class="p">)</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">part2_play</span><span class="p">(</span><span class="n">grids</span><span class="p">,</span><span class="n">win_nums</span><span class="p">))</span>
 </code></pre></div></div>
@@ -3204,6 +3257,7 @@ add z y
 <p>There is no distinction between the “start” and “end” points of a line, and so the code sometimes swaps them so that they can be stepped through by <em>increasing</em> x by 1 per step (for non-vertical lines) or by <em>increasing</em> y by 1 per step (for vertical lines). This is just for convenience.</p>
 
 <h3 id="python-code-4">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
@@ -3234,8 +3288,8 @@ add z y
         <span class="c1">#for convenience the point with lower y-value will be used as the start
 </span>        <span class="k">if</span> <span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
             <span class="n">start</span><span class="p">,</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span><span class="p">,</span><span class="n">start</span>
-        
-        
+
+
         <span class="n">dx</span><span class="p">,</span><span class="n">dy</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
         <span class="c1">#an integer step along a vertical line adds +0 to x and +1 to y
 </span>
@@ -3244,12 +3298,12 @@ add z y
         <span class="c1">#for convenience the point with lower x-value will be used as the start
 </span>        <span class="k">if</span> <span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
             <span class="n">start</span><span class="p">,</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span><span class="p">,</span><span class="n">start</span>
-        
+
         <span class="n">dx</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">dy</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="c1">#gradient
 </span>
         <span class="c1">#an integer step along the line adds +1 to x and +(gradient) to y
-</span>    
+</span>
     <span class="n">overlap_count</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">start</span>
 
@@ -3405,8 +3459,8 @@ add z y
   <span class="k">union</span> <span class="k">select</span> <span class="s1">'Task 4'</span> <span class="k">as</span> <span class="s1">'Task ID'</span><span class="p">,</span> <span class="s1">'Clare'</span> <span class="k">as</span> <span class="nv">"Worker"</span><span class="p">,</span> <span class="k">CAST</span><span class="p">(</span><span class="s1">'20211207'</span> <span class="k">as</span> <span class="nb">date</span><span class="p">)</span> <span class="k">as</span> <span class="nv">"Date"</span><span class="p">,</span> <span class="s1">'Completed'</span> <span class="k">as</span> <span class="nv">"Status"</span>
 <span class="p">)</span>
 
-<span class="k">SELECT</span> <span class="n">initialData</span><span class="p">.</span><span class="nv">"Task ID"</span><span class="p">,</span> 
-       <span class="n">initialData</span><span class="p">.</span><span class="nv">"Date"</span> <span class="k">as</span> <span class="nv">"StartDate"</span><span class="p">,</span> 
+<span class="k">SELECT</span> <span class="n">initialData</span><span class="p">.</span><span class="nv">"Task ID"</span><span class="p">,</span>
+       <span class="n">initialData</span><span class="p">.</span><span class="nv">"Date"</span> <span class="k">as</span> <span class="nv">"StartDate"</span><span class="p">,</span>
        <span class="n">completedData</span><span class="p">.</span><span class="nv">"Date"</span> <span class="k">as</span> <span class="nv">"EndDate"</span><span class="p">,</span>
        <span class="n">DATEDIFF</span><span class="p">(</span><span class="k">day</span><span class="p">,</span><span class="n">initialData</span><span class="p">.</span><span class="nv">"Date"</span><span class="p">,</span> <span class="n">completedData</span><span class="p">.</span><span class="nv">"Date"</span><span class="p">)</span> <span class="k">as</span> <span class="nv">"Duration (days)"</span>
 <span class="k">FROM</span> <span class="n">datatable</span> <span class="k">as</span> <span class="n">initialData</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">datatable</span> <span class="k">as</span> <span class="n">completedData</span>
@@ -3497,7 +3551,7 @@ add z y
 
 <span class="k">SELECT</span> <span class="k">day</span><span class="p">,</span> <span class="n">Value</span>
 <span class="k">FROM</span> <span class="n">datatable</span>
-<span class="k">UNION</span> 
+<span class="k">UNION</span>
 <span class="k">SELECT</span> <span class="k">day</span><span class="p">,</span> <span class="n">Value</span>
 <span class="k">FROM</span> <span class="k">defaults</span>
 <span class="k">WHERE</span> <span class="k">defaults</span><span class="p">.</span><span class="k">day</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">distinct</span> <span class="k">day</span> <span class="k">from</span> <span class="n">datatable</span><span class="p">)</span>
@@ -3572,6 +3626,7 @@ add z y
 <p>To do this you simply prefix the string with an <code class="language-plaintext highlighter-rouge">f</code> or <code class="language-plaintext highlighter-rouge">F</code> before the opening single or triple quote, and contain the Python expression you want to insert in braces <code class="language-plaintext highlighter-rouge">{}</code>.</p>
 
 <p>Example:</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="s">'Boba Fett'</span>
 <span class="n">age</span> <span class="o">=</span> <span class="mi">19</span>
 <span class="n">pronoun</span> <span class="o">=</span> <span class="s">'he'</span>
@@ -3581,7 +3636,9 @@ add z y
 
 <span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </code></pre></div></div>
+
 <p>Output:</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>When Boba Fett was 19 years old, he learned to count to 10: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 </code></pre></div></div>
 
@@ -3628,8 +3685,9 @@ jiminyjiminyjiminyjiminyjiminy
 </code></pre></div></div>
 
 <p><strong>Output:</strong></p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>banana('banana',))  
-5(5,))  
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>banana('banana',))
+5(5,))
 (1, 3, 5)((1, 3, 5),))
 </code></pre></div></div>
 
@@ -3651,7 +3709,9 @@ jiminyjiminyjiminyjiminyjiminy
 
 <span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="s">'chimp'</span><span class="p">,))</span>
 </code></pre></div></div>
+
 <p><strong>Output:</strong></p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chimp('chimp',))
 </code></pre></div></div>
 
@@ -3771,161 +3831,4 @@ jiminyjiminyjiminyjiminyjiminy
 
 <h2 id="conclusions-or-lack-thereof">Conclusions or lack thereof</h2>
 
-<p>Really this post is just an opportunity to revisit Jack Vance’s take on magic, rather than provide any serious mechanical analysis of various forms of Vancian magic that exist in RPGs. For me it’s useful to know where the term comes from, and how Vance actually wrote about magic. Comparing that to how RPGs employ the concept is an interesting process, but where it leads will depend on your own thoughts and preferences.</p>]]></content><author><name></name></author><category term="tabletop-roleplaying" /><summary type="html"><![CDATA[Vancian Spellcasting in Tabletop RPGs]]></summary></entry><entry><title type="html">Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function</title><link href="http://localhost:4000/2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-+-lambda-function.html" rel="alternate" type="text/html" title="Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function" /><published>2021-08-12T14:45:39+01:00</published><updated>2021-08-12T14:45:39+01:00</updated><id>http://localhost:4000/2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-+-lambda-function</id><content type="html" xml:base="http://localhost:4000/2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-+-lambda-function.html"><![CDATA[<h1 id="aws-cloudformation-example-part-2---deploy-and-test-a-rest-api--lambda-function">AWS Cloudformation Example Part 2 - Deploy and Test a REST API + Lambda Function</h1>
-
-<p><img src="/images/pexels-photo-4175032.jpeg" alt="person in black long sleeve shirt holding white tissue paper" /></p>
-
-<p>In <a href="https://david-bartram.com/2021/08/02/aws-cloudformation-example-part-1-sam-template-for-rest-api-lambda-function/">Part 1</a> we put together a Cloudformation SAM template for a simple REST API backed by a lambda function. The resulting code is available in <a href="https://github.com/DavidBartram/cloudformation-api-lambda">this repo</a>.</p>
-
-<p>In this post, we’ll walk through how to deploy the template to AWS and test the API using Postman.</p>
-
-<ol>
-  <li>
-    <h2 id="install-sam-cli">Install SAM CLI</h2>
-  </li>
-</ol>
-
-<p>To deploy SAM templates, you’ll want to <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html">install the SAM CLI</a>. Make sure that the IAM user whose access key and secret key you are using has the necessary permissions to deploy this. If you’re doing this as a learning activity on a personal account, as I was, it’s simplest to use the credentials of a user with Administrator access.</p>
-
-<h2 id="2-clone-repository">2<strong>.</strong> Clone repository</h2>
-
-<p>Now you’ll need a SAM template to deploy, along with the code you want to use in the lambda function. The code we’re using here can be found on <a href="https://github.com/DavidBartram/cloudformation-api-lambda">my GitHub</a> and was explained in <a href="https://david-bartram.com/2021/08/02/aws-cloudformation-example-part-1-sam-template-for-rest-api-lambda-function/">Part 1</a>. Fork the repo and clone it down to your machine.</p>
-
-<ol>
-  <li>
-    <h2 id="sam-build">SAM build</h2>
-  </li>
-</ol>
-
-<p>Using your command line of choice, change directory to the cloned repo. (My main laptop is Windows so it would be PowerShell for me - stop hissing in the background, you lot. I like bash as well.)</p>
-
-<p>Enter the <code class="language-plaintext highlighter-rouge">sam build</code> command.</p>
-
-<p>This will package the separate components in the folder (e.g. the SAM template and the lambda code in this example) together into a deployable artifact.</p>
-
-<p><code class="language-plaintext highlighter-rouge">sam build</code> is expecting a file call <code class="language-plaintext highlighter-rouge">template.yml</code> in the root of the directory, but of course it is easy to set the template name with the -t option if required. The options are documented <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-build.html">here</a>.</p>
-
-<p>You’re hoping for a successful build, like the below:</p>
-
-<p><img src="/images/image.png" alt="" /></p>
-
-<ol>
-  <li>
-    <h2 id="sam-deploy">SAM deploy</h2>
-  </li>
-</ol>
-
-<p>Well, who am I to argue with the suggestion that we use <code class="language-plaintext highlighter-rouge">sam deploy --guided</code> ?</p>
-
-<p>The <code class="language-plaintext highlighter-rouge">--guided</code> option, as you’d expect, means that SAM will guide you through the process with prompts.</p>
-
-<p>However we want to deploy IAM resources with custom names, which requires a capability called CAPABILITY_NAMED_IAM. So our full command will look like:</p>
-
-<p><code class="language-plaintext highlighter-rouge">sam deploy --guided --capabilities CAPABILITY_NAMED_IAM</code></p>
-
-<p>You can choose what to name your Cloudformation stack, the Region you want to deploy to, and the values of all the parameters in <code class="language-plaintext highlighter-rouge">template.yml</code>. I was happy with the defaults, so I only had to choose the stack name and the last few options.</p>
-
-<p><img src="/images/image-2.png" alt="" /></p>
-
-<p>The last 3 options will save the SAM configuration to a <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html">config file</a> called <code class="language-plaintext highlighter-rouge">samconfig.toml</code> in the root of the directory.</p>
-
-<p>I asked to confirm the changes before deployment, so I get a chance to look at the changeset:</p>
-
-<p><img src="/images/image-3.png" alt="" /></p>
-
-<p>Those look like the resources I asked for in my template, so I will answer in the affirmative to <code class="language-plaintext highlighter-rouge">Deploy this changeset? [y/N]</code> <code class="language-plaintext highlighter-rouge">.</code></p>
-
-<p>You can watch it being created, and soon enough the stack will be successfully deployed:</p>
-
-<p><img src="/images/image-4.png" alt="" /></p>
-
-<ol>
-  <li>
-    <h2 id="view-cloudformation-stack-in-aws-console">View Cloudformation Stack in AWS Console</h2>
-  </li>
-</ol>
-
-<p>Let’s hope into the AWS console, go to the Cloudformation console and select the stack you’ve just created. If you go to the Resources tab you can see all the resources that have been created. At this point if you’re anything like me you’ll want to visit some of the resources and poke around, see if things are as you expected based on your template.</p>
-
-<p><img src="/images/image-5.png" alt="" /></p>
-
-<ol>
-  <li>
-    <h2 id="test-api-in-aws-console">Test API in AWS Console</h2>
-  </li>
-</ol>
-
-<p>Let’s start testing the API that we’ve deployed. Firstly we’re going to test it from the console, by clicking the “physical ID” of the RestApi resource in the table shown in the image above. This will open up the API Gateway console and let us look at our API.</p>
-
-<p>There’s plenty of interesting things we could look at, but for now click on the POST method and then click the test button:</p>
-
-<p><img src="/images/image-6.png" alt="" /></p>
-
-<p>This test bypasses any authorization on the API. For the request body, enter something that matches the schema we set up for submitting sales stats for coloured widgets. It should look something like this:</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-</span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-28"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Manchester"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"red_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2051"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"blue_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"green_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"588"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>You’re expecting a matching response</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"Notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thank you for submitting data. You submitted the following. Date 2021-07-28 at location Manchester, number of red widgets sold was 2051, number of blue widgets sold was 37, number of green widgets sold was 588."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<ol>
-  <li>
-    <h2 id="create-iam-user--attach-policy">Create IAM user + attach policy</h2>
-  </li>
-</ol>
-
-<p>If we want to use the API properly, we need the right authorization. Last time, I decided to use IAM authorization. We want to create our IAM user separately from the stack, as we want their details to persist if changes are made to the stack.</p>
-
-<p>Follow the instructions <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html">here</a> to create an IAM user with programmatic access. Make sure you save the access key and secret key.</p>
-
-<p>The only permissions this user needs are in the API user managed policy created as part of the stack. Attach that policy to the user, and they will have access to this API.</p>
-
-<ol>
-  <li>
-    <h2 id="install-postman">Install Postman</h2>
-  </li>
-</ol>
-
-<p><a href="https://www.postman.com/">Postman</a> is a great tool for working on APIs, and it’s particularly easy to send a test API request with Postman and look at the response. It’s especially handy here as it can automatically sign the API request the way AWS IAM expects, using an access key and secret key. Download it <a href="https://www.postman.com/downloads/">here</a>.</p>
-
-<ol>
-  <li>
-    <h2 id="test-api-with-postman">Test API with Postman</h2>
-  </li>
-</ol>
-
-<p>Let’s construct our request. Click New in Postman, and choose a basic request. Give it a name and save it.</p>
-
-<p>Select POST from the dropdown, and enter your API’s URL.</p>
-
-<p>The url will be of this form:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://&lt;API ID&gt;.execute-api.&lt;region&gt;.amazonaws.com/&lt;stage&gt;/&lt;resource&gt;
-</code></pre></div></div>
-
-<p>You don’t need to pass in any query parameters.</p>
-
-<p>Select the Body tab, select the “raw” option and choose JSON from the dropdown. Enter a valid JSON Body.</p>
-
-<p><img src="/images/image-8.png" alt="" /></p>
-
-<p>If you click Send now, you’ll get a “Missing Authentication Token” error in response. This API isn’t available to just anyone - you need to sign your request with the access key and secret key of the IAM user you created earlier.</p>
-
-<p>Go to the Authorization tab and select AWS Signature from the Authorization Type dropdown. Enter your access key and secret key on the right. Click Advanced and enter the AWS region.</p>
-
-<p><img src="/images/image-9.png" alt="" /></p>
-
-<p>Now when you hit Send, you’ll get the response you expect below your request.</p>
-
-<p>Congratulations - you’ve made and deployed an API Gateway backed by a lambda function with AWS, and tested it from inside and outside AWS!</p>]]></content><author><name></name></author><category term="api-gateway" /><category term="aws" /><category term="cloudformation" /><category term="lambda" /><summary type="html"><![CDATA[AWS Cloudformation Example Part 2 - Deploy and Test a REST API + Lambda Function]]></summary></entry></feed>
+<p>Really this post is just an opportunity to revisit Jack Vance’s take on magic, rather than provide any serious mechanical analysis of various forms of Vancian magic that exist in RPGs. For me it’s useful to know where the term comes from, and how Vance actually wrote about magic. Comparing that to how RPGs employ the concept is an interesting process, but where it leads will depend on your own thoughts and preferences.</p>]]></content><author><name></name></author><category term="tabletop-roleplaying" /><summary type="html"><![CDATA[Vancian Spellcasting in Tabletop RPGs]]></summary></entry></feed>

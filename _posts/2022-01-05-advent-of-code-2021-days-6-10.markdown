@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Advent Of Code 2021 Days 6-10"
 date: 2022-01-05 14:45:39 +0100
 tags: advent-of-code coding python
@@ -13,8 +14,7 @@ Welcome back to some more [Advent of Code 2021](http://adventofcode.com/2021/)!
 
 These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github [here](https://git.io/JmAvJ). The code below is for Part 2 of each day, which often incorporates Part 1 in some way.
 
-Day 6 - [Lanternfish](https://adventofcode.com/2021/day/6)
-----------------------------------------------------------
+## Day 6 - [Lanternfish](https://adventofcode.com/2021/day/6)
 
 ### Thoughts
 
@@ -27,6 +27,7 @@ My instinct was that the order of the lanternfish didn't matter, so there was no
 Basically the question was trying to trick you into representing lanternfish individually, and thus gobbling up all your computer's memory due to the exponential rate of growth. Instead, the code below tracks the population of lanternfish with each timer value. This is done with a `defaultdict` from timer value to population. The `defaultdict` returns 0 if the key isn't found, which saves having to initialise populations of zero in each state.
 
 ### Python Code
+
 ```python
 import sys
 from collections import defaultdict
@@ -44,7 +45,7 @@ for x in data:
 def advance(state):
     newstate = defaultdict(lambda: 0)
 
-    
+
 
     for t in range(8,-1,-1):
         if t==8:
@@ -53,7 +54,7 @@ def advance(state):
             newstate[6] = state[7] + state[0]
         else:
             newstate[t] = state[t+1]
-    
+
     return newstate
 
 generations = 256
@@ -63,8 +64,8 @@ for i in range(generations):
 
 print(sum(counts.values()))
 ```
-Day 7 - [The Treachery of Whales](https://adventofcode.com/2021/day/7)
-----------------------------------------------------------------------
+
+## Day 7 - [The Treachery of Whales](https://adventofcode.com/2021/day/7)
 
 ### Thoughts
 
@@ -83,6 +84,7 @@ Furthermore, it [can be shown](https://www.reddit.com/r/adventofcode/comments/ra
 (I'm actually a bit suspicious of the continuous calculus that goes into some "proofs" of the result that the optimum position lies within 0.5 of the mean, but the result appears to be true and can be shown without calculus, albeit it gets a bit messy).
 
 ### Python Code
+
 ```python
 import sys
 
@@ -95,7 +97,7 @@ def sum_fuel_costs(positions, x):
     for position in positions:
         d = abs(position-x)
         sum += 0.5*d*(d+1)
-    
+
     return int(sum)
 
 min_cost = sum_fuel_costs(data,0)
@@ -109,8 +111,7 @@ for x in range(min(data),max(data)):
 print(min_cost)
 ```
 
-Day 8 - [Seven Segment Search](https://adventofcode.com/2021/day/8)
--------------------------------------------------------------------
+## Day 8 - [Seven Segment Search](https://adventofcode.com/2021/day/8)
 
 ### Thoughts
 
@@ -164,23 +165,24 @@ First consider 2, 3 and 5. Each of these has exactly five segments lit.
 
 ![]({{ "images/shared_segs_1.jpg" | relative_url }})
 
-*   Only 3 has exactly three segments in common with 7
-*   Only 5 has exactly three segments in common with 4
-*   The other five-segment digit must represent 2
+- Only 3 has exactly three segments in common with 7
+- Only 5 has exactly three segments in common with 4
+- The other five-segment digit must represent 2
 
 Now repeat the process with 0, 6 and 9, which all have exactly six segments lit.
 
 ![]({{ "images/shared_segs_2.jpg" | relative_url }})
 
-*   Only 6 has exactly two segments in common with 7
-*   Only 9 has exactly four segments in common with 4
-*   The other six-segment display must represent 0
+- Only 6 has exactly two segments in common with 7
+- Only 9 has exactly four segments in common with 4
+- The other six-segment display must represent 0
 
 At this point we have identified how all of the digits 0-9 are represented on that particular display, and can decode the output. The final solution to the puzzle is just the sum of all the decoded outputs. Remember we need to repeat the decoding process for each row in our input, since each display is mis-wired in a different way.
 
 Not again that this solution doesn't actually determine how the individual segments in each display are mis-wired. Does `f` get lit instead of `a`? Does `b` get lit instead of `c`? Does `g` get lit correctly? Not a clue, this solution assigns sets of lit segments to digits without needing to answer any such questions.
 
 ### Python Code
+
 ```python
 import sys
 from collections import defaultdict
@@ -190,7 +192,7 @@ with open(sys.argv[1]) as file:
 
     signals = []
     outputs = []
-    
+
 for line in data:
     line = line.split('|')
 
@@ -211,10 +213,10 @@ def decode(signal):
         segs[len(x)].append(frozenset(x))
         if len(x) == 2:
             decoder[frozenset(x)] = '1'
-                
+
         elif len(x) == 4:
             decoder[frozenset(x)] = '4'
-                
+
         elif len(x) == 3:
             decoder[frozenset(x)] = '7'
 
@@ -228,10 +230,10 @@ def decode(signal):
 
         if overlap_with_7 == 3:
             decoder[y] = '3'
-        
+
         elif overlap_with_4 == 3:
             decoder[y] = '5'
-        
+
         else:
             decoder[y] = '2'
 
@@ -242,14 +244,14 @@ def decode(signal):
 
         if overlap_with_7 == 2:
             decoder[z] = '6'
-            
+
         elif overlap_with_4 == 4:
             decoder[z] = '9'
-            
+
         else:
             decoder[z] = '0'
-        
-    
+
+
     return decoder
 
 
@@ -263,16 +265,16 @@ def decode_outputs(signals,outputs):
 
         for x in output:
             decoded_output += decoder[frozenset(x)]
-        
+
         decoded_outputs.append(int(decoded_output))
-        
-    
+
+
     return decoded_outputs
 
 print(sum(decode_outputs(signals,outputs)))
 ```
-Day 9 - [Smoke Basin](https://adventofcode.com/2021/day/4)
-----------------------------------------------------------
+
+## Day 9 - [Smoke Basin](https://adventofcode.com/2021/day/4)
 
 ### Thoughts
 
@@ -295,6 +297,7 @@ Once every point has been assigned a basin ID, we simply count the number of poi
 Now it turns out the above is actually excessive work, since all we need to do is find the size of each basin. The individual heights inside the basin are actually irrelevant - a basin can be defined as **any region bounded by points with height 9.** As an alternative solution, I implemented a [Flood Fill](https://github.com/DavidBartram/advent-of-code/blob/main/2021/day09-2-floodfill.py) which starts at a low point and fills the surrounding basin with 9s, counting the points as it goes along.
 
 ### Python Code (basin ID solution)
+
 ```python
 import sys
 from collections import defaultdict, Counter
@@ -319,12 +322,12 @@ def neighbour_coords(i,j,grid):
     #returns a list of coords of points adjacent to (i,j) in the grid
     coords_list = []
     steps = [(1,0),(-1,0),(0,1),(0,-1)]
-    
+
     for step in steps:
         (dx,dy) = step
         if grid[(i+dx,j+dy)] != 100: #default value is 100 if (i+dx,j_dy) is not already in grid
             coords_list.append((i+dx,j+dy))
-    
+
     return coords_list
 
 def get_basin_ID(i,j,grid,basin_IDs):
@@ -340,7 +343,7 @@ def get_basin_ID(i,j,grid,basin_IDs):
         #assign high points a basin ID of -1
         basin_IDs[(i,j)] = -1
         return -1
-    
+
     else:
 
         #find the value and coords of the lowest point neighbouring (i,j)
@@ -357,7 +360,7 @@ def get_basin_ID(i,j,grid,basin_IDs):
             basin_IDs[(i,j)] = new_basin_ID
             #print('new basin ID ', new_basin_ID)
             return new_basin_ID
-        
+
         else:
             #if (i,j) is not known, and is not a new low point
             #recursively call the function for the coords of the lowest neighbouring point
@@ -377,7 +380,7 @@ def find_basins(grid):
             basin_IDs[(i,j)] = get_basin_ID(i,j,grid,basin_IDs)
 
     return basin_IDs
-    
+
 
 def three_largest_basins(basin_IDs):
     #The high points (height=9) were assigned basin ID = -1
@@ -396,6 +399,7 @@ print(total)
 ```
 
 ### Python Code (flood fill solution)
+
 ```python
 import sys
 from collections import defaultdict, Counter
@@ -418,23 +422,23 @@ def neighbours(i,j,grid):
     neigh_list = []
 
     steps = [(1,0),(-1,0),(0,1),(0,-1)]
-    
+
     for step in steps:
         (dx,dy) = step
         neigh_list.append(grid[(i+dx,j+dy)])
-    
+
     return neigh_list
 
 def neighbour_coords(i,j,grid):
     #returns a list of coords of points adjacent to (i,j) in the grid
     coords_list = []
     steps = [(1,0),(-1,0),(0,1),(0,-1)]
-        
+
     for step in steps:
         (dx,dy) = step
         if grid[(i+dx,j+dy)] != 10: #default value is 10 if (i+dx,j_dy) is not already in grid
             coords_list.append((i+dx,j+dy))
-        
+
     return coords_list
 
 def find_low_points(grid):
@@ -457,7 +461,7 @@ def flood_fill_and_count(point,grid):
         #stop if you've reached the edge of the basin
         #or a point that's already been counted (see below)
         return count
-        
+
     else:
         count += 1 #count this point
         grid[point] = 9 #flood fill with 9s, prevents counting this point again
@@ -465,7 +469,7 @@ def flood_fill_and_count(point,grid):
         #recursively count the neighbouring points
         for nb in neighbour_coords(point[0], point[1], grid):
             count += flood_fill_and_count(nb,grid)
-    
+
     return count
 
 def find_basin_sizes(low_points, grid):
@@ -485,8 +489,7 @@ def solve_puzzle(grid):
 print(solve_puzzle(grid))
 ```
 
-Day 10 - [Syntax Scoring](https://adventofcode.com/2021/day/10)
----------------------------------------------------------------
+## Day 10 - [Syntax Scoring](https://adventofcode.com/2021/day/10)
 
 ### Thoughts
 
@@ -502,21 +505,21 @@ The score is determined by considering the completion string character-by-charac
 
 ```json
 {
-    ")": "1 point",
-    "]": "2 points",
-    "}": "3 points",
-    ">": "4 points"
+  ")": "1 point",
+  "]": "2 points",
+  "}": "3 points",
+  ">": "4 points"
 }
 ```
 
 To solve this problem I implemented a stack based parser function called `completion_string`. The stack is implemented as a list unimaginatively titled `stack.` The parser moves through the line, one character at a time:
 
-*   If the current character is an opening bracket character of any kind, that character gets pushed onto the top of the stack.
-*   If the current character is a closing bracket character of any kind, the current character _should_ be the matching closing bracket for whichever type of opening bracket is at the top of the stack. This is to say, _a legal closing bracket character must close the **most recent bracket which is currently open**_.
-    
-    *   If this is true, pop the opening bracket from the top of the stack and move on to the next character.
-    
-    *   If this is false, the current character is illegal and the line is **corrupted.** In this case the function `completion_string` returns `False`. Any further characters in the line are irrelevant.
+- If the current character is an opening bracket character of any kind, that character gets pushed onto the top of the stack.
+- If the current character is a closing bracket character of any kind, the current character _should_ be the matching closing bracket for whichever type of opening bracket is at the top of the stack. This is to say, _a legal closing bracket character must close the **most recent bracket which is currently open**_.
+
+  - If this is true, pop the opening bracket from the top of the stack and move on to the next character.
+
+  - If this is false, the current character is illegal and the line is **corrupted.** In this case the function `completion_string` returns `False`. Any further characters in the line are irrelevant.
 
 If the parser reaches the end of the string, the line must be **incomplete**, since the puzzle states that none of the lines of the input are correct.
 
@@ -525,6 +528,7 @@ How do we get the **completion string** which we want to return? Well, our stack
 To get a final solution we just need to score every completion string and find the median score.
 
 ### Python Code
+
 ```python
 import sys
 from statistics import median
@@ -546,13 +550,13 @@ def completion_string(line):
     for char in line:
         if char in openers:
             stack.append(char)
-        
+
         else:
             if stack[-1] == bracketmap[char]:
                 stack.pop()
             else:
                 return False
-    
+
     stack.reverse()
 
     stack = ''.join([invbracketmap[x] for x in stack])
@@ -569,7 +573,7 @@ def score(string):
 
 def solve_part_two(lines):
     scores = [score(completion_string(line)) for line in lines if completion_string(line)]
-    
+
     return(median(scores))
 
 

@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Great Content From Stand Up Maths Benfords Law Dodgy Scatter Graphs And The 2020 Us Election"
 date: 2020-11-17 14:45:39 +0100
 tags: data maths

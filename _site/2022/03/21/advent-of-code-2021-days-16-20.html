@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="Advent Of Code 2021 Days 16-20" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="o Advent of Code 2021 Days 16-20" />
-<meta property="og:description" content="o Advent of Code 2021 Days 16-20" />
+<meta name="description" content="o" />
+<meta property="og:description" content="o" />
 <link rel="canonical" href="http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20.html" />
 <meta property="og:url" content="http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20.html" />
 <meta property="og:site_name" content="Dave Bartram Blog" />
@@ -17,9 +17,31 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Advent Of Code 2021 Days 16-20" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-03-21T13:45:39+00:00","datePublished":"2022-03-21T13:45:39+00:00","description":"o Advent of Code 2021 Days 16-20","headline":"Advent Of Code 2021 Days 16-20","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20.html"},"url":"http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-03-21T13:45:39+00:00","datePublished":"2022-03-21T13:45:39+00:00","description":"o","headline":"Advent Of Code 2021 Days 16-20","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20.html"},"url":"http://localhost:4000/2022/03/21/advent-of-code-2021-days-16-20.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" />
+  <link rel="stylesheet" href="/assets/tipuesearch/css/normalize.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+  <link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+  <script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch.min.js"></script>
+  
+
+  <form action="/2022/03/21/advent-of-code-2021-days-16-20.html">
+    <div class="tipue_search_left"><img src="/assets/tipuesearch/search.png" class="tipue_search_icon"></div>
+    <div class="tipue_search_right"><input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required></div>
+    <div style="clear: both;"></div>
+  </form>
+  
+  <div id="tipue_search_content"></div>
+  
+  <script>
+  $(document).ready(function() {
+    $('#tipue_search_input').tipuesearch();
+  });
+  </script>
+</head>
 <body><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
@@ -48,6 +70,7 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <p>o</p>
+
 <h1 id="advent-of-code-2021-days-16-20">Advent of Code 2021 Days 16-20</h1>
 
 <p><img src="/images/pexels-photo-6211095.jpeg" alt="christmas tree decorated with baubles and garland" /></p>
@@ -154,6 +177,7 @@
 <p>Evaluating a packet’s value is left to an external function <code class="language-plaintext highlighter-rouge">apply_operators</code>, outside the Message class, which takes in the parsed (tuple) version of a packet and applies the operations required by the puzzle rules.</p>
 
 <h3 id="python-code">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">binascii</span>
 <span class="kn">import</span> <span class="nn">math</span>
@@ -165,7 +189,7 @@
 
         <span class="c1">#convert transmission from hexadecimal to binary
 </span>        <span class="n">bin_data</span> <span class="o">=</span> <span class="n">binascii</span><span class="p">.</span><span class="n">a2b_hex</span><span class="p">(</span><span class="n">hex_data</span><span class="p">)</span>
-        
+
         <span class="c1">#pos is an integer attribute representing the current position of the parser in parsing the message
 </span>        <span class="bp">self</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -175,7 +199,7 @@
         <span class="c1">#add the bits from the input file into the bits attribute of the Message object
 </span>        <span class="k">for</span> <span class="n">byte</span> <span class="ow">in</span> <span class="n">bin_data</span><span class="p">:</span>
             <span class="bp">self</span><span class="p">.</span><span class="n">bits</span> <span class="o">+=</span> <span class="s">'{:08b}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">byte</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">integer_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_bits</span><span class="p">):</span>
         <span class="c1">#returns the integer value, in decimal, of the next n_bits bits of the message
 </span>
@@ -184,7 +208,7 @@
         <span class="c1">#advance the position
 </span>        <span class="bp">self</span><span class="p">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">n_bits</span>
         <span class="k">return</span> <span class="n">result</span>
-    
+
     <span class="k">def</span> <span class="nf">parse_one_packet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1">#parse the next packet of the message
 </span>        <span class="c1">#return the packet as a tuple of (packet version, type id, packet content)
@@ -212,7 +236,7 @@
 </span>                <span class="n">n_packets</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">integer_value</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
 
                 <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">parse_one_packet</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_packets</span><span class="p">)]</span>
-            
+
             <span class="k">if</span> <span class="n">length_type</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#the next 15 binary digits give the total number of bits in the subpackets
 </span>                <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">integer_value</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="c1">#need to do this on a separate line as it changes self.pos
 </span>                <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">pos</span> <span class="o">+</span> <span class="n">x</span> <span class="c1">#end = self.pos + self.integer_value(15) one one line would be bad as it would depend on the order that pos and integer_value are evaluated
@@ -263,7 +287,7 @@
         <span class="k">if</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
             <span class="n">total</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">total</span>
-    
+
     <span class="k">if</span> <span class="nb">id</span><span class="o">==</span><span class="mi">6</span><span class="p">:</span> <span class="c1"># &lt; packet. contains exactly two subpackets, if the first has a value less than the second, return 1. Otherwise return 0.
 </span>        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
@@ -275,7 +299,7 @@
         <span class="k">if</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="n">apply_operators</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
             <span class="n">total</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">total</span>
-    
+
 
 <span class="c1">#initialise a Message object from the input file
 </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
@@ -332,6 +356,7 @@
 </ul>
 
 <h3 id="python-code-1">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="c1">#read the input data to find the boundaries of the target area
@@ -358,7 +383,7 @@
 
         <span class="k">if</span> <span class="n">x_min</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">x_max</span>  <span class="ow">and</span> <span class="n">y_min</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">y_max</span><span class="p">:</span> <span class="c1">#if the position is in the target area
 </span>            <span class="k">return</span> <span class="bp">True</span>
-        
+
         <span class="k">if</span> <span class="n">vx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">vx</span> <span class="o">-=</span> <span class="mi">1</span>
 
@@ -366,12 +391,12 @@
             <span class="k">if</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">x_min</span> <span class="ow">or</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">x_max</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">False</span>    <span class="c1">#if the probe is left or right of the target area and has x-velocity zero
 </span>                                <span class="c1">#it will never reach the target area
-</span>        
+</span>
         <span class="k">if</span> <span class="n">vx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">vx</span> <span class="o">+=</span> <span class="mi">1</span>
-        
+
         <span class="n">vy</span> <span class="o">-=</span> <span class="mi">1</span>
-    
+
     <span class="k">return</span> <span class="bp">False</span>
 
 <span class="n">on_target_probes</span> <span class="o">=</span> <span class="mi">0</span>
@@ -507,7 +532,7 @@
 <ol>
   <li>Identify the leftmost integer value in the list that is greater than 9
     <ul>
-      <li>So the list is of the form [<code class="language-plaintext highlighter-rouge">…, (x,d), …]</code> where <code class="language-plaintext highlighter-rouge">x&gt;9</code> and <code class="language-plaintext highlighter-rouge">d</code> is the depth of <code class="language-plaintext highlighter-rouge">x</code>.</li>
+      <li>So the list is of the form [<code class="language-plaintext highlighter-rouge">…, (x,d), …]</code>where<code class="language-plaintext highlighter-rouge">x&gt;9</code>and<code class="language-plaintext highlighter-rouge">d</code>is the depth of<code class="language-plaintext highlighter-rouge">x</code>.</li>
     </ul>
   </li>
   <li>Insert the tuple <code class="language-plaintext highlighter-rouge">(ceil(x/2),d+1)</code> in the list directly after <code class="language-plaintext highlighter-rouge">(x,d)</code></li>
@@ -540,6 +565,7 @@
 </ol>
 
 <h3 id="python-code-2">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span><span class="p">,</span> <span class="n">floor</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
@@ -568,13 +594,13 @@
                 <span class="n">newsnail</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">val</span><span class="p">,</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
             <span class="k">if</span> <span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="o">&lt;=</span><span class="nb">len</span><span class="p">(</span><span class="n">snail</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
                 <span class="n">newsnail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">snail</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-            
+
             <span class="n">newsnail</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 
             <span class="n">newsnail</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">depth</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    
+
             <span class="k">return</span> <span class="n">newsnail</span>
-    
+
     <span class="k">return</span> <span class="bp">False</span>
 
 <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="n">snail</span><span class="p">):</span>
@@ -587,7 +613,7 @@
             <span class="n">newsnail</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">leftval</span><span class="p">,</span><span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">newsnail</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">rightval</span><span class="p">,</span><span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
             <span class="k">return</span> <span class="n">newsnail</span>
-    
+
     <span class="k">return</span> <span class="bp">False</span>
 
 <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">snail1</span><span class="p">,</span> <span class="n">snail2</span><span class="p">):</span>
@@ -607,7 +633,7 @@
 
         <span class="k">elif</span> <span class="n">spl</span><span class="p">:</span>
             <span class="n">snail</span> <span class="o">=</span> <span class="n">spl</span>
-        
+
     <span class="k">return</span> <span class="n">snail</span>
 
 <span class="k">def</span> <span class="nf">add_and_snail_reduce</span><span class="p">(</span><span class="n">snail1</span><span class="p">,</span><span class="n">snail2</span><span class="p">):</span>
@@ -633,7 +659,7 @@
             <span class="n">snail</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span> 
+            <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
 
     <span class="k">return</span> <span class="n">magnitude</span><span class="p">(</span><span class="n">snail</span><span class="p">)</span>
 
@@ -655,7 +681,7 @@
     <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">mags</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
-    <span class="n">snails</span> <span class="o">=</span> <span class="p">[</span><span class="n">read</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">]</span>   
+    <span class="n">snails</span> <span class="o">=</span> <span class="p">[</span><span class="n">read</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">]</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">part_one</span><span class="p">(</span><span class="n">snails</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="n">part_two</span><span class="p">(</span><span class="n">snails</span><span class="p">))</span>
@@ -750,6 +776,7 @@
 <p><strong>Yes, it would probably have been easier just to use rotation matrices.</strong></p>
 
 <h3 id="python-code-3">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
@@ -768,7 +795,7 @@
         <span class="k">if</span> <span class="s">','</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
             <span class="n">beacon</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)])</span>
             <span class="n">scanner</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">beacon</span><span class="p">)</span>
-        
+
         <span class="k">elif</span> <span class="n">line</span> <span class="o">==</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">:</span>
             <span class="n">scanners</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">scanner</span><span class="p">)</span>
             <span class="n">scanner</span> <span class="o">=</span> <span class="p">[]</span>
@@ -797,7 +824,7 @@
 
         <span class="k">if</span> <span class="n">parity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">correct_sigs</span><span class="p">[</span><span class="n">perm</span><span class="p">]</span> <span class="o">=</span> <span class="p">{(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
-    
+
     <span class="k">return</span> <span class="n">correct_sigs</span>
 
 <span class="n">scanners</span><span class="p">,</span> <span class="n">perms</span> <span class="o">=</span> <span class="n">initialise</span><span class="p">()</span>
@@ -835,7 +862,7 @@
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">common_points</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">12</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">True</span>
-    
+
     <span class="k">return</span> <span class="bp">False</span>
 
 <span class="k">def</span> <span class="nf">compare</span><span class="p">(</span><span class="n">scannerA</span><span class="p">,</span><span class="n">scannerB</span><span class="p">):</span>
@@ -853,7 +880,7 @@
                     <span class="n">xb</span><span class="p">,</span><span class="n">yb</span><span class="p">,</span><span class="n">zb</span> <span class="o">=</span> <span class="n">beaconB</span>
                     <span class="n">offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">xa</span><span class="o">-</span><span class="n">xb</span><span class="p">,</span><span class="n">ya</span><span class="o">-</span><span class="n">yb</span><span class="p">,</span><span class="n">za</span><span class="o">-</span><span class="n">zb</span><span class="p">)</span>
                     <span class="n">transB</span> <span class="o">=</span> <span class="n">translate</span><span class="p">(</span><span class="n">rotB</span><span class="p">,</span><span class="n">offset</span><span class="p">)</span>
-                    
+
                     <span class="k">if</span> <span class="n">match12</span><span class="p">(</span><span class="n">scannerA</span><span class="p">,</span><span class="n">transB</span><span class="p">):</span>
                         <span class="k">return</span> <span class="n">offset</span><span class="p">,</span> <span class="n">perm</span><span class="p">,</span> <span class="n">sig</span>
 
@@ -881,7 +908,7 @@
                     <span class="k">continue</span>
 
                 <span class="n">result</span> <span class="o">=</span> <span class="n">compare</span><span class="p">(</span><span class="n">base_scanner</span><span class="p">,</span> <span class="n">scanner</span><span class="p">)</span>
-            
+
                 <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
                     <span class="n">offset</span><span class="p">,</span> <span class="n">perm</span><span class="p">,</span> <span class="n">sig</span> <span class="o">=</span> <span class="n">result</span>
                     <span class="n">offsets</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
@@ -890,7 +917,7 @@
                     <span class="n">new_scanner</span> <span class="o">=</span> <span class="n">translate</span><span class="p">(</span><span class="n">new_scanner</span><span class="p">,</span><span class="n">offset</span><span class="p">)</span>
                     <span class="n">visited</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
                     <span class="n">base_scanner</span> <span class="o">=</span> <span class="n">base_scanner</span> <span class="o">|</span> <span class="n">new_scanner</span> <span class="c1">#incorporate the scanner's beacons into the base scanner
-</span>    
+</span>
     <span class="c1">#calculate the manhattan distance between every pair of scanners
 </span>    <span class="c1">#return the maximum manhattan distance (the puzzle solution)
 </span>    <span class="n">manhattans</span> <span class="o">=</span> <span class="p">[]</span>
@@ -899,7 +926,7 @@
             <span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">z1</span> <span class="o">=</span> <span class="n">off1</span>
             <span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">z2</span> <span class="o">=</span> <span class="n">off2</span>
             <span class="n">manhattans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y2</span><span class="o">-</span><span class="n">y1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z2</span><span class="o">-</span><span class="n">z1</span><span class="p">))</span>
-                
+
     <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">manhattans</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">part_two</span><span class="p">(</span><span class="n">scanners</span><span class="p">))</span>
@@ -928,6 +955,7 @@
 <p>The puzzle answer is the number of light pixels in the infinite grid after 50 iterations. Since 50 is even, most of the infinite grid will be dark at this point, so there is a finite answer!</p>
 
 <h3 id="python-code-4">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
@@ -951,15 +979,15 @@
 
     <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
         <span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span> <span class="o">=</span> <span class="n">step</span>
-        
+
         <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="o">+</span><span class="n">dx</span> <span class="o">&lt;=</span> <span class="n">xmax</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="o">+</span><span class="n">dy</span> <span class="o">&lt;=</span> <span class="n">ymax</span><span class="p">:</span>
             <span class="c1">#if in the bounds of the grid, return the value
 </span>            <span class="n">idx</span> <span class="o">+=</span> <span class="n">image</span><span class="p">[</span><span class="n">y</span><span class="o">+</span><span class="n">dy</span><span class="p">][</span><span class="n">x</span><span class="o">+</span><span class="n">dx</span><span class="p">]</span>
-        
+
         <span class="k">else</span><span class="p">:</span>
             <span class="c1">#if out of bounds, return current value of oob
 </span>            <span class="n">idx</span> <span class="o">+=</span> <span class="n">oob</span>
-    
+
     <span class="n">idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">algo</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
@@ -968,7 +996,7 @@
 <span class="k">def</span> <span class="nf">apply_algo</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="n">algo</span><span class="p">,</span> <span class="n">oob</span><span class="p">):</span>
     <span class="c1">#apply the enhancement algorithm once to the image grid
 </span>    <span class="c1">#return the new image grid
-</span>    
+</span>
     <span class="n">image2</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="n">xmax</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span>
@@ -980,7 +1008,7 @@
                 <span class="n">new_row</span> <span class="o">+=</span> <span class="n">update</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="n">image</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">oob</span><span class="p">)</span>
 
             <span class="n">image2</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_row</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">image2</span>
 
 <span class="k">def</span> <span class="nf">print_image</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>

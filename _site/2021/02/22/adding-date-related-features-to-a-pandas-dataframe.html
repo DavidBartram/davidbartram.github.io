@@ -19,7 +19,29 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-02-22T13:45:39+00:00","datePublished":"2021-02-22T13:45:39+00:00","description":"Adding Date-Related Features to a Pandas Dataframe","headline":"Adding Date Related Features To A Pandas Dataframe","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/22/adding-date-related-features-to-a-pandas-dataframe.html"},"url":"http://localhost:4000/2021/02/22/adding-date-related-features-to-a-pandas-dataframe.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" />
+  <link rel="stylesheet" href="/assets/tipuesearch/css/normalize.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+  <link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+  <script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch.min.js"></script>
+  
+
+  <form action="/2021/02/22/adding-date-related-features-to-a-pandas-dataframe.html">
+    <div class="tipue_search_left"><img src="/assets/tipuesearch/search.png" class="tipue_search_icon"></div>
+    <div class="tipue_search_right"><input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required></div>
+    <div style="clear: both;"></div>
+  </form>
+  
+  <div id="tipue_search_content"></div>
+  
+  <script>
+  $(document).ready(function() {
+    $('#tipue_search_input').tipuesearch();
+  });
+  </script>
+</head>
 <body><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
@@ -54,6 +76,7 @@
 <p>This post captures a few examples of feature enrichment in Pandas. In particular, these examples focus on adding a few simple features related to the date.</p>
 
 <h3 id="simple-date-related-features">Simple Date-Related Features</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">add_date_features</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">date_column</span><span class="p">):</span>
     <span class="s">"""
     Add date related features to the input dataframe
@@ -126,8 +149,8 @@
 
     <span class="c1">#add feature for next working day after bank holiday
 </span>    <span class="n">bh</span><span class="p">[</span><span class="s">'next_wd'</span><span class="p">]</span> <span class="o">=</span> <span class="n">bh</span><span class="p">[</span><span class="s">'date'</span><span class="p">]</span> <span class="o">+</span> <span class="n">pd</span><span class="p">.</span><span class="n">tseries</span><span class="p">.</span><span class="n">offsets</span><span class="p">.</span><span class="n">BDay</span><span class="p">()</span>
-    
-    <span class="c1">#when the next business day is another bank holiday (e.g. Easter Monday is the next 
+
+    <span class="c1">#when the next business day is another bank holiday (e.g. Easter Monday is the next
 </span>    <span class="c1">#"business day" after Good Friday), that date should not be treated as a working day
 </span>    <span class="n">bh</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bh</span><span class="p">[</span><span class="s">'next_wd'</span><span class="p">].</span><span class="n">isin</span><span class="p">(</span><span class="n">bh</span><span class="p">.</span><span class="n">date</span><span class="p">),</span> <span class="s">'next_wd'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">NaT</span>
 

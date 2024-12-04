@@ -19,7 +19,29 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-08-12T14:45:39+01:00","datePublished":"2021-08-12T14:45:39+01:00","description":"AWS Cloudformation Example Part 2 - Deploy and Test a REST API + Lambda Function","headline":"Aws Cloudformation Example Part 2 Deploy And Test A Rest Api Lambda Function","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-+-lambda-function.html"},"url":"http://localhost:4000/2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-+-lambda-function.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" />
+  <link rel="stylesheet" href="/assets/tipuesearch/css/normalize.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+  <link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+  <script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch.min.js"></script>
+  
+
+  <form action="/2021/08/12/aws-cloudformation-example-part-2-deploy-and-test-a-rest-api-+-lambda-function.html">
+    <div class="tipue_search_left"><img src="/assets/tipuesearch/search.png" class="tipue_search_icon"></div>
+    <div class="tipue_search_right"><input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required></div>
+    <div style="clear: both;"></div>
+  </form>
+  
+  <div id="tipue_search_content"></div>
+  
+  <script>
+  $(document).ready(function() {
+    $('#tipue_search_input').tipuesearch();
+  });
+  </script>
+</head>
 <body><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
@@ -56,10 +78,10 @@
 <p>In this post, we’ll walk through how to deploy the template to AWS and test the API using Postman.</p>
 
 <ol>
-  <li>
-    <h2 id="install-sam-cli">Install SAM CLI</h2>
-  </li>
+  <li>Install SAM CLI</li>
 </ol>
+
+<hr />
 
 <p>To deploy SAM templates, you’ll want to <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html">install the SAM CLI</a>. Make sure that the IAM user whose access key and secret key you are using has the necessary permissions to deploy this. If you’re doing this as a learning activity on a personal account, as I was, it’s simplest to use the credentials of a user with Administrator access.</p>
 
@@ -68,10 +90,10 @@
 <p>Now you’ll need a SAM template to deploy, along with the code you want to use in the lambda function. The code we’re using here can be found on <a href="https://github.com/DavidBartram/cloudformation-api-lambda">my GitHub</a> and was explained in <a href="https://david-bartram.com/2021/08/02/aws-cloudformation-example-part-1-sam-template-for-rest-api-lambda-function/">Part 1</a>. Fork the repo and clone it down to your machine.</p>
 
 <ol>
-  <li>
-    <h2 id="sam-build">SAM build</h2>
-  </li>
+  <li>SAM build</li>
 </ol>
+
+<hr />
 
 <p>Using your command line of choice, change directory to the cloned repo. (My main laptop is Windows so it would be PowerShell for me - stop hissing in the background, you lot. I like bash as well.)</p>
 
@@ -86,10 +108,10 @@
 <p><img src="/images/image.png" alt="" /></p>
 
 <ol>
-  <li>
-    <h2 id="sam-deploy">SAM deploy</h2>
-  </li>
+  <li>SAM deploy</li>
 </ol>
+
+<hr />
 
 <p>Well, who am I to argue with the suggestion that we use <code class="language-plaintext highlighter-rouge">sam deploy --guided</code> ?</p>
 
@@ -116,20 +138,20 @@
 <p><img src="/images/image-4.png" alt="" /></p>
 
 <ol>
-  <li>
-    <h2 id="view-cloudformation-stack-in-aws-console">View Cloudformation Stack in AWS Console</h2>
-  </li>
+  <li>View Cloudformation Stack in AWS Console</li>
 </ol>
+
+<hr />
 
 <p>Let’s hope into the AWS console, go to the Cloudformation console and select the stack you’ve just created. If you go to the Resources tab you can see all the resources that have been created. At this point if you’re anything like me you’ll want to visit some of the resources and poke around, see if things are as you expected based on your template.</p>
 
 <p><img src="/images/image-5.png" alt="" /></p>
 
 <ol>
-  <li>
-    <h2 id="test-api-in-aws-console">Test API in AWS Console</h2>
-  </li>
+  <li>Test API in AWS Console</li>
 </ol>
+
+<hr />
 
 <p>Let’s start testing the API that we’ve deployed. Firstly we’re going to test it from the console, by clicking the “physical ID” of the RestApi resource in the table shown in the image above. This will open up the API Gateway console and let us look at our API.</p>
 
@@ -140,11 +162,11 @@
 <p>This test bypasses any authorization on the API. For the request body, enter something that matches the schema we set up for submitting sales stats for coloured widgets. It should look something like this:</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-</span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-28"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Manchester"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"red_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2051"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"blue_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37"</span><span class="p">,</span><span class="w">
-</span><span class="nl">"green_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"588"</span><span class="w">
+  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-28"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Manchester"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"red_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2051"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"blue_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"green_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"588"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
@@ -156,10 +178,10 @@
 </span></code></pre></div></div>
 
 <ol>
-  <li>
-    <h2 id="create-iam-user--attach-policy">Create IAM user + attach policy</h2>
-  </li>
+  <li>Create IAM user + attach policy</li>
 </ol>
+
+<hr />
 
 <p>If we want to use the API properly, we need the right authorization. Last time, I decided to use IAM authorization. We want to create our IAM user separately from the stack, as we want their details to persist if changes are made to the stack.</p>
 
@@ -168,18 +190,18 @@
 <p>The only permissions this user needs are in the API user managed policy created as part of the stack. Attach that policy to the user, and they will have access to this API.</p>
 
 <ol>
-  <li>
-    <h2 id="install-postman">Install Postman</h2>
-  </li>
+  <li>Install Postman</li>
 </ol>
+
+<hr />
 
 <p><a href="https://www.postman.com/">Postman</a> is a great tool for working on APIs, and it’s particularly easy to send a test API request with Postman and look at the response. It’s especially handy here as it can automatically sign the API request the way AWS IAM expects, using an access key and secret key. Download it <a href="https://www.postman.com/downloads/">here</a>.</p>
 
 <ol>
-  <li>
-    <h2 id="test-api-with-postman">Test API with Postman</h2>
-  </li>
+  <li>Test API with Postman</li>
 </ol>
+
+<hr />
 
 <p>Let’s construct our request. Click New in Postman, and choose a basic request. Give it a name and save it.</p>
 

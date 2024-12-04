@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Advent Of Code 2021 Days 1-5"
 date: 2021-12-17 14:45:39 +0100
 tags: advent-of-code coding python
@@ -13,8 +14,7 @@ This year I'm a bit more timely with [Advent of Code 2021](http://adventofcode.c
 
 These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github [here](https://git.io/JmAvJ). The code below is for Part 2 of each day, which often incorporates Part 1 in some way.
 
-Day 1 - [Sonar Sweep](https://adventofcode.com/2021/day/1)
-----------------------------------------------------------
+## Day 1 - [Sonar Sweep](https://adventofcode.com/2021/day/1)
 
 ### Thoughts
 
@@ -26,7 +26,7 @@ The method below is fairly straightforward, calculating a list of all the sums f
 
 The first way uses indexing, while the second way uses the [zip](https://www.w3schools.com/python/ref_func_zip.asp) function.
 
-Zip is one of my favourite python functions - it produces a "zip object", an iterator of tuples, pairing up the elements from each input iterator. So if `list1` is [`a,b,c,d,e]` and `list2` is `[1, 2, 3]` then `zip(list1,list2)` will contain the tuples `(a,1)`, `(b,2)` and `(c,3)`. The length of the output is determined by the shorter of the two inputs.
+Zip is one of my favourite python functions - it produces a "zip object", an iterator of tuples, pairing up the elements from each input iterator. So if `list1` is [`a,b,c,d,e]`and`list2`is`[1, 2, 3]`then`zip(list1,list2)`will contain the tuples`(a,1)`, `(b,2)`and`(c,3)`. The length of the output is determined by the shorter of the two inputs.
 
 zip(list,list[1:]) will produce a list of tuples of consecutive elements in the list, for example:
 
@@ -39,6 +39,7 @@ and `zip(list,list[1:])` contains `(1,2) , (2,3) , (3,5), (5,8)` and `(8,13)`
 Given that, hopefully the list comprehension below makes sense. Remember that when summing a list of booleans, True will be treated as 1 and False will be treated as 0.
 
 ### Python Code
+
 ```python
 import sys
 
@@ -71,8 +72,7 @@ increase = [x<y for x,y in zip(sums,sums[1:])]
 print(sum(increase))
 ```
 
-Day 2 - [Dive!](https://adventofcode.com/2021/day/2)
-----------------------------------------------------
+## Day 2 - [Dive!](https://adventofcode.com/2021/day/2)
 
 ### Thoughts
 
@@ -84,15 +84,16 @@ We need to keep track of the sub's horizontal position `x` and depth `y`, and al
 
 Our input is a text file with instructions like forward 3, "down 7", "up 2" etc, obeying the following rubric:
 
-*   `down X` _increases_ your `aim` by `X` units.
-*   `up X` _decreases_ your `aim` by `X` units.
-*   `forward X` does two things:
-    *   It increases your horizontal position by `X` units.
-    *   It increases your depth by your aim _multiplied by_ `X`.
+- `down X` *increases* your `aim` by `X` units.
+- `up X` *decreases* your `aim` by `X` units.
+- `forward X` does two things:
+  - It increases your horizontal position by `X` units.
+  - It increases your depth by your aim *multiplied by* `X`.
 
 The required output is the product of `x` and `y` after all the instructions in the input file have been followed. The code below pretty much follows the rubric above line by line. :-)
 
 ### Python Code
+
 ```python
 import sys
 
@@ -105,22 +106,21 @@ for move in moves:
     dir, value = move.split()
 
     value = int(value)
-    
+
     if dir == 'forward':
         x += value
         y += aim*value
-    
+
     elif dir == 'up':
         aim -= value
-    
+
     elif dir == 'down':
         aim += value
 
 print(x*y)
 ```
 
-Day 3 - [Binary Diagnostic](https://adventofcode.com/2021/day/3)
-----------------------------------------------------------------
+## Day 3 - [Binary Diagnostic](https://adventofcode.com/2021/day/3)
 
 ### Thoughts
 
@@ -128,21 +128,22 @@ We are given a list of binary numbers. We need to filter this list down to two v
 
 Apply the following procedure to filter the list to a single value:
 
-*   Start with the full list of binary numbers and consider the first bit of each number
-*   Discard all numbers which do not match the relevant _bit criteri_on
-*   If you only have one number left, stop; this is the rating value for which you are searching.
-*   Otherwise, repeat the process, considering the next bit to the right.
+- Start with the full list of binary numbers and consider the first bit of each number
+- Discard all numbers which do not match the relevant _bit criteri_on
+- If you only have one number left, stop; this is the rating value for which you are searching.
+- Otherwise, repeat the process, considering the next bit to the right.
 
-The _bit criterion_ varies depending upon which rating you want to find:
+The *bit criterion* varies depending upon which rating you want to find:
 
-*   To find **oxygen generator rating**, determine the _most common_ value (`0` or `1`) in the current bit position, and keep only numbers with that bit in that position. If `0` and `1` are equally common, keep values with a `_1_` in the position being considered.
-*   To find **CO2 scrubber rating**, determine the _least common_ value (`0` or `1`) in the current bit position, and keep only numbers with that bit in that position. If `0` and `1` are equally common, keep values with a `_0_` in the position being considered.
+- To find **oxygen generator rating**, determine the *most common* value (`0` or `1`) in the current bit position, and keep only numbers with that bit in that position. If `0` and `1` are equally common, keep values with a `_1_` in the position being considered.
+- To find **CO2 scrubber rating**, determine the *least common* value (`0` or `1`) in the current bit position, and keep only numbers with that bit in that position. If `0` and `1` are equally common, keep values with a `_0_` in the position being considered.
 
 In the code below, the rating is found via the `get_rating` function, which has a Boolean argument `co2` which should be set to `True` to calculate **CO2 scrubber rating**, or `False` to calculate **oxygen generator rating**. The puzzle requires calculating both ratings, multiplying them, and returning the value in decimal notation.
 
 The function is recursive, moving on to the next bit and filtering the list further until it reaches the base case, when the list has only 1 element.
 
 ### Python Code
+
 ```python
 import sys
 from math import ceil
@@ -153,10 +154,10 @@ with open(sys.argv[1]) as file:
 def get_rating(nums, i, co2):
         if len(nums) == 1:
             return nums[0]
-        
+
         else:
             ones = sum([num[i]=='1' for num in nums]) #number of ones in the column being considered
-            
+
             comparator = '0'
 
             if (co2==True and ones < ceil(len(nums)/2)) or (co2==False and ones >= ceil(len(nums)/2)) :
@@ -173,8 +174,7 @@ co2 = get_rating(values,0, co2=True)
 print(int(o2,2)*int(co2,2))
 ```
 
-Day 4 - [Giant Squid](https://adventofcode.com/2021/day/4)
-----------------------------------------------------------
+## Day 4 - [Giant Squid](https://adventofcode.com/2021/day/4)
 
 ### Thoughts
 
@@ -201,6 +201,7 @@ is pretty ugly-looking, but it appends the columns to each bingo card as new row
 Really there's nothing too clever below. There's a list called `nums_so_far` of numbers drawn so far, and a list of `remaining_cards` to keep track of which indices of the `card`s list represent cards that are still in play. Iteratively we append a new number to `nums_so_far`, then check all the cards, remove the indices of any winners from `remaining_cards`, and repeat until only one card survives.
 
 ### Python Code
+
 ```python
 import sys
 
@@ -216,7 +217,7 @@ with open(sys.argv[1]) as file:
     grids[-1].remove([''])
 
 #append columns to each grid as if they were additional rows
-grids = [grid + [[row[i] for row in grid] for i in range(len(grid))] for grid in grids] 
+grids = [grid + [[row[i] for row in grid] for i in range(len(grid))] for grid in grids]
 
 def check(card,nums):
     for row in card:
@@ -241,19 +242,18 @@ def part2_play(cards,nums):
         nums_so_far.append(num)
 
         for i in remaining_cards:
-            
+
             if check(cards[i],nums_so_far) == True:
                 remaining_cards.remove(i)
 
                 if len(remaining_cards) ==0:
                     final_card = cards[i]
-                    return score(final_card,nums_so_far)*int(num)                
+                    return score(final_card,nums_so_far)*int(num)
 
 print(part2_play(grids,win_nums))
 ```
 
-Day 5 - [Hydrothermal Venture](https://adventofcode.com/2021/day/5)
--------------------------------------------------------------------
+## Day 5 - [Hydrothermal Venture](https://adventofcode.com/2021/day/5)
 
 ### Thoughts
 
@@ -266,6 +266,7 @@ Vertical lines have infinite gradient but are easy to step through in a similar 
 There is no distinction between the "start" and "end" points of a line, and so the code sometimes swaps them so that they can be stepped through by _increasing_ x by 1 per step (for non-vertical lines) or by _increasing_ y by 1 per step (for vertical lines). This is just for convenience.
 
 ### Python Code
+
 ```python
 import sys
 from collections import defaultdict
@@ -297,8 +298,8 @@ for pair in end_points:
         #for convenience the point with lower y-value will be used as the start
         if start[1] > end[1]:
             start,end = end,start
-        
-        
+
+
         dx,dy = 0,1
         #an integer step along a vertical line adds +0 to x and +1 to y
 
@@ -307,12 +308,12 @@ for pair in end_points:
         #for convenience the point with lower x-value will be used as the start
         if start[0] > end[0]:
             start,end = end,start
-        
+
         dx = 1
         dy = int((end[1]-start[1])/(end[0]-start[0])) #gradient
 
         #an integer step along the line adds +1 to x and +(gradient) to y
-    
+
     overlap_count[start] += 1
     (x,y) = start
 

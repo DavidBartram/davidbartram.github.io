@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Advent Of Code 2021 Days 11-15"
 date: 2022-03-01 14:45:39 +0100
 tags: advent-of-code aoc coding python
@@ -13,8 +14,7 @@ Welcome back to some more [Advent of Code 2021](http://adventofcode.com/2021/)!
 
 These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github [here](https://git.io/JmAvJ). The code below is for Part 2 of each day, which often incorporates Part 1 in some way.
 
-Day 11 - [Dumbo Octopus](https://adventofcode.com/2021/day/11)
---------------------------------------------------------------
+## Day 11 - [Dumbo Octopus](https://adventofcode.com/2021/day/11)
 
 ### Thoughts
 
@@ -27,6 +27,7 @@ At the end of the iteration, every octopus which has flashed once is reset to an
 The puzzle asks us to find the number of turns before the octopuses have synchronised, with every octopus flashing at once. This can be found by looking for a state where every octopus in the grid has energy 0, meaning they have all just flashed.
 
 ### Python Code
+
 ```python
 import sys
 
@@ -47,12 +48,12 @@ def neighbour_coords(i,j,grid):
     #returns a list of coords of points adjacent to (i,j) in the grid
     coords_list = []
     steps = [(1,0),(-1,0),(0,1),(0,-1),(1,1),(1,-1),(-1,1),(-1,-1)]
-    
+
     for step in steps:
         (dx,dy) = step
-        if 0 <= i+dx < cols and 0 <= j+dy < rows: 
+        if 0 <= i+dx < cols and 0 <= j+dy < rows:
             coords_list.append((i+dx,j+dy))
-    
+
     return coords_list
 
 def nb_dict(grid):
@@ -61,7 +62,7 @@ def nb_dict(grid):
 
     for point in grid.copy():
         nbdict[point] = neighbour_coords(point[0],point[1],grid)
-    
+
     return nbdict
 
 def flash(point,grid,flashed_points,nbdict):
@@ -73,11 +74,11 @@ def flash(point,grid,flashed_points,nbdict):
 
     for nb in nbs:
         grid[nb] += 1
-    
+
     for nb in nbs:
         if grid[nb]>9 and nb not in flashed_points: #only flash points that have not flashed this iteration
             grid, flashed_points = flash(nb, grid, flashed_points, nbdict)
-    
+
     return grid,flashed_points
 
 def advance_step(grid, nbdict, flash_sum):
@@ -94,7 +95,7 @@ def advance_step(grid, nbdict, flash_sum):
         grid[point] = 0   #reset points which have flashed to 0 energy
 
     flash_sum += len(flashed_points) #count flashed points
-    
+
     return flash_sum
 
 def advance_until_synched(grid):
@@ -112,8 +113,7 @@ def advance_until_synched(grid):
 print(advance_until_synched(grid))
 ```
 
-Day 12 - [Passage Pathing](https://adventofcode.com/2021/day/12)
-----------------------------------------------------------------
+## Day 12 - [Passage Pathing](https://adventofcode.com/2021/day/12)
 
 ### Thoughts
 
@@ -130,6 +130,7 @@ The ability to visit a single small cave twice is handled by the Boolean `revisi
 The `revisits` Boolean is implemented as an argument of the `dfs` function, so that the appropriate value can be passed down into recursive function calls.
 
 ### Python Code
+
 ```python
 import sys
 from collections import defaultdict
@@ -146,7 +147,7 @@ for line in data:
 
 
 def dfs(graph, node, target, path, paths, revisits):
-    
+
     if node in path and node.islower():
         revisits = False
 
@@ -176,8 +177,7 @@ def dfs(graph, node, target, path, paths, revisits):
 print(len(dfs(graph,'start','end',[],[], True)))
 ```
 
-Day 13 - [Transparent Origami](https://adventofcode.com/2021/day/13)
---------------------------------------------------------------------
+## Day 13 - [Transparent Origami](https://adventofcode.com/2021/day/13)
 
 ### Thoughts
 
@@ -194,6 +194,7 @@ The goal is to find the pattern of the dots after all the fold instructions have
 ![]({{ "images/origami.jpg" | relative_url }})
 
 ### Python Code
+
 ```python
 import sys
 
@@ -211,10 +212,10 @@ for line in data:
         #because it is a set, any dot that exactly overlaps with a previous dot will be ignored
         line = line.rstrip('\n').split(",")
         dots.add((int(line[0]), int(line[1])))
-    
+
     if '=' in line:
         #populate a list of fold instructions, for example ('x',100) would mean fold along the line x=100
-        line = line.rstrip('\n').replace('fold along ','').split("=") 
+        line = line.rstrip('\n').replace('fold along ','').split("=")
         folds.append((line[0],int(line[1])))
 
 def perform_fold(dots,fold):
@@ -227,7 +228,7 @@ def perform_fold(dots,fold):
             if x > fold[1]:
                 newdots.remove((x,y))
                 newdots.add((2*fold[1]-x,y))
-    
+
     if fold[0] == 'y':
             #perform a fold on a horizontal line y=fold[1]
             for (x,y) in dots:
@@ -258,7 +259,7 @@ def print_dots(dots):
                 output += '█'
             else:
                 output += ' '
-        
+
         print(output)
 
 end_state = final_dots(dots,folds)
@@ -266,8 +267,7 @@ end_state = final_dots(dots,folds)
 print_dots(end_state)
 ```
 
-Day 14 - [Extended Polymerization](https://adventofcode.com/2021/day/14)
-------------------------------------------------------------------------
+## Day 14 - [Extended Polymerization](https://adventofcode.com/2021/day/14)
 
 ### Thoughts
 
@@ -284,6 +284,7 @@ The polymer NNCH would be represented by the dictionary `elements=={N:2, C:1, H:
 After 10 iterations, the polymer from my input contained nearly twenty thousand elements - nothing dramatic! However after 40 iterations it contained more than twenty _trillion_ elements, amply demonstrating the need to find something more efficient than a string representation of the entire polymer.
 
 ### Python Code
+
 ```python
 import sys
 from collections import defaultdict
@@ -304,17 +305,17 @@ def initialise(data):
     elements = defaultdict(lambda: 0)
 
     pairs = defaultdict(lambda: 0)
-    
+
     for (x,y) in zip(polymer,polymer[1:]):
         elements[x] += 1
         pairs[(x,y)] += 1
 
     elements[polymer[-1]] +=1 #the last element in the zip object above will be (polymer[n-1],polymer[n]) so the last element won't be counted
-    
+
     return elements, pairs, rules
 
 def apply_rules(rules, elements, pairs):
-    
+
     newelements = elements.copy()
     newpairs = pairs.copy()
 
@@ -329,7 +330,7 @@ def apply_rules(rules, elements, pairs):
             newelements[z] += count #new char inserted for each pair
             newpairs[(x,z)] += count #new pair created for each pair
             newpairs[(z,y)] += count #new pair created for each pair
-    
+
     return newelements, newpairs
 
 def apply_rules_n_times(n, rules, elements,pairs):
@@ -348,8 +349,7 @@ print(apply_rules_n_times(10, rules,elements,pairs))
 print(apply_rules_n_times(40, rules,elements,pairs))
 ```
 
-Day 15 - [Chiton](https://adventofcode.com/2021/day/15)
--------------------------------------------------------
+## Day 15 - [Chiton](https://adventofcode.com/2021/day/15)
 
 ### Thoughts
 
@@ -367,10 +367,10 @@ risk_level = grid[(x%x_len,y%y_len)] + x//x_len + y//y_len
 
 Where `grid` is a dictionary from coordinate tuples to the values in the original smaller grid.
 
-*   `x_len` is the x dimension of the original grid.
-*   `y_len` is the y dimension of the original grid.
-*   `a%b` is the **modulo** operation, returning the remainder when `a` is divided by `b`.
-*   a//b is the **floor division** operation, returning the integer part of the quotient when a is divided by b.
+- `x_len` is the x dimension of the original grid.
+- `y_len` is the y dimension of the original grid.
+- `a%b` is the **modulo** operation, returning the remainder when `a` is divided by `b`.
+- a//b is the **floor division** operation, returning the integer part of the quotient when a is divided by b.
 
 However the puzzle also states that risk levels above 9 wrap back around to 1, requiring the following adjustment:
 
@@ -381,6 +381,7 @@ risk_level = (risk_level - 1)%9 + 1
 With that dealt with, the remainder of the code is a very standard implementation of [Dijkstra's algorithm](https://brilliant.org/wiki/dijkstras-short-path-finder/) using a queue of nodes to be visited, prioritised by the current shortest distance from the start node to that node.
 
 ### Python Code
+
 ```python
 import sys
 from collections import defaultdict
@@ -413,13 +414,13 @@ def neighbour_coords(point,grid):
 #returns a list of coords of points adjacent to (i,j) in the grid
     coords_list = []
     steps = [(1,0),(-1,0),(0,1),(0,-1)]
-        
+
     for step in steps:
         (i,j) = point
         (dx,dy) = step
         if 0 <= i+dx <= (5*len(data[0])-1) and 0 <= j+dy <= (5*len(data)-1):
             coords_list.append((i+dx,j+dy))
-        
+
     return coords_list
 
 def get_node_value(point,grid):
@@ -442,7 +443,7 @@ def dijkstra(grid,visit,distance,target):
             if d + get_node_value(nb,grid) < distance[nb]:
                 distance[nb] = d + get_node_value(nb,grid)
                 visit.put((distance[nb], nb))
-    
+
     return distance[target]
 
 

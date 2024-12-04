@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Bash Scripting 1 The Whole Shebang"
 date: 2020-11-13 14:45:39 +0100
 tags: bash bash-scripting coding linux scripting unix

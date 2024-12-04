@@ -19,7 +19,29 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-12-17T13:45:39+00:00","datePublished":"2021-12-17T13:45:39+00:00","description":"Advent of Code 2021 Days 1-5","headline":"Advent Of Code 2021 Days 1-5","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/12/17/advent-of-code-2021-days-1-5.html"},"url":"http://localhost:4000/2021/12/17/advent-of-code-2021-days-1-5.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" />
+  <link rel="stylesheet" href="/assets/tipuesearch/css/normalize.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+  <link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+  <script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch.min.js"></script>
+  
+
+  <form action="/2021/12/17/advent-of-code-2021-days-1-5.html">
+    <div class="tipue_search_left"><img src="/assets/tipuesearch/search.png" class="tipue_search_icon"></div>
+    <div class="tipue_search_right"><input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required></div>
+    <div style="clear: both;"></div>
+  </form>
+  
+  <div id="tipue_search_content"></div>
+  
+  <script>
+  $(document).ready(function() {
+    $('#tipue_search_input').tipuesearch();
+  });
+  </script>
+</head>
 <body><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
@@ -67,7 +89,7 @@
 
 <p>The first way uses indexing, while the second way uses the <a href="https://www.w3schools.com/python/ref_func_zip.asp">zip</a> function.</p>
 
-<p>Zip is one of my favourite python functions - it produces a “zip object”, an iterator of tuples, pairing up the elements from each input iterator. So if <code class="language-plaintext highlighter-rouge">list1</code> is [<code class="language-plaintext highlighter-rouge">a,b,c,d,e]</code> and <code class="language-plaintext highlighter-rouge">list2</code> is <code class="language-plaintext highlighter-rouge">[1, 2, 3]</code> then <code class="language-plaintext highlighter-rouge">zip(list1,list2)</code> will contain the tuples <code class="language-plaintext highlighter-rouge">(a,1)</code>, <code class="language-plaintext highlighter-rouge">(b,2)</code> and <code class="language-plaintext highlighter-rouge">(c,3)</code>. The length of the output is determined by the shorter of the two inputs.</p>
+<p>Zip is one of my favourite python functions - it produces a “zip object”, an iterator of tuples, pairing up the elements from each input iterator. So if <code class="language-plaintext highlighter-rouge">list1</code> is [<code class="language-plaintext highlighter-rouge">a,b,c,d,e]</code>and<code class="language-plaintext highlighter-rouge">list2</code>is<code class="language-plaintext highlighter-rouge">[1, 2, 3]</code>then<code class="language-plaintext highlighter-rouge">zip(list1,list2)</code>will contain the tuples<code class="language-plaintext highlighter-rouge">(a,1)</code>, <code class="language-plaintext highlighter-rouge">(b,2)</code>and<code class="language-plaintext highlighter-rouge">(c,3)</code>. The length of the output is determined by the shorter of the two inputs.</p>
 
 <p>zip(list,list[1:]) will produce a list of tuples of consecutive elements in the list, for example:</p>
 
@@ -80,6 +102,7 @@
 <p>Given that, hopefully the list comprehension below makes sense. Remember that when summing a list of booleans, True will be treated as 1 and False will be treated as 0.</p>
 
 <h3 id="python-code">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 
 
@@ -137,6 +160,7 @@
 <p>The required output is the product of <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> after all the instructions in the input file have been followed. The code below pretty much follows the rubric above line by line. :-)</p>
 
 <h3 id="python-code-1">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
@@ -148,14 +172,14 @@
     <span class="nb">dir</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">move</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
 
     <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-    
+
     <span class="k">if</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'forward'</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">+=</span> <span class="n">value</span>
         <span class="n">y</span> <span class="o">+=</span> <span class="n">aim</span><span class="o">*</span><span class="n">value</span>
-    
+
     <span class="k">elif</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'up'</span><span class="p">:</span>
         <span class="n">aim</span> <span class="o">-=</span> <span class="n">value</span>
-    
+
     <span class="k">elif</span> <span class="nb">dir</span> <span class="o">==</span> <span class="s">'down'</span><span class="p">:</span>
         <span class="n">aim</span> <span class="o">+=</span> <span class="n">value</span>
 
@@ -189,6 +213,7 @@
 <p>The function is recursive, moving on to the next bit and filtering the list further until it reaches the base case, when the list has only 1 element.</p>
 
 <h3 id="python-code-2">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
 
@@ -198,10 +223,10 @@
 <span class="k">def</span> <span class="nf">get_rating</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">co2</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        
+
         <span class="k">else</span><span class="p">:</span>
             <span class="n">ones</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">'1'</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">])</span> <span class="c1">#number of ones in the column being considered
-</span>            
+</span>
             <span class="n">comparator</span> <span class="o">=</span> <span class="s">'0'</span>
 
             <span class="k">if</span> <span class="p">(</span><span class="n">co2</span><span class="o">==</span><span class="bp">True</span> <span class="ow">and</span> <span class="n">ones</span> <span class="o">&lt;</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="ow">or</span> <span class="p">(</span><span class="n">co2</span><span class="o">==</span><span class="bp">False</span> <span class="ow">and</span> <span class="n">ones</span> <span class="o">&gt;=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="p">:</span>
@@ -244,6 +269,7 @@
 <p>Really there’s nothing too clever below. There’s a list called <code class="language-plaintext highlighter-rouge">nums_so_far</code> of numbers drawn so far, and a list of <code class="language-plaintext highlighter-rouge">remaining_cards</code> to keep track of which indices of the <code class="language-plaintext highlighter-rouge">card</code>s list represent cards that are still in play. Iteratively we append a new number to <code class="language-plaintext highlighter-rouge">nums_so_far</code>, then check all the cards, remove the indices of any winners from <code class="language-plaintext highlighter-rouge">remaining_cards</code>, and repeat until only one card survives.</p>
 
 <h3 id="python-code-3">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
@@ -258,7 +284,7 @@
     <span class="n">grids</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">remove</span><span class="p">([</span><span class="s">''</span><span class="p">])</span>
 
 <span class="c1">#append columns to each grid as if they were additional rows
-</span><span class="n">grids</span> <span class="o">=</span> <span class="p">[</span><span class="n">grid</span> <span class="o">+</span> <span class="p">[[</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">))]</span> <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">grids</span><span class="p">]</span> 
+</span><span class="n">grids</span> <span class="o">=</span> <span class="p">[</span><span class="n">grid</span> <span class="o">+</span> <span class="p">[[</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">))]</span> <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">grids</span><span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="n">card</span><span class="p">,</span><span class="n">nums</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">card</span><span class="p">:</span>
@@ -283,13 +309,13 @@
         <span class="n">nums_so_far</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">remaining_cards</span><span class="p">:</span>
-            
+
             <span class="k">if</span> <span class="n">check</span><span class="p">(</span><span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">nums_so_far</span><span class="p">)</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
                 <span class="n">remaining_cards</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining_cards</span><span class="p">)</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
                     <span class="n">final_card</span> <span class="o">=</span> <span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                    <span class="k">return</span> <span class="n">score</span><span class="p">(</span><span class="n">final_card</span><span class="p">,</span><span class="n">nums_so_far</span><span class="p">)</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>                
+                    <span class="k">return</span> <span class="n">score</span><span class="p">(</span><span class="n">final_card</span><span class="p">,</span><span class="n">nums_so_far</span><span class="p">)</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">part2_play</span><span class="p">(</span><span class="n">grids</span><span class="p">,</span><span class="n">win_nums</span><span class="p">))</span>
 </code></pre></div></div>
@@ -307,6 +333,7 @@
 <p>There is no distinction between the “start” and “end” points of a line, and so the code sometimes swaps them so that they can be stepped through by <em>increasing</em> x by 1 per step (for non-vertical lines) or by <em>increasing</em> y by 1 per step (for vertical lines). This is just for convenience.</p>
 
 <h3 id="python-code-4">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
@@ -337,8 +364,8 @@
         <span class="c1">#for convenience the point with lower y-value will be used as the start
 </span>        <span class="k">if</span> <span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
             <span class="n">start</span><span class="p">,</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span><span class="p">,</span><span class="n">start</span>
-        
-        
+
+
         <span class="n">dx</span><span class="p">,</span><span class="n">dy</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
         <span class="c1">#an integer step along a vertical line adds +0 to x and +1 to y
 </span>
@@ -347,12 +374,12 @@
         <span class="c1">#for convenience the point with lower x-value will be used as the start
 </span>        <span class="k">if</span> <span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
             <span class="n">start</span><span class="p">,</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span><span class="p">,</span><span class="n">start</span>
-        
+
         <span class="n">dx</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">dy</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="c1">#gradient
 </span>
         <span class="c1">#an integer step along the line adds +1 to x and +(gradient) to y
-</span>    
+</span>
     <span class="n">overlap_count</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">start</span>
 

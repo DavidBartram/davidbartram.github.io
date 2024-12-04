@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Advent Of Code 2020 Days 11-15"
 date: 2021-02-02 14:45:39 +0100
 tags: advent-of-code aoc coding python
@@ -13,8 +14,7 @@ Continuing my series of posts as I work through [Advent of Code 2020](http://adv
 
 These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github [here](https://git.io/JmAvJ). The code below is for Part 2 of each day, which often incorporates Part 1 in some way.
 
-Day 11 - [Seating System](https://adventofcode.com/2020/day/11)
----------------------------------------------------------------
+## Day 11 - [Seating System](https://adventofcode.com/2020/day/11)
 
 ### Thoughts
 
@@ -33,6 +33,7 @@ The function `advance` moves the cellular automaton ahead one generation.
 The function `findstability` repeatedly advances the cellular automaton, until it finds a fixed point where the layout does not change.
 
 ### Python Code
+
 ```python
 import sys
 from copy import deepcopy
@@ -61,13 +62,13 @@ def ray(i,j,k,l, grid):
 def nbs(i,j, grid):
 
     steps = [(-1,-1), (-1,0), (-1,+1), (0,-1), (0,+1), (+1,-1), (+1,0), (+1,+1)]
-        
+
     nbs = []
-        
+
     for (k,l) in steps:
         if ray(i,j,k,l,grid):
             nbs.append(ray(i,j,k,l,grid))
-    
+
     return nbs
 
 def nbdict(grid):
@@ -93,13 +94,13 @@ def advance(grid,nbdict):
             for y,x in nbs:
                 if grid[y][x] == '#':
                     occ += 1
-            
+
             if grid[i][j] == 'L' and occ == 0:
                 newgrid[i][j] = '#'
-            
+
             if grid[i][j] == '#' and occ >= 4:
                 newgrid[i][j] = 'L'
-    
+
     return newgrid
 
 def findstability(grid, nbdict):
@@ -121,8 +122,7 @@ output = findstability(initial, nbdict)
 print(output)
 ```
 
-Day 12 - [Rain Risk](https://adventofcode.com/2020/day/12)
-----------------------------------------------------------
+## Day 12 - [Rain Risk](https://adventofcode.com/2020/day/12)
 
 ### Thoughts
 
@@ -131,6 +131,7 @@ This is some good old fashioned discrete modelling of motion on a coordinate gri
 My use of trigonometric functions (sine and cosine) is a bit lazy here, as the only rotations are by multiples of 90 degrees, which can be calculated without resorting to trig. But I've always loved a good rotation matrix, so it was the natural approach for me.
 
 ### Python Code
+
 ```python
 import sys
 import re
@@ -167,10 +168,10 @@ for cmd in cmds:
         dx, dy = bearings[op]['dx'] , bearings[op]['dy']
         wp['x'] += arg*dx
         wp['y'] += arg*dy
-    
+
     if op == 'L':
         rotation(wp,arg)
-    
+
     if op == 'R':
         rotation(wp,-1*arg)
 
@@ -179,8 +180,7 @@ print((ship['x'],ship['y'],heading))
 print(abs(ship['x'])+abs(ship['y']))
 ```
 
-Day 13 - [Shuttle Search](https://adventofcode.com/2020/day/13)
----------------------------------------------------------------
+## Day 13 - [Shuttle Search](https://adventofcode.com/2020/day/13)
 
 ### Thoughts
 
@@ -195,6 +195,7 @@ Let's say you've found a time `t1` where only the first two buses (periods `k0`,
 And so on, you can keep increasing the increment you advance t by as you get more and more of the buses to slot into the offsets you want. This speeds the search up to the point where you can find `t` (which for me was 939490236001473) in a sensible timescale.
 
 ### Python Code
+
 ```python
 import sys
 from math import gcd
@@ -225,21 +226,21 @@ def find(k,i,increment):
             if i % buslist[k] == target:
                 new_inc = lcm(increment,buslist[k])
                 return find(k+1,i,new_inc)
-                
+
             else:
                 i = i + increment
-    
-print(find(1,buslist[0],buslist[0])) 
-```   
 
-Day 14 - [Docking Data](https://adventofcode.com/2020/day/14)
--------------------------------------------------------------
+print(find(1,buslist[0],buslist[0]))
+```
+
+## Day 14 - [Docking Data](https://adventofcode.com/2020/day/14)
 
 ### Thoughts
 
 Part 2 is a fun problem involving a bitmask and a memory address decoder. The memory address to be written to is represented by a 36-bit binary address. This address can contain floating bits represented by the character X, which can each be either 0 or 1. The solution needs to write the value to all of the various memory addresses produced by setting each X to either 0 or 1. In my solution these permutations are all found by the recursive function `keyversions`.
 
 ### Python Code
+
 ```python
 import sys
 
@@ -248,7 +249,7 @@ with open(sys.argv[1]) as file:
 
 mask = ''
 
-mem = {}  
+mem = {}
 
 def keyversions(keylist,value):
     if 'X' not in keylist:
@@ -292,17 +293,16 @@ for key,val in mem.items():
 print(sum)
 ```
 
-Day 15 - [Rambunctious Recitation](https://adventofcode.com/2020/day/15)
-------------------------------------------------------------------------
+## Day 15 - [Rambunctious Recitation](https://adventofcode.com/2020/day/15)
 
 ### Thoughts
 
 The goal here is to model a seemingly simple game:
 
-In this game, the players take turns saying _numbers_. They begin by taking turns reading from a list of _starting numbers_ (your puzzle input). Then, each turn consists of considering the _most recently spoken number_:
+In this game, the players take turns saying *numbers*. They begin by taking turns reading from a list of *starting numbers* (your puzzle input). Then, each turn consists of considering the *most recently spoken number*:
 
-*   If that was the _first_ time the number has been spoken, the current player says _`0`_.
-*   Otherwise, the number had been spoken before; the current player announces _how many turns apart_ the number is from when it was previously spoken.
+- If that was the *first* time the number has been spoken, the current player says *`0`*.
+- Otherwise, the number had been spoken before; the current player announces *how many turns apart* the number is from when it was previously spoken.
 
 In Part 1, the goal was to predict the 2020th number spoken. In Part 2, the rules didn't change, but the goal was to predict the 30 millionth number spoken - i.e. to optimise your code from Part 1. My dictionary-based solution to Part 1 was far too slow to reach a solution in sensible times.
 
@@ -313,6 +313,7 @@ So the statement `past[57] == 13` would mean that the number 57 was last spoken 
 `past[57] == 0` would mean that 57 has never been spoken before, because `past` was initialised with every value as zero.
 
 ### Python Code
+
 ```python
 def play(game,turns):
     past = [0]*turns
@@ -323,20 +324,20 @@ def play(game,turns):
     while i < len(game):
         past[game[i-1]] = i
         i += 1
-    
+
     #take the last number spoken, x, and update it to the next number spoken.
     #while ensuring that past[x] equals the last turn that the number x was spoken.
     while i < turns:
         j = past[x]
         past[x] = i
-        
+
         if j == 0:
             x = 0
         else:
             x = i - j
-        
+
         i += 1
-        
+
     return x
 
 print(play([17,1,3,16,19,0],2020))

@@ -19,7 +19,29 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-02-02T13:45:39+00:00","datePublished":"2021-02-02T13:45:39+00:00","description":"Advent of Code 2020 Days 11-15","headline":"Advent Of Code 2020 Days 11-15","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/02/advent-of-code-2020-days-11-15.html"},"url":"http://localhost:4000/2021/02/02/advent-of-code-2020-days-11-15.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" />
+  <link rel="stylesheet" href="/assets/tipuesearch/css/normalize.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+  <link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+  <script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch.min.js"></script>
+  
+
+  <form action="/2021/02/02/advent-of-code-2020-days-11-15.html">
+    <div class="tipue_search_left"><img src="/assets/tipuesearch/search.png" class="tipue_search_icon"></div>
+    <div class="tipue_search_right"><input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required></div>
+    <div style="clear: both;"></div>
+  </form>
+  
+  <div id="tipue_search_content"></div>
+  
+  <script>
+  $(document).ready(function() {
+    $('#tipue_search_input').tipuesearch();
+  });
+  </script>
+</head>
 <body><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
@@ -74,6 +96,7 @@
 <p>The function <code class="language-plaintext highlighter-rouge">findstability</code> repeatedly advances the cellular automaton, until it finds a fixed point where the layout does not change.</p>
 
 <h3 id="python-code">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
@@ -101,13 +124,13 @@
 <span class="k">def</span> <span class="nf">nbs</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
 
     <span class="n">steps</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
-        
+
     <span class="n">nbs</span> <span class="o">=</span> <span class="p">[]</span>
-        
+
     <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">)</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">ray</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">grid</span><span class="p">):</span>
             <span class="n">nbs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">ray</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">grid</span><span class="p">))</span>
-    
+
     <span class="k">return</span> <span class="n">nbs</span>
 
 <span class="k">def</span> <span class="nf">nbdict</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
@@ -133,13 +156,13 @@
             <span class="k">for</span> <span class="n">y</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="n">nbs</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="s">'#'</span><span class="p">:</span>
                     <span class="n">occ</span> <span class="o">+=</span> <span class="mi">1</span>
-            
+
             <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'L'</span> <span class="ow">and</span> <span class="n">occ</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">newgrid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s">'#'</span>
-            
+
             <span class="k">if</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'#'</span> <span class="ow">and</span> <span class="n">occ</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
                 <span class="n">newgrid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s">'L'</span>
-    
+
     <span class="k">return</span> <span class="n">newgrid</span>
 
 <span class="k">def</span> <span class="nf">findstability</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">nbdict</span><span class="p">):</span>
@@ -170,6 +193,7 @@
 <p>My use of trigonometric functions (sine and cosine) is a bit lazy here, as the only rotations are by multiples of 90 degrees, which can be calculated without resorting to trig. But I’ve always loved a good rotation matrix, so it was the natural approach for me.</p>
 
 <h3 id="python-code-1">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">radians</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
@@ -205,10 +229,10 @@
         <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">bearings</span><span class="p">[</span><span class="n">op</span><span class="p">][</span><span class="s">'dx'</span><span class="p">]</span> <span class="p">,</span> <span class="n">bearings</span><span class="p">[</span><span class="n">op</span><span class="p">][</span><span class="s">'dy'</span><span class="p">]</span>
         <span class="n">wp</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span> <span class="o">+=</span> <span class="n">arg</span><span class="o">*</span><span class="n">dx</span>
         <span class="n">wp</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span> <span class="o">+=</span> <span class="n">arg</span><span class="o">*</span><span class="n">dy</span>
-    
+
     <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s">'L'</span><span class="p">:</span>
         <span class="n">rotation</span><span class="p">(</span><span class="n">wp</span><span class="p">,</span><span class="n">arg</span><span class="p">)</span>
-    
+
     <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s">'R'</span><span class="p">:</span>
         <span class="n">rotation</span><span class="p">(</span><span class="n">wp</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">arg</span><span class="p">)</span>
 
@@ -232,6 +256,7 @@
 <p>And so on, you can keep increasing the increment you advance t by as you get more and more of the buses to slot into the offsets you want. This speeds the search up to the point where you can find <code class="language-plaintext highlighter-rouge">t</code> (which for me was 939490236001473) in a sensible timescale.</p>
 
 <h3 id="python-code-2">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">gcd</span>
 
@@ -261,11 +286,11 @@
             <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">buslist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
                 <span class="n">new_inc</span> <span class="o">=</span> <span class="n">lcm</span><span class="p">(</span><span class="n">increment</span><span class="p">,</span><span class="n">buslist</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
                 <span class="k">return</span> <span class="n">find</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">new_inc</span><span class="p">)</span>
-                
+
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">increment</span>
-    
-<span class="k">print</span><span class="p">(</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">buslist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">buslist</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> 
+
+<span class="k">print</span><span class="p">(</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">buslist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">buslist</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </code></pre></div></div>
 
 <h2 id="day-14---docking-data">Day 14 - <a href="https://adventofcode.com/2020/day/14">Docking Data</a></h2>
@@ -275,6 +300,7 @@
 <p>Part 2 is a fun problem involving a bitmask and a memory address decoder. The memory address to be written to is represented by a 36-bit binary address. This address can contain floating bits represented by the character X, which can each be either 0 or 1. The solution needs to write the value to all of the various memory addresses produced by setting each X to either 0 or 1. In my solution these permutations are all found by the recursive function <code class="language-plaintext highlighter-rouge">keyversions</code>.</p>
 
 <h3 id="python-code-3">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
@@ -282,7 +308,7 @@
 
 <span class="n">mask</span> <span class="o">=</span> <span class="s">''</span>
 
-<span class="n">mem</span> <span class="o">=</span> <span class="p">{}</span>  
+<span class="n">mem</span> <span class="o">=</span> <span class="p">{}</span>
 
 <span class="k">def</span> <span class="nf">keyversions</span><span class="p">(</span><span class="n">keylist</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
     <span class="k">if</span> <span class="s">'X'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">keylist</span><span class="p">:</span>
@@ -348,6 +374,7 @@
 <p><code class="language-plaintext highlighter-rouge">past[57] == 0</code> would mean that 57 has never been spoken before, because <code class="language-plaintext highlighter-rouge">past</code> was initialised with every value as zero.</p>
 
 <h3 id="python-code-4">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="n">turns</span><span class="p">):</span>
     <span class="n">past</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">turns</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">game</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#when the game begins, this is the most recent number to consider
@@ -357,20 +384,20 @@
 </span>    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">game</span><span class="p">):</span>
         <span class="n">past</span><span class="p">[</span><span class="n">game</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
         <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-    
+
     <span class="c1">#take the last number spoken, x, and update it to the next number spoken.
 </span>    <span class="c1">#while ensuring that past[x] equals the last turn that the number x was spoken.
 </span>    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">turns</span><span class="p">:</span>
         <span class="n">j</span> <span class="o">=</span> <span class="n">past</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
         <span class="n">past</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-        
+
         <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">j</span>
-        
+
         <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-        
+
     <span class="k">return</span> <span class="n">x</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">play</span><span class="p">([</span><span class="mi">17</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="mi">2020</span><span class="p">))</span>

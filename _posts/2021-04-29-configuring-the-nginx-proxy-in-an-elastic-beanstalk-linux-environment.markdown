@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Configuring The Nginx Proxy In An Elastic Beanstalk Linux Environment"
 date: 2021-04-29 14:45:39 +0100
 tags: aws fixes-&amp;-tricks
@@ -18,6 +19,7 @@ I was recently using Elastic Beanstalk to set up a dev/test environment for a Bl
 Elastic Beanstalk lets you easily look at the logs of the underlying EC2 instances, and I soon found the issue in the logs for the nginx proxy:
 
 ```upstream sent too big header while reading response header from upstream
+
 ```
 
 Sure enough, the headers were rather large.
@@ -28,7 +30,7 @@ Turns out it's [not unusual](https://andrewlock.net/fixing-nginx-upstream-sent-t
 
 ```
 proxy_buffers         8 16k;
-proxy_buffer_size     16k;   
+proxy_buffer_size     16k;
 large_client_header_buffers 4 32k;
 ```
 
@@ -48,10 +50,10 @@ The snippet below shows that the app will be published to a folder imaginatively
 
 ```yaml
 post_build:
-   commands:
-     - mkdir -p publish/.platform/nginx/conf.d/ && cp proxy.conf publish/.platform/nginx/conf.d/proxy.conf
-     - dotnet publish -c Release -f net5.0 -r linux-x64 -o ./publish MySubFolder/MyApp.csproj
-      
+  commands:
+    - mkdir -p publish/.platform/nginx/conf.d/ && cp proxy.conf publish/.platform/nginx/conf.d/proxy.conf
+    - dotnet publish -c Release -f net5.0 -r linux-x64 -o ./publish MySubFolder/MyApp.csproj
+
 artifacts:
   files:
     - ./**/*

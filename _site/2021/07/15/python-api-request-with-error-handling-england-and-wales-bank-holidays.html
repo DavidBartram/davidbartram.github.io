@@ -19,7 +19,29 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-07-15T14:45:39+01:00","datePublished":"2021-07-15T14:45:39+01:00","description":"Python API Request with Error Handling: England &amp; Wales Bank Holidays","headline":"Python Api Request With Error Handling England Wales Bank Holidays","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/07/15/python-api-request-with-error-handling-england-and-wales-bank-holidays.html"},"url":"http://localhost:4000/2021/07/15/python-api-request-with-error-handling-england-and-wales-bank-holidays.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" />
+  <link rel="stylesheet" href="/assets/tipuesearch/css/normalize.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+  <link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+  <script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch.min.js"></script>
+  
+
+  <form action="/2021/07/15/python-api-request-with-error-handling-england-and-wales-bank-holidays.html">
+    <div class="tipue_search_left"><img src="/assets/tipuesearch/search.png" class="tipue_search_icon"></div>
+    <div class="tipue_search_right"><input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required></div>
+    <div style="clear: both;"></div>
+  </form>
+  
+  <div id="tipue_search_content"></div>
+  
+  <script>
+  $(document).ready(function() {
+    $('#tipue_search_input').tipuesearch();
+  });
+  </script>
+</head>
 <body><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
@@ -56,6 +78,7 @@
 <p>The output of this function is a list of bank holiday dates, using a stored list if the API is not available (as it was during the <a href="https://www.bbc.co.uk/news/technology-57399628">Fastly internet outage</a> in June 2021.</p>
 
 <p>The goal here is to provide reasonable informative error messages printed to console.</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_bank_holidays</span><span class="p">():</span>
     <span class="s">"""
     Uses the gov.uk API bank holiday API. Returns a list of dates of England and Wales bank holidays in yyyy-mm-dd format.
@@ -64,7 +87,7 @@
     <span class="n">default_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s">'2016-01-01'</span><span class="p">,</span> <span class="s">'2016-03-25'</span><span class="p">,</span> <span class="s">'2016-03-28'</span><span class="p">,</span> <span class="s">'2016-05-02'</span><span class="p">,</span> <span class="s">'2016-05-30'</span><span class="p">,</span> <span class="s">'2016-08-29'</span><span class="p">,</span> <span class="s">'2016-12-26'</span><span class="p">,</span> <span class="s">'2016-12-27'</span><span class="p">,</span> <span class="s">'2017-01-02'</span><span class="p">,</span> <span class="s">'2017-04-14'</span><span class="p">,</span> <span class="s">'2017-04-17'</span><span class="p">,</span>
     <span class="s">'2017-05-01'</span><span class="p">,</span> <span class="s">'2017-05-29'</span><span class="p">,</span> <span class="s">'2017-08-28'</span><span class="p">,</span> <span class="s">'2017-12-25'</span><span class="p">,</span> <span class="s">'2017-12-26'</span><span class="p">,</span> <span class="s">'2018-01-01'</span><span class="p">,</span> <span class="s">'2018-03-30'</span><span class="p">,</span> <span class="s">'2018-04-02'</span><span class="p">,</span> <span class="s">'2018-05-07'</span><span class="p">,</span> <span class="s">'2018-05-28'</span><span class="p">,</span> <span class="s">'2018-08-27'</span><span class="p">,</span> <span class="s">'2018-12-25'</span><span class="p">,</span>
     <span class="s">'2018-12-26'</span><span class="p">,</span> <span class="s">'2019-01-01'</span><span class="p">,</span> <span class="s">'2019-04-19'</span><span class="p">,</span> <span class="s">'2019-04-22'</span><span class="p">,</span> <span class="s">'2019-05-06'</span><span class="p">,</span> <span class="s">'2019-05-27'</span><span class="p">,</span> <span class="s">'2019-08-26'</span><span class="p">,</span> <span class="s">'2019-12-25'</span><span class="p">,</span> <span class="s">'2019-12-26'</span><span class="p">,</span> <span class="s">'2020-01-01'</span><span class="p">,</span> <span class="s">'2020-04-10'</span><span class="p">,</span> <span class="s">'2020-04-13'</span><span class="p">,</span>
-    <span class="s">'2020-05-08'</span><span class="p">,</span> <span class="s">'2020-05-25'</span><span class="p">,</span> <span class="s">'2020-08-31'</span><span class="p">,</span> <span class="s">'2020-12-25'</span><span class="p">,</span> <span class="s">'2020-12-28'</span><span class="p">,</span> <span class="s">'2021-01-01'</span><span class="p">,</span> <span class="s">'2021-04-02'</span><span class="p">,</span> <span class="s">'2021-04-05'</span><span class="p">,</span> <span class="s">'2021-05-03'</span><span class="p">,</span> <span class="s">'2021-05-31'</span><span class="p">,</span> <span class="s">'2021-08-30'</span><span class="p">,</span> <span class="s">'2021-12-27'</span><span class="p">,</span> 
+    <span class="s">'2020-05-08'</span><span class="p">,</span> <span class="s">'2020-05-25'</span><span class="p">,</span> <span class="s">'2020-08-31'</span><span class="p">,</span> <span class="s">'2020-12-25'</span><span class="p">,</span> <span class="s">'2020-12-28'</span><span class="p">,</span> <span class="s">'2021-01-01'</span><span class="p">,</span> <span class="s">'2021-04-02'</span><span class="p">,</span> <span class="s">'2021-04-05'</span><span class="p">,</span> <span class="s">'2021-05-03'</span><span class="p">,</span> <span class="s">'2021-05-31'</span><span class="p">,</span> <span class="s">'2021-08-30'</span><span class="p">,</span> <span class="s">'2021-12-27'</span><span class="p">,</span>
     <span class="s">'2021-12-28'</span><span class="p">,</span> <span class="s">'2022-01-03'</span><span class="p">,</span> <span class="s">'2022-04-15'</span><span class="p">,</span> <span class="s">'2022-04-18'</span><span class="p">,</span> <span class="s">'2022-05-02'</span><span class="p">,</span> <span class="s">'2022-06-02'</span><span class="p">,</span> <span class="s">'2022-06-03'</span><span class="p">,</span> <span class="s">'2022-08-29'</span><span class="p">,</span> <span class="s">'2022-12-26'</span><span class="p">,</span> <span class="s">'2022-12-27'</span><span class="p">]</span>
 
     <span class="n">use_default_dates</span> <span class="o">=</span> <span class="bp">False</span>
@@ -80,7 +103,7 @@
             <span class="k">print</span><span class="p">(</span><span class="s">"USING STORED BANK HOLIDAY DATES"</span><span class="p">)</span>
             <span class="n">use_default_dates</span> <span class="o">=</span> <span class="bp">True</span>
 
-    
+
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">SSLError</span> <span class="k">as</span> <span class="n">errssl</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">"SSL Error:"</span><span class="p">,</span> <span class="n">errssl</span><span class="p">)</span>
         <span class="k">print</span><span class="p">(</span><span class="s">"USING STORED BANK HOLIDAY DATES"</span><span class="p">)</span>
@@ -110,7 +133,7 @@
 
         <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
             <span class="n">dates</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s">"date"</span><span class="p">])</span>
-    
+
     <span class="k">else</span><span class="p">:</span>
         <span class="n">dates</span> <span class="o">=</span> <span class="n">default_dates</span>
 

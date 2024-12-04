@@ -1,10 +1,13 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Advent Of Code 2021 Days 16-20"
 date: 2022-03-21 14:45:39 +0100
 tags: advent-of-code aoc coding python
 ---
+
 o
+
 # Advent of Code 2021 Days 16-20
 
 ![christmas tree decorated with baubles and garland]({{ "images/pexels-photo-6211095.jpeg" | relative_url }})
@@ -13,8 +16,7 @@ Welcome back to some more [Advent of Code 2021](http://adventofcode.com/2021/)!
 
 These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github [here](https://git.io/JmAvJ). The code below is for Part 2 of each day, which often incorporates Part 1 in some way.
 
-Day 16 - [Packet Decoder](https://adventofcode.com/2021/day/16)
----------------------------------------------------------------
+## Day 16 - [Packet Decoder](https://adventofcode.com/2021/day/16)
 
 ### Thoughts
 
@@ -24,10 +26,10 @@ A parsing puzzle - formerly my least favourite type of AoC puzzle, though they a
 
 When converted into binary, a packet is structured as follows:
 
-*   The first 3 bits encode an integer which is the packet **version**
-*   The next 3 bits encode another integer, which is the **type ID**.
-    *   If ID == 4, the packet is a **literal value**, representing a single binary integer
-    *   Otherwise, the packet is an **operator packet**, and the ID determines which operation it performs on all the subpackets it contains (see below)
+- The first 3 bits encode an integer which is the packet **version**
+- The next 3 bits encode another integer, which is the **type ID**.
+  - If ID == 4, the packet is a **literal value**, representing a single binary integer
+  - Otherwise, the packet is an **operator packet**, and the ID determines which operation it performs on all the subpackets it contains (see below)
 
 All packets will have this standard 6-digit header.
 
@@ -78,6 +80,7 @@ It also has two methods `parse_one_packet` and `read_packet_content`, which toge
 Evaluating a packet's value is left to an external function `apply_operators`, outside the Message class, which takes in the parsed (tuple) version of a packet and applies the operations required by the puzzle rules.
 
 ### Python Code
+
 ```python
 import sys
 import binascii
@@ -90,7 +93,7 @@ class Message:
 
         #convert transmission from hexadecimal to binary
         bin_data = binascii.a2b_hex(hex_data)
-        
+
         #pos is an integer attribute representing the current position of the parser in parsing the message
         self.pos = 0
 
@@ -100,7 +103,7 @@ class Message:
         #add the bits from the input file into the bits attribute of the Message object
         for byte in bin_data:
             self.bits += '{:08b}'.format(byte)
-    
+
     def integer_value(self, n_bits):
         #returns the integer value, in decimal, of the next n_bits bits of the message
 
@@ -109,7 +112,7 @@ class Message:
         #advance the position
         self.pos += n_bits
         return result
-    
+
     def parse_one_packet(self):
         #parse the next packet of the message
         #return the packet as a tuple of (packet version, type id, packet content)
@@ -137,7 +140,7 @@ class Message:
                 n_packets = self.integer_value(11)
 
                 return [self.parse_one_packet() for _ in range(n_packets)]
-            
+
             if length_type == 0: #the next 15 binary digits give the total number of bits in the subpackets
                 x = self.integer_value(15) #need to do this on a separate line as it changes self.pos
                 end = self.pos + x #end = self.pos + self.integer_value(15) one one line would be bad as it would depend on the order that pos and integer_value are evaluated
@@ -188,7 +191,7 @@ def apply_operators(packet):
         if apply_operators(content[0]) > apply_operators(content[1]):
             total = 1
         return total
-    
+
     if id==6: # < packet. contains exactly two subpackets, if the first has a value less than the second, return 1. Otherwise return 0.
         total = 0
         if apply_operators(content[0]) < apply_operators(content[1]):
@@ -200,7 +203,7 @@ def apply_operators(packet):
         if apply_operators(content[0]) == apply_operators(content[1]):
             total = 1
         return total
-    
+
 
 #initialise a Message object from the input file
 with open(sys.argv[1]) as file:
@@ -213,8 +216,7 @@ packet = message.parse_one_packet()
 print(apply_operators(packet))
 ```
 
-Day 17 - [Trick Shot](https://adventofcode.com/2021/day/17)
------------------------------------------------------------
+## Day 17 - [Trick Shot](https://adventofcode.com/2021/day/17)
 
 ### Thoughts
 
@@ -222,10 +224,10 @@ What we have here is a simplified version of projectile motion with gravity and 
 
 On each step:
 
-*   The probe's x-position increases by its current x-velocity.
-*   Then the probe's y-position increases by its current y-velocity.
-*   Then the probe's x-velocity decreases by 1 if it is positive, increases by 1 if it is negative, or stays unchanged if it is zero. This simulates the water resistance or drag on the probe.
-*   Then the probe's y-velocity decreases by 1, simulating gravity.
+- The probe's x-position increases by its current x-velocity.
+- Then the probe's y-position increases by its current y-velocity.
+- Then the probe's x-velocity decreases by 1 if it is positive, increases by 1 if it is negative, or stays unchanged if it is zero. This simulates the water resistance or drag on the probe.
+- Then the probe's y-velocity decreases by 1, simulating gravity.
 
 The goal is to find all the distinct values of the initial velocity vector which result in the probe being in a specified **target area** after any step. The target area is a rectangle specified by integer minimum and maximum coordinates `x_min, x_max, y_min` and `y_max`.
 
@@ -237,18 +239,19 @@ This problem can be solved analytically, but it can also be brute forced pretty 
 
 The code tries integer values for `ux` between 1 and `x_max` inclusive.
 
-*   If `ux <= 0`, the x-velocity will be always be negative or zero. This means the probe will never move right of the origin, and since `x_min>0`, the target area is always right of the origin.
-*   If `ux > x_max`, then the probe overshoots to the right of the target area on the first step. Since x-velocity was initially positive and tends towards zero, this overshoot can never be corrected.
+- If `ux <= 0`, the x-velocity will be always be negative or zero. This means the probe will never move right of the origin, and since `x_min>0`, the target area is always right of the origin.
+- If `ux > x_max`, then the probe overshoots to the right of the target area on the first step. Since x-velocity was initially positive and tends towards zero, this overshoot can never be corrected.
 
 #### Bounds on the initial y-velocity
 
 The code tries integer values for `uy` between `y_`min and `-y_min-1` inclusive. (Recall that I have assumed y_min<0).
 
-*   If `uy < y_min` then the probe falls below the target area after the first step. Since y-velocity can only decrease, this means the probe will always be below the target area after every step.
-*   I've assumed that `y_max<0`. For any positive `uy`, the probe starts at `(0,0)` and passes through `y=0` again with velocity `-uy-1`.
-    *   If `-uy-1 < y_min`, or equivalently `uy > -y_min-1` , then the probe will fall below the target area after the following step.
+- If `uy < y_min` then the probe falls below the target area after the first step. Since y-velocity can only decrease, this means the probe will always be below the target area after every step.
+- I've assumed that `y_max<0`. For any positive `uy`, the probe starts at `(0,0)` and passes through `y=0` again with velocity `-uy-1`.
+  - If `-uy-1 < y_min`, or equivalently `uy > -y_min-1` , then the probe will fall below the target area after the following step.
 
 ### Python Code
+
 ```python
 import sys
 
@@ -276,7 +279,7 @@ def on_target(vx, vy):
 
         if x_min <= x <= x_max  and y_min <= y <= y_max: #if the position is in the target area
             return True
-        
+
         if vx > 0:
             vx -= 1
 
@@ -284,12 +287,12 @@ def on_target(vx, vy):
             if x<x_min or x>x_max:
                 return False    #if the probe is left or right of the target area and has x-velocity zero
                                 #it will never reach the target area
-        
+
         if vx < 0:
             vx += 1
-        
+
         vy -= 1
-    
+
     return False
 
 on_target_probes = 0
@@ -302,23 +305,22 @@ for ux in range(1,x_max+1):
 print(on_target_probes)
 ```
 
-Day 18 - [Snailfish](https://adventofcode.com/2021/day/18)
-----------------------------------------------------------
+## Day 18 - [Snailfish](https://adventofcode.com/2021/day/18)
 
 ### Thoughts
 
 Snailfish, as is to be expected, have their own version of arithmetic.
 
-*   A **snailfish number** is a pair, such as `[3,4]`.
-    *   The elements of the pair might be an integer or another pair.
-    *   `[6,[3,[12,4]]` is also a valid snailfish number.
-    *   Order matters. `[4,3]` is a different number to `[3,4]`.
-*   Snailfish **addition** is performed by forming a new pair, so that `[3,4] + [7,2] = [[3,4],[7,2]]`
-    *   Snailfish addition is not commutative: `A + B` is not necessarily equal to `B + A`.
-*   Snailfish numbers must be **reduced** whenever possible. To reduce a snailfish number, apply the first action in the list below that is possible. Once that has been applied, return to the top of the list and apply the first possible action from this list again. Repeat until neither action is possible.
-    1.  The leftmost pair that is nested inside 4 pairs **explodes**
-    2.  The leftmost integer that is 10 or greater **splits**
-*   To add a list of snailfish numbers, add the first and second, reduce the result, and add the reduced result to the third snailfish number in the list. Then reduce the answer, add the fourth snailfish number, reduce the answer, and so on until the list has been exhausted.
+- A **snailfish number** is a pair, such as `[3,4]`.
+  - The elements of the pair might be an integer or another pair.
+  - `[6,[3,[12,4]]` is also a valid snailfish number.
+  - Order matters. `[4,3]` is a different number to `[3,4]`.
+- Snailfish **addition** is performed by forming a new pair, so that `[3,4] + [7,2] = [[3,4],[7,2]]`
+  - Snailfish addition is not commutative: `A + B` is not necessarily equal to `B + A`.
+- Snailfish numbers must be **reduced** whenever possible. To reduce a snailfish number, apply the first action in the list below that is possible. Once that has been applied, return to the top of the list and apply the first possible action from this list again. Repeat until neither action is possible.
+  1.  The leftmost pair that is nested inside 4 pairs **explodes**
+  2.  The leftmost integer that is 10 or greater **splits**
+- To add a list of snailfish numbers, add the first and second, reduce the result, and add the reduced result to the third snailfish number in the list. Then reduce the answer, add the fourth snailfish number, reduce the answer, and so on until the list has been exhausted.
 
 #### Exploding a pair
 
@@ -336,8 +338,8 @@ Thanks to a well-formed puzzle input, we can reliably assume that no integer wil
 
 To split an integer greater than 9, replace it with a pair as follows:
 
-*   The left element of the new pair is the original integer divided by 2 and rounded down
-*   The right element of the new pair is the original integer divided by 2 and rounded up
+- The left element of the new pair is the original integer divided by 2 and rounded down
+- The right element of the new pair is the original integer divided by 2 and rounded up
 
 `10` splits to `[5,5]`
 
@@ -349,8 +351,8 @@ etc.
 
 The magnitude operation maps any reduced snailfish number to an integer. It follows the following rules:
 
-*   The magnitude of an integer is equal to the integer itself
-*   The magnitude of a pair is equal to 3 times the magnitude of its left element, plus 2 times the magnitude of its right element
+- The magnitude of an integer is equal to the integer itself
+- The magnitude of a pair is equal to 3 times the magnitude of its left element, plus 2 times the magnitude of its right element
 
 #### The Puzzle
 
@@ -383,7 +385,7 @@ is equivalent to this sum in the original representation:
 **Exploding** a pair means:
 
 1.  Identify the leftmost pair two consecutive integers which have a depth of 5. Call the integer values `a` and b.
-    *   So the list is of the form `[…, (a,5), (b,5), …]`
+    - So the list is of the form `[…, (a,5), (b,5), …]`
 2.  Add `a` to the nearest integer to the left of the pair (if any)
 3.  Add `b` to the nearest integer to the right of the pair (if any)
 4.  Remove the `(b,5)` tuple from the list
@@ -402,7 +404,7 @@ Becomes the following in the flattened representation:
 **Splitting** an integer means:
 
 1.  Identify the leftmost integer value in the list that is greater than 9
-    *   So the list is of the form [`…, (x,d), …]` where `x>9` and `d` is the depth of `x`.
+    - So the list is of the form [`…, (x,d), …]`where`x>9`and`d`is the depth of`x`.
 2.  Insert the tuple `(ceil(x/2),d+1)` in the list directly after `(x,d)`
 3.  Replace the tuple `(x,d)` with `(floor(x/2), d+1)`
 
@@ -415,15 +417,16 @@ and `(13,d)` splits to `(6,d+1)` and `(7,d+1)`
 Finding the **magnitude** of a snailfish number ends up being the most complicated task in this flattened representation. My solution is as follows:
 
 1.  Find the pair (or pairs) of integers with the greatest depth.
-    *   The list would be of the form ``[…, (L1,d_max), (R1,d_max), …, `(L2,d_max), (R2,d_max)`, `…`]``
+    - The list would be of the form `` […, (L1,d_max), (R1,d_max), …, `(L2,d_max), (R2,d_max)`, `…`] ``
 2.  Replace each pair at maximum depth as follows:
-    *   `(L1,d_max), (R1,d_max) -> (3*L1 + 2*R1, d_max - 1)`
-    *   `(L2, d_max), (R2, d_max) -> (3*L1 + 2*R2, d_max - 1)`
-    *   etc.
+    - `(L1,d_max), (R1,d_max) -> (3*L1 + 2*R1, d_max - 1)`
+    - `(L2, d_max), (R2, d_max) -> (3*L1 + 2*R2, d_max - 1)`
+    - etc.
 3.  Repeat steps 1 and 2 until the list contains only two tuples `(x, d)` and `(y,d)`.
 4.  Return `3*x + 2*y`.
 
 ### Python Code
+
 ```python
 from math import ceil, floor
 import sys
@@ -453,13 +456,13 @@ def explode(snail):
                 newsnail[i-1] = (snail[i-1][0]+val,snail[i-1][1])
             if i+2<=len(snail)-1:
                 newsnail[i+2] = (snail[i+2][0]+snail[i+1][0],snail[i+2][1])
-            
+
             newsnail.pop(i+1)
 
             newsnail[i] = (0,depth-1)
-    
+
             return newsnail
-    
+
     return False
 
 def split(snail):
@@ -472,7 +475,7 @@ def split(snail):
             newsnail[i] = (leftval,depth+1)
             newsnail.insert(i+1, (rightval,depth+1) )
             return newsnail
-    
+
     return False
 
 def add(snail1, snail2):
@@ -492,7 +495,7 @@ def snail_reduce(snail):
 
         elif spl:
             snail = spl
-        
+
     return snail
 
 def add_and_snail_reduce(snail1,snail2):
@@ -518,7 +521,7 @@ def magnitude(snail):
             snail.pop(i+1)
             i += 1
         else:
-            i +=1 
+            i +=1
 
     return magnitude(snail)
 
@@ -540,14 +543,13 @@ def part_two(snails):
     return max(mags)
 
 with open(sys.argv[1]) as file:
-    snails = [read(line.strip()) for line in file]   
+    snails = [read(line.strip()) for line in file]
 
 print(part_one(snails))
 print(part_two(snails))
 ```
 
-Day 19 - [Beacon Scanner](https://adventofcode.com/2021/day/19)
----------------------------------------------------------------
+## Day 19 - [Beacon Scanner](https://adventofcode.com/2021/day/19)
 
 ### Thoughts
 
@@ -613,17 +615,17 @@ An **even perm** has an even number of pairs of indices which are out of ascendi
 
 e.g. (2,0,1). Consider all 3 pairs of indices:
 
-*   (2,0) out of order
-*   (0,1) in order
-*   (2,1) out of order.
+- (2,0) out of order
+- (0,1) in order
+- (2,1) out of order.
 
 Two pairs are mis-ordered, so the perm is even.
 
 e.g. (0,2,1).
 
-*   (0,2) in order
-*   (0,1) in order,
-*   (2,1) out of order.
+- (0,2) in order
+- (0,1) in order,
+- (2,1) out of order.
 
 One pair is mis-ordered, so the perm is odd.
 
@@ -634,6 +636,7 @@ As a result we half the space of reorientation from the incorrect 48 which inclu
 **Yes, it would probably have been easier just to use rotation matrices.**
 
 ### Python Code
+
 ```python
 from itertools import permutations
 import sys
@@ -653,7 +656,7 @@ def initialise():
         if ',' in line:
             beacon = tuple([int(x) for x in line.strip().split(',')])
             scanner.append(beacon)
-        
+
         elif line == '\n':
             scanners.append(scanner)
             scanner = []
@@ -682,7 +685,7 @@ def parity(perms):
 
         if parity == 1:
             correct_sigs[perm] = {(-1,1,1), (1,-1,1),(1,1,-1),(-1,-1,-1)}
-    
+
     return correct_sigs
 
 scanners, perms = initialise()
@@ -720,7 +723,7 @@ def match12(scannerA, scannerB):
 
     if len(common_points) >= 12:
         return True
-    
+
     return False
 
 def compare(scannerA,scannerB):
@@ -738,7 +741,7 @@ def compare(scannerA,scannerB):
                     xb,yb,zb = beaconB
                     offset = (xa-xb,ya-yb,za-zb)
                     transB = translate(rotB,offset)
-                    
+
                     if match12(scannerA,transB):
                         return offset, perm, sig
 
@@ -766,7 +769,7 @@ def part_two(scanners):
                     continue
 
                 result = compare(base_scanner, scanner)
-            
+
                 if result:
                     offset, perm, sig = result
                     offsets.append(offset)
@@ -775,7 +778,7 @@ def part_two(scanners):
                     new_scanner = translate(new_scanner,offset)
                     visited.append(i)
                     base_scanner = base_scanner | new_scanner #incorporate the scanner's beacons into the base scanner
-    
+
     #calculate the manhattan distance between every pair of scanners
     #return the maximum manhattan distance (the puzzle solution)
     manhattans = []
@@ -784,14 +787,13 @@ def part_two(scanners):
             x1,y1,z1 = off1
             x2,y2,z2 = off2
             manhattans.append(abs(x2-x1) + abs(y2-y1) + abs(z2-z1))
-                
+
     return max(manhattans)
 
 print(part_two(scanners))
 ```
 
-Day 20 - [Trench Map](https://adventofcode.com/2021/day/20)
------------------------------------------------------------
+## Day 20 - [Trench Map](https://adventofcode.com/2021/day/20)
 
 ### Thoughts
 
@@ -814,6 +816,7 @@ In my solution this is handled by a variable `oob` (out of bounds). Initially, `
 The puzzle answer is the number of light pixels in the infinite grid after 50 iterations. Since 50 is even, most of the infinite grid will be dark at this point, so there is a finite answer!
 
 ### Python Code
+
 ```python
 import sys
 from collections import defaultdict
@@ -838,15 +841,15 @@ def update(point, image, algo, oob):
 
     for step in steps:
         (dx,dy) = step
-        
+
         if 0 <= x+dx <= xmax and 0 <= y+dy <= ymax:
             #if in the bounds of the grid, return the value
             idx += image[y+dy][x+dx]
-        
+
         else:
             #if out of bounds, return current value of oob
             idx += oob
-    
+
     idx = int(idx,2)
 
     return algo[idx]
@@ -855,7 +858,7 @@ def update(point, image, algo, oob):
 def apply_algo(image,algo, oob):
     #apply the enhancement algorithm once to the image grid
     #return the new image grid
-    
+
     image2 = []
 
     xmax = len(image[0])-1
@@ -867,7 +870,7 @@ def apply_algo(image,algo, oob):
                 new_row += update((x,y), image, algo, oob)
 
             image2.append(new_row)
-    
+
     return image2
 
 def print_image(image):

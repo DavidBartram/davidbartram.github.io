@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Reinvent 2020 3 Container Insights"
 date: 2021-01-22 14:45:39 +0100
 tags: aws aws-reinvent cloud containers
@@ -19,9 +20,9 @@ This [talk](https://virtual.awsevents.com/media/1_sh3r4d89) was given by [Sudeep
 
 Jothiprakash started with an overview of the needs expressed by AWS customers for monitoring of microservice-based environments, identifying three main needs:
 
-*   Getting a birds eye view of the application to understand its components and locate the source of problems
-*   Drilling down into specific components and workloads to investigate issues
-*   Derive insights from metrics and logs collected across the environment
+- Getting a birds eye view of the application to understand its components and locate the source of problems
+- Drilling down into specific components and workloads to investigate issues
+- Derive insights from metrics and logs collected across the environment
 
 #### Cloudwatch Container Insights
 
@@ -41,9 +42,9 @@ To better understand the dependencies between the components, there is a Map vie
 
 To conclude, Jothiprakash summarised how the new features meet the customer needs from the introduction.
 
-*   Getting a birds eye view of the application to understand its components and locate the source of problems
-    *   Container Insights Resource view with Map & list views
-*   Drilling down into specific components and workloads to investigate issues
-    *   From the Resource map view you can narrow down to a specific namespace, service or pod for deeper details
-*   Derive insights from metrics and logs collected across the environment
-    *   In CloudWatch Service Map view you can click on one of the nodes and click on Container Insights to move to the metrics, logs and traces associated with that component
+- Getting a birds eye view of the application to understand its components and locate the source of problems
+  - Container Insights Resource view with Map & list views
+- Drilling down into specific components and workloads to investigate issues
+  - From the Resource map view you can narrow down to a specific namespace, service or pod for deeper details
+- Derive insights from metrics and logs collected across the environment
+  - In CloudWatch Service Map view you can click on one of the nodes and click on Container Insights to move to the metrics, logs and traces associated with that component

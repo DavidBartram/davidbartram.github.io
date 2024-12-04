@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Doubting Tau A Question Of %Cf%80"
 date: 2021-07-08 14:45:39 +0100
 tags: maths
@@ -13,8 +14,7 @@ I've spent a lot of my life talking about _π_. Seven years as a maths educator 
 
 But I have a dark secret - every time I taught a class of students about everyone's favourite transcendental number, I felt a twinge of pain. Because, deep down, I suspected that _π_ wasn't a very sensible constant to work with.
 
-Defining π
-----------
+## Defining π
 
 There are various mathematical formulae that evaluate to _π._ That said, most people would agree that a good _definition_ of _π_ would be the ratio of the circumference of a circle to its diameter. We could use the formula below as a fundamental definition of _π_ , where C is the circumference of a circle and d is the diameter.
 
@@ -36,8 +36,7 @@ A circle is the only shape defined by a radius. A circle is a set of points whic
 
 So maybe **C = 2π r** , where r is the radius, makes more sense as a fundamental equation.
 
-Enter τ
--------
+## Enter τ
 
 If we accept the previous argument that the relationship between C and r is the crucial relationship, why should we use **π** at all? The proper constant, based on that argument, would be 2π.
 
@@ -47,8 +46,7 @@ If history had gone differently, we might have used a constant twice as big as �
 
 **C = τ r**
 
-Twice as Good: The Benefits of Tau
-----------------------------------
+## Twice as Good: The Benefits of Tau
 
 The expression 2π crops up all over the place in mathematics. It's the value of a full turn in the radian angle measure that is fundamental to trigonometry. 360 degrees is equivalent to 2π radians. So π is half a turn, the equivalent of 180 degrees.
 
@@ -60,8 +58,7 @@ Examples of special angles in terms of τ
 
 And various other formulae, such as the Gaussian integrals so beloved of physicists and statisticians alike, would also have an unsightly 2π replaced by a clean τ. Mathematics is absolutely full of 2π , from Fourier transforms to Cauchy's residue theorem.
 
-Area - An Illusory Drawback
----------------------------
+## Area - An Illusory Drawback
 
 But some of you will be wondering about area. **A = π r^2^** , right? Won't that look ugly with τ ?
 
@@ -91,8 +88,7 @@ where g=acceleration due to gravity, t=time
 
 Bringing the circle area into the fold makes it easier to see the deep connections between different areas of maths via calculus.
 
-Volume - Archimedes' Cylinder
------------------------------
+## Volume - Archimedes' Cylinder
 
 The volume of a sphere has the charming formula, where r is the radius of the sphere:
 
@@ -118,8 +114,7 @@ Multiply the area of the base by the height **½ τ r^2^** x 2**r** = **τ r^3^*
 
 So what this formula shows, very intuitively, is that every sphere has a volume equal to two-thirds of the volume of a cylinder that just encloses it! This [amazing result](https://www.datagenetics.com/blog/july32014/index.html) was first discovered by Archimedes, and his discovery is showcased very clearly in a notation that uses τ instead of π.
 
-Barbier's Theorem - Reason to Doubt
------------------------------------
+## Barbier's Theorem - Reason to Doubt
 
 So far I've been summarising and agreeing with the [Tau Manifesto](https://tauday.com/tau-manifesto). τ makes numerous formulae look nicer, and makes the area formula (which looks worse) actually fit into its mathematical niche more obviously.
 
@@ -139,8 +134,7 @@ Sure, we could arbitrarily define **r** as equal to half the diameter, but that'
 
 There's something here which suggests that a constant based on the diameter might have a broader applicability that a constant based on the radius. This is definitely a point in favour of our familiar friend π.
 
-Confused Conclusion
--------------------
+## Confused Conclusion
 
 Thinking about Barbier's theorem suggests that the relationship between diameter and perimeter is more fundamental than the one between radius and perimeter. That gives primacy to π as the constant of choice. But then you have to face a world where a full turn is 2π radians and the area formula doesn't fit as neatly with its mathematical bedfellows.
 

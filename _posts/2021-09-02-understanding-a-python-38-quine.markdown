@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Understanding A Python 3 8 Quine"
 date: 2021-09-02 14:45:39 +0100
 tags: coding python
@@ -9,15 +10,13 @@ tags: coding python
 
 ![a primate examines themselves in the mirror]({{ "images/pexels-photo-1207875.jpeg" | relative_url }})
 
-What is a quine?
-----------------
+## What is a quine?
 
 Per the font of all human knowledge, Wikipedia, "a quine is a computer program which takes no input and produces a copy of its own source code as its only output".
 
 Quines are named after the logician Willard Quine, and are quite interesting from a theoretical point of view and fun to think about. I thought I'd pick a Python quine and analyse how it works, and what syntactical tricks it exploits to replicate itself in the output.
 
-Python 3.8 quine (from Stackoverflow)
--------------------------------------
+## Python 3.8 quine (from Stackoverflow)
 
 Rather arbitrarily, I've picked this quine (tested in Python 3.8) from [StackOverflow](https://stackoverflow.com/questions/6223285/shortest-python-quine), in the response by user [hallo](https://stackoverflow.com/users/4698348/hallo).
 
@@ -29,8 +28,7 @@ I just thought the syntax of it looked fun, and I wanted to understand it and ho
 
 Note that Python 3.8 will usually interpret a value followed by a comma `x,` as a one-element tuple whose string representation is `(x,)`. This will be important later for keeping track of brackets!
 
-Ingredients of the quine
-------------------------
+## Ingredients of the quine
 
 ### The print statement
 
@@ -45,6 +43,7 @@ A more significant element in this quine is the use of f-strings. New in Python 
 To do this you simply prefix the string with an `f` or `F` before the opening single or triple quote, and contain the Python expression you want to insert in braces `{}`.
 
 Example:
+
 ```python
 name = 'Boba Fett'
 age = 19
@@ -55,7 +54,9 @@ message = f'When {name} was {age} years old, {pronoun} learned to count to {max_
 
 print(message)
 ```
+
 Output:
+
 ```
 When Boba Fett was 19 years old, he learned to count to 10: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
@@ -107,9 +108,10 @@ print(y((1,3,5)))
 ```
 
 **Output:**
+
 ```
-banana('banana',))  
-5(5,))  
+banana('banana',))
+5(5,))
 (1, 3, 5)((1, 3, 5),))
 ```
 
@@ -130,7 +132,9 @@ y = lambda  x:f"{x}{(x,)})"
 
 print(y('chimp',))
 ```
+
 **Output:**
+
 ```
 chimp('chimp',))
 ```
@@ -147,8 +151,7 @@ Likewise, when we evaluate `` `y('chimp',)` `` , Python will see `'chimp',` not 
 
 This trick is crucial to this particular quine!
 
-Reading the quine
------------------
+## Reading the quine
 
 Let's take a look at the whole quine:
 
@@ -184,8 +187,7 @@ print((lambda x:f"{x}{x,})")('print((lambda x:f"{x}{x,})")',))
 
 This is the code of the quine itself, which will be wrapped in the print function we ignored earlier. Therefore, the quine will output its own code to the console. So it is a quine!
 
-The "tricks" - parentheses and commas
--------------------------------------
+## The "tricks" - parentheses and commas
 
 This particular quine exploits two main quirks of Python.
 

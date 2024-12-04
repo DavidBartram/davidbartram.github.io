@@ -19,7 +19,29 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-09-02T14:45:39+01:00","datePublished":"2021-09-02T14:45:39+01:00","description":"Understanding a Python 3.8 Quine","headline":"Understanding A Python 3 8 Quine","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/09/02/understanding-a-python-38-quine.html"},"url":"http://localhost:4000/2021/09/02/understanding-a-python-38-quine.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" />
+  <link rel="stylesheet" href="/assets/tipuesearch/css/normalize.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+  <link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+  <script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch.min.js"></script>
+  
+
+  <form action="/2021/09/02/understanding-a-python-38-quine.html">
+    <div class="tipue_search_left"><img src="/assets/tipuesearch/search.png" class="tipue_search_icon"></div>
+    <div class="tipue_search_right"><input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required></div>
+    <div style="clear: both;"></div>
+  </form>
+  
+  <div id="tipue_search_content"></div>
+  
+  <script>
+  $(document).ready(function() {
+    $('#tipue_search_input').tipuesearch();
+  });
+  </script>
+</head>
 <body><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
@@ -83,6 +105,7 @@
 <p>To do this you simply prefix the string with an <code class="language-plaintext highlighter-rouge">f</code> or <code class="language-plaintext highlighter-rouge">F</code> before the opening single or triple quote, and contain the Python expression you want to insert in braces <code class="language-plaintext highlighter-rouge">{}</code>.</p>
 
 <p>Example:</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="s">'Boba Fett'</span>
 <span class="n">age</span> <span class="o">=</span> <span class="mi">19</span>
 <span class="n">pronoun</span> <span class="o">=</span> <span class="s">'he'</span>
@@ -92,7 +115,9 @@
 
 <span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </code></pre></div></div>
+
 <p>Output:</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>When Boba Fett was 19 years old, he learned to count to 10: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 </code></pre></div></div>
 
@@ -139,8 +164,9 @@ jiminyjiminyjiminyjiminyjiminy
 </code></pre></div></div>
 
 <p><strong>Output:</strong></p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>banana('banana',))  
-5(5,))  
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>banana('banana',))
+5(5,))
 (1, 3, 5)((1, 3, 5),))
 </code></pre></div></div>
 
@@ -162,7 +188,9 @@ jiminyjiminyjiminyjiminyjiminy
 
 <span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="s">'chimp'</span><span class="p">,))</span>
 </code></pre></div></div>
+
 <p><strong>Output:</strong></p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chimp('chimp',))
 </code></pre></div></div>
 

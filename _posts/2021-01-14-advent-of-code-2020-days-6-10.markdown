@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Advent Of Code 2020 Days 6-10"
 date: 2021-01-14 14:45:39 +0100
 tags: advent-of-code aoc coding python
@@ -13,14 +14,14 @@ Continuing my series of posts as I work through [Advent of Code 2020](http://adv
 
 These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github [here](https://git.io/JmAvJ). The code below is for Part 2 of each day, which often incorporates Part 1 in some way.
 
-Day 6 - [Custom Customs](https://adventofcode.com/2020/day/6)
--------------------------------------------------------------
+## Day 6 - [Custom Customs](https://adventofcode.com/2020/day/6)
 
 ### Thoughts
 
 Stripped of context, the input is a text file with groups of lines separated by blank lines. In each group, you need to find how many characters appear in _every_ line of the group. I did this by first putting all the characters in the group into a set, and then taking the intersection with the set of characters on each line.
 
 ### Python Code
+
 ```python
 import sys
 
@@ -33,14 +34,13 @@ for group in groups:
     x = set(group)
     for line in group.split('\n'):
         x = x.intersection(set(line))
-    
+
     output.append(len(x))
-        
+
 print(sum(output))
 ```
 
-Day 7 - [Handy Haversacks](https://adventofcode.com/2020/day/7)
----------------------------------------------------------------
+## Day 7 - [Handy Haversacks](https://adventofcode.com/2020/day/7)
 
 ### Thoughts
 
@@ -57,6 +57,7 @@ My solution below is...fairly unpleasant, to say the least. It's a naïve recurs
 If you want to see a better solution, take a look at [this solution by sophiebits](https://github.com/sophiebits/adventofcode/blob/main/2020/day07.py) which, much more sensibly, starts by processing the rules into two dictionaries - one where you can look up what bags _are contained_ in a given bag, and one where you can look up what bags _contain_ a given bag.
 
 ### Python Code
+
 ```python
 import sys
 import re
@@ -78,30 +79,30 @@ def bagcount(colour):
                 for i in range(num):
                         count += 1
                         bagcount(nextcolour)
-            
-            
+
+
 
 bagcount('shiny gold')
 
 print(count)
 ```
 
-Day 8 - [Handheld Halting](https://adventofcode.com/2020/day/8)
----------------------------------------------------------------
+## Day 8 - [Handheld Halting](https://adventofcode.com/2020/day/8)
 
 ### Thoughts
 
 Here we have a simple version of a halting problem.
 
-*   The function `run` below will execute a program as defined in the puzzle.
-    *   The program **terminates** if it attempts to execute an instruction immediately after the last instruction in the program, handled on lines 13-15. In this case `run` will return `terminates: True` as part of its output.
-    *   The program **enters an infinite loop** if it visits an instruction for the second time. Rather than execute the infinite loop, the `run` function actually terminates as soon as this happens. In this case `run` will return `terminates: False` as part of its output.
-*   The function `findswap` is where the puzzle is actually solved - this involves searching the given program for a line where exchanging the `nop` and `jmp` commands would make the code terminate properly.
+- The function `run` below will execute a program as defined in the puzzle.
+  - The program **terminates** if it attempts to execute an instruction immediately after the last instruction in the program, handled on lines 13-15. In this case `run` will return `terminates: True` as part of its output.
+  - The program **enters an infinite loop** if it visits an instruction for the second time. Rather than execute the infinite loop, the `run` function actually terminates as soon as this happens. In this case `run` will return `terminates: False` as part of its output.
+- The function `findswap` is where the puzzle is actually solved - this involves searching the given program for a line where exchanging the `nop` and `jmp` commands would make the code terminate properly.
 
 ### Python Code
+
 ```python
 def run(code):
-    
+
     visited = set()
 
     i=0
@@ -115,7 +116,7 @@ def run(code):
         if i == len(code):
             terminates = True
             break
-        
+
         else:
             op,arg = code[i].split()
             arg = int(arg)
@@ -137,17 +138,17 @@ def findswap(filename):
         code = [line.rstrip('\n') for line in file]
 
     for i in range(0,len(code)):
-        
+
         code2 = code[:]
-        
-        
+
+
         if code2[i].startswith("nop"):
             code2[i] = code2[i].replace("nop", "jmp")
-            
+
 
         if code2[i].startswith("jmp"):
             code2[i] = code2[i].replace("jmp", "nop")
-            
+
 
         result = run(code2)
         terminates = result["terminates"]
@@ -156,12 +157,12 @@ def findswap(filename):
             acc = result["acc"]
             print("Swapping line", i, "makes the code terminate with acc =", acc)
             break
-    
+
 
 findswap("bootcode.txt")
 ```
-Day 9 - [Encoding Error](https://adventofcode.com/2020/day/9)
--------------------------------------------------------------
+
+## Day 9 - [Encoding Error](https://adventofcode.com/2020/day/9)
 
 ### Thoughts
 
@@ -170,6 +171,7 @@ Dealing with sublists. The input is a list of integer values. In part 1 we're lo
 The solution below doesn't look particularly "Pythonic" - there's a whole lot of indexing going on.
 
 ### Python Code
+
 ```python
 import sys
 
@@ -177,7 +179,7 @@ with open(sys.argv[1]) as file:
     l = [int(line) for line in file]
 
 
-#Part 1 
+#Part 1
 k=25
 
 # Set up a list of tuples, the first element of each tuple is a value from the list,
@@ -191,7 +193,7 @@ for (x,y) in m:
         goal = x - val
         if goal in y:
           haspair=True
-          
+
     if haspair==False:
         s = x
         break
@@ -211,8 +213,7 @@ def findsub():
 print(findsub())
 ```
 
-Day 10 - [Adapter Array](https://adventofcode.com/2020/day/10)
---------------------------------------------------------------
+## Day 10 - [Adapter Array](https://adventofcode.com/2020/day/10)
 
 ### Thoughts
 
@@ -225,6 +226,7 @@ A simple recursive algorithm will work, but in order to make it more efficient i
 The answer for my puzzle input was that there were 97 trillion ways to plug in the adapters, and on my machine the code below runs in about 5 milliseconds. What if I removed the memoization? Well . . . [some redditors](https://www.reddit.com/r/adventofcode/comments/kasqdq/2020_day_10_part_2_i_calculated_how_long_it_would/) have estimated it as taking somewhere between a few hours and a month depending on implementation.
 
 ### Python Code
+
 ```python
 import sys
 
@@ -238,7 +240,7 @@ def cost(x):
 
     if x in memo:
         return memo[x]
-    
+
     ways = 0
 
     if x == max(ratings):
@@ -252,7 +254,7 @@ def cost(x):
 
     memo[x] = ways
     return ways
-    
+
 
 print(cost(0))
 ```

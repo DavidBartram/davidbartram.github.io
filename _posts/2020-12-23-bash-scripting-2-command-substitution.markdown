@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Bash Scripting 2 Command Substitution"
 date: 2020-12-23 14:45:39 +0100
 tags: bash-scripting coding
@@ -15,35 +16,35 @@ Naturally you're going to want to turn to the `date` command, and maybe a format
 
 What you need is **command substitution** - in this case you want to call a command in the middle of the string you want to print, have the command evaluate, and then put the output in the proper part of the string.
 
-Backticks `...`
----------------
+## Backticks `...`
 
 For a long time while learning Bash, I thought there was only one way to do command substitution, namely using the backtick character `` ` `` to enclose the command.
+
 ```bash
 $ echo "The date is `date +%F` at the time of writing"
 ```
+
 ```
 The date is 2020-12-23 at the time of writing
 ```
 
 The output is as desired. Lovely, right? Well...we'll see about that.
 
-Dollar Brackets $(...)
-----------------------
+## Dollar Brackets $(...)
 
 However, it turns out this is a legacy Bourne shell syntax, and has some limitations (see below). These days the [POSIX](https://opensource.com/article/19/7/what-posix-richard-stallman-explains) standard is to enclose the command in `$( )` - this convention is even respected by modern Bourne shells, though they will accept the backtick syntax as well.
 
 ```bash
 $ echo "The date is $(date +%F) at the time of writing"
 ```
+
 ```
 The date is 2021-12-23 at the time of writing
 ```
 
 So far, seems much the same. But there are some differences when you look deeper.
 
-Dollar Brackets vs Backticks
-----------------------------
+## Dollar Brackets vs Backticks
 
 So - if both versions will work (assuming a suitable shell), then why do we care? Why am I taking the trouble to un-learn command substitution with backticks and start doing it with dollar brackets?
 
@@ -58,9 +59,11 @@ The backtick `` ` `` is easily confused with the single quote `'` - if I had my 
 A double backslash is treated rather strangely by backticks:
 
 Consider wanting to print `\x` for some reason.
+
 ```bash
 $ echo \\x
 ```
+
 ```
 ﻿\x
 ```
@@ -70,6 +73,7 @@ The first backslash is there as an escape character, so that the second backslas
 ```bash
 echo `echo \\x`
 ```
+
 ```
 x
 ```
@@ -79,6 +83,7 @@ I beg your pardon?
 ```bash
 echo $(echo \\x)
 ```
+
 ```
 \x
 ```
@@ -88,8 +93,9 @@ Much better, thank you `$(...)`. A similar behaviour crops up with single quotes
 ### Nesting with backticks is messy
 
 ```bash
-echo "Next year will be 20`expr `date +%y` + 1`." 
+echo "Next year will be 20`expr `date +%y` + 1`."
 ```
+
 ```
 Next year will be 20date +%y.
 ```
@@ -97,8 +103,9 @@ Next year will be 20date +%y.
 ....that doesn't look right. Do I have to escape the inner backticks?
 
 ```bash
-echo "Next year will be 20`expr \`date +%y\` + 1`." 
+echo "Next year will be 20`expr \`date +%y\` + 1`."
 ```
+
 ```
 Next year will be 2022.
 ```
@@ -106,18 +113,18 @@ Next year will be 2022.
 It's functional, but it's not pretty compared to:
 
 ```bash
-echo "Next year will be 20$(expr $(date +%y) + 1)." 
+echo "Next year will be 20$(expr $(date +%y) + 1)."
 ```
+
 ```
 Next year will be 2022.
 ```
 
-Conclusion
-----------
+## Conclusion
 
 Use `$(...)` for command substitution if your shell supports it. It's really as simple as that, as far as I can see. Comment if you have a different perspective!
 
 To find out more, take a look at:
 
-*   [https://pubs.opengroup.org/onlinepubs/9699919799/xrat/V4_xcu_chap02.html#tag_23_02_06_03](https://pubs.opengroup.org/onlinepubs/9699919799/xrat/V4_xcu_chap02.html#tag_23_02_06_03)
-*   [http://mywiki.wooledge.org/BashFAQ/082](http://mywiki.wooledge.org/BashFAQ/082)
+- [https://pubs.opengroup.org/onlinepubs/9699919799/xrat/V4_xcu_chap02.html#tag_23_02_06_03](https://pubs.opengroup.org/onlinepubs/9699919799/xrat/V4_xcu_chap02.html#tag_23_02_06_03)
+- [http://mywiki.wooledge.org/BashFAQ/082](http://mywiki.wooledge.org/BashFAQ/082)

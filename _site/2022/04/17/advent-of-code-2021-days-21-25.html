@@ -19,7 +19,29 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-04-17T14:45:39+01:00","datePublished":"2022-04-17T14:45:39+01:00","description":"Advent of Code 2021 - Days 21-25","headline":"Advent Of Code 2021 Days 21-25","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/04/17/advent-of-code-2021-days-21-25.html"},"url":"http://localhost:4000/2022/04/17/advent-of-code-2021-days-21-25.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Dave Bartram Blog" />
+  <link rel="stylesheet" href="/assets/tipuesearch/css/normalize.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+  <link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+  <script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/assets/tipuesearch/tipuesearch.min.js"></script>
+  
+
+  <form action="/2022/04/17/advent-of-code-2021-days-21-25.html">
+    <div class="tipue_search_left"><img src="/assets/tipuesearch/search.png" class="tipue_search_icon"></div>
+    <div class="tipue_search_right"><input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required></div>
+    <div style="clear: both;"></div>
+  </form>
+  
+  <div id="tipue_search_content"></div>
+  
+  <script>
+  $(document).ready(function() {
+    $('#tipue_search_input').tipuesearch();
+  });
+  </script>
+</head>
 <body><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Dave Bartram Blog</a><nav class="site-nav">
@@ -82,13 +104,13 @@
 <p>And so on. My code calculates these values directly to produce a dictionary from total score to number of universes called <code class="language-plaintext highlighter-rouge">dice_freq</code>, but this doesn’t depend on the input and will always be as follows:</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-</span><span class="mi">3</span><span class="err">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-</span><span class="mi">4</span><span class="err">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-</span><span class="mi">5</span><span class="err">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-</span><span class="mi">6</span><span class="err">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-</span><span class="mi">7</span><span class="err">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-</span><span class="mi">8</span><span class="err">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-</span><span class="mi">9</span><span class="err">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="nl">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"4"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"5"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"6"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"7"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"8"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"9"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
@@ -129,6 +151,7 @@
 <p>You can implement this caching (or “memoization”) yourself with a dictionary from input to output, but in this case I used the built-in Python LRU cache decorator.</p>
 
 <h3 id="python-code">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
@@ -151,10 +174,10 @@
 </span>
     <span class="k">if</span> <span class="n">score1</span><span class="o">&gt;=</span><span class="mi">21</span><span class="p">:</span> <span class="c1">#player 1 wins
 </span>        <span class="k">return</span> <span class="mi">1</span>
-    
+
     <span class="k">elif</span> <span class="n">score2</span><span class="o">&gt;=</span><span class="mi">21</span><span class="p">:</span> <span class="c1">#player 2 wins
 </span>        <span class="k">return</span> <span class="mi">0</span>
-    
+
     <span class="n">subgame_total</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">if</span> <span class="n">whoseTurn</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">#player 1 takes a turn next
@@ -176,15 +199,15 @@
     <span class="k">return</span> <span class="n">subgame_total</span>
 
 <span class="c1">#starting positions hard-coded from the input
-</span><span class="n">start1</span> <span class="o">=</span> <span class="mi">7</span> 
-<span class="n">start2</span> <span class="o">=</span> <span class="mi">5</span> 
+</span><span class="n">start1</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">start2</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="n">wins</span> <span class="o">=</span> <span class="p">(</span><span class="n">play_dirac_dice</span><span class="p">(</span><span class="n">start1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">start2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">play_dirac_dice</span><span class="p">(</span><span class="n">start2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">start1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 
 <span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">wins</span><span class="p">))</span>
 </code></pre></div></div>
-<p>Day 22 - <a href="https://adventofcode.com/2021/day/22">Reactor Reboot</a>
-—————————————————————</p>
+
+<h2 id="day-22---reactor-reboot">Day 22 - <a href="https://adventofcode.com/2021/day/22">Reactor Reboot</a></h2>
 
 <h3 id="thoughts-1">Thoughts</h3>
 
@@ -301,6 +324,7 @@
 <p>This example doesn’t cover every possibility, but it hopefully illustrates how the solution correctly handles ‘on’ and ‘off’ instructions, while dealing with intersections correctly.</p>
 
 <h3 id="python-code-1">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">intervals</span> <span class="k">as</span> <span class="n">I</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -355,7 +379,7 @@
 
     <span class="k">if</span> <span class="n">ix</span><span class="p">.</span><span class="n">is_empty</span><span class="p">()</span> <span class="ow">or</span> <span class="n">iy</span><span class="p">.</span><span class="n">is_empty</span><span class="p">()</span> <span class="ow">or</span> <span class="n">iz</span><span class="p">.</span><span class="n">is_empty</span><span class="p">():</span>
         <span class="k">return</span> <span class="bp">False</span>
-    
+
     <span class="k">return</span> <span class="p">(</span><span class="n">ix</span><span class="p">,</span><span class="n">iy</span><span class="p">,</span><span class="n">iz</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">apply_one_instruction</span><span class="p">(</span><span class="n">cuboids</span><span class="p">,</span><span class="n">newcuboid</span><span class="p">,</span> <span class="n">onoff</span><span class="p">):</span>
@@ -382,7 +406,7 @@
         <span class="n">onoff</span> <span class="o">=</span> <span class="n">instruction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">newcuboid</span> <span class="o">=</span> <span class="n">instruction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">cuboids</span> <span class="o">=</span> <span class="n">apply_one_instruction</span><span class="p">(</span><span class="n">cuboids</span><span class="p">,</span><span class="n">newcuboid</span><span class="p">,</span><span class="n">onoff</span><span class="p">)</span>
-    
+
     <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">for</span> <span class="n">cuboid</span><span class="p">,</span> <span class="n">sign</span> <span class="ow">in</span> <span class="n">cuboids</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
@@ -456,6 +480,7 @@
 <p>The implementation below is a little finicky in the details, and not particularly fast, but it does the job!</p>
 
 <h3 id="python-code-2">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">inf</span><span class="p">,</span> <span class="n">ceil</span>
 <span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">PriorityQueue</span>
@@ -503,7 +528,7 @@
 
     <span class="k">if</span> <span class="n">h</span><span class="o">&gt;</span><span class="n">j</span><span class="p">:</span>
         <span class="n">intervening_hall</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">!=</span><span class="bp">None</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">hall</span><span class="p">[</span><span class="n">k</span><span class="p">:</span><span class="n">h</span><span class="p">]]</span>
-    
+
     <span class="c1">#check if there are any amphipods of the wrong type in the destination room
 </span>    <span class="n">wrong_amphi</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="o">!=</span><span class="n">amphi</span> <span class="ow">and</span> <span class="n">x</span><span class="o">!=</span><span class="bp">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rooms</span><span class="p">[</span><span class="n">amphi</span><span class="p">]]</span>
 
@@ -543,18 +568,18 @@
 
     <span class="k">if</span> <span class="n">h</span><span class="o">&gt;</span><span class="n">j</span><span class="p">:</span>
         <span class="n">intervening_hall</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">!=</span><span class="bp">None</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">hall</span><span class="p">[</span><span class="n">k</span><span class="p">:</span><span class="n">h</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span>
-    
+
     <span class="c1">#check if there are any amphipods in the room between this amphipod and the hallway
 </span>    <span class="k">if</span> <span class="n">r_pos</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">intervening_room</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span>
-    
+
     <span class="k">if</span> <span class="n">r_pos</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">intervening_room</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">!=</span><span class="bp">None</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">rooms</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="n">r_pos</span><span class="p">]]</span>
 
     <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">intervening_hall</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span><span class="n">intervening_room</span><span class="p">):</span>
         <span class="c1">#if there is an amphipod blocking this path
 </span>        <span class="k">return</span> <span class="bp">None</span>
-    
+
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="n">intervening_hall</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span><span class="n">intervening_room</span><span class="p">)):</span>
         <span class="c1">#calculate the cost of moving to hallway position h
 </span>        <span class="n">cost</span> <span class="o">=</span> <span class="n">move_cost</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">amphi</span><span class="p">,</span><span class="n">r_pos</span><span class="p">)</span>
@@ -575,7 +600,7 @@
             <span class="n">result</span> <span class="o">=</span> <span class="n">hall_to_room</span><span class="p">(</span><span class="n">amphi</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">hall</span><span class="p">,</span><span class="n">rooms</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
                 <span class="n">neighbours</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-    
+
     <span class="k">for</span> <span class="n">h</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hall</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">room</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rooms</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">r_pos</span><span class="p">,</span> <span class="n">amphi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">room</span><span class="p">):</span>
@@ -584,19 +609,19 @@
                     <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
                         <span class="c1">#print(result)
 </span>                        <span class="n">neighbours</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">neighbours</span>
 
 <span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">visit</span><span class="p">,</span><span class="n">costs</span><span class="p">):</span>
     <span class="c1">#dijkstra's algorithm
-</span>    
+</span>
     <span class="k">while</span> <span class="ow">not</span> <span class="n">visit</span><span class="p">.</span><span class="n">empty</span><span class="p">():</span>
         <span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">_</span><span class="p">,(</span><span class="n">hall</span><span class="p">,</span><span class="n">rooms</span><span class="p">))</span> <span class="o">=</span> <span class="n">visit</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="c1">#get the next board state in the queue
 </span>
         <span class="k">if</span> <span class="n">hall</span> <span class="o">==</span> <span class="n">final_hall</span> <span class="ow">and</span> <span class="n">rooms</span> <span class="o">==</span> <span class="n">final_rooms</span><span class="p">:</span>
             <span class="c1">#if the final state has been reached, return the cost
 </span>            <span class="k">return</span> <span class="n">c</span>
-        
+
         <span class="c1">#identify neighbouring board states
 </span>        <span class="n">nbs</span> <span class="o">=</span> <span class="n">neighbours</span><span class="p">(</span><span class="n">hall</span><span class="p">,</span><span class="n">rooms</span><span class="p">)</span>
 
@@ -630,8 +655,8 @@
 
 <span class="k">print</span><span class="p">(</span><span class="n">dijkstra</span><span class="p">(</span><span class="n">visit</span><span class="p">,</span><span class="n">start_costs</span><span class="p">))</span> <span class="c1">#print puzzle answer
 </span></code></pre></div></div>
-<p>Day 24 - <a href="https://adventofcode.com/2021/day/24">Arithmetic Logic Unit</a>
-———————————————————————-</p>
+
+<h2 id="day-24---arithmetic-logic-unit">Day 24 - <a href="https://adventofcode.com/2021/day/24">Arithmetic Logic Unit</a></h2>
 
 <h3 id="thoughts-3">Thoughts</h3>
 
@@ -971,6 +996,7 @@ add z y
 <p>The code below attacks this problem without any particular elegance. The function <code class="language-plaintext highlighter-rouge">advance</code> will advance the grid by a single step, following the rules laid out above. The function <code class="language-plaintext highlighter-rouge">find_stability</code> will check after each step whether the grid has remained unchanged. If the grid hasn’t changed, <code class="language-plaintext highlighter-rouge">find_stability</code> will return the number of steps so far.</p>
 
 <h3 id="python-code-3">Python Code</h3>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
@@ -995,7 +1021,7 @@ add z y
                     <span class="n">grid1</span><span class="p">[</span><span class="n">i</span><span class="p">][(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">width</span><span class="p">]</span> <span class="o">=</span> <span class="s">'&gt;'</span>
 
     <span class="n">grid2</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">grid1</span><span class="p">)</span>
-    
+
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid1</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">char</span><span class="o">==</span><span class="s">'v'</span><span class="p">:</span>
@@ -1003,7 +1029,7 @@ add z y
                 <span class="k">if</span> <span class="n">destination</span> <span class="o">==</span> <span class="s">'.'</span><span class="p">:</span>
                     <span class="n">grid2</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s">'.'</span>
                     <span class="n">grid2</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">height</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s">'v'</span>
-    
+
     <span class="k">return</span> <span class="n">grid2</span>
 
 <span class="k">def</span> <span class="nf">find_stability</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
@@ -1017,7 +1043,7 @@ add z y
             <span class="n">stable</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">grid</span> <span class="o">=</span> <span class="n">newgrid</span>
-    
+
     <span class="k">return</span> <span class="n">i</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">find_stability</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>

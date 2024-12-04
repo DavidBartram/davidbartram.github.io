@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Sql Server Queries Task Duration Inserting Defaults"
 date: 2021-10-05 14:45:39 +0100
 tags: coding fixes-&amp;-tricks sql
@@ -13,8 +14,7 @@ The title says it all really - two SQL (T-SQL) snippets designed for running aga
 
 The uses cases and solutions here have been simplified (to the point of absurdity!) to explain what each query does.
 
-Task Duration
--------------
+## Task Duration
 
 Here we have a status log of some tasks being worked on by Alice, Bob and Clare. The first status a task enters is Start, and the last status is Completed. There may be other statuses in between, such as Blocked.
 
@@ -49,8 +49,8 @@ with datatable as (
   union select 'Task 4' as 'Task ID', 'Clare' as "Worker", CAST('20211207' as date) as "Date", 'Completed' as "Status"
 )
 
-SELECT initialData."Task ID", 
-       initialData."Date" as "StartDate", 
+SELECT initialData."Task ID",
+       initialData."Date" as "StartDate",
        completedData."Date" as "EndDate",
        DATEDIFF(day,initialData."Date", completedData."Date") as "Duration (days)"
 FROM datatable as initialData INNER JOIN datatable as completedData
@@ -67,8 +67,7 @@ FROM datatable as initialData INNER JOIN datatable as completedData
 | Task 3  | 2021-11-23 | 2021-11-27 | 4               |
 | Task 4  | 2021-11-28 | 2021-12-07 | 9               |
 
-Inserting Default Values
-------------------------
+## Inserting Default Values
 
 Consider a table like the below:
 
@@ -101,7 +100,7 @@ defaults as (
 
 SELECT day, Value
 FROM datatable
-UNION 
+UNION
 SELECT day, Value
 FROM defaults
 WHERE defaults.day NOT IN (SELECT distinct day from datatable)

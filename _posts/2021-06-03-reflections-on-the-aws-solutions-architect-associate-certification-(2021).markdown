@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Reflections On The Aws Solutions Architect Associate Certification 2021"
 date: 2021-06-03 14:45:39 +0100
 tags: aws
@@ -11,8 +12,7 @@ tags: aws
 
 Last week I sat and passed the AWS Solutions Architect Associate exam (SAA-C02), and I'm here to share a few thoughts on preparation and the experience of the exam itself.
 
-Preparation
------------
+## Preparation
 
 ### [A Cloud Guru SAA-C02 Course](https://acloudguru.com/course/aws-certified-solutions-architect-associate-saa-c02)
 
@@ -36,8 +36,7 @@ It's all in the docs, of course, and in countless study guides you can find onli
 
 This helps embed the learning. It also gives you something to do when you have a light-bulb moment - go and get it written down in your glossary. When you get a handle on Route 53 routing policies or the difference between a standard and FIFO queue in SQS, you go and write it down. You update any related references in your glossary, make sure the document as a whole reflects that new piece of knowledge. Otherwise, if you're anything like me, you'll be revisiting the same topic again 48 hours later, feeling like you're back where you started.
 
-The Exam
---------
+## The Exam
 
 It would be inappropriate to talk in any real detail about the questions I got on my exam, and in any case, there's a large question bank and any given person's experience may be different. So all I'm going to do is highlight some general themes and things that might be a stumbling block.
 
@@ -69,8 +68,7 @@ In my experience of the exam, this will rarely be about requiring to memorise th
 
 Understand the metrics that affect the cost of a service, again, not necessarily the figures, but which factors affect the price and which do not.
 
-Conclusion
-----------
+## Conclusion
 
 This is a fun exam to study for, and a great way to get a bird's eye view of a wide variety of different AWS services and what they do. This might be valuable if your practical AWS experience so far has been limited to using a small number of services, and you want a better idea of what's out there.
 

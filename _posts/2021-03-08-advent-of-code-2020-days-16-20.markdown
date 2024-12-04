@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Advent Of Code 2020 Days 16-20"
 date: 2021-03-08 14:45:39 +0100
 tags: advent-of-code aoc coding python
@@ -13,8 +14,7 @@ Continuing my series of posts as I work through [Advent of Code 2020](http://adv
 
 These posts will be quite brief, just a few thoughts on each puzzle and the Python 3 code I used to solve it. All code on Github [here](https://git.io/JmAvJ). The code below is for Part 2 of each day, which often incorporates Part 1 in some way.
 
-Day 16 - [Ticket Translation](https://adventofcode.com/2020/day/16)
--------------------------------------------------------------------
+## Day 16 - [Ticket Translation](https://adventofcode.com/2020/day/16)
 
 ### Thoughts
 
@@ -23,6 +23,7 @@ In this puzzle, train tickets have a set of fields (such as seat class, departur
 The latter part - matching fields to positions - is a standard problem, [Maximum Bipartite Matching](https://www.geeksforgeeks.org/maximum-bipartite-matching/), and my solution below follows the same method as the examples on the linked page.
 
 ### Python Code
+
 ```python
 import sys
 import re
@@ -127,34 +128,34 @@ def match(possibility,field, matchR, seen):
 
 
     #iterate over the possible positions the field could be assigned to
-    for j in range(len(possibility)): 
-  
-        # If the matching of the field to this position is possible 
+    for j in range(len(possibility)):
+
+        # If the matching of the field to this position is possible
         # and position j has not yet been visited
-        if possibility[field][j] and seen[j] == False: 
-                  
+        if possibility[field][j] and seen[j] == False:
+
             # Mark position j as visited
-            seen[j] = True 
-  
+            seen[j] = True
+
             #If position j is not currently assigned to a field (matchR[j] == -1)
             # OR the previously assigned field for position j (matchR[j])
             #has an alternate position available
             # since position j is marked as visited in the above line,
             #the recursive call will not visit position j again
-            if matchR[j] == -1 or match(possibility,matchR[j], matchR, seen): 
+            if matchR[j] == -1 or match(possibility,matchR[j], matchR, seen):
                 matchR[j] = field #assign position j to the field we are considering
                 return True
 
     return False
 
-def maxmatch(possibility, field_dict): 
+def maxmatch(possibility, field_dict):
     # matchR is a list of fields assigned to each position
     # here we use a convention where if matchR[k] == -1,
     #then position k has not yet been assigned to a field
     matchR = [-1] * len(possibility) #initialise with no positions assigned to fields
-    
+
     #iterate over fields
-    for field in field_dict: 
+    for field in field_dict:
         #before considering a new field, reset the visited positions
         seen = [False] * len(possibility)
         match(possibility, field, matchR, seen)
@@ -176,14 +177,14 @@ for i,field in enumerate(matchR):
 print(product)
 ```
 
-Day 17 - [Conway Cubes](https://adventofcode.com/2020/day/17)
--------------------------------------------------------------
+## Day 17 - [Conway Cubes](https://adventofcode.com/2020/day/17)
 
 ### Thoughts
 
 Conway's Game of Life in 4 dimensions. My solution below is rather inefficient, but for 4 dimensions it runs in a reasonable time. Justin Le's [magnificent interactive blog article](https://blog.jle.im/entry/degenerate-hyper-dimensional-game-of-life.html) on this puzzle explains how the degenerate starting conditions of this puzzle (only one 2D "slice" of hypercubes can possibly be occupied at the start) can be used to optimise the solution such that the 10-dimensional case becomes achievable on a laptop. Go read the article, it's really excellent stuff.
 
 ### Python Code
+
 ```python
 import sys
 from copy import deepcopy
@@ -200,16 +201,16 @@ def neighbours(i,j,k,l):
     #use a Cartesian product to generate all the possible "steps"
     #to a neighbouring hypercube
     steps = list(product([-1,0,1], repeat=4))
-    
+
     #a hypercube is not its own neighbour
     steps.remove((0,0,0,0))
-        
+
     neighbours = []
-        
+
     for (a,b,c,d) in steps:
         w,z,y,x = i+a, j+b, k+c, l+d
         neighbours.append((w,z,y,x))
-    
+
     return neighbours
 
 def neighdict(grid):
@@ -231,13 +232,13 @@ def advance(grid,nbdict):
             for (w,x,y,z) in nbs:
                 if grid.get((w,x,y,z),0) == 1:
                     occ += 1
-            
+
             if grid.get((i,j,k,l),0) == 0 and occ == 3:
                 newgrid[(i,j,k,l)]= 1
-            
+
             if grid.get((i,j,k,l),0) == 1 and occ != 3 and occ != 2:
                 newgrid[(i,j,k,l)] = 0
-    
+
     return newgrid
 
 print(initial)
@@ -268,8 +269,7 @@ for coords, val in grid.items():
 print(count)
 ```
 
-Day 18 - [Operation Order](https://adventofcode.com/2020/day/18)
-----------------------------------------------------------------
+## Day 18 - [Operation Order](https://adventofcode.com/2020/day/18)
 
 ### Thoughts
 
@@ -280,6 +280,7 @@ I will admit to having been rather lazy in the solution below. I haven't written
 The `parse` function is, shall we say, a little quirky. I preferred the string representation of the output from the pyparsing parseString method to the output object itself. The string representation looks like a list of lists, but of course is a string. Rather than wrangle the output object to do what I want - which I'm certain is possible - I just used `eval` to turn the string into the list that it resembles.
 
 ### Python Code
+
 ```python
 import sys
 from pyparsing import *
@@ -310,7 +311,7 @@ def evaluate(exp):
     op_stack = []
 
     for x in exp:
-        
+
         if type(x) is str:
             if x in {'+','*'}:
                 op_stack.append(x)
@@ -340,14 +341,13 @@ for line in lines:
 print(summ)
 ```
 
-Day 19 - [Monster Messages](https://adventofcode.com/2020/day/19)
------------------------------------------------------------------
+## Day 19 - [Monster Messages](https://adventofcode.com/2020/day/19)
 
 ### Thoughts
 
 Here we have to test strings such as bbabbbbaabaabba against rule 0 from a set of rules like the below:
 
-The _rules for valid messages_ (the top part of your puzzle input) are numbered and build upon each other. For example:
+The *rules for valid messages* (the top part of your puzzle input) are numbered and build upon each other. For example:
 
 0: 1 2
 1: "a"
@@ -358,7 +358,7 @@ Some rules, like `3: "b"`, simply match a single character (in this case, `b`)
 
 The remaining rules list the sub-rules that must be followed; for example, the rule `0: 1 2` means that to match rule `0`, the text being checked must match rule `1`, and the text after the part that matched rule `1` must then match rule `2`.
 
-Some of the rules have multiple lists of sub-rules separated by a pipe (`|`). This means that _at least one_ list of sub-rules must match. (The ones that match might be different each time the rule is encountered.) For example, the rule `2: 1 3 | 3 1` means that to match rule `2`, the text being checked must match rule `1` followed by rule `3` _or_ it must match rule `3` followed by rule `1`.
+Some of the rules have multiple lists of sub-rules separated by a pipe (`|`). This means that *at least one* list of sub-rules must match. (The ones that match might be different each time the rule is encountered.) For example, the rule `2: 1 3 | 3 1` means that to match rule `2`, the text being checked must match rule `1` followed by rule `3` *or* it must match rule `3` followed by rule `1`.
 
 I knew it would be possible to recursively build a regex to then match to each string, but my feeling was that if I have to make the regex recursively, I might as well actually apply the rules recursively. This was not as easy as I expected. But, taking some inspiration from the approach of [Marco Bonelli](https://github.com/mebeim/aoc/tree/master/2020), I was eventually able to put something together.
 
@@ -367,6 +367,7 @@ The advantage of this approach over regex is that in part 2, when the rules are 
 The workhorse in this solution is the recursive function `check(word, rules, rule_number=0)` which takes a word (e.g. the string bbabbbbaabaabba) and checks it against rule 0 by default. When called, check returns a list containing the remaining part(s) of the string to check. This list can have multiple entries due to the OR statements inside some of the rules - you might be able to validate 5 characters of a string by following one branch, but only 3 characters if you go along a different branch. If there's any way through the tree of rules to validating the entire word, you'll find the empty string `''` in the final output of `check`. If the empty string isn't in the output, then the word is not valid according to rule zero.
 
 ### Python Code
+
 ```python
 import sys
 import re
@@ -390,14 +391,14 @@ newrules = rules.copy()
 for key, val in rules.items():
     if re.match(r' "[a-z]"', val):
         newrules[key] = val.replace("\"", "").replace(" ", "")
-    
+
     else:
         if "|" in val:
             newval = val.split("|")
             newval = [[int(y) for y in x.split()] for x in newval]
         else:
             newval = [[int(y) for y in val.split()]]
-        
+
         newrules[key] = newval
 
 rules = newrules
@@ -407,7 +408,7 @@ def check(word, rules, rule_number=0):
 
     #if you're past the end of the word, return the empty list
     if word == '':
-        return [] 
+        return []
 
     #look up the rule in the rules dict
     rule = rules[rule_number]
@@ -428,18 +429,18 @@ def check(word, rules, rule_number=0):
     #rules containing a single rule list or two options are both handled here
     for option in rule:
         #begin with the entire word
-        opt_matches = [word] 
+        opt_matches = [word]
 
-        for subrule_number in option: 
+        for subrule_number in option:
             new_matches = []
             for wd in opt_matches:
                 #recursive function call
                 new_matches += check(wd, rules, subrule_number)
-            
+
             opt_matches = new_matches
-        
+
         matches += opt_matches
-    
+
     return matches
 
 count = 0
@@ -451,8 +452,7 @@ for word in words:
 print(count)
 ```
 
-Day 20 - [Jurassic Jigsaw](https://adventofcode.com/2020/day/20)
-----------------------------------------------------------------
+## Day 20 - [Jurassic Jigsaw](https://adventofcode.com/2020/day/20)
 
 ### Thoughts
 
@@ -465,6 +465,7 @@ This was a long process with multiple stages and a plethora of helper functions.
 The solution below is a brute force solution and makes no bones about it!
 
 ### Python Code
+
 ```python
 import sys
 import re
@@ -498,7 +499,7 @@ def flipH(tile):
     newtile = []
     for row in tile:
         newtile.append(row[-1::-1])
-    
+
     return newtile
 
 def rot90(tile):
@@ -509,28 +510,28 @@ def rot90(tile):
         for row in tile:
             newrow = ''.join([newrow,row[-(i+1)]])
         newtile[i] = newrow
-    
+
     return newtile
 
 
 def edge(tile,side):
-    #helper function to find one edge of a tile 
+    #helper function to find one edge of a tile
     if side == 't':  #top
         return tile[0]
-    
+
     if side == 'b': #base
         return tile[-1]
-    
+
     if side == 'l': #left
         return ''.join([row[0] for row in tile])
-    
+
     if side == 'r': #right
         return ''.join([row[-1] for row in tile])
 
 def match(tiles):
     #determine how many edges of each tile match to another tile
     match_count = defaultdict(int)
-    matches = defaultdict(list) 
+    matches = defaultdict(list)
 
     corners = []
 
@@ -553,7 +554,7 @@ def match(tiles):
         #the all-important corner tiles are those with two matches
         if num_sides == 2:
             corners.append(num)
-        
+
     return corners, match_count, matches
 
 corners, match_count, matches = match(tiles)
@@ -577,7 +578,7 @@ def orientations(tile):
     tflipD2 = rot90(tflipV) #diagonal flip -> combine flip and rotation
 
     return [tile, trot90, trot180, trot270, tflipH, tflipV, tflipD1, tflipD2]
-    
+
 
 def match_tile(tile1,tiles,side1):
     #find the properly oriented tile which matches tile1 on the specified side1
@@ -595,15 +596,15 @@ def match_tile(tile1,tiles,side1):
             side2 = 'r'
         if side1 == 'r':
             side2 = 'l'
-        
+
         for t2_orient in orientations(tile2):
-            if edge(tile1,side1) == edge(t2_orient, side2):      
+            if edge(tile1,side1) == edge(t2_orient, side2):
                 return t2_orient
 
 def build(start_tile, tiles, num_cols, num_rows):
     #build up the image by matching tiles
     rows = defaultdict(list)
-    
+
     for i in range(num_rows):
         for j in range(num_cols):
             rows[i].append([])
@@ -613,14 +614,14 @@ def build(start_tile, tiles, num_cols, num_rows):
             rows[0][0] = start_tile #place the start tile in the top left
         else:
             #match the first tile in the row above to begin a new row
-            rows[i][0] = match_tile(rows[i-1][0], tiles, 'b') 
+            rows[i][0] = match_tile(rows[i-1][0], tiles, 'b')
 
         for j in range(1,num_cols):
             print(i,j)
             #match repeatedly to the right to fill out a row
             next_tile = match_tile(rows[i][j-1], tiles, 'r')
             rows[i][j] = next_tile
-    
+
     return rows
 
 def strip(tile):
@@ -667,18 +668,18 @@ def monster_count(image):
 
     #hard-coding the fact that a sea monster takes up a 20x3 grid of characters
     for x in range(image_dim - 3):
-        for y in range(image_dim - 20): 
+        for y in range(image_dim - 20):
 
             #all of the characters must be hashes for a sea monster to be present
             if all(image[x+dx][y+dy] == '#' for dx, dy in deltas):
                 mon_count += 1
-    
+
     #count all the hashes in the image
     for x in range(image_dim):
         for y in range(image_dim):
             if image[x][y] == '#':
                 hash_count += 1
-    
+
     #calculate water roughness, quantity of hashes not part of a monster
     # (a monster contains 15 hashes, monsters do not overlap)
     water_roughness = hash_count - mon_count*15

@@ -1,5 +1,6 @@
 ---
 layout: post
+tipue_search_active: true
 title: "Adding Date Related Features To A Pandas Dataframe"
 date: 2021-02-22 14:45:39 +0100
 tags: coding data pandas python
@@ -12,6 +13,7 @@ tags: coding data pandas python
 This post captures a few examples of feature enrichment in Pandas. In particular, these examples focus on adding a few simple features related to the date.
 
 ### Simple Date-Related Features
+
 ```python
 def add_date_features(df, date_column):
     """
@@ -87,8 +89,8 @@ def add_bh_features(df, date_column):
 
     #add feature for next working day after bank holiday
     bh['next_wd'] = bh['date'] + pd.tseries.offsets.BDay()
-    
-    #when the next business day is another bank holiday (e.g. Easter Monday is the next 
+
+    #when the next business day is another bank holiday (e.g. Easter Monday is the next
     #"business day" after Good Friday), that date should not be treated as a working day
     bh.loc[bh['next_wd'].isin(bh.date), 'next_wd'] = pd.NaT
 
