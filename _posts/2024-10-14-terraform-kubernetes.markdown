@@ -57,7 +57,7 @@ This allows for some declarative interaction with the cluster, though a potentia
 
 This module handles the AWS infrastructure needed for the kubernetes app to be deployed.
 
-It sets up a VPC, an EKS cluster, and an Amazon Certificate Manager certificate to allow for SSL/TLS.
+It sets up a VPC, an EKS cluster, and an Amazon Certificate Manager certificate to allow the web app to be served over HTTPS.
 
 ### kubernetes module
 
